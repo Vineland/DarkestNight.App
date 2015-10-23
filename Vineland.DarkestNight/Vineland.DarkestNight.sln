@@ -3,15 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vineland.DarkestNight.GameLogic", "Vineland.DarkestNight.GameLogic\Vineland.DarkestNight.GameLogic.shproj", "{5B8751AE-4B0B-4B93-B20B-C0DDFBBCF3C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core", "Vineland.DarkestNight.Core\Vineland.DarkestNight.Core.csproj", "{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core.Test", "Vineland.DarkestNight.Core.Test\Vineland.DarkestNight.Core.Test.csproj", "{46C84570-F22B-414F-BEDA-DE207399E2FB}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Vineland.DarkestNight.GameLogic\Vineland.DarkestNight.GameLogic.projitems*{5b8751ae-4b0b-4b93-b20b-c0ddfbbcf3c9}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
