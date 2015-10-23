@@ -10,7 +10,7 @@ namespace Vineland.DarkestNight.Core.Test
         [TestMethod]
         public void TestMethod1()
         {
-            var mapService = new MapService();
+            var mapService = new GameData();
         }
     }
 }

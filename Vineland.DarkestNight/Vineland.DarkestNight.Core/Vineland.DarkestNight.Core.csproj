@@ -44,13 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\GameState.cs" />
     <Compile Include="Model\Hero.cs" />
     <Compile Include="Model\Location.cs" />
-    <Compile Include="Services\MapService.cs" />
+    <Compile Include="Services\GameData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="locations.json" />
+    <EmbeddedResource Include="heroes.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

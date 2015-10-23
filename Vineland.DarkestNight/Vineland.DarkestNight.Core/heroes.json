@@ -1,0 +1,170 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Alchemist",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 2,
+    "Name": "Acolyte",
+    "Secrecy": 7,
+    "LocationId": 1
+  },
+  {
+    "Id": 3,
+    "Name": "Bard",
+    "Secrecy": 4,
+    "LocationId": 1
+  },
+  {
+    "Id": 4,
+    "Name": "Channeler",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 5,
+    "Name": "Conjurer",
+    "Secrecy": 5,
+    "LocationId": 1
+  },
+  {
+    "Id": 6,
+    "Name": "Crusader",
+    "Secrecy": 4,
+    "LocationId": 1
+  },
+  {
+    "Id": 7,
+    "Name": "Druid",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 8,
+    "Name": "Enchanter",
+    "Secrecy": 5,
+    "LocationId": 1
+  },
+  {
+    "Id": 9,
+    "Name": "Excorcist",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 10,
+    "Name": "Knight",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 11,
+    "Name": "Mercenary",
+    "Secrecy": 4,
+    "LocationId": 1
+  },
+  {
+    "Id": 12,
+    "Name": "Mesmer",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 13,
+    "Name": "Monk",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 14,
+    "Name": "Nymph",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 15,
+    "Name": "Paragon",
+    "Secrecy": 4,
+    "LocationId": 1
+  },
+  {
+    "Id": 16,
+    "Name": "Priest",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 17,
+    "Name": "Prince",
+    "Secrecy": 4,
+    "LocationId": 1
+  },
+  {
+    "Id": 18,
+    "Name": "Ranger",
+    "Secrecy": 7,
+    "LocationId": 1
+  },
+  {
+    "Id": 19,
+    "Name": "Rogue",
+    "Secrecy": 7,
+    "LocationId": 1
+  },
+  {
+    "Id": 20,
+    "Name": "Scholar",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 21,
+    "Name": "Scout",
+    "Secrecy": 7,
+    "LocationId": 1
+  },
+  {
+    "Id": 22,
+    "Name": "Seer",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 23,
+    "Name": "Shaman",
+    "Secrecy": 7,
+    "LocationId": 1
+  },
+  {
+    "Id": 24,
+    "Name": "Tamer",
+    "Secrecy": 5,
+    "LocationId": 1
+  },
+  {
+    "Id": 25,
+    "Name": "Valkyrie",
+    "Secrecy": 5,
+    "LocationId": 1
+  },
+  {
+    "Id": 26,
+    "Name": "Wayfarer",
+    "Secrecy": 5,
+    "LocationId": 1
+  },
+  {
+    "Id": 27,
+    "Name": "Wind Dancer",
+    "Secrecy": 6,
+    "LocationId": 1
+  },
+  {
+    "Id": 28,
+    "Name": "Wizard",
+    "Secrecy": 5,
+    "LocationId": 1
+  }
+]
