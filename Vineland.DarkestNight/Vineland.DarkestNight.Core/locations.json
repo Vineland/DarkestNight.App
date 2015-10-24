@@ -2,36 +2,169 @@
   {
     "Id": 1,
     "Name": "Monastery",
-    "Pathways": [ ]
+    "Pathways": [ ],
+    "Distances": [ ]
   },
   {
     "Id": 2,
     "Name": "Mountains",
-    "Pathways": [3,4,2,4,3,2]
+    "Pathways": [ 3, 4, 2, 4, 3, 2 ],
+    "Distances": [
+      {
+        "LocationId": 3,
+        "Distance": 1
+      },
+      {
+        "LocationId": 4,
+        "Distance": 1
+      },
+      {
+        "LocationId": 5,
+        "Distance": 2
+      },
+      {
+        "LocationId": 6,
+        "Distance": 2
+      },
+      {
+        "LocationId": 7,
+        "Distance": 2
+      }
+    ]
   },
   {
     "Id": 3,
     "Name": "Castle",
-    "Pathways": [5,4,2,3,4,3]
+    "Pathways": [ 5, 4, 2, 3, 4, 3 ],
+    "Distances": [
+      {
+        "LocationId": 2,
+        "Distance": 1
+      },
+      {
+        "LocationId": 4,
+        "Distance": 1
+      },
+      {
+        "LocationId": 5,
+        "Distance": 1
+      },
+      {
+        "LocationId": 6,
+        "Distance": 2
+      },
+      {
+        "LocationId": 7,
+        "Distance": 2
+      }
+    ]
   },
   {
     "Id": 4,
     "Name": "Village",
-    "Pathways": [2,6,7,3,5,4]
+    "Pathways": [ 2, 6, 7, 3, 5, 4 ],
+    "Distances": [
+      {
+        "LocationId": 2,
+        "Distance": 1
+      },
+      {
+        "LocationId": 3,
+        "Distance": 1
+      },
+      {
+        "LocationId": 5,
+        "Distance": 1
+      },
+      {
+        "LocationId": 6,
+        "Distance": 1
+      },
+      {
+        "LocationId": 7,
+        "Distance": 1
+      }
+    ]
   },
   {
     "Id": 5,
     "Name": "Swamp",
-    "Pathways": [6,4,3,5,4,5]
+    "Pathways": [ 6, 4, 3, 5, 4, 5 ],
+    "Distances": [
+      {
+        "LocationId": 2,
+        "Distance": 2
+      },
+      {
+        "LocationId": 3,
+        "Distance": 1
+      },
+      {
+        "LocationId": 4,
+        "Distance": 1
+      },
+      {
+        "LocationId": 6,
+        "Distance": 1
+      },
+      {
+        "LocationId": 7,
+        "Distance": 2
+      }
+    ]
   },
   {
     "Id": 6,
     "Name": "Ruins",
-    "Pathways": [7,5,4,6,4,6]
+    "Pathways": [ 7, 5, 4, 6, 4, 6 ],
+    "Distances": [
+      {
+        "LocationId": 2,
+        "Distance": 2
+      },
+      {
+        "LocationId": 3,
+        "Distance": 2
+      },
+      {
+        "LocationId": 4,
+        "Distance": 1
+      },
+      {
+        "LocationId": 5,
+        "Distance": 1
+      },
+      {
+        "LocationId": 7,
+        "Distance": 1
+      }
+    ]
   },
   {
     "Id": 7,
     "Name": "Forest",
-    "Pathways": [4,6,7,4,6,7]
+    "Pathways": [ 4, 6, 7, 4, 6, 7 ],
+    "Distances": [
+      {
+        "LocationId": 2,
+        "Distance": 2
+      },
+      {
+        "LocationId": 3,
+        "Distance": 2
+      },
+      {
+        "LocationId": 4,
+        "Distance": 1
+      },
+      {
+        "LocationId": 5,
+        "Distance": 2
+      },
+      {
+        "LocationId": 6,
+        "Distance": 1
+      }
+    ]
   }
 ]

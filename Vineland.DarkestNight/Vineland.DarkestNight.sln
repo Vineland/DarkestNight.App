@@ -7,7 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core.Test", "Vineland.DarkestNight.Core.Test\Vineland.DarkestNight.Core.Test.csproj", "{46C84570-F22B-414F-BEDA-DE207399E2FB}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vineland.DarkestNight.Shared", "Vineland.DarkestNight.Shared\Vineland.DarkestNight.Shared.shproj", "{BEF70A5C-A34C-4503-AFB7-813CD0326F28}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Vineland.DarkestNight.Shared\Vineland.DarkestNight.Shared.projitems*{bef70a5c-a34c-4503-afb7-813cd0326f28}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vineland.DarkestNight.Core.Model
+namespace Vineland.DarkestNight.Core
 {
     public class Hero
     {
