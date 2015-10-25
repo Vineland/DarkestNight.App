@@ -7,14 +7,12 @@ namespace Vineland.DarkestNight.Core
     {
         public GameState()
         {
-            Heroes = new List<Hero>();
-            FallenHeroes = new List<Hero>();
+            Heroes = new HeroesState();
         }
 
         public string Name { get; set; }
-
-        public List<Hero> Heroes { get; set; }
-        public List<Hero> FallenHeroes { get; set; }
+        
+        public HeroesState Heroes { get; set; }
 
         public Location NecromancerLocation { get; set; }
         public int DarknessLevel { get; set; }
@@ -35,6 +33,37 @@ namespace Vineland.DarkestNight.Core
         //TODO Hero modifiers
 
         //TODO Necromancer modifiers
+    }
+
+    public class HeroesState {
+
+        public HeroesState()
+        {
+            Active = new List<Hero>();
+            Fallen = new List<Hero>();        
+        }
+
+        public List<Hero> Active { get; set; }
+        public List<Hero> Fallen { get; set; }
+
+        #region Effects
+        public bool HermitActive { get; set; }
+        public int? AuraOfHumilityLocationId { get; set; }
+        #endregion
+    }
+
+    public class NecomancerState
+    {
+        public int LocationId { get; set; }
+        
+        public bool FocusedRituals { get; set; }
+        public bool EncroachingShadows { get; set; }
+        public bool DyingLand { get; set; }
+        public bool Overwhelm { get; set; }
+        public bool CreepingShadows
+        {
+            get; set;
+        }
     }
 
     public class DarknessCardsState

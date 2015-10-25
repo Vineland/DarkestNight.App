@@ -18,6 +18,35 @@ namespace Vineland.DarkestNight.Core
             _d6GeneratorService = d6GeneratorService;
         }
 
+        public DetectionResult Detect(GameState gameState)
+        {
+            var result = new DetectionResult();
+
+            result.Roll = _d6GeneratorService.RollDemBones();
+
+            //first check if any heroes can be detected
+            var exposedHeroes = gameState.Heroes.Active.Where(x => x.LocationId != LocationIds.Monastery && x.Secrecy < result.Roll);
+
+            //special hero effects
+            if (gameState.Heroes.HermitActive)
+                exposedHeroes = exposedHeroes.Where(x => !(x.Name == "Ranger" && x.LocationId == LocationIds.Swamp));
+
+            if (gameState.Heroes.AuraOfHumilityLocationId.HasValue)
+                exposedHeroes = exposedHeroes.Where(x => x.LocationId != gameState.Heroes.AuraOfHumilityLocationId.Value);
+
+            if (exposedHeroes.Any())
+            {
+                //figure out which hero the necromancer is pursuing
+                var index = new Random().Next(0, exposedHeroes.Count() - 1);
+
+                result.DetectedHeroId = exposedHeroes.ToArray()[index].Id;
+            }
+            else
+                result.DetectedHeroId = null;
+
+            return result;
+        }
+
         public NecromancerResult ActivateNecromancer(GameState gameState)
         {
             var result = new NecromancerResult() { Messages = new List<string>() };
@@ -26,7 +55,7 @@ namespace Vineland.DarkestNight.Core
 
             var newLocationId = 0;
             //first check if any heroes can be detected
-            var exposedHeroes = gameState.Heroes.Where(x => x.LocationId != 1 && x.Secrecy < dieRoll);
+            var exposedHeroes = gameState.Heroes.Active.Where(x => x.LocationId != 1 && x.Secrecy < dieRoll);
             if (exposedHeroes.Any())
             {
                 //figure out which hero the necromancer is pursuing
@@ -65,7 +94,7 @@ namespace Vineland.DarkestNight.Core
             if (gameState.Mode != DarknessCardsMode.None)
             {
                 if (gameState.DarknessCards.FocusedRituals
-                    && !gameState.Heroes.Any(x => x.LocationId == newLocationId))
+                    && !gameState.Heroes.Active.Any(x => x.LocationId == newLocationId))
                     numberOfBlights++;
 
                 if (gameState.DarknessCards.CreepingShadows && (dieRoll == 5 || dieRoll == 6))
@@ -110,6 +139,13 @@ namespace Vineland.DarkestNight.Core
             return result;
         }
     }
+
+    public class DetectionResult
+    {
+        public int? DetectedHeroId { get; set; }
+        public int Roll { get; set; }
+    }
+
 
     public class NecromancerResult
     {

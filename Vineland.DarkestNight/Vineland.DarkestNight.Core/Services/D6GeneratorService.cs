@@ -15,7 +15,7 @@ namespace Vineland.DarkestNight.Core.Services
             _generator = new Random();
         }
 
-        public int RollDemBones()
+        public virtual int RollDemBones()
         {
             return _generator.Next(1, 6);
         }

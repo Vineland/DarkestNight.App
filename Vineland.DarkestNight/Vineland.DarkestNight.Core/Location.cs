@@ -21,5 +21,16 @@ namespace Vineland.DarkestNight.Core
         public int Distance { get; set; }
     }
 
+    public static class LocationIds
+    {
+        public static readonly int Monastery = 1;
+        public static readonly int Mountains = 2;
+        public static readonly int Castle = 3;
+        public static readonly int Village = 4;
+        public static readonly int Swamp = 5;
+        public static readonly int Ruins = 6;
+        public static readonly int Forest = 7;
+    }
+
 
 }
