@@ -34,7 +34,7 @@ namespace Vineland.DarkestNight.Core.Test.Services
 
             //assert
             Assert.IsNull(result.DetectedHeroId);
-            Assert.AreEqual(6, result.Roll);
+            Assert.AreEqual(6, result.DetectionRoll);
         }
 
         [TestMethod]
@@ -66,18 +66,84 @@ namespace Vineland.DarkestNight.Core.Test.Services
         }
 
         [TestMethod]
-        public void Detect_MultipleHerosVisible_OneHeroChosen()
+        public void Detect_MultipleHeroesDetected_HeroAtCurrentLocationChosen()
         {
             //arrange
-            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1 });
-            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 2 });
-            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 3 });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1 , LocationId = LocationIds.Castle});
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 2 , LocationId = LocationIds.Swamp});
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 3 , LocationId = LocationIds.Ruins});
+            _gameState.Necromancer.LocationId = LocationIds.Ruins;
 
             //act
             var result = _necromancerService.Detect(_gameState);
 
             //assert
-            Assert.IsTrue(result.DetectedHeroId == 1 || result.DetectedHeroId == 3);
+            Assert.AreEqual(3, result.DetectedHeroId);
+        }
+
+        [TestMethod]
+        public void Detect_MultipleHeroesDetected_ClosestHeroChosen()
+        {
+            //arrange
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1, LocationId = LocationIds.Castle });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 2, LocationId = LocationIds.Swamp });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 3, LocationId = LocationIds.Ruins });
+            _gameState.Necromancer.LocationId = LocationIds.Ruins;
+
+            //act
+            var result = _necromancerService.Detect(_gameState);
+
+            //assert
+            Assert.AreEqual(2, result.DetectedHeroId);
+        }
+
+        [TestMethod]
+        public void Detect_MultipleHeroesDetected_RandomHeroOneDistanceAwayChosen()
+        {
+            //arrange
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1, LocationId = LocationIds.Forest });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 2, LocationId = LocationIds.Swamp });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 3, LocationId = LocationIds.Mountains });
+            _gameState.Necromancer.LocationId = LocationIds.Ruins;
+
+            //act
+            var result = _necromancerService.Detect(_gameState);
+
+            //assert
+            Assert.AreNotEqual(3, result.DetectedHeroId);
+        }
+
+        [TestMethod]
+        public void Detect_MultipleHeroesDetected_RandomHeroDistanceTwoAwayChosen()
+        {
+            //arrange
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1, LocationId = LocationIds.Swamp });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 2, LocationId = LocationIds.Castle });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 3, LocationId = LocationIds.Monastery });
+            _gameState.Necromancer.LocationId = LocationIds.Forest;
+
+            //act
+            var result = _necromancerService.Detect(_gameState);
+
+            //assert
+            Assert.AreNotEqual(3, result.DetectedHeroId);
+        }
+
+        [TestMethod]
+        public void Detect_MultipleHeroesDetectedAndGatesActive_RandomHeroChosen()
+        {
+            //arrange
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1, LocationId = LocationIds.Castle });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 2, LocationId = LocationIds.Ruins });
+            _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 3, LocationId = LocationIds.Forest });
+            _gameState.Necromancer.LocationId = LocationIds.Ruins;
+            _gameState.Necromancer.GatesActive = true;
+
+            //act
+            var result = _necromancerService.Detect(_gameState);
+
+            //assert
+            Assert.IsTrue(result.DetectedHeroId == 1 || result.DetectedHeroId == 2 || result.DetectedHeroId == 3);
         }
 
         [TestMethod]
@@ -103,6 +169,7 @@ namespace Vineland.DarkestNight.Core.Test.Services
             _gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1, Name = "Ranger", LocationId = LocationIds.Castle });
             _gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 2 });
             _gameState.Heroes.HermitActive = true;
+            _gameState.Necromancer.LocationId = LocationIds.Ruins;
 
             //act
             var result = _necromancerService.Detect(_gameState);
@@ -112,7 +179,7 @@ namespace Vineland.DarkestNight.Core.Test.Services
         }
 
         [TestMethod]
-        public void Detect_AuroOfHumilityActiveAtMountains_NoDetections()
+        public void Detect_AuraOfHumilityActiveAtMountains_NoDetections()
         {
             //arrange
             _gameState.Heroes.Active.Add(new Hero() { Secrecy = 1, Id = 1, LocationId = LocationIds.Mountains });
@@ -126,6 +193,21 @@ namespace Vineland.DarkestNight.Core.Test.Services
             //assert
             Assert.IsNull(result.DetectedHeroId);
 
+        }
+
+        [TestMethod]
+        public void Detect_HeroSecrecy6Roll6GatesActive_HeroDetected()
+        {
+            //arrange
+            _gameState.Heroes.Active.Add(new Hero() {Id=1, Secrecy = 6 });
+            _gameState.Necromancer.GatesActive = true;
+
+            //act
+            var result = _necromancerService.Detect(_gameState);
+
+            //assert
+            Assert.AreEqual(1, result.DetectedHeroId);
+            Assert.AreEqual(7, result.DetectionRoll);
         }
     }
 }

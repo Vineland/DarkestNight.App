@@ -15,6 +15,9 @@ namespace Vineland.DarkestNight.Core.Services
 
         }
 
+        //public void CreateNewGame() { }
+
+
         public List<FileInfo> GetSaveGames()
         {
             var paths = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "*.sav", SearchOption.TopDirectoryOnly);

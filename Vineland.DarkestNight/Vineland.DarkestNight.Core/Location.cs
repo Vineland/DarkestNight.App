@@ -12,7 +12,6 @@ namespace Vineland.DarkestNight.Core
         public string Name { get; set; }
         public int NumberOfBlights { get; set; }
         public int[] Pathways { get; set; }
-        public LocationDistance[] Distances { get; set; }
     }
 
     public class LocationDistance
