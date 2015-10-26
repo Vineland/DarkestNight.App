@@ -192,7 +192,6 @@ namespace Vineland.DarkestNight.Core.Test.Services
 
             //assert
             Assert.IsNull(result.DetectedHeroId);
-
         }
 
         [TestMethod]

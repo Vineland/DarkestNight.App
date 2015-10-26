@@ -13,7 +13,7 @@ namespace Vineland.DarkestNight.Core
             Heroes = new HeroesState();
             Necromancer = new NecomancerState();
 
-            //TODO: this shoudln't be in here
+            //TODO: this shouldn't be in here
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Vineland.DarkestNight.Core.locations.json"))
             using (var reader = new StreamReader(stream))
             {

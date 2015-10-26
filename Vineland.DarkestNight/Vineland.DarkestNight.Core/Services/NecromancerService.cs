@@ -23,13 +23,13 @@ namespace Vineland.DarkestNight.Core
             var result = new DetectionResult();
 
             result.MovementRoll = _d6GeneratorService.RollDemBones();
-            result.DetectionRoll = result.MovementRoll;
+            var detectionRoll = result.MovementRoll;
 
             if (gameState.Necromancer.GatesActive)
-                result.DetectionRoll++;
+                detectionRoll++;
 
             //first check if any heroes can be detected
-            var exposedHeroes = gameState.Heroes.Active.Where(x => x.LocationId != LocationIds.Monastery && x.Secrecy < result.DetectionRoll);
+            var exposedHeroes = gameState.Heroes.Active.Where(x => x.LocationId != LocationIds.Monastery && x.Secrecy < detectionRoll);
 
             //special hero effects
             if (gameState.Heroes.HermitActive)
@@ -70,115 +70,102 @@ namespace Vineland.DarkestNight.Core
             return result;
         }
 
-        //public NecromancerResult ActivateNecromancer(GameState gameState)
-        //{
-        //    var result = new NecromancerResult() { Messages = new List<string>() };
+        public MoveResult Move(int? detectedHeroId, int movementRoll, GameState gameState)
+        {
+            var result = new MoveResult();
 
-        //    var dieRoll = _d6GeneratorService.RollDemBones();
+            var currentLocation = gameState.Locations.First(x => x.Id == gameState.Necromancer.LocationId);
+            var newLocationId = 0;
 
-        //    var newLocationId = 0;
-        //    //first check if any heroes can be detected
-        //    var exposedHeroes = gameState.Heroes.Active.Where(x => x.LocationId != 1 && x.Secrecy < dieRoll);
-        //    if (exposedHeroes.Any())
-        //    {
-        //        //figure out which hero the necromancer is pursuing
-        //    }
-        //    else
-        //    {
-        //        //cannot detect anyone so move along the pathways
-        //        newLocationId = gameState.Necromancer.Location.Pathways[dieRoll - 1];
-        //    }
+            if (detectedHeroId.HasValue)
+            {
+                //TODO
+            }
+            else
+                newLocationId = currentLocation.Pathways[movementRoll - 1];
+            
+            result.NewNecromancerLocation = gameState.Locations.First(x => x.Id == newLocationId);
 
-        //    if (newLocationId == gameState.NecromancerLocation.Id)
-        //    {
-        //        result.NewNecromancerLocation = gameState.NecromancerLocation;
-        //        result.Messages.Add(string.Format("The Necromancer remains at the {0}", gameState.NecromancerLocation.Name));
-        //    }
-        //    else
-        //    {
-        //        result.NewNecromancerLocation = _gameData.Locations.First(x => x.Id == newLocationId);
-        //        result.Messages.Add(string.Format("The Necromancer moves to the {0}", result.NewNecromancerLocation.Name));
-        //    }
+            //spawn blights at necromancer's new location
+            result.NumberOfBlightsToNewLocation = 1;
 
-        //    //spawn blights at necromancer's new location
-        //    var numberOfBlights = 1;
-        //    var numberOfBlightsMonastery = 0;
-        //    //standard darkness track effects
-        //    if (gameState.DarknessTrackEffectsActive)
-        //    {
-        //        if (gameState.DarknessLevel >= 10 && result.NewNecromancerLocation.NumberOfBlights == 0)
-        //            numberOfBlights++;
+            //standard darkness track effects
+            if (gameState.DarknessTrackEffectsActive)
+            {
+                if (gameState.DarknessLevel >= 10 && result.NewNecromancerLocation.NumberOfBlights == 0)
+                    result.NumberOfBlightsToNewLocation++;
 
-        //        if (gameState.DarknessLevel >= 20 && (dieRoll == 1 || dieRoll == 2))
-        //            numberOfBlights++;
-        //    }
+                if (gameState.DarknessLevel >= 20 && (movementRoll == 1 || movementRoll == 2))
+                    result.NumberOfBlightsToNewLocation++;
+            }
 
-        //    //darkness card effects
-        //    if (gameState.Mode != DarknessCardsMode.None)
-        //    {
-        //        if (gameState.DarknessCards.FocusedRituals
-        //            && !gameState.Heroes.Active.Any(x => x.LocationId == newLocationId))
-        //            numberOfBlights++;
+            //darkness card effects
+            if (gameState.Mode != DarknessCardsMode.None)
+            {
+                if (gameState.Necromancer.FocusedRituals
+                    && !gameState.Heroes.Active.Any(x => x.LocationId == newLocationId))
+                    result.NumberOfBlightsToNewLocation++;
 
-        //        if (gameState.DarknessCards.CreepingShadows && (dieRoll == 5 || dieRoll == 6))
-        //            numberOfBlights++;
+                if (gameState.Necromancer.CreepingShadows && (movementRoll == 5 || movementRoll == 6))
+                    result.NumberOfBlightsToNewLocation++;
 
-        //        if (gameState.DarknessCards.DyingLand)
-        //        {
-        //            if (gameState.DarknessTrackEffectsActive
-        //                && gameState.DarknessLevel >= 10
-        //                && result.NewNecromancerLocation.NumberOfBlights == 0)
-        //                numberOfBlights++;
-        //            else if (result.NewNecromancerLocation.NumberOfBlights == 1)
-        //                numberOfBlights++;
-        //        }
+                if (gameState.Necromancer.DyingLand)
+                {
+                    if (gameState.DarknessTrackEffectsActive
+                        && gameState.DarknessLevel >= 10
+                        && result.NewNecromancerLocation.NumberOfBlights == 0)
+                        result.NumberOfBlightsToNewLocation++;
+                    else if (result.NewNecromancerLocation.NumberOfBlights == 1)
+                        result.NumberOfBlightsToNewLocation++;
+                }
 
-        //        if (gameState.DarknessCards.EncroachingShadows && dieRoll == 6)
-        //            numberOfBlightsMonastery++;
+                if (gameState.Necromancer.EncroachingShadows && movementRoll == 6)
+                    result.NumberOfBlightsToMonastery++;
 
-        //        if (gameState.DarknessCards.Overwhelm && result.NewNecromancerLocation.NumberOfBlights + numberOfBlights >= 4)
-        //            numberOfBlightsMonastery++;
-        //    }
+                if (gameState.Necromancer.Overwhelm && result.NewNecromancerLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation >= 4)
+                    result.NumberOfBlightsToMonastery++;
+            }
 
-        //    //check for spill over to monastery
-        //    if (result.NewNecromancerLocation.NumberOfBlights + numberOfBlights > 4)
-        //    {
-        //        var overflow = (result.NewNecromancerLocation.NumberOfBlights + numberOfBlights) - 4;
-        //        numberOfBlights -= overflow;
-        //        numberOfBlightsMonastery += overflow;
-                
-        //    }
-          
+            //check for spill over to monastery
+            if (result.NewNecromancerLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation > 4)
+            {
+                var overflow = (result.NewNecromancerLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation) - 4;
+                result.NumberOfBlightsToNewLocation -= overflow;
+                result.NumberOfBlightsToMonastery += overflow;
 
-        //    result.Messages.Add(string.Format("{0} blight{2} spawned at the {1}", numberOfBlights, result.NewNecromancerLocation.Name, numberOfBlights > 1 ? "s are": "is"));
-        //    result.Messages.Add(string.Format("{0} blight{1} spawned at the Monastery", numberOfBlightsMonastery, numberOfBlightsMonastery > 1 ? "s are" : "is"));
-
-        //    //check if a quest needs to be spawned
-        //    if (gameState.PallOfSuffering && (dieRoll == 3 || dieRoll == 4))
-        //        result.Messages.Add(string.Format("A Quest is spawned at the {0}", gameState.NecromancerLocation.Name));
+            }
 
 
+            //result.Messages.Add(string.Format("{0} blight{2} spawned at the {1}", numberOfBlights, result.NewNecromancerLocation.Name, numberOfBlights > 1 ? "s are" : "is"));
+            //result.Messages.Add(string.Format("{0} blight{1} spawned at the Monastery", numberOfBlightsMonastery, numberOfBlightsMonastery > 1 ? "s are" : "is"));
 
-        //    return result;
-        //}
+            //check if a quest needs to be spawned
+            if (gameState.PallOfSuffering && (movementRoll == 3 || movementRoll == 4))
+                result.SpawnQuest = true;
+                //result.Messages.Add(string.Format("A Quest is spawned at the {0}", currentLocation.Name));
+
+            
+            return result;
+        }
     }
 
     public class DetectionResult
     {
         public int? DetectedHeroId { get; set; }
-        public int DetectionRoll { get; set; }
         public int MovementRoll { get; set; }
     }
 
 
-    public class NecromancerResult
+    public class MoveResult
     {
         public Location NewNecromancerLocation { get; set; }
-        public List<string> Messages { get; set; }
+        //public List<string> Messages { get; set; }
         /// <summary>
         /// A list of (LocationId, NumberOfBlights)
         /// </summary>
-        public List<Tuple<int, int>> NumberOfBlights { get; set; }
+        public int NumberOfBlightsToNewLocation { get; set; }
+        public int NumberOfBlightsToMonastery { get; set; }
+
         public bool SpawnQuest { get; set; }
     }
 
