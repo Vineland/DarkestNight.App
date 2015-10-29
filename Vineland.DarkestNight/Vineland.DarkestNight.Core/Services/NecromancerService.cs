@@ -9,12 +9,10 @@ namespace Vineland.DarkestNight.Core
 {
     public class NecromancerService
     {
-        GameData _gameData;
         D6GeneratorService _d6GeneratorService;
 
-        public NecromancerService(GameData gameData, D6GeneratorService d6GeneratorService)
+        public NecromancerService(D6GeneratorService d6GeneratorService)
         {
-            _gameData = gameData;
             _d6GeneratorService = d6GeneratorService;
         }
 
@@ -70,21 +68,32 @@ namespace Vineland.DarkestNight.Core
             return result;
         }
 
-        public MoveResult Move(int? detectedHeroId, int movementRoll, GameState gameState)
+        public int Move(Hero detectedHero, int movementRoll, GameState gameState)
         {
-            var result = new MoveResult();
-
             var currentLocation = gameState.Locations.First(x => x.Id == gameState.Necromancer.LocationId);
-            var newLocationId = 0;
 
-            if (detectedHeroId.HasValue)
+            if (detectedHero != null)
             {
-                //TODO
+                var heroLocation = gameState.Locations.First(x => x.Id == detectedHero.LocationId);
+                var necromancerLocation = gameState.Locations.First(x => x.Id == gameState.Necromancer.LocationId);
+                //if the necromancer can reach the hero go directly to them
+                if (necromancerLocation.Pathways.Contains(heroLocation.Id) || gameState.Necromancer.GatesActive)
+                    return heroLocation.Id;
+                else
+                {
+                    //the common locations between the hero and necromancer are the ones that the necro should move along
+                    var commonLocationIds = necromancerLocation.Pathways.Intersect(heroLocation.Pathways).ToArray();
+                    var index = new Random().Next(0, commonLocationIds.Length - 1);
+                    return commonLocationIds[index];
+                }
             }
             else
-                newLocationId = currentLocation.Pathways[movementRoll - 1];
-            
-            result.NewNecromancerLocation = gameState.Locations.First(x => x.Id == newLocationId);
+                return currentLocation.Pathways[movementRoll - 1];
+        }
+
+        public SpawnResult Spawn(Location newLocation, int movementRoll, GameState gameState)
+        {
+            var result = new SpawnResult();
 
             //spawn blights at necromancer's new location
             result.NumberOfBlightsToNewLocation = 1;
@@ -92,7 +101,7 @@ namespace Vineland.DarkestNight.Core
             //standard darkness track effects
             if (gameState.DarknessTrackEffectsActive)
             {
-                if (gameState.DarknessLevel >= 10 && result.NewNecromancerLocation.NumberOfBlights == 0)
+                if (gameState.DarknessLevel >= 10 && newLocation.NumberOfBlights == 0)
                     result.NumberOfBlightsToNewLocation++;
 
                 if (gameState.DarknessLevel >= 20 && (movementRoll == 1 || movementRoll == 2))
@@ -103,7 +112,7 @@ namespace Vineland.DarkestNight.Core
             if (gameState.Mode != DarknessCardsMode.None)
             {
                 if (gameState.Necromancer.FocusedRituals
-                    && !gameState.Heroes.Active.Any(x => x.LocationId == newLocationId))
+                    && !gameState.Heroes.Active.Any(x => x.LocationId == newLocation.Id))
                     result.NumberOfBlightsToNewLocation++;
 
                 if (gameState.Necromancer.CreepingShadows && (movementRoll == 5 || movementRoll == 6))
@@ -113,36 +122,32 @@ namespace Vineland.DarkestNight.Core
                 {
                     if (gameState.DarknessTrackEffectsActive
                         && gameState.DarknessLevel >= 10
-                        && result.NewNecromancerLocation.NumberOfBlights == 0)
+                        && newLocation.NumberOfBlights == 1)
                         result.NumberOfBlightsToNewLocation++;
-                    else if (result.NewNecromancerLocation.NumberOfBlights == 1)
+                    else if ((!gameState.DarknessTrackEffectsActive
+                        || gameState.DarknessLevel < 10)
+                        && newLocation.NumberOfBlights == 0)
                         result.NumberOfBlightsToNewLocation++;
                 }
 
                 if (gameState.Necromancer.EncroachingShadows && movementRoll == 6)
                     result.NumberOfBlightsToMonastery++;
 
-                if (gameState.Necromancer.Overwhelm && result.NewNecromancerLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation >= 4)
+                if (gameState.Necromancer.Overwhelm && newLocation.NumberOfBlights < 4 && newLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation >= 4)
                     result.NumberOfBlightsToMonastery++;
             }
 
             //check for spill over to monastery
-            if (result.NewNecromancerLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation > 4)
+            if (newLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation > 4)
             {
-                var overflow = (result.NewNecromancerLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation) - 4;
+                var overflow = (newLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation) - 4;
                 result.NumberOfBlightsToNewLocation -= overflow;
                 result.NumberOfBlightsToMonastery += overflow;
-
             }
-
-
-            //result.Messages.Add(string.Format("{0} blight{2} spawned at the {1}", numberOfBlights, result.NewNecromancerLocation.Name, numberOfBlights > 1 ? "s are" : "is"));
-            //result.Messages.Add(string.Format("{0} blight{1} spawned at the Monastery", numberOfBlightsMonastery, numberOfBlightsMonastery > 1 ? "s are" : "is"));
-
+            
             //check if a quest needs to be spawned
             if (gameState.PallOfSuffering && (movementRoll == 3 || movementRoll == 4))
                 result.SpawnQuest = true;
-                //result.Messages.Add(string.Format("A Quest is spawned at the {0}", currentLocation.Name));
 
             
             return result;
@@ -156,13 +161,8 @@ namespace Vineland.DarkestNight.Core
     }
 
 
-    public class MoveResult
+    public class SpawnResult
     {
-        public Location NewNecromancerLocation { get; set; }
-        //public List<string> Messages { get; set; }
-        /// <summary>
-        /// A list of (LocationId, NumberOfBlights)
-        /// </summary>
         public int NumberOfBlightsToNewLocation { get; set; }
         public int NumberOfBlightsToMonastery { get; set; }
 
