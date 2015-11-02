@@ -7,11 +7,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core.Test", "Vineland.DarkestNight.Core.Test\Vineland.DarkestNight.Core.Test.csproj", "{46C84570-F22B-414F-BEDA-DE207399E2FB}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vineland.DarkestNight.Shared", "Vineland.DarkestNight.Shared\Vineland.DarkestNight.Shared.shproj", "{BEF70A5C-A34C-4503-AFB7-813CD0326F28}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vineland.DarkestNight.UI.Shared", "Vineland.DarkestNight.UI.Shared\Vineland.DarkestNight.UI.Shared.shproj", "{DFEFACAA-35F4-4A47-AD3A-FEB34852F445}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vineland.DarkestNight.Core.Shared", "Vineland.DarkestNight.Core.Shared\Vineland.DarkestNight.Core.Shared.shproj", "{CF9696BB-7111-4698-80B4-1D470307E5CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.UI.Android", "Vineland.DarkestNight.UI.Android\Vineland.DarkestNight.UI.Android.csproj", "{C6E3B432-BE3F-4E28-9543-2729F044CDA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.UI.Testable", "Vineland.DarkestNight.UI.Testable\Vineland.DarkestNight.UI.Testable.csproj", "{0339DB32-4458-4311-8BB0-C50847C6381E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.UI.Test", "Vineland.DarkestNight.UI.Test\Vineland.DarkestNight.UI.Test.csproj", "{03E29001-A1C1-45AE-B08E-19B0ABD879F1}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Vineland.DarkestNight.Shared\Vineland.DarkestNight.Shared.projitems*{bef70a5c-a34c-4503-afb7-813cd0326f28}*SharedItemsImports = 13
+		Vineland.DarkestNight.UI.Shared\Vineland.DarkestNight.UI.Shared.projitems*{0339db32-4458-4311-8bb0-c50847c6381e}*SharedItemsImports = 4
+		Vineland.DarkestNight.Core.Shared\Vineland.DarkestNight.Core.Shared.projitems*{cf9696bb-7111-4698-80b4-1d470307e5cf}*SharedItemsImports = 13
+		Vineland.DarkestNight.UI.Shared\Vineland.DarkestNight.UI.Shared.projitems*{dfefacaa-35f4-4a47-ad3a-feb34852f445}*SharedItemsImports = 13
+		Vineland.DarkestNight.UI.Shared\Vineland.DarkestNight.UI.Shared.projitems*{c6e3b432-be3f-4e28-9543-2729f044cda0}*SharedItemsImports = 4
+		Vineland.DarkestNight.Core.Shared\Vineland.DarkestNight.Core.Shared.projitems*{c6e3b432-be3f-4e28-9543-2729f044cda0}*SharedItemsImports = 4
+		Vineland.DarkestNight.Core.Shared\Vineland.DarkestNight.Core.Shared.projitems*{7b07d92a-a555-4674-ba5b-bc36e8a0cd6b}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +39,20 @@ Global
 		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6E3B432-BE3F-4E28-9543-2729F044CDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E3B432-BE3F-4E28-9543-2729F044CDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E3B432-BE3F-4E28-9543-2729F044CDA0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C6E3B432-BE3F-4E28-9543-2729F044CDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E3B432-BE3F-4E28-9543-2729F044CDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6E3B432-BE3F-4E28-9543-2729F044CDA0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0339DB32-4458-4311-8BB0-C50847C6381E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0339DB32-4458-4311-8BB0-C50847C6381E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0339DB32-4458-4311-8BB0-C50847C6381E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0339DB32-4458-4311-8BB0-C50847C6381E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
