@@ -15,7 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Location.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\D6GeneratorService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NecromancerService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\SaveGameService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)heroes.json" />

@@ -61,7 +61,19 @@ namespace Vineland.DarkestNight.UI.Android
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int MyButton = 2131034112;
+			public const int ContinueButton = 2131034112;
+			
+			// aapt resource value: 0x7f050004
+			public const int CreditsButton = 2131034116;
+			
+			// aapt resource value: 0x7f050002
+			public const int LoadGameButton = 2131034114;
+			
+			// aapt resource value: 0x7f050001
+			public const int NewGameButton = 2131034113;
+			
+			// aapt resource value: 0x7f050003
+			public const int OptionsButton = 2131034115;
 			
 			static Id()
 			{
@@ -77,7 +89,7 @@ namespace Vineland.DarkestNight.UI.Android
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int Home = 2130903040;
 			
 			static Layout()
 			{

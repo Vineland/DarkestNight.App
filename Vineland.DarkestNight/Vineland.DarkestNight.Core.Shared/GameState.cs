@@ -38,6 +38,24 @@ namespace Vineland.DarkestNight.Core
                 return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
             }
         }
+
+        public void Save()
+        {
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var path = Path.Combine(folderPath, Name + ".sav");
+            using (var streamWriter = new StreamWriter(path))
+            {
+                streamWriter.Write(JsonConvert.SerializeObject(this));
+            }
+        }
+
+        public void Load(FileInfo save)
+        {
+            using (var streamReader = new StreamReader(save.FullName))
+            {
+                var gameState = JsonConvert.DeserializeObject<GameState>(streamReader.ReadToEnd());
+            }
+        }
     }
 
     public class HeroesState {

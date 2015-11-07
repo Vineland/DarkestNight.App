@@ -8,6 +8,11 @@ namespace Vineland.DarkestNight.UI.Shared
 {
     public class AppSettings
     {
+
+        private const string DARKNESS_CARDS_MODE = "DarknessCardsMode";
+        private const string PALL_OF_SUFFERING = "PallOfSuffering";
+        private const string STARTING_DARKNESS = "StartingDarkness";
+
         ISettingsService _settingsService;
 
         public AppSettings(ISettingsService settingsService)
@@ -15,16 +20,22 @@ namespace Vineland.DarkestNight.UI.Shared
             _settingsService = settingsService;
         }
 
+        public int StartingDarkness
+        {
+            get { return _settingsService.LoadInt(STARTING_DARKNESS); }
+            set { _settingsService.SaveInt(STARTING_DARKNESS, value); }
+        }
+
         public bool PallOfSuffering
         {
-            get { return _settingsService.LoadBoolean("PallOfSuffering"); }
-            set { _settingsService.SaveBoolean("PallOfSuffering", value); }
+            get { return _settingsService.LoadBoolean(PALL_OF_SUFFERING); }
+            set { _settingsService.SaveBoolean(PALL_OF_SUFFERING, value); }
         }
 
         public DarknessCardsMode DarknessCardsMode
         {
-            get { return (DarknessCardsMode)_settingsService.LoadInt("DarknessCardsMode"); }
-            set { _settingsService.SaveInt("DarknessCardsMode", (int)value); }
+            get { return (DarknessCardsMode)_settingsService.LoadInt(DARKNESS_CARDS_MODE); }
+            set { _settingsService.SaveInt(DARKNESS_CARDS_MODE, (int)value); }
         }
     }
 }
