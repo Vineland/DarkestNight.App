@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using Vineland.DarkestNight.Core;
 using Vineland.DarkestNight.UI.Shared.Services;
@@ -12,9 +11,9 @@ namespace Vineland.DarkestNight.UI.Shared.ViewModels
     public class NewGameViewModel
     {
         AppSettings _appSettings;
-        GameState _gameState;
+        AppGameState _gameState;
 
-        public NewGameViewModel(AppSettings appSettings, GameState gameState)
+        public NewGameViewModel(AppSettings appSettings, AppGameState gameState)
         {
             _appSettings = appSettings;
             _gameState = gameState;
@@ -23,6 +22,7 @@ namespace Vineland.DarkestNight.UI.Shared.ViewModels
         
         public void Initialise()
         {
+			_gameState.CreatedDate = DateTime.Now;
             _gameState.DarknessLevel = _appSettings.StartingDarkness;
             _gameState.PallOfSuffering = _appSettings.PallOfSuffering;
             _gameState.Mode = _appSettings.DarknessCardsMode;
@@ -46,12 +46,6 @@ namespace Vineland.DarkestNight.UI.Shared.ViewModels
         {
             get { return _gameState.Mode; }
             set { _gameState.Mode = value; }
-        }
-
-        public string Name
-        {
-            get { return _gameState.Name;}
-            set { _gameState.Name = value; }
         }
 
         public void RemoveHero(Hero hero)

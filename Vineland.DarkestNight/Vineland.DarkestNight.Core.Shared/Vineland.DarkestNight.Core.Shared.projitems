@@ -9,16 +9,11 @@
     <Import_RootNamespace>Vineland.DarkestNight.Core.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)GameData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Location.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\D6GeneratorService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NecromancerService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)heroes.json" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)locations.json" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LogHelper.cs" />
   </ItemGroup>
 </Project>

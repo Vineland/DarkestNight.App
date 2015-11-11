@@ -6,13 +6,19 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Vineland.DarkestNight.UI.Shared.ViewModels;
+using Vineland.DarkestNight.UI.Shared;
 
 namespace Vineland.DarkestNight.UI.Android
 {
-    [Activity(Label = "Vineland.DarkestNight.UI.Android", MainLauncher = true, Icon = "@drawable/icon")]
-    public class HomeActivity : BaseActivity
+    [Activity(MainLauncher = true)]
+    public class HomeActivity : Activity
     {
         public HomeViewModel ViewModel { get; set; }
+
+		public HomeActivity ()
+		{
+			IoC.BuildUp(this);
+		}
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -44,7 +50,7 @@ namespace Vineland.DarkestNight.UI.Android
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
-            
+			//StartActivity(typeof(OptionsActivity));
         }
 
         private void LoadGameButton_Click(object sender, EventArgs e)
@@ -59,7 +65,7 @@ namespace Vineland.DarkestNight.UI.Android
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            
+			StartActivity(typeof(NewGameActivity));
         }
     }
 }

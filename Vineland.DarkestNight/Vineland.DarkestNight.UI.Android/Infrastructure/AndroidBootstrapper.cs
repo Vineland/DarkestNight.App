@@ -6,9 +6,9 @@ namespace Vineland.DarkestNight.UI.Android.Infrastructure
 {
     public class AndroidBootstrapper: SharedBootstrapper
     {
-        public override void Register()
+        protected override void RegisterTypes()
         {
-            base.Register();
+            base.RegisterTypes();
 
             TinyIoC.TinyIoCContainer.Current.Register<ISettingsService, SettingsService>();
         }

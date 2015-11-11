@@ -12,6 +12,45 @@ namespace Vineland.DarkestNight.Core
         public string Name { get; set; }
         public int NumberOfBlights { get; set; }
         public int[] Pathways { get; set; }
+
+		public static List<Location> All = new List<Location>()
+		{
+			new Location(){
+				Id=1,
+				Name="Monastery",
+				Pathways=new int[0]{}
+			},
+			new Location(){
+				Id=2,
+				Name="Mountains",
+				Pathways=new int[6]{ 3, 4, 2, 4, 3, 2 }
+			},
+			new Location(){
+				Id= 3,
+				Name= "Castle",
+				Pathways=new int[6]{ 5, 4, 2, 3, 4, 3 }
+			},
+			new Location(){
+				Id=4,
+				Name="Village",
+				Pathways=new int[6]{ 2, 6, 7, 3, 5, 4 }
+			},
+			new Location(){
+				Id= 5,
+				Name= "Swamp",
+				Pathways= new int[6] { 6, 4, 3, 5, 4, 5 }
+			},
+			new Location(){
+				Id= 6,
+				Name= "Ruins",
+				Pathways=new int[6]{ 7, 5, 4, 6, 4, 6}
+			},
+			new Location(){
+				Id= 7,
+				Name="Forest",
+				Pathways=new int[]{ 4, 6, 7, 4, 6, 7 }
+			}
+		};
     }
 
     public class LocationDistance

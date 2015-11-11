@@ -17,6 +17,7 @@ namespace Vineland.DarkestNight.UI.Shared.ViewModels
         public bool PallOfSuffering { get; set; }
         public DarknessCardsMode DarknessCardsMode { get; set; }
         public int StartingDarkness { get; set; }
+		public bool PromptOnNewGame {get;set;}
 
         public DarknessCardsMode[] DarknessCardsModeOptions { get; private set; }
 
@@ -25,6 +26,7 @@ namespace Vineland.DarkestNight.UI.Shared.ViewModels
             PallOfSuffering = _appSettings.PallOfSuffering;
             DarknessCardsMode = _appSettings.DarknessCardsMode;
             StartingDarkness = _appSettings.StartingDarkness;
+			PromptOnNewGame = _appSettings.PromptOnNewGame;
         }
 
         public void UpdateSettings()
@@ -32,6 +34,7 @@ namespace Vineland.DarkestNight.UI.Shared.ViewModels
             _appSettings.PallOfSuffering = PallOfSuffering;
             _appSettings.DarknessCardsMode = DarknessCardsMode;
             _appSettings.StartingDarkness = StartingDarkness;
+			_appSettings.PromptOnNewGame = PromptOnNewGame;
         }
     }
 }

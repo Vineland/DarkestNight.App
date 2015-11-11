@@ -14,10 +14,9 @@ namespace Vineland.DarkestNight.UI.Android
 {
     public class BaseActivity:Activity
     {
-        public BaseActivity()
-        {
-            //TODO: abstract out the actual IoC implementation
-            TinyIoC.TinyIoCContainer.Current.BuildUp(this);
-        }
+		public BaseActivity ()
+		{
+			
+		}
     }
 }

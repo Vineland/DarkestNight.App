@@ -11,7 +11,9 @@ namespace Vineland.DarkestNight.UI.Shared
 
         public static string SavesLocation
         {
-            get { return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData); }
+            get { 
+				return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData); 
+			}
         }
 
     }

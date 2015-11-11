@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
 namespace Vineland.DarkestNight.Core
 {
@@ -12,21 +11,14 @@ namespace Vineland.DarkestNight.Core
         {
             Heroes = new HeroesState();
             Necromancer = new NecomancerState();
-
-            //TODO: this shouldn't be in here
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Vineland.DarkestNight.Core.locations.json"))
-            using (var reader = new StreamReader(stream))
-            {
-                Locations = JsonConvert.DeserializeObject<List<Location>>(reader.ReadToEnd());
-            }
+			Locations = Location.All;
         }
 
-        public string Name { get; set; }
-        public DateTime StartedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        public List<Location> Locations { get; private set; }
-        public HeroesState Heroes { get; private set; }
-        public NecomancerState Necromancer { get; private set; }
+        public List<Location> Locations { get; protected set; }
+        public HeroesState Heroes { get; protected set; }
+        public NecomancerState Necromancer { get; protected set; }
 
         public int DarknessLevel { get; set; }
         public bool PallOfSuffering { get; set; }
@@ -39,24 +31,7 @@ namespace Vineland.DarkestNight.Core
             }
         }
 
-        public void Save()
-        {
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            var path = Path.Combine(folderPath, Name + ".sav");
-            using (var streamWriter = new StreamWriter(path))
-            {
-                streamWriter.Write(JsonConvert.SerializeObject(this));
-            }
-        }
-
-        public void Load(FileInfo save)
-        {
-            using (var streamReader = new StreamReader(save.FullName))
-            {
-                var gameState = JsonConvert.DeserializeObject<GameState>(streamReader.ReadToEnd());
-            }
-        }
-    }
+	}
 
     public class HeroesState {
 

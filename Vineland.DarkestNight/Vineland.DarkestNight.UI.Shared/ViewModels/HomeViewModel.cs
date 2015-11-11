@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Vineland.DarkestNight.Core.Services;
 using System.Linq;
+using Vineland.DarkestNight.UI.Shared.Services;
 
 namespace Vineland.DarkestNight.UI.Shared.ViewModels
 {

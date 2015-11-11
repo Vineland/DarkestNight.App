@@ -19,5 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewGameViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\OptionsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppGameState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\IoC.cs" />
   </ItemGroup>
 </Project>
