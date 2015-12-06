@@ -12,7 +12,7 @@ namespace Vineland.DarkestNight.UI.Shared
         private const string DARKNESS_CARDS_MODE = "DarknessCardsMode";
         private const string PALL_OF_SUFFERING = "PallOfSuffering";
         private const string STARTING_DARKNESS = "StartingDarkness";
-		private const string PROMPT_ON_NEW_GAME="PromptOnNewGame";
+		private const string ALWAYS_USE_DEFAULTS="AlwaysUseDefaults";
 
         ISettingsService _settingsService;
 
@@ -21,10 +21,10 @@ namespace Vineland.DarkestNight.UI.Shared
             _settingsService = settingsService;
         }
 
-        public bool PromptOnNewGame
+		public bool AlwaysUseDefaults
         {
-			get { return _settingsService.LoadBoolean(PROMPT_ON_NEW_GAME); }
-			set { _settingsService.SaveBoolean(PROMPT_ON_NEW_GAME, value); }
+			get { return _settingsService.LoadBoolean(ALWAYS_USE_DEFAULTS); }
+			set { _settingsService.SaveBoolean(ALWAYS_USE_DEFAULTS, value); }
         }
 
 		public int StartingDarkness

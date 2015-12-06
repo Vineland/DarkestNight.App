@@ -1,11 +1,11 @@
 ﻿using System;
 using Vineland.DarkestNight.Core;
+using System.Runtime.InteropServices;
 
 namespace Vineland.DarkestNight.UI.Shared.ViewModels
 {
     public class OptionsViewModel
     {
-
         AppSettings _appSettings;
 
         public OptionsViewModel(AppSettings appSettings)
@@ -14,27 +14,23 @@ namespace Vineland.DarkestNight.UI.Shared.ViewModels
             DarknessCardsModeOptions = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
         }
 
-        public bool PallOfSuffering { get; set; }
-        public DarknessCardsMode DarknessCardsMode { get; set; }
-        public int StartingDarkness { get; set; }
-		public bool PromptOnNewGame {get;set;}
+		public bool PallOfSuffering {
+			get { return _appSettings.PallOfSuffering;}
+			set{ _appSettings.PallOfSuffering = value;}
+		}
+		public DarknessCardsMode DarknessCardsMode {
+			get { return _appSettings.DarknessCardsMode;}
+			set{ _appSettings.DarknessCardsMode = value;}
+		}
+		public string StartingDarkness {
+			get{ return _appSettings.StartingDarkness.ToString();}
+			set{ _appSettings.StartingDarkness = int.Parse(value);}
+		}
+		public bool AlwaysUseDefaults {
+			get { return _appSettings.AlwaysUseDefaults;}
+			set{ _appSettings.AlwaysUseDefaults = value;}
+		}
 
         public DarknessCardsMode[] DarknessCardsModeOptions { get; private set; }
-
-        public void Initalise()
-        {
-            PallOfSuffering = _appSettings.PallOfSuffering;
-            DarknessCardsMode = _appSettings.DarknessCardsMode;
-            StartingDarkness = _appSettings.StartingDarkness;
-			PromptOnNewGame = _appSettings.PromptOnNewGame;
-        }
-
-        public void UpdateSettings()
-        {
-            _appSettings.PallOfSuffering = PallOfSuffering;
-            _appSettings.DarknessCardsMode = DarknessCardsMode;
-            _appSettings.StartingDarkness = StartingDarkness;
-			_appSettings.PromptOnNewGame = PromptOnNewGame;
-        }
     }
 }

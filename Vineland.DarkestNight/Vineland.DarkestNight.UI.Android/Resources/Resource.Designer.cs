@@ -103,10 +103,16 @@ namespace Vineland.DarkestNight.UI.Android
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int ic_launcher = 2130837504;
+			public const int background = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int splash = 2130837505;
+			public const int default_text_colour = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int ic_launcher = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int splash = 2130837507;
 			
 			static Drawable()
 			{
@@ -121,38 +127,53 @@ namespace Vineland.DarkestNight.UI.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f07001d
-			public const int ChooseHeroesButton = 2131165213;
+			// aapt resource value: 0x7f070021
+			public const int AlwaysUseDefaultsCheckBox = 2131165217;
 			
-			// aapt resource value: 0x7f070014
-			public const int ContinueButton = 2131165204;
+			// aapt resource value: 0x7f070016
+			public const int CheckBox = 2131165206;
 			
-			// aapt resource value: 0x7f070018
-			public const int CreditsButton = 2131165208;
+			// aapt resource value: 0x7f070020
+			public const int ChooseHeroesButton = 2131165216;
+			
+			// aapt resource value: 0x7f070017
+			public const int ContinueButton = 2131165207;
+			
+			// aapt resource value: 0x7f07001b
+			public const int CreditsButton = 2131165211;
 			
 			// aapt resource value: 0x7f070012
 			public const int HeroesListView = 2131165202;
 			
-			// aapt resource value: 0x7f070016
-			public const int LoadGameButton = 2131165206;
+			// aapt resource value: 0x7f070014
+			public const int Image = 2131165204;
 			
-			// aapt resource value: 0x7f07001c
-			public const int ModeSpinner = 2131165212;
+			// aapt resource value: 0x7f070019
+			public const int LoadGameButton = 2131165209;
+			
+			// aapt resource value: 0x7f07001f
+			public const int ModeSpinner = 2131165215;
 			
 			// aapt resource value: 0x7f070015
-			public const int NewGameButton = 2131165205;
+			public const int Name = 2131165205;
 			
-			// aapt resource value: 0x7f070017
-			public const int OptionsButton = 2131165207;
+			// aapt resource value: 0x7f070018
+			public const int NewGameButton = 2131165208;
 			
-			// aapt resource value: 0x7f07001b
-			public const int PallOfSufferingCheckBox = 2131165211;
+			// aapt resource value: 0x7f07001a
+			public const int OptionsButton = 2131165210;
+			
+			// aapt resource value: 0x7f07001e
+			public const int PallOfSufferingCheckBox = 2131165214;
+			
+			// aapt resource value: 0x7f070022
+			public const int SaveButton = 2131165218;
 			
 			// aapt resource value: 0x7f070013
 			public const int StartGameButton = 2131165203;
 			
-			// aapt resource value: 0x7f07001a
-			public const int StartingDarknessEditText = 2131165210;
+			// aapt resource value: 0x7f07001d
+			public const int StartingDarknessEditText = 2131165213;
 			
 			// aapt resource value: 0x7f070002
 			public const int alignBounds = 2131165186;
@@ -190,8 +211,8 @@ namespace Vineland.DarkestNight.UI.Android
 			// aapt resource value: 0x7f07000d
 			public const int fill_vertical = 2131165197;
 			
-			// aapt resource value: 0x7f070019
-			public const int gridLayout1 = 2131165209;
+			// aapt resource value: 0x7f07001c
+			public const int gridLayout1 = 2131165212;
 			
 			// aapt resource value: 0x7f070000
 			public const int horizontal = 2131165184;
@@ -228,13 +249,16 @@ namespace Vineland.DarkestNight.UI.Android
 			public const int ChooseHeroes = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Home = 2130903041;
+			public const int HeroListItem = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int NewGame = 2130903042;
+			public const int Home = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Options = 2130903043;
+			public const int NewGame = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int Options = 2130903044;
 			
 			static Layout()
 			{
@@ -267,6 +291,9 @@ namespace Vineland.DarkestNight.UI.Android
 		
 		public partial class Style
 		{
+			
+			// aapt resource value: 0x7f060001
+			public const int Theme_App = 2131099649;
 			
 			// aapt resource value: 0x7f060000
 			public const int Theme_Splash = 2131099648;

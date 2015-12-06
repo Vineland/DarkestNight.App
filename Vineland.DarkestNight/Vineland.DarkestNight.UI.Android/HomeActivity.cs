@@ -50,7 +50,7 @@ namespace Vineland.DarkestNight.UI.Android
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
-			//StartActivity(typeof(OptionsActivity));
+			StartActivity(typeof(OptionsActivity));
         }
 
         private void LoadGameButton_Click(object sender, EventArgs e)

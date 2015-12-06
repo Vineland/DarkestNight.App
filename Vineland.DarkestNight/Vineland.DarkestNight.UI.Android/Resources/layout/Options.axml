@@ -30,4 +30,11 @@
     <Spinner
         android:id="@+id/ModeSpinner"
         android:layout_width="225dp" />
+    <TextView
+        android:text="Always Use Defaults" />
+    <CheckBox
+        android:id="@+id/AlwaysUseDefaultsCheckBox" />
+    <Button
+        android:id="@+id/SaveButton"
+        android:text="Save" />
 </GridLayout>

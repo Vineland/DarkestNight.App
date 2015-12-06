@@ -47,7 +47,7 @@ namespace Vineland.DarkestNight.UI.Android
 
         void ChooseHeroesButton_Click (object sender, EventArgs e)
         {
-			//StartActivity(typeof(ChooseHeroesActvity));
+			StartActivity(typeof(ChooseHeroesActivity));
         }
     }
 }

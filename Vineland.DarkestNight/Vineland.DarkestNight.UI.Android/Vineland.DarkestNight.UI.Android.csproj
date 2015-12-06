@@ -60,12 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DarkestNightApplication.cs" />
-    <Compile Include="Infrastructure\AndroidBootstrapper.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="NewGameActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="OptionsActivity.cs" />
+    <Compile Include="ChooseHeroesActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -87,6 +87,9 @@
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\drawable\splash.png" />
+    <AndroidResource Include="Resources\drawable\background.png" />
+    <AndroidResource Include="Resources\layout\HeroListItem.axml" />
+    <AndroidResource Include="Resources\drawable\default_text_colour.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Home.axml" />
@@ -98,7 +101,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="..\Vineland.DarkestNight.Core.Shared\Vineland.DarkestNight.Core.Shared.projitems" Label="Shared" />
-  <Import Project="..\Vineland.DarkestNight.UI.Shared\Vineland.DarkestNight.UI.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.2\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.2\build\MonoAndroid10\Xamarin.Insights.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

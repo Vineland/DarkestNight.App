@@ -26,6 +26,7 @@ namespace Vineland.DarkestNight.UI.Shared.Infrastructure
             TinyIoC.TinyIoCContainer.Current.Register<HomeViewModel>();
             TinyIoC.TinyIoCContainer.Current.Register<NewGameViewModel>();
             TinyIoC.TinyIoCContainer.Current.Register<OptionsViewModel>();
+			TinyIoC.TinyIoCContainer.Current.Register<ChooseHeroesViewModel>();
         }
     }
 }

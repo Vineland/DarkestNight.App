@@ -2,7 +2,14 @@
 
 <resources>
   <style name="Theme.Splash" parent="android:Theme">
-    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="android:windowBackground">@drawable/background</item>
     <item name="android:windowNoTitle">true</item>
+    <item name="android:editTextColor">#ffffff</item> 
+    <item name="android:textColor">@drawable/default_text_colour</item>
   </style>
+
+  <style name="Theme.App" parent="android:Theme">
+    <item name="android:windowBackground">@drawable/background</item>
+  </style>
+
 </resources>
