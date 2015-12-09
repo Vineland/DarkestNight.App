@@ -49,10 +49,14 @@ namespace Vineland.Necromancer.UI
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
-			
+
+			try{
 			var page = Activator.CreateInstance (_viewModelPageMappings[typeof(T).Name]);
 
 			_navigation.PushAsync (page as Page);
+			}catch(Exception ex){
+				throw ex;
+			}
 
 		}
 	}

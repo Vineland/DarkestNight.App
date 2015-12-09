@@ -1,7 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-x:Class="Vineland.Necromancer.UI.Options">
-	<ContentPage.Content>
-	</ContentPage.Content>
+xmlns:userControls="clr-namespace:Vineland.Necromancer.UI"
+x:Class="Vineland.Necromancer.UI.Options"
+	Padding="20">
+<StackLayout Spacing="10">
+<StackLayout>
+	<Label Text="Game Mode" />
+	<userControls:BindablePicker x:Name="DarknessCardsModePicker" ItemsSource="{Binding DarknessCardsModeOptions}" />	
+	</StackLayout>
+<StackLayout>
+	<Label Text="Pall of Suffering" />
+	<Switch IsToggled="{Binding PallOfSuffering}" />
+	</StackLayout>
+<StackLayout>
+	<Label Text="Starting Darkness" />
+	<Stepper Minimum="0" Maximum="10" Value="{Binding StartingDarkness}" />
+	</StackLayout>
+<StackLayout>
+	<Label Text="Always use these defaults" />
+	<Switch IsToggled="{Binding AlwaysUseDefaults}" />
+	</StackLayout>
+	</StackLayout>
 </ContentPage>

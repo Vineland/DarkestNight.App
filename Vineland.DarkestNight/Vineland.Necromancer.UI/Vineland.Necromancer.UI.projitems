@@ -33,6 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\NewGame.xaml.cs">
       <DependentUpon>NewGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\PageBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\BindablePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
@@ -40,6 +42,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Infrastructure\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utilities\" />
+    <Folder Include="$(MSBuildThisFileDirectory)images\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Options.xaml">

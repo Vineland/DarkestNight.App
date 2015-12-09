@@ -6,7 +6,7 @@
     <item name="android:windowNoTitle">true</item>
   </style>
 
-  <style name="Theme.App" parent="android:Theme.Holo">
+  <style name="Theme.App" parent="android:Theme.Holo.Light">
     <item name="android:editTextColor">#ffffff</item> 
     <item name="android:textColor">@drawable/default_text_colour</item>
   </style>

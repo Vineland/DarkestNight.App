@@ -13,7 +13,8 @@ namespace Vineland.Necromancer.UI
 		public Home ()
 		{
 			InitializeComponent ();
-			BindingContext = IoC.Get<HomeViewModel>();
+
+			BindingContext = IoC.Get<HomeViewModel> ();
 		}
 	}
 }

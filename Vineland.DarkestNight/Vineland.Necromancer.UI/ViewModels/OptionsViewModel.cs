@@ -1,6 +1,7 @@
 ﻿using System;
 using Vineland.DarkestNight.Core;
 using GalaSoft.MvvmLight;
+using Android.Util;
 
 namespace Vineland.DarkestNight.UI.ViewModels
 {
@@ -18,13 +19,23 @@ namespace Vineland.DarkestNight.UI.ViewModels
 			get { return _appSettings.PallOfSuffering;}
 			set{ _appSettings.PallOfSuffering = value;}
 		}
+
 		public DarknessCardsMode DarknessCardsMode {
 			get { return _appSettings.DarknessCardsMode;}
-			set{ _appSettings.DarknessCardsMode = value;}
+			set{ 
+				if (_appSettings.DarknessCardsMode == value)
+					return;
+				
+				_appSettings.DarknessCardsMode = value;
+				RaisePropertyChanged(()=> DarknessCardsMode);
+			}
 		}
 		public string StartingDarkness {
 			get{ return _appSettings.StartingDarkness.ToString();}
-			set{ _appSettings.StartingDarkness = int.Parse(value);}
+			set{ 
+				_appSettings.StartingDarkness = int.Parse(value);
+			
+			}
 		}
 		public bool AlwaysUseDefaults {
 			get { return _appSettings.AlwaysUseDefaults;}
