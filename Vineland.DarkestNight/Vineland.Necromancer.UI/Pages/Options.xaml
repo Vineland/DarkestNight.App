@@ -15,7 +15,7 @@ x:Class="Vineland.Necromancer.UI.Options"
 	</StackLayout>
 <StackLayout>
 	<Label Text="Starting Darkness" />
-	<Stepper Minimum="0" Maximum="10" Value="{Binding StartingDarkness}" />
+	<userControls:CustomStepper Minimum="0" Maximum="10" Value="{Binding StartingDarkness}" />
 	</StackLayout>
 <StackLayout>
 	<Label Text="Always use these defaults" />

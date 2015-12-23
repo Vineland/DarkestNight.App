@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Android.Util;
+using System.Linq;
 
 namespace Vineland.DarkestNight.Core
 {
@@ -13,6 +15,7 @@ namespace Vineland.DarkestNight.Core
             Necromancer = new NecomancerState();
 			Locations = Location.All;
         }
+
 
         public DateTime CreatedDate { get; set; }
 
@@ -37,12 +40,12 @@ namespace Vineland.DarkestNight.Core
 
         public HeroesState()
         {
-            Active = new List<Hero>();
-            FallenHeroIds = new List<int>();        
+			All = Hero.All;
         }
 
-        public List<Hero> Active { get; set; }
-        public List<int> FallenHeroIds { get; set; }
+		public List<Hero> All { get; private set; }
+		public IEnumerable<Hero> Active { get { return All.Where (x => x.IsActive); } }
+		public IEnumerable<Hero> Fallen { get { return All.Where (x => x.HasFallen); } }
 
         #region Effects
         public bool HermitActive { get; set; }

@@ -20,6 +20,14 @@ namespace Vineland.DarkestNight.UI
 			_fileService = fileService;
 		}
 
+		public void LoadDefaults(AppSettings settings){
+
+			this.CreatedDate = DateTime.Now;
+			this.DarknessLevel = settings.StartingDarkness;
+			this.PallOfSuffering = settings.PallOfSuffering;
+			this.Mode = settings.DarknessCardsMode;
+		}
+
 		public void Save()
 		{
 			var path = Path.Combine(AppConstants.SavesLocation, this.CreatedDate.GetHashCode () + AppConstants.SaveFileExtension);

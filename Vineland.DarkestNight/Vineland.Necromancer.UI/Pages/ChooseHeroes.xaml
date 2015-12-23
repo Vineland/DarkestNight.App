@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+x:Class="Vineland.Necromancer.UI.ChooseHeroes"
+xmlns:userControls="clr-namespace:Vineland.Necromancer.UI"
+xmlns:core="clr-namespace:Vineland.DarkestNight.Core">
+<ContentPage.ToolbarItems>
+      <ToolbarItem Name="Start Game" Command="{Binding StartGame}" ></ToolbarItem>
+</ContentPage.ToolbarItems>
+	<userControls:MultiSelectListView 
+	x:TypeArguments="core:Hero"
+	x:Name="HeroesListView" 
+	ItemsSource="{Binding Heroes}" 
+	SelectedItems="{Binding SelectedHeroes}">
+	</userControls:MultiSelectListView>
+</ContentPage>

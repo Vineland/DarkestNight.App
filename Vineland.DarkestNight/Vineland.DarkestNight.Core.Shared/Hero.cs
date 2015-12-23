@@ -14,6 +14,9 @@ namespace Vineland.DarkestNight.Core
         public int Secrecy { get; set; }
         public int LocationId { get; set; }
 
+		public bool IsActive { get; set; }
+		public bool HasFallen { get; set; }
+
 		public Hero ()
 		{
 			LocationId = LocationIds.Monastery;
@@ -51,5 +54,10 @@ namespace Vineland.DarkestNight.Core
 			new Hero() { Id=28,Name="Wizard", Secrecy=5},
 			new Hero() { Id=29, Name="Tinker"}
 		};
+
+		public override string ToString ()
+		{
+			return Name;
+		}
     }
 }

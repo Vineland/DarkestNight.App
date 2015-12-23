@@ -7,6 +7,8 @@ using Vineland.DarkestNight.Core;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight;
+using System.Collections.ObjectModel;
+using Android.Util;
 
 namespace Vineland.DarkestNight.UI.ViewModels
 {
@@ -15,42 +17,15 @@ namespace Vineland.DarkestNight.UI.ViewModels
         AppGameState _gameState;
 
         public ChooseHeroesViewModel(AppGameState gameState)
-        {
-            _gameState = gameState;
-        }
-
-        public void Initialise()
-        {
-			AllHeroes = Hero.All;
-        }
-
-        public List<Hero> AllHeroes { get; set; }
-
-		public RelayCommand<Hero> AddHero
 		{
-
-			get{
-				return new RelayCommand<Hero> (
-					(hero) => {
-						if (!_gameState.Heroes.Active.Any(x => x.Id == hero.Id))
-							_gameState.Heroes.Active.Add(hero);
-					},
-					(hero) => {
-						return _gameState.Heroes.Active.Count < 4;
-					}
-				);
-			}
+			_gameState = gameState;
+			SelectedHeroes = new ObservableCollection<Hero> ();
+			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
 		}
+ 
+		public List<Hero> Heroes { get { return _gameState.Heroes.All; } }
 
-		public RelayCommand<Hero> RemoveHero 
-		{
-			get { 
-				return new RelayCommand<Hero> ((hero) => {
-					if (hero != null)
-						_gameState.Heroes.Active.Remove (hero);
-				});
-			}
-		}
+		public ObservableCollection<Hero> SelectedHeroes { get; set; }
 
 		public RelayCommand StartGame{
 			get {
@@ -59,7 +34,7 @@ namespace Vineland.DarkestNight.UI.ViewModels
 						_gameState.Save ();
 					},
 					() => {
-						return _gameState.Heroes.Active.Count == 4;
+						return SelectedHeroes.Count() == 4;
 					}
 				);
 			}

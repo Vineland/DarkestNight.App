@@ -15,11 +15,17 @@ namespace Vineland.DarkestNight.UI.ViewModels
         FileService _fileService;
         FileInfo _latestSave;
 		NavigationService _navigationService;
+		AppSettings _appSettings;
+		AppGameState _gameState;
 
-		public HomeViewModel(FileService fileService, NavigationService navigationService)
+		public HomeViewModel(FileService fileService, NavigationService navigationService, AppSettings appSettings, AppGameState gameState)
         {
             _fileService = fileService;
 			_navigationService = navigationService;
+			_appSettings = appSettings;
+			_gameState = gameState;
+
+			Initialise ();
         }
 
         public void Initialise()
@@ -63,7 +69,15 @@ namespace Vineland.DarkestNight.UI.ViewModels
 			get 
 			{ 
 				return new RelayCommand (
-					()=> { _navigationService.NavigateToViewModel<NewGameViewModel>();}); 
+					()=> { 
+						if(_appSettings.AlwaysUseDefaults)
+						{
+							_gameState.LoadDefaults(_appSettings);
+							_navigationService.NavigateToViewModel<ChooseHeroesViewModel>();
+						}else{
+						_navigationService.NavigateToViewModel<NewGameViewModel>();
+						}
+					}); 
 			}
 		}
     }

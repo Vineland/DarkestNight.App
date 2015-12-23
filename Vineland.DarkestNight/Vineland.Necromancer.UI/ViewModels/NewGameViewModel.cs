@@ -6,6 +6,8 @@ using System.Text;
 using Vineland.DarkestNight.Core;
 using Vineland.DarkestNight.UI.Services;
 using GalaSoft.MvvmLight;
+using Vineland.Necromancer.UI;
+using GalaSoft.MvvmLight.Command;
 
 namespace Vineland.DarkestNight.UI.ViewModels
 {
@@ -13,20 +15,21 @@ namespace Vineland.DarkestNight.UI.ViewModels
     {
         AppSettings _appSettings;
         AppGameState _gameState;
+		NavigationService _navigationService;
 
-        public NewGameViewModel(AppSettings appSettings, AppGameState gameState)
+		public NewGameViewModel(AppSettings appSettings, AppGameState gameState, NavigationService navigationService)
         {
             _appSettings = appSettings;
             _gameState = gameState;
+			_navigationService = navigationService;
             DarknessCardsModeOptions = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
+
+			Initialise ();
         }
         
         public void Initialise()
         {
-			_gameState.CreatedDate = DateTime.Now;
-            _gameState.DarknessLevel = _appSettings.StartingDarkness;
-            _gameState.PallOfSuffering = _appSettings.PallOfSuffering;
-            _gameState.Mode = _appSettings.DarknessCardsMode;
+			_gameState.LoadDefaults (_appSettings);
         }
 
         public DarknessCardsMode[] DarknessCardsModeOptions { get; private set; }
@@ -49,14 +52,13 @@ namespace Vineland.DarkestNight.UI.ViewModels
             set { _gameState.Mode = value; }
         }
 
-        public void RemoveHero(Hero hero)
-        {
-            _gameState.Heroes.Active.Remove(hero);
-        }
-
-        public void StartGame()
-        {
-            _gameState.Save();
-        }
+		public RelayCommand ChooseHeroes{
+			get{
+				return new RelayCommand (() => {
+					_gameState.Save();
+					_navigationService.NavigateToViewModel<ChooseHeroesViewModel>();
+				});
+			}
+		}
     }
 }
