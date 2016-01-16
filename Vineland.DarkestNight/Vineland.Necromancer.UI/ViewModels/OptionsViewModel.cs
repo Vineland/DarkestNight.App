@@ -2,8 +2,9 @@
 using Vineland.DarkestNight.Core;
 using GalaSoft.MvvmLight;
 using Android.Util;
+using Vineland.DarkestNight.UI;
 
-namespace Vineland.DarkestNight.UI.ViewModels
+namespace Vineland.Necromancer.UI
 {
 	public class OptionsViewModel :ViewModelBase
     {
@@ -14,6 +15,10 @@ namespace Vineland.DarkestNight.UI.ViewModels
             _appSettings = appSettings;
             DarknessCardsModeOptions = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
         }
+
+		public AppSettings Settings{
+			get { return _appSettings; }
+		}
 
 		public bool PallOfSuffering {
 			get { return _appSettings.PallOfSuffering;}

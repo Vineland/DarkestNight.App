@@ -13,7 +13,7 @@ using Vineland.DarkestNight.UI;
 
 namespace Vineland.Necromancer.UI.Droid
 {
-	[Activity (Theme = "@style/Theme.App", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Icon = "@drawable/ic_launcher")]
+	[Activity (Theme = "@style/Theme.App", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Icon = "@drawable/ic_launcher", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -32,7 +32,7 @@ namespace Vineland.Necromancer.UI.Droid
 
 				global::Xamarin.Forms.Forms.Init (this, bundle);
 
-				LoadApplication (new App ());
+				LoadApplication (new NecromancerApp ());
 
 				AndroidEnvironment.UnhandledExceptionRaiser += new EventHandler<RaiseThrowableEventArgs>(AndroidEnvironment_UnhandledExceptionRaiser);
 			}

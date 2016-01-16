@@ -33,8 +33,10 @@ namespace Vineland.DarkestNight.Core
             if (gameState.Heroes.HermitActive)
                 exposedHeroes = exposedHeroes.Where(x => !(x.Name == "Ranger" && x.LocationId == LocationIds.Swamp));
 
-            if (gameState.Heroes.AuraOfHumilityLocationId.HasValue)
-                exposedHeroes = exposedHeroes.Where(x => x.LocationId != gameState.Heroes.AuraOfHumilityLocationId.Value);
+			if (gameState.Heroes.AuraOfHumilityActive) {
+				var paragonLocationId = gameState.Heroes.Active.First (x => x.Name == "Paragon").LocationId;
+				exposedHeroes = exposedHeroes.Where (x => x.LocationId != paragonLocationId);
+			}
 
             if (exposedHeroes.Any())
             {

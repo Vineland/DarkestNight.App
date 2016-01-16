@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Vineland.DarkestNight.Core;
-using Vineland.DarkestNight.UI.ViewModels;
 using Vineland.DarkestNight.UI.Services;
 using Vineland.Necromancer.UI;
 using Xamarin.Forms;
+using XLabs.Ioc;
+using XLabs.Ioc.SimpleInjectorContainer;
+using SimpleInjector;
+using System.Runtime.InteropServices;
 
 namespace Vineland.DarkestNight.UI.Infrastructure
 {
@@ -15,21 +18,23 @@ namespace Vineland.DarkestNight.UI.Infrastructure
         {
         }
 		public void Run(){
-			RegisterTypes();
+			SetIoC();
 		}
-        protected virtual void RegisterTypes()
+
+        protected void SetIoC()
 		{
-			IoC.SetContainer(TinyIoC.TinyIoCContainer.Current);
+			if (Resolver.IsSet)
+				return;
+			
+			var container = new Container();
 
-            TinyIoC.TinyIoCContainer.Current.Register<AppSettings>();
-			TinyIoC.TinyIoCContainer.Current.Register<FileService>();
-			TinyIoC.TinyIoCContainer.Current.Register<AppGameState>().AsSingleton();
-			TinyIoC.TinyIoCContainer.Current.Register<NavigationService>().AsSingleton();
+			container.Register<NavigationService> (Lifestyle.Singleton);
 
-            TinyIoC.TinyIoCContainer.Current.Register<HomeViewModel>();
-            TinyIoC.TinyIoCContainer.Current.Register<NewGameViewModel>();
-            TinyIoC.TinyIoCContainer.Current.Register<OptionsViewModel>();
-			TinyIoC.TinyIoCContainer.Current.Register<ChooseHeroesViewModel>();
+			RegisterPlatformSpecificImplementations (container);
+
+			Resolver.SetResolver (new SimpleInjectorResolver (container));
         }
+
+		protected abstract void RegisterPlatformSpecificImplementations(Container container);
     }
 }

@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ui:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+x:TypeArguments="ui:HomeViewModel"
 x:Class="Vineland.Necromancer.UI.Home"
-	Padding="20"
-	BackgroundImage="">
+	Padding="20">
 	<StackLayout Spacing="10">
 		<Button Text="New Game" Command="{Binding NewGameCommand}"/>
 		<Button Text="Continue Game" Command="{Binding ContinueGameCommand}"/>
 		<Button Text="Load Game" Command="{Binding LoadGameCommand}"  />
 		<Button Text="Options" Command="{Binding OptionsCommand}"/>
 	</StackLayout>
-</ContentPage>
+</ui:ContentPageBase>

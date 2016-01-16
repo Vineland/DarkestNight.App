@@ -6,24 +6,24 @@ using System.Linq;
 using Vineland.DarkestNight.UI.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Vineland.Necromancer.UI;
+using Vineland.DarkestNight.UI;
 
-namespace Vineland.DarkestNight.UI.ViewModels
+namespace Vineland.Necromancer.UI
 {
-	public class HomeViewModel : ViewModelBase
+	public class HomeViewModel : BaseViewModel
     {
         FileService _fileService;
         FileInfo _latestSave;
 		NavigationService _navigationService;
 		AppSettings _appSettings;
-		AppGameState _gameState;
+		SaveGameService _saveGameService;
 
-		public HomeViewModel(FileService fileService, NavigationService navigationService, AppSettings appSettings, AppGameState gameState)
+		public HomeViewModel(SaveGameService saveGameService, FileService fileService, NavigationService navigationService, AppSettings appSettings)
         {
+			_saveGameService = saveGameService;
             _fileService = fileService;
 			_navigationService = navigationService;
 			_appSettings = appSettings;
-			_gameState = gameState;
 
 			Initialise ();
         }
@@ -60,7 +60,7 @@ namespace Vineland.DarkestNight.UI.ViewModels
 			get 
 			{ 
 				return new RelayCommand (
-					()=> { _navigationService.NavigateToViewModel<OptionsViewModel>();}); 
+					()=> { _navigationService.PushViewModel<OptionsViewModel>();}); 
 			}
 		}
 
@@ -72,10 +72,10 @@ namespace Vineland.DarkestNight.UI.ViewModels
 					()=> { 
 						if(_appSettings.AlwaysUseDefaults)
 						{
-							_gameState.LoadDefaults(_appSettings);
-							_navigationService.NavigateToViewModel<ChooseHeroesViewModel>();
+							App.CurrentGame = _saveGameService.CreateDefaultGame();
+							_navigationService.PushViewModel<ChooseHeroesViewModel>();
 						}else{
-						_navigationService.NavigateToViewModel<NewGameViewModel>();
+						_navigationService.PushViewModel<NewGameViewModel>();
 						}
 					}); 
 			}

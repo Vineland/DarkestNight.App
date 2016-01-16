@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace Vineland.Necromancer.UI.Droid
 {
-	[Activity(Theme = "@style/Theme.Splash", MainLauncher = true,Label = "Necromacer", NoHistory = true, Icon = "@drawable/ic_launcher")]
+	[Activity(Theme = "@style/Theme.Splash", MainLauncher = true,Label = "Necromancer", NoHistory = true, Icon = "@drawable/ic_launcher")]
 	public class SplashActivity : Activity
 	{
 		protected override void OnCreate(Bundle bundle)

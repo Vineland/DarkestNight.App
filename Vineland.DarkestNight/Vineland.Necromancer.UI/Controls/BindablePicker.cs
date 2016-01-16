@@ -2,10 +2,12 @@
 using Xamarin.Forms;
 using System.Collections;
 using Vineland.DarkestNight.UI.Utilities;
+using Android.Nfc;
+using System.Collections.Generic;
 
 namespace Vineland.Necromancer.UI
 {
-	public class BindablePicker : Picker
+	public class BindablePicker<T> : Picker
 	{
 		public BindablePicker()
 		{
@@ -13,29 +15,29 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public static BindableProperty ItemsSourceProperty =
-			BindableProperty.Create<BindablePicker, IList>(o => o.ItemsSource, default(IList), propertyChanged: OnItemsSourceChanged);
+			BindableProperty.Create<BindablePicker<T>, IEnumerable<T>>(o => o.ItemsSource, default(IEnumerable<T>), propertyChanged: OnItemsSourceChanged);
 
 		public static BindableProperty SelectedItemProperty =
-			BindableProperty.Create<BindablePicker, object>(o => o.SelectedItem, default(object));
+			BindableProperty.Create<BindablePicker<T>, T>(o => o.SelectedItem, null);
 
 
 		public string DisplayMember { get; set; }
 
-		public IList ItemsSource
+		public IEnumerable<T> ItemsSource
 		{
-			get { return (IList)GetValue(ItemsSourceProperty); }
+			get { return (IEnumerable<T>)GetValue(ItemsSourceProperty); }
 			set { SetValue(ItemsSourceProperty, value); }
 		}
 
-		public object SelectedItem
+		public T SelectedItem
 		{
-			get { return (object)GetValue(SelectedItemProperty); }
+			get { return (T)GetValue(SelectedItemProperty); }
 			set { SetValue(SelectedItemProperty, value); }
 		}
 
 		private static void OnItemsSourceChanged(BindableObject bindable, IList oldvalue, IList newvalue)
 		{
-			var picker = bindable as BindablePicker;
+			var picker = bindable as BindablePicker<T>;
 
 			if (picker != null)
 			{

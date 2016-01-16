@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
+x:TypeArguments="ui:HeroesPhaseViewModel" 
+x:Class="Vineland.Necromancer.UI.HeroesPhase"
+Padding="10">
+	<Grid x:Name="LayoutRoot" RowSpacing="20">
+	<Grid.RowDefinitions>
+	<RowDefinition Height="Auto"/>
+	<RowDefinition Height="*"/>
+	</Grid.RowDefinitions>
+	<Grid.ColumnDefinitions>
+	<ColumnDefinition Width="Auto"/>
+	<ColumnDefinition Width="*"/>
+	</Grid.ColumnDefinitions>
+		<Label Text="Darkness" Grid.Row="0" Grid.Column="0"/>
+		<ui:CustomStepper Value="{Binding DarknessLevel}"  Grid.Row="0" Grid.Column="1"/>
+		<ui:CarouselLayout x:Name="HeroesLayout" ItemsSource="{Binding Heroes}" Grid.Row="1" Grid.ColumnSpan="2">
+			<ui:CarouselLayout.ItemTemplate>
+				<DataTemplate>
+					<ui:HeroView />
+				</DataTemplate>
+			</ui:CarouselLayout.ItemTemplate>
+		</ui:CarouselLayout>
+	</Grid>
+</ui:ContentPageBase>

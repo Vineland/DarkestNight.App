@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using Vineland.DarkestNight.UI.ViewModels;
 using Vineland.DarkestNight.UI;
 using Vineland.DarkestNight.Core;
+using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class Options : ContentPage
+	public partial class Options : ContentPageBase<OptionsViewModel>
 	{
 		public Options ()
 		{
 			InitializeComponent ();
-			BindingContext = IoC.Get<OptionsViewModel> ();
+			Title = "Options";
 
-			//TODO: figure out why selecteditem binding doesn't work
 			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as OptionsViewModel).DarknessCardsMode;
 			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
 		}

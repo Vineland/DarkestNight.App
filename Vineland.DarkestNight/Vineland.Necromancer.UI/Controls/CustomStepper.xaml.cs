@@ -24,6 +24,8 @@ namespace Vineland.Necromancer.UI
 
 		public CustomStepper ()
 		{
+			Maximum = int.MaxValue;
+
 			InitializeComponent ();
 
 			DecrementButton.Clicked += DecrementButton_Clicked;

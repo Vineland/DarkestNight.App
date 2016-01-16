@@ -26,7 +26,7 @@ namespace Vineland.Necromancer.UI.Droid
 				view = (context as Activity).LayoutInflater.Inflate (Resource.Layout.CheckBoxCell, null);
 			}
 
-			var checkBox = view.FindViewById<CheckBox> (Resource.Id.CheckBox);
+			var checkBox = view.FindViewById<Android.Widget.CheckBox> (Resource.Id.CheckBox);
 			checkBox.Text = x.Text;
 			checkBox.Checked = x.IsSelected;
 

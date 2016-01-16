@@ -1,23 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ui:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-xmlns:userControls="clr-namespace:Vineland.Necromancer.UI"
-x:Class="Vineland.Necromancer.UI.NewGame">
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+x:TypeArguments="ui:NewGameViewModel"
+x:Class="Vineland.Necromancer.UI.NewGame"
+Padding="10">
 <ContentPage.ToolbarItems>
       <ToolbarItem Name="Choose Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
 </ContentPage.ToolbarItems>
-<StackLayout>
-	<StackLayout>
-	<Label Text="Game Mode" />
-	<userControls:BindablePicker x:Name="DarknessCardsModePicker" ItemsSource="{Binding DarknessCardsModeOptions}" />	
-	</StackLayout>
-<StackLayout>
-	<Label Text="Pall of Suffering" />
-	<Switch IsToggled="{Binding PallOfSuffering}" />
-	</StackLayout>
-<StackLayout>
-	<Label Text="Starting Darkness" />
-	<userControls:CustomStepper Minimum="0" Maximum="10" Value="{Binding DarknessLevel}" />
-	</StackLayout>
-	</StackLayout>
-</ContentPage>
+<Grid RowSpacing="20">
+
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+
+    </Grid.ColumnDefinitions>
+
+<Grid.RowDefinitions>
+
+
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+
+    </Grid.RowDefinitions>
+
+	<Label Text="Game Mode" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
+	<ui:BindablePicker x:Name="DarknessCardsModePicker" ItemsSource="{Binding DarknessCardsModeOptions}" Grid.Column="1" Grid.Row="0"/>	
+
+	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Column="0" Grid.Row="1"/>
+	<Switch IsToggled="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
+
+	<Label Text="Starting Darkness" VerticalOptions="Center" Grid.Column="0" Grid.Row="2"/>
+	<ui:CustomStepper Minimum="0" Maximum="10" Value="{Binding DarknessLevel}"  Grid.Column="1" Grid.Row="2" HorizontalOptions="End"/>
+</Grid>
+</ui:ContentPageBase>

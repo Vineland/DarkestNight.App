@@ -8,55 +8,49 @@ using Vineland.DarkestNight.UI.Services;
 using GalaSoft.MvvmLight;
 using Vineland.Necromancer.UI;
 using GalaSoft.MvvmLight.Command;
+using Vineland.DarkestNight.UI;
 
-namespace Vineland.DarkestNight.UI.ViewModels
+namespace Vineland.Necromancer.UI
 {
-	public class NewGameViewModel :ViewModelBase
+	public class NewGameViewModel :BaseViewModel
     {
-        AppSettings _appSettings;
-        AppGameState _gameState;
 		NavigationService _navigationService;
+		SaveGameService _saveGameService;
 
-		public NewGameViewModel(AppSettings appSettings, AppGameState gameState, NavigationService navigationService)
+		public NewGameViewModel(SaveGameService saveGameService, NavigationService navigationService)
         {
-            _appSettings = appSettings;
-            _gameState = gameState;
+			_saveGameService = saveGameService;
 			_navigationService = navigationService;
             DarknessCardsModeOptions = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
 
-			Initialise ();
-        }
-        
-        public void Initialise()
-        {
-			_gameState.LoadDefaults (_appSettings);
+			App.CurrentGame = _saveGameService.CreateDefaultGame ();
         }
 
         public DarknessCardsMode[] DarknessCardsModeOptions { get; private set; }
 
         public int DarknessLevel
         {
-            get { return _gameState.DarknessLevel; }
-            set { _gameState.DarknessLevel = value; }
+			get { return App.CurrentGame.DarknessLevel; }
+			set { App.CurrentGame.DarknessLevel = value; }
         }
 
         public bool PallOfSuffering
         {
-            get { return _gameState.PallOfSuffering; }
-            set { _gameState.PallOfSuffering = value; }
+			get { return App.CurrentGame.PallOfSuffering; }
+			set { App.CurrentGame.PallOfSuffering = value; }
         }
 
         public DarknessCardsMode Mode
         {
-            get { return _gameState.Mode; }
-            set { _gameState.Mode = value; }
+			get { return App.CurrentGame.Mode; }
+			set { App.CurrentGame.Mode = value; }
         }
 
 		public RelayCommand ChooseHeroes{
 			get{
 				return new RelayCommand (() => {
-					_gameState.Save();
-					_navigationService.NavigateToViewModel<ChooseHeroesViewModel>();
+					_saveGameService.Save(App.CurrentGame);
+					_navigationService.PushViewModel<ChooseHeroesViewModel>();
 				});
 			}
 		}

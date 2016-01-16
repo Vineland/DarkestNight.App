@@ -10,7 +10,6 @@ namespace Vineland.Necromancer.UI
 	public class NavigationService 
 	{
 		INavigation _navigation;
-		IEnumerable<Type> _pageTypes;
 
 		/// <summary>
 		/// The key is the viewmodel name and the value is the view type
@@ -19,7 +18,7 @@ namespace Vineland.Necromancer.UI
 
 		public NavigationService ()
 		{
-			var type = typeof(ContentPage);
+			var type = typeof(Page);
 			_viewModelPageMappings = AppDomain.CurrentDomain.GetAssemblies ()
 				.SelectMany (s => s.GetTypes ())
 				.Where (p => type.IsAssignableFrom (p))
@@ -28,24 +27,40 @@ namespace Vineland.Necromancer.UI
 
 		public void SetNavigation(INavigation navigation){
 			_navigation = navigation;
+
 		}
 
-		public void GoBack ()
+		public void Pop ()
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
-
+			
 			_navigation.PopAsync ();
 		}
 
-		public void GoToRoot(){
+		public void PopToRoot(){
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
 			_navigation.PopToRootAsync();
 		}
 
-		public void NavigateToViewModel<T>()
+		public void PopToViewModel<T>(){
+			if (_navigation == null)
+				throw new Exception ("_navigation is null");
+			//TODO: needs to be more robust
+			var pageType = _viewModelPageMappings [typeof(T).Name];
+			//remove all pages between the current page and target page
+			for (int i = _navigation.NavigationStack.Count - 2; i >= 0; i--) {
+				if (_navigation.NavigationStack [i].GetType () == pageType)
+					break;
+				_navigation.RemovePage (_navigation.NavigationStack [i]);
+			}
+			//pop the current page
+			_navigation.PopAsync();
+		}
+
+		public void PushViewModel<T>(bool clearBackStack = false)
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
@@ -54,10 +69,15 @@ namespace Vineland.Necromancer.UI
 			var page = Activator.CreateInstance (_viewModelPageMappings[typeof(T).Name]);
 
 			_navigation.PushAsync (page as Page);
+				if(clearBackStack){
+				//remove all pages between the current page and target page
+				for (int i = 1; i < _navigation.NavigationStack.Count - 1; i++) {
+					_navigation.RemovePage (_navigation.NavigationStack [i]);
+				}
+				}
 			}catch(Exception ex){
 				throw ex;
 			}
-
 		}
 	}
 }

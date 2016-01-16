@@ -3,26 +3,25 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Vineland.DarkestNight.UI;
-using Vineland.DarkestNight.UI.ViewModels;
 using Vineland.DarkestNight.Core;
+using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NewGame : ContentPage
+	public partial class NewGame : ContentPageBase<NewGameViewModel>
 	{
 		public NewGame ()
 		{
 			InitializeComponent();
+			Title = "Game Setup";
 
-			BindingContext = IoC.Get<NewGameViewModel>();
-			//TODO: figure out why selecteditem binding doesn't work
 			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as NewGameViewModel).Mode;
 			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
 		}
 
 		void DarknessCardsModePicker_SelectedIndexChanged (object sender, EventArgs e)
 		{
-			(BindingContext as OptionsViewModel).DarknessCardsMode = (DarknessCardsMode)DarknessCardsModePicker.SelectedIndex;
+			(BindingContext as NewGameViewModel).Mode = (DarknessCardsMode)DarknessCardsModePicker.SelectedIndex;
 		}
 	}
 }

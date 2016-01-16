@@ -3,18 +3,16 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Vineland.DarkestNight.UI;
-using Vineland.DarkestNight.UI.ViewModels;
+using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class ChooseHeroes : ContentPage
+	public partial class ChooseHeroes : ContentPageBase<ChooseHeroesViewModel>
 	{
 		public ChooseHeroes ()
 		{
 			InitializeComponent ();
-			BindingContext = IoC.Get<ChooseHeroesViewModel> ();
-
-			//HeroesListView
+			Title = "Choose Heroes";
 		}
 	}
 }

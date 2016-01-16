@@ -9,21 +9,25 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
 using Android.Util;
+using Vineland.DarkestNight.UI;
 
-namespace Vineland.DarkestNight.UI.ViewModels
+namespace Vineland.Necromancer.UI
 {
-	public class ChooseHeroesViewModel : ViewModelBase
+	public class ChooseHeroesViewModel : BaseViewModel
     {
-        AppGameState _gameState;
+		NavigationService _navigationService;
+		SaveGameService _saveGameService;
 
-        public ChooseHeroesViewModel(AppGameState gameState)
+		public ChooseHeroesViewModel(SaveGameService saveGameService, NavigationService navigationService)
 		{
-			_gameState = gameState;
+			_saveGameService = saveGameService;
+			_navigationService = navigationService;
 			SelectedHeroes = new ObservableCollection<Hero> ();
 			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
+			Heroes = Hero.All;
 		}
  
-		public List<Hero> Heroes { get { return _gameState.Heroes.All; } }
+		public List<Hero> Heroes { get; private set; }
 
 		public ObservableCollection<Hero> SelectedHeroes { get; set; }
 
@@ -31,7 +35,9 @@ namespace Vineland.DarkestNight.UI.ViewModels
 			get {
 				return new RelayCommand (
 					() => {
-						_gameState.Save ();
+						App.CurrentGame.Heroes.Active = SelectedHeroes.ToList();
+						_saveGameService.Save (App.CurrentGame);
+						_navigationService.PushViewModel<HeroesPhaseViewModel>(true);
 					},
 					() => {
 						return SelectedHeroes.Count() == 4;

@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Android.Util;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Vineland.DarkestNight.Core
 {
@@ -40,16 +40,19 @@ namespace Vineland.DarkestNight.Core
 
         public HeroesState()
         {
-			All = Hero.All;
         }
 
-		public List<Hero> All { get; private set; }
-		public IEnumerable<Hero> Active { get { return All.Where (x => x.IsActive); } }
-		public IEnumerable<Hero> Fallen { get { return All.Where (x => x.HasFallen); } }
+		public List<Hero> Active { get; set; }
 
         #region Effects
         public bool HermitActive { get; set; }
-        public int? AuraOfHumilityLocationId { get; set; }
+        public bool AuraOfHumilityActive { get; set; }
+		public bool RuneOfMisdirectionActive { get; set; }
+
+		public bool BlindingBlackAttained { get; set; }
+		public bool ElusiveSpiritAttained { get; set; }
+		public bool DecoyAttained { get; set; }
+		public bool ProphecyOfDoomAttained { get; set; }
         #endregion
     }
 
