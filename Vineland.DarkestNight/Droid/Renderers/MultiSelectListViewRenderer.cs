@@ -47,10 +47,7 @@ namespace Vineland.Necromancer.UI.Droid
 		}
 	}
 
-	public class HeroListViewAdapter:BaseAdapter<Hero>{
-
-
-		
+	public class HeroListViewAdapter:BaseAdapter<Hero>{		
 		List<Hero> _heroes;
 		public HeroListViewAdapter (List<Hero> heroes)
 		{

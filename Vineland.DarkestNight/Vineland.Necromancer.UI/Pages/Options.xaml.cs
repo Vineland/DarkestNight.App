@@ -5,9 +5,11 @@ using Xamarin.Forms;
 using Vineland.DarkestNight.UI;
 using Vineland.DarkestNight.Core;
 using XLabs.Ioc;
+using Xamarin.Forms.Xaml;
 
 namespace Vineland.Necromancer.UI
 {
+	[XamlCompilation (XamlCompilationOptions.Compile)]
 	public partial class Options : ContentPageBase<OptionsViewModel>
 	{
 		public Options ()
@@ -15,6 +17,7 @@ namespace Vineland.Necromancer.UI
 			InitializeComponent ();
 			Title = "Options";
 
+			DarknessCardsModePicker.ItemsSource = ViewModel.DarknessCardsModeOptions;
 			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as OptionsViewModel).DarknessCardsMode;
 			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
 		}

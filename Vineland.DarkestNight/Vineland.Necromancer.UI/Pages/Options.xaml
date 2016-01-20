@@ -5,35 +5,24 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 x:TypeArguments="ui:OptionsViewModel"
 x:Class="Vineland.Necromancer.UI.Options"
 	Padding="10">
-<Grid RowSpacing="20">
-
-
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="*" />
-
-    </Grid.ColumnDefinitions>
-
-<Grid.RowDefinitions>
-
-
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-
-    </Grid.RowDefinitions>
-
-	<Label Text="Game Mode" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
-	<ui:BindablePicker x:Name="DarknessCardsModePicker" ItemsSource="{Binding DarknessCardsModeOptions}" Grid.Column="1" Grid.Row="0" />	
-
-	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Column="0" Grid.Row="1"/>
-	<Switch IsToggled="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
-
-	<Label Text="Starting Darkness" VerticalOptions="Center" Grid.Column="0" Grid.Row="2"/>
-	<ui:CustomStepper Minimum="0" Maximum="10" Value="{Binding StartingDarkness}"  Grid.Column="1" Grid.Row="2" HorizontalOptions="End"/>
-
-	<Label Text="Always Use" VerticalOptions="Center"  Grid.Column="0" Grid.Row="3"/>
-	<Switch IsToggled="{Binding AlwaysUseDefaults}" Grid.Column="1" Grid.Row="3" HorizontalOptions="End"/>
-</Grid>
+	 <TableView Intent="Data">
+            <TableRoot>
+                <TableSection Title="Game Defaults">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+							<Label Text="Game Mode" VerticalOptions="Center"/>
+							<ui:BindablePicker x:Name="DarknessCardsModePicker" HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                    </ViewCell>
+                    <SwitchCell Text="Pall of Suffering" On="{Binding PallOfSuffering}" />
+                    <ViewCell>
+                    	<StackLayout Orientation="Horizontal">
+                    		<Label Text="Starting Darkness" VerticalOptions="Center"/>
+							<ui:CustomStepper Minimum="0" Maximum="10" Value="{Binding StartingDarkness}" HorizontalOptions="EndAndExpand"  />
+                    	</StackLayout>
+                    </ViewCell>
+                    <SwitchCell Text="Always Use Defaults" On="{Binding AlwaysUseDefaults}" />
+                    </TableSection>
+            </TableRoot>
+        </TableView>
 </ui:ContentPageBase>

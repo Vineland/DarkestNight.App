@@ -1,6 +1,7 @@
 ﻿using System;
 using Vineland.DarkestNight.Core;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
 
 namespace Vineland.Necromancer.UI
 {
@@ -13,6 +14,14 @@ namespace Vineland.Necromancer.UI
 		{
 			_navigationService = navigationService;
 			_saveGameService = saveGameService;
+		}
+
+		public int DarknessLevel{
+			get { return App.CurrentGame.DarknessLevel; }
+		}
+
+		public List<Location> AllLocations{
+			get { return Location.All; }
 		}
 
 		public NecomancerState Necromancer{

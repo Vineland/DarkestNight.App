@@ -13,12 +13,12 @@ using System.Security.Cryptography;
 
 namespace Vineland.Necromancer.UI
 {
-	public class HeroesPhaseViewModel :BaseViewModel
+	public class HeroesStateViewModel :BaseViewModel
 	{
 		NavigationService _navigationService;
 		SaveGameService _saveGameService;
 
-		public HeroesPhaseViewModel (NavigationService navigationService, SaveGameService saveGameService)
+		public HeroesStateViewModel (NavigationService navigationService, SaveGameService saveGameService)
 		{
 			_navigationService = navigationService;
 			_saveGameService = saveGameService;
@@ -63,7 +63,7 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand NextPhaseCommand{
+		public RelayCommand NextPhase{
 			get{
 				return new RelayCommand (() => {
 					_saveGameService.Save(App.CurrentGame);

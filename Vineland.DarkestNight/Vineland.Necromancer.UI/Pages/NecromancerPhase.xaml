@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+x:TypeArguments="ui:NecromancerPhaseViewModel"
+  x:Class="Vineland.Necromancer.UI.NecromancerPhase"
+	Padding="10">
+	<TableView Intent="Data">
+        <TableRoot>
+            <TableSection>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+						<Label Text="Darkness" VerticalOptions="Center"/>
+						<ui:CustomStepper Value="{Binding DarknessLevel}" HorizontalOptions="EndAndExpand"  />
+                	</StackLayout>
+                </ViewCell>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+						<Label Text="Location" VerticalOptions="Center"/>
+						<ui:BindablePicker ItemsSource="{Binding AllLocations}" SelectedIndex="{Binding Necromancer.LocationId}" HorizontalOptions="EndAndExpand"  />
+                	</StackLayout>
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Powers">
+                <SwitchCell Text="Focused Rituals" On="{Binding Necromancer.FocusedRituals}" />
+                <SwitchCell Text="Encroaching Shadows" On="{Binding Necromancer.EncroachingShadows}" />
+                <SwitchCell Text="Dying Land" On="{Binding Necromancer.DyingLand}" />
+                <SwitchCell Text="Overwhelm" On="{Binding Necromancer.Overwhelm}" />
+                <SwitchCell Text="CreepingShadows" On="{Binding Necromancer.CreepingShadows}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ui:ContentPageBase>

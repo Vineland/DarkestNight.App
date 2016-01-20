@@ -4,10 +4,11 @@ using Vineland.DarkestNight.UI;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NavigationService 
+	public class NavigationService
 	{
 		INavigation _navigation;
 
@@ -25,7 +26,8 @@ namespace Vineland.Necromancer.UI
 				.ToDictionary (x => x.Name + "ViewModel", x => x);
 		}
 
-		public void SetNavigation(INavigation navigation){
+		public void SetNavigation (INavigation navigation)
+		{
 			_navigation = navigation;
 
 		}
@@ -38,14 +40,16 @@ namespace Vineland.Necromancer.UI
 			_navigation.PopAsync ();
 		}
 
-		public void PopToRoot(){
+		public void PopToRoot ()
+		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
-			_navigation.PopToRootAsync();
+			_navigation.PopToRootAsync ();
 		}
 
-		public void PopToViewModel<T>(){
+		public void PopToViewModel<T> ()
+		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 			//TODO: needs to be more robust
@@ -57,25 +61,26 @@ namespace Vineland.Necromancer.UI
 				_navigation.RemovePage (_navigation.NavigationStack [i]);
 			}
 			//pop the current page
-			_navigation.PopAsync();
+			_navigation.PopAsync ();
 		}
 
-		public void PushViewModel<T>(bool clearBackStack = false)
+		public async void PushViewModel<T> (bool clearBackStack = false)
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
-			try{
-			var page = Activator.CreateInstance (_viewModelPageMappings[typeof(T).Name]);
+			try {
+				var page = Activator.CreateInstance (_viewModelPageMappings [typeof(T).Name]);
 
-			_navigation.PushAsync (page as Page);
-				if(clearBackStack){
-				//remove all pages between the current page and target page
-				for (int i = 1; i < _navigation.NavigationStack.Count - 1; i++) {
-					_navigation.RemovePage (_navigation.NavigationStack [i]);
-				}
-				}
-			}catch(Exception ex){
+					await _navigation.PushAsync (page as Page);
+					if(clearBackStack){
+
+						//remove all pages between the current page and target page
+						for (int i = 1; i < _navigation.NavigationStack.Count - 1; i++) {
+							_navigation.RemovePage (_navigation.NavigationStack [i]);
+						}
+					}
+			} catch (Exception ex) {
 				throw ex;
 			}
 		}

@@ -4,6 +4,10 @@ using System.IO;
 using Vineland.DarkestNight.UI;
 using Newtonsoft.Json;
 using Vineland.DarkestNight.Core;
+using Android.Util;
+using System.Linq;
+using Java.Lang;
+using System.Threading.Tasks;
 
 namespace Vineland.Necromancer.UI
 {
@@ -26,15 +30,19 @@ namespace Vineland.Necromancer.UI
 			gameState.PallOfSuffering = _appSettings.PallOfSuffering;
 			gameState.Mode = _appSettings.DarknessCardsMode;
 
-			Save (gameState);
+			gameState.Necromancer.LocationId = LocationIds.Ruins;
+			gameState.Locations.ForEach (x => x.NumberOfBlights = 1);
+			gameState.Locations [0].NumberOfBlights = 0;
 
 			return gameState;
 		}
 
 		public void Save(GameState gameState)
 		{
-			var path = Path.Combine(AppConstants.SavesLocation, gameState.CreatedDate.GetHashCode () + AppConstants.SaveFileExtension);
-			_fileService.SaveFile(path, JsonConvert.SerializeObject(this));
+			Task.Run (() => {
+				var path = Path.Combine (AppConstants.SavesLocation, gameState.CreatedDate.GetHashCode () + AppConstants.SaveFileExtension);
+				_fileService.SaveFile (path, JsonConvert.SerializeObject (this));
+			});
 		}
 
 		public GameState Load(FileInfo save)

@@ -7,9 +7,9 @@ using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class ChooseHeroes : ContentPageBase<ChooseHeroesViewModel>
+	public partial class ChooseHeroesX : ContentPageBase<ChooseHeroesViewModel>
 	{
-		public ChooseHeroes ()
+		public ChooseHeroesX ()
 		{
 			InitializeComponent ();
 			Title = "Choose Heroes";

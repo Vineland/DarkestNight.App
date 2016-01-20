@@ -9,12 +9,13 @@ namespace Vineland.Necromancer.UI
 	{
 		public SelectHero ()
 		{
-		}
+			var listView = new ListView (ListViewCachingStrategy.RecycleElement);
+			listView.ItemsSource = ViewModel.AvailableHeroes;
+			//listView.SeparatorVisibility = SeparatorVisibility.None;
+			var cell = new DataTemplate (typeof(TextCell));
+			cell.SetBinding(TextCell.TextProperty, "Name");
 
-		protected override void OnBindingContextChanged ()
-		{
-			var listView = new ListView ();
-			listView.SetBinding<SelectHeroViewModel> (ListView.ItemsSourceProperty, vm => vm.AvailableHeroes);
+			listView.ItemTemplate = cell;
 			listView.ItemSelected += (sender, e) => {
 				ViewModel.HeroSelected (e.SelectedItem as Hero);
 			};

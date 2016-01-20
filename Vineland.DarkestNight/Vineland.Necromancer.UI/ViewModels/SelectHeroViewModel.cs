@@ -18,9 +18,9 @@ namespace Vineland.Necromancer.UI
 			_saveGameService = saveGameService;
 		}
 
-		public IEnumerable<Hero> AvailableHeroes
+		public IList<Hero> AvailableHeroes
 		{
-			get { return Hero.All.Where (x => !App.CurrentGame.Heroes.Active.Any (y => y.Id == x.Id)); }
+			get { return Hero.All.Where (x => !App.CurrentGame.Heroes.Active.Any(y => y.Id == x.Id)).ToList(); }
 		}
 
 		public void HeroSelected(Hero hero)

@@ -13,14 +13,12 @@ namespace Vineland.Necromancer.UI
 	public abstract class ContentPageBase<T> : ContentPage where T: ViewModelBase
 	{
 		public T ViewModel { get; set; }
-		public NavigationService NavigationService { get; set; }
 
 		public ContentPageBase ()
 		{
 			ViewModel = Resolver.Resolve<T> ();
-			NavigationService = Resolver.Resolve<NavigationService> ();
 			BindingContext = ViewModel;
-			BackgroundImage = "background.png";
+			//BackgroundImage = "background.png";
 		}
 	}
 }

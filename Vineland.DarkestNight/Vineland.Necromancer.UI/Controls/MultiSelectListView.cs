@@ -1,15 +1,11 @@
 ﻿using System;
-
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
-using System.Runtime.InteropServices;
 
 namespace Vineland.Necromancer.UI
 {
 	public class MultiSelectListView<T> : ListView
 	{
-		//public int Maximum { get; set;}
-
 		public static BindableProperty SelectedItemsProperty = BindableProperty.Create<MultiSelectListView<T>, ObservableCollection<T>>(x=>x.SelectedItems, null);
 
 		public ObservableCollection<T> SelectedItems
@@ -30,7 +26,7 @@ namespace Vineland.Necromancer.UI
 			
 			if (SelectedItems.Contains ((T)e.SelectedItem))
 				SelectedItems.Remove ((T)e.SelectedItem);
-			else //if (SelectedItems.Count != Maximum)
+			else
 				SelectedItems.Add ((T)e.SelectedItem);
 
 			SelectedItem = null;

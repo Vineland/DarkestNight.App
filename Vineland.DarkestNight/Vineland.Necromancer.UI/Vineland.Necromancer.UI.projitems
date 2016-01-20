@@ -33,9 +33,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.xaml.cs">
       <DependentUpon>CustomStepper.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\ChooseHeroes.xaml.cs">
-      <DependentUpon>ChooseHeroes.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckBoxCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiSelectListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\ContentPageBase.cs" />
@@ -43,9 +40,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CarouselLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroesPhaseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\HeroesPhase.xaml.cs">
-      <DependentUpon>HeroesPhase.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\HeroView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckButton.cs" />
@@ -55,7 +49,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)NecromancerApp.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerPhaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerRollViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\OptionsX.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\BlightLocations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ChooseHeroes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\PlayerPhase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PlayerPhaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\HeroesState.xaml.cs">
+      <DependentUpon>HeroesState.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\NecromancerPhase.xaml.cs">
+      <DependentUpon>NecromancerPhase.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
@@ -79,10 +82,10 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\ChooseHeroes.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\HeroesState.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\HeroesPhase.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\NecromancerPhase.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

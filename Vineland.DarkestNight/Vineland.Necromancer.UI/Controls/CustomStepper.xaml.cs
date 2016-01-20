@@ -9,11 +9,12 @@ namespace Vineland.Necromancer.UI
 		public int Minimum { get; set;}
 		public int Maximum {get;set;}
 
-		public static readonly BindableProperty ValueProperty = BindableProperty.Create<CustomStepper, int>(x=>x.Value, 0, BindingMode.TwoWay
+		public static readonly BindableProperty ValueProperty = BindableProperty.Create<CustomStepper, int>(x=>x.Value, -1, BindingMode.TwoWay
 			, propertyChanging: (bindable, oldValue, newValue) => {
 				var ctrl = (CustomStepper)bindable;
 				ctrl.Value = newValue;
 			});
+		
 		public int Value {
 			get { return (int)GetValue (ValueProperty); }
 			set { 
@@ -44,6 +45,7 @@ namespace Vineland.Necromancer.UI
 		{
 			if(Value > Minimum)
 				Value = Value - 1;
+			
 			DecrementButton.IsEnabled = Value != Minimum;
 			IncrementButton.IsEnabled = Value != Maximum;
 		}

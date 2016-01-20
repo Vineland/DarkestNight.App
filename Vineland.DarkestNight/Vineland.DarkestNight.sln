@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.UI.Dro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.UI.UITests", "UITests\Vineland.Necromancer.UI.UITests.csproj", "{4ADFF0EE-FDE2-450D-9C78-EDC45B1E1A1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.Core", "Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj", "{B765980C-5128-488A-AB62-430C0FC76517}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B765980C-5128-488A-AB62-430C0FC76517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B765980C-5128-488A-AB62-430C0FC76517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B765980C-5128-488A-AB62-430C0FC76517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B765980C-5128-488A-AB62-430C0FC76517}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Vineland.DarkestNight.UI.Shared\Vineland.DarkestNight.UI.Shared.projitems*{0339db32-4458-4311-8bb0-c50847c6381e}*SharedItemsImports = 4

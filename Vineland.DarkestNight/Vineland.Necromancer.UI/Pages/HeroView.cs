@@ -107,8 +107,8 @@ namespace Vineland.Necromancer.UI
 			changeHeroButton.CommandParameter = hero;
 			grid.Children.Add (changeHeroButton, 0, 2,4,5);
 			//TODO
-			this.WidthRequest = this.ParentView.Width;// 300;
-			this.MinimumWidthRequest =  this.ParentView.Width;//300;
+			this.WidthRequest = 300;
+			this.MinimumWidthRequest = 300;
 			Content = grid;
 		}
 	}

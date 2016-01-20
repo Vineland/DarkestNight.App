@@ -1,26 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
-using Vineland.DarkestNight.Core;
 
 namespace Vineland.Necromancer.UI
 {
-	public class BlightLocationsViewModel : BaseViewModel
+	public class PlayerPhaseViewModel : BaseViewModel
 	{
 		NavigationService _navigationService;
 		SaveGameService _saveGameService;
 
-		public BlightLocationsViewModel (NavigationService navigationService, SaveGameService saveGameService)
+		public PlayerPhaseViewModel (NavigationService navigationService, SaveGameService saveGameService)
 		{
-			_navigationService = navigationService;
 			_saveGameService = saveGameService;
+			_navigationService = navigationService;
 		}
 
-		public List<Location> Locations{
-			get { return App.CurrentGame.Locations; }
-		}
-
-		public RelayCommand NextCommand{
+		public RelayCommand NextPhase{
 			get{
 				return new RelayCommand (() => {
 					_saveGameService.Save(App.CurrentGame);
