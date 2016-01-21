@@ -40,6 +40,7 @@ namespace Vineland.Necromancer.Core
 
         public HeroesState()
         {
+			Active = new List<Hero> ();
         }
 
 		public List<Hero> Active { get; set; }

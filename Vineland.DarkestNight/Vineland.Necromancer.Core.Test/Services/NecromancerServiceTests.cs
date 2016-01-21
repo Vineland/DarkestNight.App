@@ -12,7 +12,7 @@ namespace Vineland.Necromancer.Core.Test
 		GameState _gameState;
 		Mock<D6GeneratorService> _mockD6Service;
 
-		[TestFixtureSetUp]
+		[SetUp]
 		public void Setup()
 		{
 			_mockD6Service = new Mock<D6GeneratorService>();
@@ -22,6 +22,8 @@ namespace Vineland.Necromancer.Core.Test
 
 			_gameState = new GameState();
 		}
+
+
 
 		[Test]
 		public void Detect_HeroSecrecy6Roll6_NoDetections()
@@ -40,8 +42,8 @@ namespace Vineland.Necromancer.Core.Test
 		public void Detect_HeroSecrecy5Roll6_HeroDetected()
 		{
 			//arrange
-			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1 });
-			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 2 });
+			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1, LocationId= LocationIds.Castle });
+			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 2, LocationId= LocationIds.Castle });
 
 			//act
 			var result = _necromancerService.Detect(_gameState);
@@ -150,8 +152,8 @@ namespace Vineland.Necromancer.Core.Test
 		{
 			//arrange
 			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 1, Name = "Ranger", LocationId = LocationIds.Swamp });
-			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 2 });
-			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 3 });
+			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 6, Id = 2, LocationId= LocationIds.Castle });
+			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 5, Id = 3, LocationId= LocationIds.Castle });
 			_gameState.Heroes.HermitActive = true;
 
 			//act
@@ -183,7 +185,7 @@ namespace Vineland.Necromancer.Core.Test
 			//arrange
 			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 1, Id = 1, LocationId = LocationIds.Mountains });
 			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 1, Id = 2, LocationId = LocationIds.Mountains });
-			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 1, Id = 6 /*Crusader*/, LocationId = LocationIds.Mountains });
+			_gameState.Heroes.Active.Add(new Hero() { Secrecy = 1, Id = 3, Name="Paragon", LocationId = LocationIds.Mountains });
 			_gameState.Heroes.AuraOfHumilityActive = true;
 
 			//act
@@ -197,7 +199,7 @@ namespace Vineland.Necromancer.Core.Test
 		public void Detect_HeroSecrecy6Roll6GatesActive_HeroDetected()
 		{
 			//arrange
-			_gameState.Heroes.Active.Add(new Hero() { Id = 1, Secrecy = 6 });
+			_gameState.Heroes.Active.Add(new Hero() { Id = 1, Secrecy = 6 , LocationId= LocationIds.Castle});
 			_gameState.Necromancer.GatesActive = true;
 
 			//act

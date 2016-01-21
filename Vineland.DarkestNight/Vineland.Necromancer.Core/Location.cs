@@ -23,32 +23,32 @@ namespace Vineland.Necromancer.Core
 			new Location(){
 				Id=1,
 				Name="Mountains",
-				Pathways=new int[6]{ 3, 4, 2, 4, 3, 2 }
+				Pathways=new int[6]{ 2, 3, 1, 3, 2, 1 }
 			},
 			new Location(){
 				Id= 2,
 				Name= "Castle",
-				Pathways=new int[6]{ 5, 4, 2, 3, 4, 3 }
+				Pathways=new int[6]{ 4, 3, 1, 2, 3, 2 }
 			},
 			new Location(){
 				Id=3,
 				Name="Village",
-				Pathways=new int[6]{ 2, 6, 7, 3, 5, 4 }
+				Pathways=new int[6]{ 1, 5, 6, 2, 4, 3 }
 			},
 			new Location(){
 				Id= 4,
 				Name= "Swamp",
-				Pathways= new int[6] { 6, 4, 3, 5, 4, 5 }
+				Pathways= new int[6] { 5, 3, 2, 4, 3, 4 }
 			},
 			new Location(){
 				Id= 5,
 				Name= "Ruins",
-				Pathways=new int[6]{ 7, 5, 4, 6, 4, 6}
+				Pathways=new int[6]{ 6, 4, 3, 5, 3, 5}
 			},
 			new Location(){
 				Id= 6,
 				Name="Forest",
-				Pathways=new int[]{ 4, 6, 7, 4, 6, 7 }
+				Pathways=new int[]{ 3, 5, 6, 3, 5, 6 }
 			}
 		};
 
