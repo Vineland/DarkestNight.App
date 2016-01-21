@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using Vineland.DarkestNight.UI.Services;
 using Vineland.Necromancer.UI;
 using Xamarin.Forms;

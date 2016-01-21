@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vineland.DarkestNight.Core.Services
+namespace Vineland.Necromancer.Core.Services
 {
     public class D6GeneratorService
     {

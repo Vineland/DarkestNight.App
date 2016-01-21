@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Dalvik.SystemInterop;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {

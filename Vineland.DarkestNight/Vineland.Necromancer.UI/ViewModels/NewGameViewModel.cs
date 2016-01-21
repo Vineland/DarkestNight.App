@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using Vineland.DarkestNight.UI.Services;
 using GalaSoft.MvvmLight;
 using Vineland.Necromancer.UI;

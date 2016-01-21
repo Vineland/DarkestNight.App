@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vineland.DarkestNight.Core.Services;
+using Vineland.Necromancer.Core.Services;
 
-namespace Vineland.DarkestNight.Core
+namespace Vineland.Necromancer.Core
 {
     public class NecromancerService
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {

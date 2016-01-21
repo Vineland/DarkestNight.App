@@ -8,7 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Vineland.DarkestNight.UI.Droid.Infrastructure;
-using Vineland.DarkestNight.Core.Services;
+using Vineland.Necromancer.Core.Services;
 using Vineland.DarkestNight.UI;
 
 namespace Vineland.Necromancer.UI.Droid

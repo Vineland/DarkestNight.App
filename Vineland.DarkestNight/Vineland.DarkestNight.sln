@@ -3,16 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core", "Vineland.DarkestNight.Core\Vineland.DarkestNight.Core.csproj", "{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.Core.Test", "Vineland.DarkestNight.Core.Test\Vineland.DarkestNight.Core.Test.csproj", "{46C84570-F22B-414F-BEDA-DE207399E2FB}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vineland.DarkestNight.Core.Shared", "Vineland.DarkestNight.Core.Shared\Vineland.DarkestNight.Core.Shared.shproj", "{CF9696BB-7111-4698-80B4-1D470307E5CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.UI.Testable", "Vineland.DarkestNight.UI.Testable\Vineland.DarkestNight.UI.Testable.csproj", "{0339DB32-4458-4311-8BB0-C50847C6381E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.DarkestNight.UI.Test", "Vineland.DarkestNight.UI.Test\Vineland.DarkestNight.UI.Test.csproj", "{03E29001-A1C1-45AE-B08E-19B0ABD879F1}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Vineland.Necromancer.UI", "Vineland.Necromancer.UI\Vineland.Necromancer.UI.shproj", "{BE04806C-FDFF-47C3-91C4-0B51D1DA6627}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.UI.Droid", "Droid\Vineland.Necromancer.UI.Droid.csproj", "{4B2134F0-435F-42FB-AB5E-3E2B8241B462}"
@@ -21,24 +11,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.UI.UIT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.Core", "Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj", "{B765980C-5128-488A-AB62-430C0FC76517}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.Core.Test", "Vineland.Necromancer.Core.Test\Vineland.Necromancer.Core.Test.csproj", "{30B15874-0929-45A4-A64A-48531911745A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0339DB32-4458-4311-8BB0-C50847C6381E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0339DB32-4458-4311-8BB0-C50847C6381E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0339DB32-4458-4311-8BB0-C50847C6381E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0339DB32-4458-4311-8BB0-C50847C6381E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03E29001-A1C1-45AE-B08E-19B0ABD879F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46C84570-F22B-414F-BEDA-DE207399E2FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30B15874-0929-45A4-A64A-48531911745A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30B15874-0929-45A4-A64A-48531911745A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30B15874-0929-45A4-A64A-48531911745A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30B15874-0929-45A4-A64A-48531911745A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4ADFF0EE-FDE2-450D-9C78-EDC45B1E1A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4ADFF0EE-FDE2-450D-9C78-EDC45B1E1A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ADFF0EE-FDE2-450D-9C78-EDC45B1E1A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,10 +31,6 @@ Global
 		{4B2134F0-435F-42FB-AB5E-3E2B8241B462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B2134F0-435F-42FB-AB5E-3E2B8241B462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B2134F0-435F-42FB-AB5E-3E2B8241B462}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B07D92A-A555-4674-BA5B-BC36E8A0CD6B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B765980C-5128-488A-AB62-430C0FC76517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B765980C-5128-488A-AB62-430C0FC76517}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B765980C-5128-488A-AB62-430C0FC76517}.Release|Any CPU.ActiveCfg = Release|Any CPU

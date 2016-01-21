@@ -1,5 +1,5 @@
 ﻿using System;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.ObjectModel;
 
-namespace Vineland.DarkestNight.Core
+namespace Vineland.Necromancer.Core
 {
     public class GameState
     {

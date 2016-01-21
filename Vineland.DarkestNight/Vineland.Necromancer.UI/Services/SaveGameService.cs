@@ -3,7 +3,7 @@ using Vineland.DarkestNight.UI.Services;
 using System.IO;
 using Vineland.DarkestNight.UI;
 using Newtonsoft.Json;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using Android.Util;
 using System.Linq;
 using Java.Lang;

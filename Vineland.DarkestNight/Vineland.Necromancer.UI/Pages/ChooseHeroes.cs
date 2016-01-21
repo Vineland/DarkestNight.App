@@ -1,5 +1,5 @@
 ﻿using System;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Collections.Generic;

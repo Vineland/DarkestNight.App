@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {

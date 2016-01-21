@@ -3,7 +3,7 @@
 using Xamarin.Forms;
 using Vineland.DarkestNight.UI;
 using XLabs.Ioc;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using Xamarin.Forms.Xaml;
 
 namespace Vineland.Necromancer.UI

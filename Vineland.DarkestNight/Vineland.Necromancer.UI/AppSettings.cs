@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Vineland.DarkestNight.UI.Services;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.DarkestNight.UI
 {

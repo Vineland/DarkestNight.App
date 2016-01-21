@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Vineland.DarkestNight.Core
+namespace Vineland.Necromancer.Core
 {
     public class Hero
     {

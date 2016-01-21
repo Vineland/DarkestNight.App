@@ -4,7 +4,7 @@ using Xamarin.Forms;
 using Android.Widget;
 using Vineland.Necromancer.UI;
 using Vineland.Necromancer.UI.Droid;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using Android.Nfc;
 using Android.Views;
 using System.Collections;

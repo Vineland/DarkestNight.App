@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Vineland.DarkestNight.UI;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using XLabs.Ioc;
 using Xamarin.Forms.Xaml;
 

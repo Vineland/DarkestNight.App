@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Vineland.DarkestNight.Core;
+using Vineland.Necromancer.Core;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using Xamarin.Forms;
