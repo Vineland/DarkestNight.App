@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using System.Dynamic;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NecromancerDetection : ContentPage
+	public partial class HeroesStatePage : ContentPage
 	{
-		public NecromancerDetection ()
+		public HeroesStatePage ()
 		{
+			Title = "Heroes";
 			InitializeComponent ();
 		}
 	}

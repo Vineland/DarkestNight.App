@@ -12,38 +12,32 @@ namespace Vineland.Necromancer.UI
 	public class PageService
 	{
 		/// <summary>
-		/// Key: viewmodel name 
-		/// Value: page type
+		/// Key: page name 
+		/// Value: view model type
 		/// </summary>
 		Dictionary<string, Type> _viewModelPageMappings;
 
 		public PageService ()
 		{
-			var type = typeof(Page);
+			var type = typeof(BaseViewModel);
 			_viewModelPageMappings = AppDomain.CurrentDomain.GetAssemblies ()
 				.SelectMany (s => s.GetTypes ())
 				.Where (p => type.IsAssignableFrom (p))
-				.ToDictionary (x => x.Name + "ViewModel", x => x);
+				.ToDictionary (x => x.Name.Replace("ViewModel", "Page"), x => x);
 		}
 
-		public Page CreatePage<T>() where T:class
+		public Page CreatePage<T>() where T: Page
 		{
-			var pageType = _viewModelPageMappings [typeof(T).Name];
-			var constructor = pageType.GetTypeInfo()
-				.DeclaredConstructors
-				.FirstOrDefault(c => !c.GetParameters().Any());
-			var page = constructor.Invoke (new object[] { }) as Page;
-
-				//Activator.CreateInstance(_viewModelPageMappings [typeof(T).Name]) as Page;
-			page.BindingContext = Resolver.Resolve<T>();
-
+			var page = Resolver.Resolve<T>();
+			var viewModelType = _viewModelPageMappings [typeof(T).Name];
+			page.BindingContext = Resolver.Resolve(viewModelType);
 			return page;
 		}
 
-		public Type GetPageType<T>()
-		{
-			return _viewModelPageMappings [typeof(T).Name];			
-		}
+//		public Type GetPageType<T>()
+//		{
+//			return _viewModelPageMappings [typeof(T).Name];			
+//		}
 	}
 }
 

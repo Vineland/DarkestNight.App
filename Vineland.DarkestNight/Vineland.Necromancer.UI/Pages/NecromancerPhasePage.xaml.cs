@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using System.Dynamic;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class HeroesState : ContentPage
+	public partial class NecromancerPhasePage : ContentPage
 	{
-		public HeroesState ()
+		public NecromancerPhasePage ()
 		{
-			Title = "Heroes";
 			InitializeComponent ();
-
 		}
 	}
 }

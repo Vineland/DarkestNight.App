@@ -62,17 +62,8 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand<Hero> (
 					(hero) => { 
 						hero.HasFallen = true;
-						_navigationService.PushViewModel<SelectHeroViewModel>();
+						_navigationService.Push<SelectHeroPage>();
 					});
-			}
-		}
-
-		public RelayCommand NextPhase{
-			get{
-				return new RelayCommand (() => {
-					_saveGameService.Save(App.CurrentGame);
-					_navigationService.PushViewModel<BlightLocationsViewModel>();
-				});
 			}
 		}
 	}

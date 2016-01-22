@@ -24,7 +24,7 @@ namespace Vineland.Necromancer.UI
 			get{
 				return new RelayCommand (() => {
 					_saveGameService.Save(App.CurrentGame);
-					_navigationService.PushViewModel<NecromancerPhaseViewModel>();
+					_navigationService.Push<NecromancerPhasePage>();
 				});
 			}
 		}

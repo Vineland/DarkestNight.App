@@ -4,12 +4,13 @@ using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public class PlayerPhase : TabbedPage
+	public class PlayerPhasePage : TabbedPage
 	{
-		public PlayerPhase ()
+		public PlayerPhasePage ()
 		{
-			Children.Add (new HeroesState ());
-			Children.Add (new BlightLocations ());
+			var pageCreator = Resolver.Resolve<PageService>();
+			Children.Add (pageCreator.CreatePage<HeroesStatePage>());
+			Children.Add (pageCreator.CreatePage<BlightLocationsPage>());
 
 			var next = new ToolbarItem () { Text = "Necromancer" };
 			next.SetBinding<PlayerPhaseViewModel> (ToolbarItem.CommandProperty, vm => vm.NextPhase);

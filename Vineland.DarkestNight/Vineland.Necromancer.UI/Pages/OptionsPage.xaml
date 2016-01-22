@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-x:Class="Vineland.Necromancer.UI.Options"
+x:Class="Vineland.Necromancer.UI.OptionsPage"
 	Padding="10">
 	 <TableView Intent="Data">
             <TableRoot>
@@ -13,14 +13,14 @@ x:Class="Vineland.Necromancer.UI.Options"
 							<ui:BindablePicker x:Name="DarknessCardsModePicker" ItemsSource="{Binding DarknessCardsModeOptions}" HorizontalOptions="EndAndExpand" />
                         </StackLayout>
                     </ViewCell>
-                    <SwitchCell Text="Pall of Suffering" On="{Binding PallOfSuffering}" />
+                    <SwitchCell Text="Pall of Suffering" On="{Binding Settings.PallOfSuffering}" />
                     <ViewCell>
                     	<StackLayout Orientation="Horizontal">
                     		<Label Text="Starting Darkness" VerticalOptions="Center"/>
-							<ui:CustomStepper Minimum="0" Maximum="10" Value="{Binding StartingDarkness}" HorizontalOptions="EndAndExpand"  />
+							<ui:CustomStepper Minimum="0" Maximum="10" Value="{Binding Settings.StartingDarkness}" HorizontalOptions="EndAndExpand"  />
                     	</StackLayout>
                     </ViewCell>
-                    <SwitchCell Text="Always Use Defaults" On="{Binding AlwaysUseDefaults}" />
+                    <SwitchCell Text="Always Use Defaults" On="{Binding Settings.AlwaysUseDefaults}" />
                     </TableSection>
             </TableRoot>
         </TableView>

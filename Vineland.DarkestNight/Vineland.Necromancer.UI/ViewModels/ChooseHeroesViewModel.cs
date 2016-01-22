@@ -37,7 +37,7 @@ namespace Vineland.Necromancer.UI
 					() => {
 						App.CurrentGame.Heroes.Active = SelectedHeroes.ToList();
 						_saveGameService.Save (App.CurrentGame);
-						_navigationService.PushViewModel<PlayerPhaseViewModel>(true);
+						_navigationService.Push<PlayerPhasePage>(true);
 					},
 					() => {
 						return SelectedHeroes.Count() == 4;

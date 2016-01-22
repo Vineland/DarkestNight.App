@@ -8,9 +8,9 @@ using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class Home : ContentPage
+	public partial class HomePage : ContentPage
 	{
-		public Home ()
+		public HomePage ()
 		{
 			InitializeComponent ();
 			Title = "Home";

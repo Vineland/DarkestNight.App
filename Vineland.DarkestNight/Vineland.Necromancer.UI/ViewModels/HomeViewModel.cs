@@ -60,7 +60,7 @@ namespace Vineland.Necromancer.UI
 			get 
 			{ 
 				return new RelayCommand (
-					()=> { _navigationService.PushViewModel<OptionsViewModel>();}); 
+					()=> { _navigationService.Push<OptionsPage>();}); 
 			}
 		}
 
@@ -73,9 +73,9 @@ namespace Vineland.Necromancer.UI
 						if(_appSettings.AlwaysUseDefaults)
 						{
 							App.CurrentGame = _saveGameService.CreateDefaultGame();
-							_navigationService.PushViewModel<ChooseHeroesViewModel>();
+							_navigationService.Push<ChooseHeroesPage>();
 						}else{
-						_navigationService.PushViewModel<NewGameViewModel>();
+							_navigationService.Push<NewGamePage>();
 						}
 					}); 
 			}

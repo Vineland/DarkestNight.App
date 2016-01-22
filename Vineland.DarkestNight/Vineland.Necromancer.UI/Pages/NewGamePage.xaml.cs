@@ -8,9 +8,9 @@ using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NewGame : ContentPage
+	public partial class NewGamePage : ContentPage
 	{
-		public NewGame ()
+		public NewGamePage ()
 		{
 			InitializeComponent();
 			Title = "Game Setup";

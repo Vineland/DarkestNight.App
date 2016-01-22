@@ -5,9 +5,9 @@ using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {
-	public class SelectHero : ContentPage
+	public class SelectHeroPage : ContentPage
 	{
-		public SelectHero ()
+		public SelectHeroPage ()
 		{
 			var listView = new ListView (ListViewCachingStrategy.RecycleElement);
 			//listView.ItemsSource = ViewModel.AvailableHeroes;

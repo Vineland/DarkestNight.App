@@ -41,15 +41,14 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopToRootAsync ();
 		}
 
-		public async Task PopToViewModel<T> ()
+		public async Task PopTo<T> () where T: Page
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 			//TODO: needs to be more robust
-			var pageType = _pageService.GetPageType<T>();
 			//remove all pages between the current page and target page
 			for (int i = _navigation.NavigationStack.Count - 2; i >= 0; i--) {
-				if (_navigation.NavigationStack [i].GetType () == pageType)
+				if (_navigation.NavigationStack [i].GetType () == typeof(T))
 					break;
 				_navigation.RemovePage (_navigation.NavigationStack [i]);
 			}
@@ -57,7 +56,7 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopAsync ();
 		}
 
-		public async Task PushViewModel<T> (bool clearBackStack = false) where T : BaseViewModel
+		public async Task Push<T> (bool clearBackStack = false) where T : Page
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
