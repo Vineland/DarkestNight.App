@@ -12,7 +12,7 @@ namespace Vineland.Necromancer.UI
 	{
 		public NecromancerApp ()
 		{
-			var mainPage = new NavigationPage(new Home());
+			var mainPage = new NavigationPage(Resolver.Resolve<PageService>().CreatePage<HomeViewModel>());
 			mainPage.BarBackgroundColor = Color.FromHex ("#52361b");
 			mainPage.BarTextColor = Color.White;
 			MainPage = mainPage;

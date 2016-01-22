@@ -8,13 +8,17 @@ using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NewGame : ContentPageBase<NewGameViewModel>
+	public partial class NewGame : ContentPage
 	{
 		public NewGame ()
 		{
 			InitializeComponent();
 			Title = "Game Setup";
 
+		}
+
+		protected override void OnBindingContextChanged ()
+		{
 			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as NewGameViewModel).Mode;
 			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
 		}

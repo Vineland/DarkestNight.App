@@ -21,7 +21,6 @@ namespace Vineland.Necromancer.UI
 			var grid = new Grid
 			{
 				RowSpacing=20,
-				VerticalOptions = LayoutOptions.FillAndExpand,
 				RowDefinitions = 
 				{
 					new RowDefinition { Height = GridLength.Auto },
@@ -95,7 +94,7 @@ namespace Vineland.Necromancer.UI
 			if (!string.IsNullOrEmpty(property)) {
 				grid.Children.Add (new Label () { Text = optionLabel, VerticalOptions=LayoutOptions.Center}, 0,3);
 				var switchControl = new Switch () { HorizontalOptions = LayoutOptions.End};
-				switchControl.SetBinding (Switch.IsToggledProperty, new Binding ("BindingContext.Heroes." + property, source: this.GetParentPage ()));
+				switchControl.SetBinding (Switch.IsToggledProperty, new Binding ("BindingContext.HeroesState." + property, source: this.GetParentPage ()));
 				grid.Children.Add (switchControl, 1, 3);
 			} 
 

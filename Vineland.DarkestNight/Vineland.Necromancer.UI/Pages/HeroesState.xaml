@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ui:ContentPageBase xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
-x:TypeArguments="ui:HeroesStateViewModel" 
 x:Class="Vineland.Necromancer.UI.HeroesState"
 Padding="10">
 	<Grid x:Name="LayoutRoot" RowSpacing="20">
@@ -16,7 +15,7 @@ Padding="10">
 	</Grid.ColumnDefinitions>
 		<Label Text="Darkness" Grid.Row="0" Grid.Column="0"/>
 		<ui:CustomStepper Value="{Binding DarknessLevel}"  Grid.Row="0" Grid.Column="1"/>
-		<ui:CarouselLayout x:Name="HeroesLayout" ItemsSource="{Binding Heroes}" Grid.Row="1" Grid.ColumnSpan="2">
+		<ui:CarouselLayout x:Name="HeroesLayout" ItemsSource="{Binding Heroes}" Grid.Row="1" Grid.ColumnSpan="2" IndicatorStyle="Dots">
 			<ui:CarouselLayout.ItemTemplate>
 				<DataTemplate>
 					<ui:HeroView />
@@ -24,4 +23,4 @@ Padding="10">
 			</ui:CarouselLayout.ItemTemplate>
 		</ui:CarouselLayout>
 	</Grid>
-</ui:ContentPageBase>
+</ContentPage>

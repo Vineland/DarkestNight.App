@@ -9,15 +9,16 @@ using Xamarin.Forms.Xaml;
 
 namespace Vineland.Necromancer.UI
 {
-	[XamlCompilation (XamlCompilationOptions.Compile)]
-	public partial class Options : ContentPageBase<OptionsViewModel>
+	public partial class Options : ContentPage
 	{
 		public Options ()
 		{
-			InitializeComponent ();
 			Title = "Options";
+		}
 
-			DarknessCardsModePicker.ItemsSource = ViewModel.DarknessCardsModeOptions;
+		protected override void OnBindingContextChanged ()
+		{
+			InitializeComponent ();
 			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as OptionsViewModel).DarknessCardsMode;
 			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
 		}

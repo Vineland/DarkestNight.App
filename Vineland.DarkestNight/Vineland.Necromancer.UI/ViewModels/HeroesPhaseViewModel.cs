@@ -51,6 +51,10 @@ namespace Vineland.Necromancer.UI
 			set{ App.CurrentGame.Heroes.Active = value; }
 		}
 
+		public Vineland.Necromancer.Core.HeroesState HeroesState{
+			get { return App.CurrentGame.Heroes; }
+		}
+
 		public RelayCommand<Hero> RemoveHero
 		{
 			get 

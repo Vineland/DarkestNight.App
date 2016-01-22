@@ -5,25 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
 	public class NavigationService
 	{
 		INavigation _navigation;
+		PageService _pageService;
 
-		/// <summary>
-		/// The key is the viewmodel name and the value is the view type
-		/// </summary>
-		Dictionary<string, Type> _viewModelPageMappings;
-
-		public NavigationService ()
+		public NavigationService (PageService pageService)
 		{
-			var type = typeof(Page);
-			_viewModelPageMappings = AppDomain.CurrentDomain.GetAssemblies ()
-				.SelectMany (s => s.GetTypes ())
-				.Where (p => type.IsAssignableFrom (p))
-				.ToDictionary (x => x.Name + "ViewModel", x => x);
+			_pageService = pageService;
 		}
 
 		public void SetNavigation (INavigation navigation)
@@ -32,28 +25,28 @@ namespace Vineland.Necromancer.UI
 
 		}
 
-		public void Pop ()
+		public async Task Pop ()
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 			
-			_navigation.PopAsync ();
+			await _navigation.PopAsync ();
 		}
 
-		public void PopToRoot ()
+		public async Task PopToRoot ()
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
-			_navigation.PopToRootAsync ();
+			await _navigation.PopToRootAsync ();
 		}
 
-		public void PopToViewModel<T> ()
+		public async Task PopToViewModel<T> ()
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 			//TODO: needs to be more robust
-			var pageType = _viewModelPageMappings [typeof(T).Name];
+			var pageType = _pageService.GetPageType<T>();
 			//remove all pages between the current page and target page
 			for (int i = _navigation.NavigationStack.Count - 2; i >= 0; i--) {
 				if (_navigation.NavigationStack [i].GetType () == pageType)
@@ -61,17 +54,16 @@ namespace Vineland.Necromancer.UI
 				_navigation.RemovePage (_navigation.NavigationStack [i]);
 			}
 			//pop the current page
-			_navigation.PopAsync ();
+			await _navigation.PopAsync ();
 		}
 
-		public async void PushViewModel<T> (bool clearBackStack = false)
+		public async Task PushViewModel<T> (bool clearBackStack = false) where T : BaseViewModel
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
 			try {
-				var page = Activator.CreateInstance (_viewModelPageMappings [typeof(T).Name]);
-
+					var page = _pageService.CreatePage<T>();
 					await _navigation.PushAsync (page as Page);
 					if(clearBackStack){
 

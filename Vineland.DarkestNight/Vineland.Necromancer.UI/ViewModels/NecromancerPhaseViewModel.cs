@@ -28,11 +28,11 @@ namespace Vineland.Necromancer.UI
 			get{ return App.CurrentGame.Necromancer; }
 		}
 
-		public RelayCommand DetectionRollCommand{
+		public RelayCommand Detect{
 			get{
 				return new RelayCommand (() => {
 					_saveGameService.Save(App.CurrentGame);
-					_navigationService.PushViewModel<NecromancerRollViewModel>();
+					_navigationService.PushViewModel<NecromancerDetectionViewModel>();
 				});
 			}
 		}

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+x:Class="Vineland.Necromancer.UI.BlightLocations"
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+Padding="10">
+	<ListView ItemsSource="{Binding Locations}" RowHeight="60">
+	<ListView.ItemTemplate>
+	<DataTemplate>
+	<AbsoluteLayout>
+	<Label Text="{Binding Name}" 
+        AbsoluteLayout.LayoutBounds="0, 0, 0.8, 1"
+        AbsoluteLayout.LayoutFlags="SizeProportional" 
+        VerticalTextAlignment="Center"/>
+        <ui:CustomStepper Value="{Binding NumberOfBlights}"
+        AbsoluteLayout.LayoutBounds="1, 0, 200, 40"
+        AbsoluteLayout.LayoutFlags="XProportional"
+        VerticalOptions="Center" />
+	</AbsoluteLayout>
+	</DataTemplate>
+	</ListView.ItemTemplate>
+	</ListView>
+</ContentPage>

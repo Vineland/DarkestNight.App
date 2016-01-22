@@ -6,13 +6,11 @@ using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NecromancerPhase : ContentPageBase<NecromancerPhaseViewModel>
+	public partial class NecromancerPhase : ContentPage
 	{
 		public NecromancerPhase ()
 		{
 			InitializeComponent ();
-
-			//.ItemsSource = Location.All;
 		}
 	}
 }

@@ -6,7 +6,7 @@ using System.Dynamic;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class HeroesState : ContentPageBase<HeroesStateViewModel>
+	public partial class HeroesState : ContentPage
 	{
 		public HeroesState ()
 		{

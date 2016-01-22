@@ -16,18 +16,18 @@ namespace Vineland.Necromancer.Core
             _d6GeneratorService = d6GeneratorService;
         }
 
-        public DetectionResult Detect(GameState gameState)
+		public DetectionResult Detect(GameState gameState, int? roll = null, int[] heroesToIgnore = null)
         {
             var result = new DetectionResult();
 
-            result.MovementRoll = _d6GeneratorService.RollDemBones();
-            var detectionRoll = result.MovementRoll;
+			result.MovementRoll = roll.HasValue ? roll.Value : _d6GeneratorService.RollDemBones();
+			result.DetectionRoll = result.MovementRoll;
 
             if (gameState.Necromancer.GatesActive)
-                detectionRoll++;
+				result.DetectionRoll++;
 
             //first check if any heroes can be detected
-            var exposedHeroes = gameState.Heroes.Active.Where(x => x.LocationId != LocationIds.Monastery && x.Secrecy < detectionRoll);
+			var exposedHeroes = gameState.Heroes.Active.Where(x => x.LocationId != LocationIds.Monastery && x.Secrecy < result.DetectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains(x.Id)));
 
             //special hero effects
             if (gameState.Heroes.HermitActive)
@@ -160,6 +160,7 @@ namespace Vineland.Necromancer.Core
     {
         public int? DetectedHeroId { get; set; }
         public int MovementRoll { get; set; }
+		public int DetectionRoll {get;set;}
     }
 
 

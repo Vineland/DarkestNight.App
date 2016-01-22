@@ -8,11 +8,8 @@ namespace Vineland.Necromancer.UI
 	{
 		public PlayerPhase ()
 		{
-			BindingContext = Resolver.Resolve<PlayerPhaseViewModel> ();
-			var heroPage = new HeroesState ();
-			var locationPage = new BlightLocations ();
-			Children.Add (heroPage);
-			Children.Add (locationPage);
+			Children.Add (new HeroesState ());
+			Children.Add (new BlightLocations ());
 
 			var next = new ToolbarItem () { Text = "Necromancer" };
 			next.SetBinding<PlayerPhaseViewModel> (ToolbarItem.CommandProperty, vm => vm.NextPhase);

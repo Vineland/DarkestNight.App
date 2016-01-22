@@ -6,7 +6,7 @@ using Vineland.DarkestNight.UI;
 
 namespace Vineland.Necromancer.UI
 {
-	public class OptionsViewModel :ViewModelBase
+	public class OptionsViewModel : BaseViewModel
     {
         AppSettings _appSettings;
 
