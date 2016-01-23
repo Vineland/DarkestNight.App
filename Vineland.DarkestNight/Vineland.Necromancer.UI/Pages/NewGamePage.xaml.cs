@@ -14,18 +14,6 @@ namespace Vineland.Necromancer.UI
 		{
 			InitializeComponent();
 			Title = "Game Setup";
-
-		}
-
-		protected override void OnBindingContextChanged ()
-		{
-			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as NewGameViewModel).Mode;
-			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
-		}
-
-		void DarknessCardsModePicker_SelectedIndexChanged (object sender, EventArgs e)
-		{
-			(BindingContext as NewGameViewModel).Mode = (DarknessCardsMode)DarknessCardsModePicker.SelectedIndex;
 		}
 	}
 }

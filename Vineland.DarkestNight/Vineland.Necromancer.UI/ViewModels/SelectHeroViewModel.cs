@@ -23,10 +23,17 @@ namespace Vineland.Necromancer.UI
 			get { return Hero.All.Where (x => !App.CurrentGame.Heroes.Active.Any(y => y.Id == x.Id)).ToList(); }
 		}
 
-		public void HeroSelected(Hero hero)
-		{
-			MessagingCenter.Send<SelectHeroViewModel, Hero>(this, "HeroSelected", hero);
-			_navigationService.Pop ();
+		Hero _selectedHero;
+		public Hero SelectedHero
+		{ 
+			get { return _selectedHero; } 
+			set {
+				_selectedHero = value;
+				if (value != null) {
+					MessagingCenter.Send<SelectHeroViewModel, Hero> (this, "HeroSelected", value);
+					_navigationService.Pop ();
+				}
+			}
 		}
 	}
 }

@@ -4,7 +4,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 x:Class="Vineland.Necromancer.UI.NecromancerDetectionPage"
 Padding="10">
 	<StackLayout Spacing="20">
-	<Label Text="{Binding MovementRoll}"></Label>
+	<Label Text="{Binding Result.MovementRoll}"></Label>
 	<Label Text="{Binding DetectedHeroName}"></Label>
 	<Button Text="Blinding Black" Command="{Binding BlindingBlackCommand}" IsVisible="{Binding BlindingBlackAvailable}"/>
 	<Button Text="Decoy" Command="{Binding DecoyCommand}" IsVisible="{Binding DecoyAvailable}"/>

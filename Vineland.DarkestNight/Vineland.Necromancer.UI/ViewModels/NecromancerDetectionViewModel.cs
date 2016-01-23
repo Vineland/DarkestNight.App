@@ -51,7 +51,7 @@ namespace Vineland.Necromancer.UI
 				DetectedHero = App.CurrentGame.Heroes.Active.Single (h => h.Id == Result.DetectedHeroId.Value);
 		}
 
-		public bool BindingBlackAvailable{
+		public bool BlindingBlackAvailable{
 			get{
 				return DetectedHero != null
 				&& App.CurrentGame.Heroes.BlindingBlackAttained;

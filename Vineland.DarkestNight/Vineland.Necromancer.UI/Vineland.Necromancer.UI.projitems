@@ -46,8 +46,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\BlightLocationsPage.xaml.cs">
       <DependentUpon>BlightLocationsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\SelectHeroPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\PlayerPhasePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\OptionsPage.xaml.cs">
       <DependentUpon>OptionsPage.xaml</DependentUpon>
     </Compile>
@@ -65,6 +63,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\NecromancerDetectionPage.xaml.cs">
       <DependentUpon>NecromancerDetectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\PlayerPhasePage.xaml.cs">
+      <DependentUpon>PlayerPhasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\SelectHeroPage.xaml.cs">
+      <DependentUpon>SelectHeroPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +106,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\NecromancerDetectionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\PlayerPhasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\SelectHeroPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -7,26 +7,12 @@ namespace Vineland.Necromancer.UI
 {
 	public class BlightLocationsViewModel : BaseViewModel
 	{
-		NavigationService _navigationService;
-		SaveGameService _saveGameService;
-
-		public BlightLocationsViewModel (NavigationService navigationService, SaveGameService saveGameService)
+		public BlightLocationsViewModel ()
 		{
-			_navigationService = navigationService;
-			_saveGameService = saveGameService;
 		}
 
 		public List<Location> Locations{
 			get { return App.CurrentGame.Locations; }
-		}
-
-		public RelayCommand NextCommand{
-			get{
-				return new RelayCommand (() => {
-					_saveGameService.Save(App.CurrentGame);
-					_navigationService.Push<NecromancerPhasePage>();
-				});
-			}
 		}
 	}
 }

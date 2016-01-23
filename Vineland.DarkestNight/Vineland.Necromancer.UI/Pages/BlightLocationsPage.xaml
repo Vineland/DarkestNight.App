@@ -7,6 +7,7 @@ Padding="10">
 	<ListView ItemsSource="{Binding Locations}" RowHeight="60">
 	<ListView.ItemTemplate>
 	<DataTemplate>
+	<ViewCell>
 	<AbsoluteLayout>
 	<Label Text="{Binding Name}" 
         AbsoluteLayout.LayoutBounds="0, 0, 0.8, 1"
@@ -17,6 +18,7 @@ Padding="10">
         AbsoluteLayout.LayoutFlags="XProportional"
         VerticalOptions="Center" />
 	</AbsoluteLayout>
+	</ViewCell>
 	</DataTemplate>
 	</ListView.ItemTemplate>
 	</ListView>

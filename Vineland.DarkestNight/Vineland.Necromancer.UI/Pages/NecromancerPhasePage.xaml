@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core"
   x:Class="Vineland.Necromancer.UI.NecromancerPhasePage"
 	Padding="10">
 <ContentPage.ToolbarItems>
@@ -19,7 +20,7 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
 						<Label Text="Location" VerticalOptions="Center"/>
-						<ui:BindablePicker ItemsSource="{Binding AllLocations}" SelectedIndex="{Binding Necromancer.LocationId}" HorizontalOptions="EndAndExpand"  />
+						<ui:BindablePicker x:TypeArguments="core:Location" ItemsSource="{Binding AllLocations}" SelectedIndex="{Binding Necromancer.LocationId}" HorizontalOptions="EndAndExpand"  />
                 	</StackLayout>
                 </ViewCell>
             </TableSection>

@@ -17,16 +17,16 @@ namespace Vineland.Necromancer.UI
 			InitializeComponent ();
 		}
 
-		protected override void OnBindingContextChanged ()
-		{
-			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as OptionsViewModel).Settings.DarknessCardsMode;
-			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
-		}
-
-		void DarknessCardsModePicker_SelectedIndexChanged (object sender, EventArgs e)
-		{
-			(BindingContext as OptionsViewModel).Settings.DarknessCardsMode = (DarknessCardsMode)DarknessCardsModePicker.SelectedIndex;
-		}
+//		protected override void OnBindingContextChanged ()
+//		{
+//			DarknessCardsModePicker.SelectedIndex = (int)(BindingContext as OptionsViewModel).Settings.DarknessCardsMode;
+//			DarknessCardsModePicker.SelectedIndexChanged += DarknessCardsModePicker_SelectedIndexChanged;
+//		}
+//
+//		void DarknessCardsModePicker_SelectedIndexChanged (object sender, EventArgs e)
+//		{
+//			(BindingContext as OptionsViewModel).Settings.DarknessCardsMode = (DarknessCardsMode)DarknessCardsModePicker.SelectedIndex;
+//		}
 	}
 }
 

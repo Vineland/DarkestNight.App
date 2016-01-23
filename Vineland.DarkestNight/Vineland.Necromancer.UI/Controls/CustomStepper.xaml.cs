@@ -20,6 +20,9 @@ namespace Vineland.Necromancer.UI
 			set { 
 				SetValue (ValueProperty, value); 
 				ValueLabel.Text = value.ToString ();
+
+				DecrementButton.IsEnabled = value != Minimum;
+				IncrementButton.IsEnabled = value != Maximum;
 			}
 		}
 
@@ -37,17 +40,12 @@ namespace Vineland.Necromancer.UI
 		{
 			if (Value < Maximum) 
 				Value = Value + 1;
-			DecrementButton.IsEnabled = Value != Minimum;
-				IncrementButton.IsEnabled = Value != Maximum;
 		}
 
 		void DecrementButton_Clicked (object sender, EventArgs e)
 		{
 			if(Value > Minimum)
 				Value = Value - 1;
-			
-			DecrementButton.IsEnabled = Value != Minimum;
-			IncrementButton.IsEnabled = Value != Maximum;
 		}
 	}
 }

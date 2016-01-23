@@ -1,5 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
+using Vineland.Necromancer.UI;
 
 namespace Vineland.Necromancer.UI
 {
@@ -14,6 +15,10 @@ namespace Vineland.Necromancer.UI
 				return NecromancerApp.Current as NecromancerApp;
 			}
 		}
+
+//		public NavigationService Navigation{
+//			get { return Resolver.Resolve<NavigationService> (); }
+//		}
 	}
 }
 

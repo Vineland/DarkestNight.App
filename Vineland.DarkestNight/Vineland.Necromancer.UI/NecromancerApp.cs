@@ -6,6 +6,7 @@ using XLabs.Ioc;
 using Vineland.Necromancer.Core;
 using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Vineland.Necromancer.UI
 {
 	public class NecromancerApp : Application
