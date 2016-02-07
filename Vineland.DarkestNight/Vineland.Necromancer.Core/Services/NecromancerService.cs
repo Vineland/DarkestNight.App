@@ -45,11 +45,11 @@ namespace Vineland.Necromancer.Core
                 if (gameState.Necromancer.GatesActive) //if gates are active pick a random hero
                 {
                     var index = new Random().Next(0, exposedHeroes.Count() - 1);
-                    result.DetectedHeroId = exposedHeroes.ToArray()[index].Id;
+                    result.DetectedHero = exposedHeroes.ToArray()[index];
                 }
                 else if (exposedHeroes.Any(x => x.LocationId == gameState.Necromancer.LocationId))
                 {
-                    result.DetectedHeroId = exposedHeroes.First(x => x.LocationId == gameState.Necromancer.LocationId).Id;
+                    result.DetectedHero = exposedHeroes.First(x => x.LocationId == gameState.Necromancer.LocationId);
                 }
                 else
                 {
@@ -61,11 +61,11 @@ namespace Vineland.Necromancer.Core
                         exposedHeroes = heroesOneLocationAway;
 
                     var index = new Random().Next(0, exposedHeroes.Count() - 1);
-                    result.DetectedHeroId = exposedHeroes.ToArray()[index].Id;
+					result.DetectedHero = exposedHeroes.ToArray () [index];
                 }
             }
             else
-                result.DetectedHeroId = null;
+                result.DetectedHero = null;
 
             return result;
         }
@@ -158,7 +158,7 @@ namespace Vineland.Necromancer.Core
 
     public class DetectionResult
     {
-        public int? DetectedHeroId { get; set; }
+        public Hero DetectedHero { get; set; }
         public int MovementRoll { get; set; }
 		public int DetectionRoll {get;set;}
     }

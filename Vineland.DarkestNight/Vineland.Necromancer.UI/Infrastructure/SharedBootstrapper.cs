@@ -28,8 +28,10 @@ namespace Vineland.DarkestNight.UI.Infrastructure
 			
 			var container = new Container();
 
-			container.Register<PageService> (Lifestyle.Singleton);
-			container.Register<NavigationService> (Lifestyle.Singleton);
+			container.RegisterSingleton<GameStateService>();
+			container.RegisterSingleton<FileService>();
+			container.RegisterSingleton<PageService> ();
+			container.RegisterSingleton<NavigationService>();
 
 			RegisterPlatformSpecificImplementations (container);
 

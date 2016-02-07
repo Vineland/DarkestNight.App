@@ -16,14 +16,15 @@ namespace Vineland.Necromancer.UI
 	public class PlayerPhaseViewModel : BaseViewModel
 	{
 		NavigationService _navigationService;
-		SaveGameService _saveGameService;
+		GameStateService _gameStateService;
 
-		public PlayerPhaseViewModel (NavigationService navigationService, SaveGameService saveGameService)
+		public PlayerPhaseViewModel (NavigationService navigationService, GameStateService gameStateService)
 		{
-			_saveGameService = saveGameService;
+			_gameStateService = gameStateService;
 			_navigationService = navigationService;
 
 			MessagingCenter.Subscribe<SelectHeroViewModel,Hero>(this, "HeroSelected", (sender, hero) => {
+				//TODO review this at some point
 				var fallenHero = Heroes.FirstOrDefault(x=>x.HasFallen);
 				var insertIndex = 0;
 				if(fallenHero != null)
@@ -43,17 +44,17 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public int DarknessLevel {
-			get { return App.CurrentGame.DarknessLevel; }
-			set { App.CurrentGame.DarknessLevel = value; }
+			get { return _gameStateService.CurrentGame.DarknessLevel; }
+			set { _gameStateService.CurrentGame.DarknessLevel = value; }
 		}
 
 		public List<Hero> Heroes{
-			get { return App.CurrentGame.Heroes.Active; }
-			set{ App.CurrentGame.Heroes.Active = value; }
+			get { return _gameStateService.CurrentGame.Heroes.Active; }
+			set{ _gameStateService.CurrentGame.Heroes.Active = value; }
 		}
 
 		public Vineland.Necromancer.Core.HeroesState HeroesState{
-			get { return App.CurrentGame.Heroes; }
+			get { return _gameStateService.CurrentGame.Heroes; }
 		}
 
 		public RelayCommand<Hero> RemoveHero
@@ -69,13 +70,13 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public List<Location> Locations{
-			get { return App.CurrentGame.Locations; }
+			get { return _gameStateService.CurrentGame.Locations; }
 		}
 
 		public RelayCommand NextPhase{
 			get{
 				return new RelayCommand (() => {
-					_saveGameService.Save(App.CurrentGame);
+					_gameStateService.Save();
 					_navigationService.Push<NecromancerPhasePage>();
 				});
 			}

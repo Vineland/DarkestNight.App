@@ -2,10 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.NecromancerDetectionPage"
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 Padding="10">
+<ContentPage.Resources>
+        <ResourceDictionary>
+            <ui:HeroConverter x:Key="heroConverter"></ui:HeroConverter>
+        </ResourceDictionary>
+        </ContentPage.Resources>
 	<StackLayout Spacing="20">
 	<Label Text="{Binding Result.MovementRoll}"></Label>
-	<Label Text="{Binding DetectedHeroName}"></Label>
+	<Label Text="{Binding DetectedHero, Converter={StaticResource heroConverter}}"></Label>
 	<Button Text="Blinding Black" Command="{Binding BlindingBlackCommand}" IsVisible="{Binding BlindingBlackAvailable}"/>
 	<Button Text="Decoy" Command="{Binding DecoyCommand}" IsVisible="{Binding DecoyAvailable}"/>
 	<Button Text="Elusive Spirit" Command="{Binding ElusiveSpiritCommand}" IsVisible="{Binding ElusiveSpiritAvailable}"/>

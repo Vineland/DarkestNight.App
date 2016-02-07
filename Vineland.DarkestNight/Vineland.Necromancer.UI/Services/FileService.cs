@@ -15,6 +15,10 @@ namespace Vineland.DarkestNight.UI.Services
 
         }
 
+		public bool DoesFileExist(string path){
+			return File.Exists (path);
+		}
+
 		public void SaveFile(string path, string @value)
 		{
 			using (var streamWriter = new StreamWriter(path))
@@ -26,6 +30,12 @@ namespace Vineland.DarkestNight.UI.Services
 		public string LoadFile(FileInfo fileInfo)
 		{
 			using (var streamReader = new StreamReader(fileInfo.FullName)) {
+				return streamReader.ReadToEnd();
+			}
+		}
+
+		public string LoadFile(string fullPath){
+			using (var streamReader = new StreamReader(fullPath)) {
 				return streamReader.ReadToEnd();
 			}
 		}

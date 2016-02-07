@@ -15,41 +15,39 @@ namespace Vineland.Necromancer.UI
 	public class NewGameViewModel :BaseViewModel
     {
 		NavigationService _navigationService;
-		SaveGameService _saveGameService;
+		GameStateService _gameStateService;
 
-		public NewGameViewModel(SaveGameService saveGameService, NavigationService navigationService)
+		public NewGameViewModel(GameStateService gameStateService, NavigationService navigationService)
         {
-			_saveGameService = saveGameService;
+			_gameStateService = gameStateService;
 			_navigationService = navigationService;
             DarknessCardsModeOptions = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
-
-			App.CurrentGame = _saveGameService.CreateDefaultGame ();
         }
 
         public DarknessCardsMode[] DarknessCardsModeOptions { get; private set; }
 
         public int DarknessLevel
         {
-			get { return App.CurrentGame.DarknessLevel; }
-			set { App.CurrentGame.DarknessLevel = value; }
+			get { return _gameStateService.CurrentGame.DarknessLevel; }
+			set { _gameStateService.CurrentGame.DarknessLevel = value; }
         }
 
         public bool PallOfSuffering
         {
-			get { return App.CurrentGame.PallOfSuffering; }
-			set { App.CurrentGame.PallOfSuffering = value; }
+			get { return _gameStateService.CurrentGame.PallOfSuffering; }
+			set { _gameStateService.CurrentGame.PallOfSuffering = value; }
         }
 
         public DarknessCardsMode Mode
         {
-			get { return App.CurrentGame.Mode; }
-			set { App.CurrentGame.Mode = value; }
+			get { return _gameStateService.CurrentGame.Mode; }
+			set { _gameStateService.CurrentGame.Mode = value; }
         }
 
 		public RelayCommand ChooseHeroes{
 			get{
 				return new RelayCommand (() => {
-					_saveGameService.Save(App.CurrentGame);
+					_gameStateService.Save();
 					_navigationService.Push<ChooseHeroesPage>();
 				});
 			}

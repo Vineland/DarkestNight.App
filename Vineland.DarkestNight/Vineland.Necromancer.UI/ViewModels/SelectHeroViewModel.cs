@@ -10,17 +10,17 @@ namespace Vineland.Necromancer.UI
 	public class SelectHeroViewModel :BaseViewModel
 	{
 		NavigationService _navigationService;
-		SaveGameService _saveGameService;
+		GameStateService _gameStateService;
 
-		public SelectHeroViewModel (NavigationService navigationService, SaveGameService saveGameService)
+		public SelectHeroViewModel (NavigationService navigationService, GameStateService gameStateService)
 		{
 			_navigationService = navigationService;
-			_saveGameService = saveGameService;
+			_gameStateService = gameStateService;
 		}
 
 		public IList<Hero> AvailableHeroes
 		{
-			get { return Hero.All.Where (x => !App.CurrentGame.Heroes.Active.Any(y => y.Id == x.Id)).ToList(); }
+			get { return Hero.All.Where (x => !_gameStateService.CurrentGame.Heroes.Active.Any(y => y.Id == x.Id)).ToList(); }
 		}
 
 		Hero _selectedHero;

@@ -12,53 +12,50 @@ namespace Vineland.Necromancer.UI
 	{
 		NecromancerService _necromancerService;
 		NavigationService _navigationService;
+		GameStateService _gameStateService;
 
 
-		Hero _warfarer;
+		Hero _wayfarer;
 
-		public NecromancerDetectionViewModel (NecromancerService necromancerService, NavigationService navigationService)
+		public NecromancerDetectionViewModel (GameStateService gameStateService, NecromancerService necromancerService, NavigationService navigationService)
 		{
+			_gameStateService = gameStateService;
 			_necromancerService = necromancerService;
 			_navigationService = navigationService;
 
-			_warfarer = App.CurrentGame.Heroes.Active.SingleOrDefault(x=>x.Name == "Wayfarer");
-			Roll ();
+			_wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
+
+			var result = _necromancerService.Detect (_gameStateService.CurrentGame);
+			DetectedHero = result.DetectedHero;
+			MovementRoll = result.MovementRoll;
+			DetectionRoll = result.DetectionRoll;
 		}
 
-		private Hero _detectedHero;
-		public Hero DetectedHero 
-		{ 
-			get { return _detectedHero; }
-			set{
+		Hero _detectedHero;
+		public Hero DetectedHero {
+			get{ return _detectedHero; }
+			set {
 				if (_detectedHero != value) {
 					_detectedHero = value;
-					RaisePropertyChanged(() => DetectedHero);
+					RaisePropertyChanged (() => DetectedHero);
+					RaisePropertyChanged (() => BlindingBlackAvailable);
+					RaisePropertyChanged (() => DecoyAvailable);
+					RaisePropertyChanged (() => ElusiveSpiritAvailable);
 				}
 			}
 		}
 
-		public string DetectedHeroName{
-			get{ return DetectedHero == null ? "No hero detected" : DetectedHero.Name; }
-		}
+		public int DetectionRoll { get; set; }
 
-		public Location NewLocation { get; set;}
-		public DetectionResult Result { get; set;}
+		public int MovementRoll { get; set; }
 
-		public void Roll(){
-			Result = _necromancerService.Detect (App.CurrentGame);
-
-			if(Result.DetectedHeroId.HasValue)
-				DetectedHero = App.CurrentGame.Heroes.Active.Single (h => h.Id == Result.DetectedHeroId.Value);
-		}
-
-		public bool BlindingBlackAvailable{
-			get{
-				return DetectedHero != null
-				&& App.CurrentGame.Heroes.BlindingBlackAttained;
+		public bool BlindingBlackAvailable {
+			get {
+				return DetectedHero != null && _gameStateService.CurrentGame.Heroes.BlindingBlackAttained;
 			}
 		}
 
-		public RelayCommand BlindingBlackCommand{
+		public RelayCommand BlindingBlackCommand {
 			get {
 				return new RelayCommand (() => {
 					DetectedHero = null;
@@ -66,18 +63,20 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public bool DecoyAvailable{
+		public bool DecoyAvailable {
 			get {
 				return DetectedHero != null
-				&& App.CurrentGame.Heroes.DecoyAttained
-					&& (_warfarer != null && _warfarer.Secrecy >= Result.DetectionRoll);
+					&& _gameStateService.CurrentGame.Heroes.DecoyAttained
+				&& (_wayfarer != null
+				&& _wayfarer.LocationId != LocationIds.Monastery
+				&& _wayfarer.Secrecy >= DetectionRoll);
 			}
 		}
 
-		public RelayCommand DecoyCommand{
+		public RelayCommand DecoyCommand {
 			get {
 				return new RelayCommand (() => {
-					DetectedHero = _warfarer;
+					DetectedHero = _wayfarer;
 				});
 			}
 		}
@@ -85,27 +84,24 @@ namespace Vineland.Necromancer.UI
 		public bool ElusiveSpiritAvailable {
 			get { 
 				return DetectedHero != null
-				&& App.CurrentGame.Heroes.ElusiveSpiritAttained
-					&& Result.DetectionRoll == DetectedHero.Secrecy + 1; 
+					&& _gameStateService.CurrentGame.Heroes.ElusiveSpiritAttained
+				&& DetectionRoll == DetectedHero.Secrecy + 1; 
 			}
 		}
 
-		public RelayCommand ElusiveSpiritCommand{
+		public RelayCommand ElusiveSpiritCommand {
 			get {
 				return new RelayCommand (() => {
 					//TODO could be triggered more than once
-					var result = _necromancerService.Detect (App.CurrentGame, Result.DetectionRoll, new int[] { DetectedHero.Id });
-					if (result.DetectedHeroId.HasValue)
-						DetectedHero = App.CurrentGame.Heroes.Active.Single (h => h.Id == result.DetectedHeroId.Value);
-					else
-						DetectedHero = null;
+					var result = _necromancerService.Detect (_gameStateService.CurrentGame, MovementRoll, new int[] { DetectedHero.Id });
+					DetectedHero = result.DetectedHero;
 				});
 			}
 		}
 
-		public void MoveAndSpawn()
+		public void MoveAndSpawn ()
 		{
-			
+			//var spawnResult = _necromancerService.Spawn(
 		}
 
 	}

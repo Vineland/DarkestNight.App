@@ -29,7 +29,8 @@ xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromance
                 <SwitchCell Text="Encroaching Shadows" On="{Binding Necromancer.EncroachingShadows}" />
                 <SwitchCell Text="Dying Land" On="{Binding Necromancer.DyingLand}" />
                 <SwitchCell Text="Overwhelm" On="{Binding Necromancer.Overwhelm}" />
-                <SwitchCell Text="CreepingShadows" On="{Binding Necromancer.CreepingShadows}" />
+                <SwitchCell Text="Creeping Shadows" On="{Binding Necromancer.CreepingShadows}" />
+                <SwitchCell Text="Gates Active" On="{Binding Necromancer.GatesActive}" />
             </TableSection>
         </TableRoot>
     </TableView>

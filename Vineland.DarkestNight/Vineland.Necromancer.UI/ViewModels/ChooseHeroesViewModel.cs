@@ -16,11 +16,11 @@ namespace Vineland.Necromancer.UI
 	public class ChooseHeroesViewModel : BaseViewModel
     {
 		NavigationService _navigationService;
-		SaveGameService _saveGameService;
+		GameStateService _gameStateService;
 
-		public ChooseHeroesViewModel(SaveGameService saveGameService, NavigationService navigationService)
+		public ChooseHeroesViewModel(GameStateService gameStateService, NavigationService navigationService)
 		{
-			_saveGameService = saveGameService;
+			_gameStateService = gameStateService;
 			_navigationService = navigationService;
 			SelectedHeroes = new ObservableCollection<Hero> ();
 			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
@@ -35,8 +35,8 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (
 					() => {
-						App.CurrentGame.Heroes.Active = SelectedHeroes.ToList();
-						_saveGameService.Save (App.CurrentGame);
+						_gameStateService.CurrentGame.Heroes.Active = SelectedHeroes.ToList();
+						_gameStateService.Save ();
 						_navigationService.Push<PlayerPhasePage>(true);
 					},
 					() => {

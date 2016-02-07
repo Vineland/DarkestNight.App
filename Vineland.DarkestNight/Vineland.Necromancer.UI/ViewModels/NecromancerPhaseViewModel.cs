@@ -8,16 +8,16 @@ namespace Vineland.Necromancer.UI
 	public class NecromancerPhaseViewModel : BaseViewModel
 	{
 		NavigationService _navigationService;
-		SaveGameService _saveGameService;
+		GameStateService _gameStateService;
 
-		public NecromancerPhaseViewModel (NavigationService navigationService, SaveGameService saveGameService)
+		public NecromancerPhaseViewModel (NavigationService navigationService, GameStateService gameStateService)
 		{
 			_navigationService = navigationService;
-			_saveGameService = saveGameService;
+			_gameStateService = gameStateService;
 		}
 
 		public int DarknessLevel{
-			get { return App.CurrentGame.DarknessLevel; }
+			get { return _gameStateService.CurrentGame.DarknessLevel; }
 		}
 
 		public List<Location> AllLocations{
@@ -25,13 +25,13 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public NecomancerState Necromancer{
-			get{ return App.CurrentGame.Necromancer; }
+			get{ return _gameStateService.CurrentGame.Necromancer; }
 		}
 
 		public RelayCommand Detect{
 			get{
 				return new RelayCommand (() => {
-					_saveGameService.Save(App.CurrentGame);
+					_gameStateService.Save();
 					_navigationService.Push<NecromancerDetectionPage>();
 				});
 			}

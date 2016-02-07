@@ -6,7 +6,6 @@ x:Class="Vineland.Necromancer.UI.HomePage"
 	<StackLayout Spacing="10">
 		<Button Text="New Game" Command="{Binding NewGameCommand}"/>
 		<Button Text="Continue Game" Command="{Binding ContinueGameCommand}"/>
-		<Button Text="Load Game" Command="{Binding LoadGameCommand}"  />
 		<Button Text="Options" Command="{Binding OptionsCommand}"/>
 	</StackLayout>
 </ContentPage>

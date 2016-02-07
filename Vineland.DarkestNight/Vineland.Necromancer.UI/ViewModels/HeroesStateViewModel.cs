@@ -16,9 +16,9 @@ namespace Vineland.Necromancer.UI
 	public class HeroesStateViewModel :BaseViewModel
 	{
 		NavigationService _navigationService;
-		SaveGameService _saveGameService;
+		GameStateService _saveGameService;
 
-		public HeroesStateViewModel (NavigationService navigationService, SaveGameService saveGameService)
+		public HeroesStateViewModel (NavigationService navigationService, GameStateService saveGameService)
 		{
 			_navigationService = navigationService;
 			_saveGameService = saveGameService;
