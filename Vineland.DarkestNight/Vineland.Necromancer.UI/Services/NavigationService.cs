@@ -17,6 +17,8 @@ namespace Vineland.Necromancer.UI
 		public NavigationService (PageService pageService)
 		{
 			_pageService = pageService;
+
+			//_navigation = new NavigationPage (_pageService.CreatePage<HomePage> ());
 		}
 
 		public void SetNavigation (INavigation navigation)

@@ -70,6 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\GameStateService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

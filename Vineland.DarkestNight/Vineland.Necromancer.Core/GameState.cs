@@ -13,13 +13,12 @@ namespace Vineland.Necromancer.Core
         {
             Heroes = new HeroesState();
             Necromancer = new NecomancerState();
-			Locations = Location.All;
         }
 
 
         public DateTime CreatedDate { get; set; }
 
-        public List<Location> Locations { get; protected set; }
+        public List<Location> Locations { get; set; }
         public HeroesState Heroes { get; protected set; }
         public NecomancerState Necromancer { get; protected set; }
 

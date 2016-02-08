@@ -4,7 +4,8 @@ using Vineland.Necromancer.Core;
 using System.Runtime.InteropServices;
 using Android.Util;
 using GalaSoft.MvvmLight.Command;
-using Android.Graphics.Drawables;
+//using Android.Graphics.Drawables;
+//using Android.Views.InputMethods;
 
 namespace Vineland.Necromancer.UI
 {
@@ -14,78 +15,58 @@ namespace Vineland.Necromancer.UI
 		NavigationService _navigationService;
 		GameStateService _gameStateService;
 
-
-		Hero _wayfarer;
-
 		public NecromancerDetectionViewModel (GameStateService gameStateService, NecromancerService necromancerService, NavigationService navigationService)
 		{
 			_gameStateService = gameStateService;
 			_necromancerService = necromancerService;
 			_navigationService = navigationService;
 
-			_wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
-
-			var result = _necromancerService.Detect (_gameStateService.CurrentGame);
-			DetectedHero = result.DetectedHero;
-			MovementRoll = result.MovementRoll;
-			DetectionRoll = result.DetectionRoll;
+			Result = _necromancerService.Activate (_gameStateService.CurrentGame);
 		}
+		public NecromancerActivationResult Result { get; set; }
 
-		Hero _detectedHero;
-		public Hero DetectedHero {
-			get{ return _detectedHero; }
-			set {
-				if (_detectedHero != value) {
-					_detectedHero = value;
-					RaisePropertyChanged (() => DetectedHero);
-					RaisePropertyChanged (() => BlindingBlackAvailable);
-					RaisePropertyChanged (() => DecoyAvailable);
-					RaisePropertyChanged (() => ElusiveSpiritAvailable);
-				}
-			}
-		}
-
-		public int DetectionRoll { get; set; }
-
-		public int MovementRoll { get; set; }
 
 		public bool BlindingBlackAvailable {
 			get {
-				return DetectedHero != null && _gameStateService.CurrentGame.Heroes.BlindingBlackAttained;
+				return Result.DetectedHero != null && _gameStateService.CurrentGame.Heroes.BlindingBlackAttained;
 			}
 		}
 
 		public RelayCommand BlindingBlackCommand {
 			get {
 				return new RelayCommand (() => {
-					DetectedHero = null;
+					Result = _necromancerService.Activate(_gameStateService.CurrentGame, heroesToIgnore: _gameStateService.CurrentGame.Heroes.Active.Select(x=>x.Id).ToArray());
 				});
 			}
 		}
 
 		public bool DecoyAvailable {
 			get {
-				return DetectedHero != null
+				var wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
+
+				return Result.DetectedHero != null
 					&& _gameStateService.CurrentGame.Heroes.DecoyAttained
-				&& (_wayfarer != null
-				&& _wayfarer.LocationId != LocationIds.Monastery
-				&& _wayfarer.Secrecy >= DetectionRoll);
+				&& (wayfarer != null
+				&& wayfarer.LocationId != LocationIds.Monastery
+				&& wayfarer.Secrecy >= Result.DetectionRoll);
 			}
 		}
 
 		public RelayCommand DecoyCommand {
 			get {
 				return new RelayCommand (() => {
-					DetectedHero = _wayfarer;
+
+					var wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
+					Result = _necromancerService.Activate(_gameStateService.CurrentGame, detectedHero: wayfarer);
 				});
 			}
 		}
 
 		public bool ElusiveSpiritAvailable {
 			get { 
-				return DetectedHero != null
+				return Result.DetectedHero != null
 					&& _gameStateService.CurrentGame.Heroes.ElusiveSpiritAttained
-				&& DetectionRoll == DetectedHero.Secrecy + 1; 
+					&& Result.DetectionRoll == Result.DetectedHero.Secrecy + 1; 
 			}
 		}
 
@@ -93,15 +74,19 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (() => {
 					//TODO could be triggered more than once
-					var result = _necromancerService.Detect (_gameStateService.CurrentGame, MovementRoll, new int[] { DetectedHero.Id });
-					DetectedHero = result.DetectedHero;
+					Result = _necromancerService.Activate (_gameStateService.CurrentGame, heroesToIgnore: new int[] { Result.DetectedHero.Id });
 				});
 			}
 		}
 
-		public void MoveAndSpawn ()
-		{
-			//var spawnResult = _necromancerService.Spawn(
+		public RelayCommand Accept{
+			get{
+				return new RelayCommand (() => {
+
+					_gameStateService.CurrentGame.Necromancer.LocationId = Result.NewLocation.Id;
+					//_gameStateService.CurrentGame.Locations.
+				});
+			}
 		}
 
 	}

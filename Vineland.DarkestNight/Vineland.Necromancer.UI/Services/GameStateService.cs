@@ -8,6 +8,8 @@ using Android.Util;
 using System.Linq;
 using Java.Lang;
 using System.Threading.Tasks;
+using Org.Apache.Http.Impl.Client;
+using System.Collections.Generic;
 
 namespace Vineland.Necromancer.UI
 {
@@ -34,6 +36,7 @@ namespace Vineland.Necromancer.UI
 			gameState.Mode = appSettings.DarknessCardsMode;
 
 			gameState.Necromancer.LocationId = LocationIds.Ruins;
+			gameState.Locations = new List<Location> (Location.All);
 			gameState.Locations.ForEach (x => x.NumberOfBlights = 1);
 			gameState.Locations [0].NumberOfBlights = 0;
 
