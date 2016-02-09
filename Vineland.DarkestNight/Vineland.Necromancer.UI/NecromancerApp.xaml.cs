@@ -22,7 +22,7 @@ namespace Vineland.Necromancer.UI
 			var buttonStyle = new Style (typeof(Button));
 			buttonStyle.Setters.Add (new Setter () {
 				Property = Button.BackgroundColorProperty,
-				Value = new Color ((double)216 / 255, (double)198 / 255, (double)152 / 255, 0.5)
+				Value = new Color ((double)216 / 255, (double)198 / 255, (double)152 / 255, 0.6)
 			});
 			buttonStyle.Setters.Add (new Setter () {
 				Property = Button.TextColorProperty,
