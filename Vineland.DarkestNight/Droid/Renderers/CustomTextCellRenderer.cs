@@ -17,16 +17,7 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			var textCell = (TextCell)item;
 			var view = base.GetCellCore(item, convertView, parent, context) as ViewGroup;
-//			if (String.IsNullOrEmpty((item as TextCell).Text))
-//			{
-//				view.Visibility = ViewStates.Gone;
-//				while (view.ChildCount > 0)
-//				{
-//					view.RemoveViewAt(0);
-//				}
-//				view.SetMinimumHeight(0);
-//				view.SetPadding(0, 0, 0, 0);
-//			}
+
 			if (string.IsNullOrEmpty (textCell.Text))
 				view.Visibility = Android.Views.ViewStates.Gone;
 			

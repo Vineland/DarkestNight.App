@@ -18,6 +18,7 @@ namespace Vineland.Necromancer.UI
 
 		public int DarknessLevel{
 			get { return _gameStateService.CurrentGame.DarknessLevel; }
+			set{ _gameStateService.CurrentGame.DarknessLevel = value; }
 		}
 
 		public List<Location> AllLocations{

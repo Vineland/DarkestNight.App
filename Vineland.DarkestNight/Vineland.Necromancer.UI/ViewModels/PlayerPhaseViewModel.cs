@@ -35,6 +35,7 @@ namespace Vineland.Necromancer.UI
 				Heroes.Insert(insertIndex, hero);
 				Heroes = new List<Hero>(Heroes);
 				RaisePropertyChanged (() => Heroes);
+				_gameStateService.Save();
 			});
 		}
 

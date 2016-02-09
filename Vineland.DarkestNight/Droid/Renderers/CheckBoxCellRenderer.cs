@@ -32,9 +32,6 @@ namespace Vineland.Necromancer.UI.Droid
 
 			checkBox.CheckedChange += (sender, e) => {x.IsSelected = e.IsChecked; };
 		
-			//view.Click += (sender, e) => {
-			//	checkBox.Toggle ();
-			//};
 			return view;
 		}
 	}

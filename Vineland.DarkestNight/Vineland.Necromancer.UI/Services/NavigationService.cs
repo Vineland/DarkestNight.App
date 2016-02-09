@@ -27,7 +27,7 @@ namespace Vineland.Necromancer.UI
 
 		}
 
-		public async Task Pop ()
+		public async void Pop ()
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
@@ -35,7 +35,7 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopAsync ();
 		}
 
-		public async Task PopToRoot ()
+		public async void PopToRoot ()
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
@@ -43,7 +43,7 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopToRootAsync ();
 		}
 
-		public async Task PopTo<T> () where T: Page
+		public async void PopTo<T> () where T: Page
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
@@ -58,7 +58,7 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopAsync ();
 		}
 
-		public async Task Push<T> (bool clearBackStack = false) where T : Page
+		public async void Push<T> (bool clearBackStack = false) where T : Page
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");

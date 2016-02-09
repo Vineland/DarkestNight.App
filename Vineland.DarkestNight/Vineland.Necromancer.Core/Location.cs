@@ -4,16 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight;
 
 namespace Vineland.Necromancer.Core
 {
-	public class Location
+	public class Location :ObservableObject
 	{
 		public int Id { get; set; }
 
 		public string Name { get; set; }
 
-		public int NumberOfBlights { get; set; }
+		private int _numberOfBlights;
+
+		public int NumberOfBlights { 
+			get{ return _numberOfBlights; }
+			set {
+				if (_numberOfBlights != value)
+				{
+					_numberOfBlights = value;
+					RaisePropertyChanged (() => NumberOfBlights);
+				}
+
+			}
+		}
 
 		public int[] Pathways { get; set; }
 
@@ -58,19 +71,12 @@ namespace Vineland.Necromancer.Core
 				Pathways = new int[]{ 3, 5, 6, 3, 5, 6 }
 			}
 		}
-		                                                            );
+		                                              );
 
 		public override string ToString ()
 		{
 			return this.Name;
 		}
-	}
-
-	public class LocationDistance
-	{
-		public int LocationId { get; set; }
-
-		public int Distance { get; set; }
 	}
 
 	public static class LocationIds

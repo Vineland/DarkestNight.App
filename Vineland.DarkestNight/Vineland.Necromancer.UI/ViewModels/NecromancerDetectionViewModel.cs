@@ -23,7 +23,15 @@ namespace Vineland.Necromancer.UI
 
 			Result = _necromancerService.Activate (_gameStateService.CurrentGame);
 		}
-		public NecromancerActivationResult Result { get; set; }
+
+		private NecromancerActivationResult _result;
+		public NecromancerActivationResult Result {
+			get { return _result; }
+			set {
+				_result = value;
+				RaisePropertyChanged (() => Result);
+			}
+		}
 
 
 		public bool BlindingBlackAvailable {
@@ -35,7 +43,7 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand BlindingBlackCommand {
 			get {
 				return new RelayCommand (() => {
-					Result = _necromancerService.Activate(_gameStateService.CurrentGame, heroesToIgnore: _gameStateService.CurrentGame.Heroes.Active.Select(x=>x.Id).ToArray());
+					Result = _necromancerService.Activate(_gameStateService.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: _gameStateService.CurrentGame.Heroes.Active.Select(x=>x.Id).ToArray());
 				});
 			}
 		}
@@ -84,7 +92,11 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand (() => {
 
 					_gameStateService.CurrentGame.Necromancer.LocationId = Result.NewLocation.Id;
-					//_gameStateService.CurrentGame.Locations.
+					_gameStateService.CurrentGame.Locations.Single(x=>x.Id == Result.NewLocation.Id).NumberOfBlights += Result.NumberOfBlightsToNewLocation;
+					_gameStateService.CurrentGame.Locations.Single(x=>x.Id == LocationIds.Monastery).NumberOfBlights += Result.NumberOfBlightsToMonastery;
+					_gameStateService.Save();
+
+					_navigationService.PopTo<PlayerPhasePage>();
 				});
 			}
 		}

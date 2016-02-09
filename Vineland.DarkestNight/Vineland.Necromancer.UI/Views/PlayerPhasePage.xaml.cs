@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class PlayerPhasePage : TabbedPage
+	public partial class PlayerPhasePage : BaseTabbedPage
 	{
 		public PlayerPhasePage ()
 		{

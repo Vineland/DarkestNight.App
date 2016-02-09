@@ -15,6 +15,11 @@ namespace Vineland.Necromancer.UI
 			get { return Resolver.Resolve<NavigationService> (); }
 		}
 
+		public virtual void OnAppearing() { }
+
+		public virtual void OnDisappearing() { }
+
+		public virtual void OnBackButtonPressed() { }
 	}
 }
 

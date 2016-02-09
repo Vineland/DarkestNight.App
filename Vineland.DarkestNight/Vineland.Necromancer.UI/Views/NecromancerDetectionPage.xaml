@@ -10,10 +10,15 @@ Padding="10">
             <ui:LocationConverter x:Key="locationConverter"></ui:LocationConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
+<ContentPage.ToolbarItems>
+      <ToolbarItem Name="Accept" Command="{Binding Accept}"></ToolbarItem>
+</ContentPage.ToolbarItems>
 	<StackLayout Spacing="20">
 		<Label Text="{Binding Result.MovementRoll}"></Label>
 		<Label Text="{Binding Result.DetectedHero, Converter={StaticResource heroConverter}}"></Label>
-		<Label Text="{Binding Result.Location, Converter={StaticResource locationConverter}}"></Label>
+		<Label Text="{Binding Result.NewLocation, Converter={StaticResource locationConverter}}"></Label>
+		<Label Text="{Binding Result.NumberOfBlightsToNewLocation}"></Label>
+		<Label Text="{Binding Result.NumberOfBlightsToMonastery}"></Label>
 		<Button Text="Blinding Black" Command="{Binding BlindingBlackCommand}" IsVisible="{Binding BlindingBlackAvailable}"/>
 		<Button Text="Decoy" Command="{Binding DecoyCommand}" IsVisible="{Binding DecoyAvailable}"/>
 		<Button Text="Elusive Spirit" Command="{Binding ElusiveSpiritCommand}" IsVisible="{Binding ElusiveSpiritAvailable}"/>
