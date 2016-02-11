@@ -22,11 +22,15 @@ namespace Vineland.Necromancer.UI
 			var buttonStyle = new Style (typeof(Button));
 			buttonStyle.Setters.Add (new Setter () {
 				Property = Button.BackgroundColorProperty,
-				Value = new Color ((double)216 / 255, (double)198 / 255, (double)152 / 255, 0.6)
+				Value = new Color ((double)102/255, (double)82/255, (double)54/255, 0.75)
 			});
 			buttonStyle.Setters.Add (new Setter () {
 				Property = Button.TextColorProperty,
-				Value = new Color ((double)111/255, (double)78/255, (double)27/255)
+				Value = Color.White//new Color ((double)216 / 255, (double)198 / 255, (double)152 / 255)
+			});
+			buttonStyle.Setters.Add (new Setter () {
+				Property = Button.FontSizeProperty,
+				Value = Device.GetNamedSize(NamedSize.Large, typeof(Button))
 			});
 			Resources = new ResourceDictionary ();
 			Resources.Add (buttonStyle);

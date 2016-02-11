@@ -15,7 +15,7 @@ namespace Vineland.Necromancer.UI.Droid
 			base.OnElementChanged (e);
 			try {
 				var button = (Android.Widget.Button)Control;
-				Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "BGTHC_.ttf");
+				Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "ImperiumSerif.ttf");
 				button.Typeface = font;
 			} catch (Exception ex) {
 
