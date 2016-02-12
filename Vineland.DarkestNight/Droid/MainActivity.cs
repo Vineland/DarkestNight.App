@@ -13,11 +13,13 @@ using Vineland.DarkestNight.UI;
 
 namespace Vineland.Necromancer.UI.Droid
 {
-	[Activity (Theme = "@style/Theme.App", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, Icon = "@drawable/ic_launcher", ScreenOrientation = ScreenOrientation.Portrait)]
+
+	[Activity(Theme = "@style/Theme.Splash", MainLauncher = true,Label = "Necro", Icon = "@drawable/ic_launcher", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
+			base.SetTheme(global::Android.Resource.Style.ThemeHoloLight);
 			base.OnCreate (bundle);
 
 			#if RELEASE

@@ -3323,14 +3323,17 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f020066
 			public const int mr_ic_settings_light = 2130837606;
 			
-			// aapt resource value: 0x7f020069
-			public const int notification_template_icon_bg = 2130837609;
+			// aapt resource value: 0x7f02006a
+			public const int notification_template_icon_bg = 2130837610;
 			
 			// aapt resource value: 0x7f020067
 			public const int playstore_icon = 2130837607;
 			
 			// aapt resource value: 0x7f020068
 			public const int splash = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int splashScreen = 2130837609;
 			
 			static Drawable()
 			{
@@ -4728,9 +4731,6 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 0x7f0700df
 			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131165407;
-			
-			// aapt resource value: 0x7f070145
-			public const int Theme_App = 2131165509;
 			
 			// aapt resource value: 0x7f0700e0
 			public const int Theme_AppCompat = 2131165408;

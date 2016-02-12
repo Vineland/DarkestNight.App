@@ -2,13 +2,8 @@
 
 <resources>
   <style name="Theme.Splash" parent="android:Theme">
-    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="android:windowBackground">@drawable/splashScreen</item>
     <item name="android:windowNoTitle">true</item>
-  </style>
-
-  <style name="Theme.App" parent="android:Theme.Holo.Light">
-    <item name="android:editTextColor">#ffffff</item> 
-    <item name="android:textColor">@drawable/default_text_colour</item>
   </style>
 
 </resources>
