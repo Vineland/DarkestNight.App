@@ -41,7 +41,6 @@ namespace Vineland.Necromancer.UI
 			gameState.Locations [0].NumberOfBlights = 0;
 
 			CurrentGame = gameState;
-			Save ();
 		}
 
 		public async void Save ()

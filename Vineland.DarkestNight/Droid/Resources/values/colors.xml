@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources> 
     <color name="brown" >#BC63402D</color>
+    <color name="beige" >#FFFEEE</color> 
+    <color name="beige_alpha" >#BCFFFEEE</color>
 </resources>

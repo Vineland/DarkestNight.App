@@ -40,9 +40,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml.cs">
       <DependentUpon>ChooseHeroesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroesStatePage.xaml.cs">
-      <DependentUpon>HeroesStatePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -61,7 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SelectHeroPage.xaml.cs">
       <DependentUpon>SelectHeroPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\HeroView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\GameStateService.cs" />
@@ -70,6 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NecromancerApp.xaml.cs">
       <DependentUpon>NecromancerApp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -90,9 +87,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroesStatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml">

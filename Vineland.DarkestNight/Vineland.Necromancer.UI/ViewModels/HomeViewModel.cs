@@ -14,14 +14,12 @@ namespace Vineland.Necromancer.UI
 	public class HomeViewModel : BaseViewModel
 	{
 		NavigationService _navigationService;
-		AppSettings _appSettings;
 		GameStateService _gameStateService;
 
-		public HomeViewModel (GameStateService gameStateService, NavigationService navigationService, AppSettings appSettings)
+		public HomeViewModel (GameStateService gameStateService, NavigationService navigationService)
 		{
 			_gameStateService = gameStateService;
 			_navigationService = navigationService;
-			_appSettings = appSettings;
 		}
 
 		public RelayCommand ContinueGameCommand {
@@ -41,11 +39,6 @@ namespace Vineland.Necromancer.UI
 			get { 
 				return new RelayCommand (
 					() => { 
-
-						_gameStateService.NewGame (_appSettings);
-						if (_appSettings.AlwaysUseDefaults)
-							_navigationService.Push<ChooseHeroesPage> ();
-						else
 							_navigationService.Push<NewGamePage> ();
 					}); 
 			}

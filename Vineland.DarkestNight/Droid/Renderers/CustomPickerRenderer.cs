@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.Views;
 using Android.Content;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 
 [assembly: ExportRenderer (typeof(Picker), typeof(CustomPickerRenderer))]
 namespace Vineland.Necromancer.UI.Droid
@@ -20,15 +21,11 @@ namespace Vineland.Necromancer.UI.Droid
 				
 				var spinner = new Spinner (this.Context);
 				var adapter = new SpinnerAdapter (this.Context, Android.Resource.Layout.SimpleSpinnerItem, Element.Items);
-
 				adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
 
 				spinner.Adapter = adapter;
 				spinner.SetSelection (Element.SelectedIndex);
 				spinner.ItemSelected += NativePickerView_ItemSelected;
- 
-				//Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "hobo.ttf");
-				//nativePickerView.Typeface = font;
 
 				this.SetNativeControl (spinner);
 			} else if (e.NewElement == null) {
@@ -55,7 +52,8 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			var view = (TextView)base.GetView (position, convertView, parent);
 			view.Typeface = font;
-
+			//view.SetTextSize (Android.Util.ComplexUnitType.Dip, 24);
+			view.Gravity = GravityFlags.Right;
 			return view;
 		}
 
@@ -63,8 +61,10 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			var view = (TextView)base.GetDropDownView (position, convertView, parent);
 			view.Typeface = font;
-			view.SetBackgroundColor (Xamarin.Forms.Color.FromHex ("#D2C096").ToAndroid());
+			view.SetBackgroundColor (Android.Graphics.Color.ParseColor("#FFFEEE"));//(Resource.Color.beige));
+			view.Gravity = GravityFlags.Center;
 			return view;
+
 		}
 	}
 }
