@@ -19,21 +19,21 @@ namespace Vineland.Necromancer.UI
 
 			Resolver.Resolve<NavigationService> ().SetNavigation (MainPage.Navigation);
 
-			var buttonStyle = new Style (typeof(Button));
-			buttonStyle.Setters.Add (new Setter () {
-				Property = Button.BackgroundColorProperty,
-				Value = new Color ((double)60/255, (double)24/255, (double)11/255, 0.75)
-			});
-			buttonStyle.Setters.Add (new Setter () {
-				Property = Button.TextColorProperty,
-				Value = Color.White//new Color ((double)216 / 255, (double)198 / 255, (double)152 / 255)
-			});
-			buttonStyle.Setters.Add (new Setter () {
-				Property = Button.FontSizeProperty,
-				Value = Device.GetNamedSize(NamedSize.Large, typeof(Button))
-			});
-			Resources = new ResourceDictionary ();
-			Resources.Add (buttonStyle);
+//			var buttonStyle = new Style (typeof(Button));
+//			buttonStyle.Setters.Add (new Setter () {
+//				Property = Button.BackgroundColorProperty,
+//				Value = new Color ((double)60/255, (double)24/255, (double)11/255, 0.75)
+//			});
+//			buttonStyle.Setters.Add (new Setter () {
+//				Property = Button.TextColorProperty,
+//				Value = Color.White//new Color ((double)216 / 255, (double)198 / 255, (double)152 / 255)
+//			});
+//			buttonStyle.Setters.Add (new Setter () {
+//				Property = Button.FontSizeProperty,
+//				Value = Device.GetNamedSize(NamedSize.Large, typeof(Button))
+//			});
+//			Resources = new ResourceDictionary ();
+//			Resources.Add (buttonStyle);
 		
 		}
 

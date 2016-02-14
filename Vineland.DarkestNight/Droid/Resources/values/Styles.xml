@@ -6,4 +6,33 @@
     <item name="android:windowNoTitle">true</item>
   </style>
 
+  <style name="Theme.AppTheme" parent="android:Theme.Holo.Light">
+    <item name="android:windowBackground">@drawable/background</item>
+    <item name="android:windowActionBarOverlay">true</item>
+    <item name="android:actionBarStyle">@style/action_bar_theme</item>
+    <item name="android:actionMenuTextColor">#fff</item>
+<!--	<item name="android:dialogTheme">@style/dialogTheme</item>
+    <item name="android:alertDialogTheme">@style/dialogTheme</item>-->
+    <item name="android:spinnerStyle">@style/SpinnerStyle</item>
+</style>
+
+<style name="SpinnerStyle" parent="@style/Widget.AppCompat.Spinner">
+    <item name="android:popupBackground">#D2C096</item> 
+    <item name="android:spinnerMode">dialog</item>
+</style>
+
+<style name="dialogTheme" parent="@android:style/Theme.Holo.Light.Dialog">
+    <item name="@android:background">#E1D2A7</item>    
+</style>
+
+<style name="action_bar_theme" parent="@android:style/Widget.Holo.ActionBar">
+    <item name="android:background">@color/brown</item>
+    <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>
+<!--    <item name="android:windowContentOverlay">@null</item>-->
+</style>
+
+<style name="AppTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    <item name="android:textColor">#fff</item>
+  </style>
+
 </resources>

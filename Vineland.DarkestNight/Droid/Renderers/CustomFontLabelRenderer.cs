@@ -13,12 +13,15 @@ namespace Vineland.Necromancer.UI.Droid
 		protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
 		{
 			base.OnElementChanged (e);
-			try {
-				var label = (TextView)Control; // for example
-				Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "BGTHC_.ttf");
-				label.Typeface = font;
-			} catch (Exception ex) {
+			if (e.OldElement == null) {
+				try {
+					var label = (TextView)Control;					
+					Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "baskerville_becker.ttf");
+					label.Typeface = font;
+
+				} catch (Exception ex) {
 				
+				}
 			}
 		}
 	}

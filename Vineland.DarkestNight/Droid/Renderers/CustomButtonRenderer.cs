@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Vineland.Necromancer.UI.Droid;
 using Android.Widget;
 using Android.Graphics;
+using System.Runtime.InteropServices;
 
 [assembly: ExportRenderer (typeof(Xamarin.Forms.Button), typeof(CustomButtonRenderer))]
 namespace Vineland.Necromancer.UI.Droid
@@ -13,12 +14,14 @@ namespace Vineland.Necromancer.UI.Droid
 		protected override void OnElementChanged (ElementChangedEventArgs<Xamarin.Forms.Button> e)
 		{
 			base.OnElementChanged (e);
-			try {
-				var button = (Android.Widget.Button)Control;
-				Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "ImperiumSerif.ttf");
-				button.Typeface = font;
-			} catch (Exception ex) {
+			if (e.OldElement == null) {
+				try {
+					var button = (Android.Widget.Button)Control;
+					Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "baskerville_becker.ttf");
+					button.Typeface = font;
+				} catch (Exception ex) {
 
+				}
 			}
 		}
 	}

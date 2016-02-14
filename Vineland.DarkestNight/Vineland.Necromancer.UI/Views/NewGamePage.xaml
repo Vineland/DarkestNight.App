@@ -4,7 +4,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core"
 x:Class="Vineland.Necromancer.UI.NewGamePage"
-Padding="10">
+Padding="20, 70, 20, 20">
 <ContentPage.ToolbarItems>
       <ToolbarItem Name="Choose Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
 </ContentPage.ToolbarItems>
@@ -19,7 +19,6 @@ Padding="10">
 
 <Grid.RowDefinitions>
 
-
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
@@ -30,9 +29,7 @@ Padding="10">
 	<ui:BindablePicker x:TypeArguments="core:DarknessCardsMode"  ItemsSource="{Binding DarknessCardsModeOptions}" SelectedItem="{Binding Mode}" Grid.Column="1" Grid.Row="0"/>	
 
 	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Column="0" Grid.Row="1"/>
-	<Switch IsToggled="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
+	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="1" HorizontalOptions="End" BackgroundColor="#BC3C180B"/>
 
-	<Label Text="Starting Darkness" VerticalOptions="Center" Grid.Column="0" Grid.Row="2"/>
-	<ui:CustomStepper Minimum="0" Maximum="10" Value="{Binding DarknessLevel}"  Grid.Column="1" Grid.Row="2" HorizontalOptions="End"/>
 </Grid>
 </ContentPage>

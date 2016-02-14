@@ -3,7 +3,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.NecromancerDetectionPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-Padding="10">
+Padding="20, 70, 20, 0">
 	<ContentPage.Resources>
         <ResourceDictionary>
             <ui:HeroConverter x:Key="heroConverter"></ui:HeroConverter>

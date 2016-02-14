@@ -37,15 +37,6 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand OptionsCommand {
-			get { 
-				return new RelayCommand (
-					() => {
-						_navigationService.Push<OptionsPage> ();
-					}); 
-			}
-		}
-
 		public RelayCommand NewGameCommand {
 			get { 
 				return new RelayCommand (

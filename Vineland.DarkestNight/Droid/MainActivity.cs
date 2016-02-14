@@ -19,7 +19,7 @@ namespace Vineland.Necromancer.UI.Droid
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
-			base.SetTheme(global::Android.Resource.Style.ThemeHoloLight);
+			base.SetTheme(Resource.Style.Theme_AppTheme);
 			base.OnCreate (bundle);
 
 			#if RELEASE

@@ -14,8 +14,8 @@ namespace Vineland.Necromancer.UI
 		{
 			InitializeComponent ();
 			Title = "Home";
-			BackgroundImage = "background2.jpg";
-			NavigationPage.SetHasNavigationBar (this, false);
+			//BackgroundImage = "background2.jpg";
+			//NavigationPage.SetHasNavigationBar (this, false);
 		}
 	}
 }

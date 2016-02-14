@@ -3,7 +3,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.BlightLocationsPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-Padding="10">
+ Padding="0, 70, 0, 0">
 	<ListView ItemsSource="{Binding Locations}" RowHeight="60">
 	<ListView.ItemTemplate>
 	<DataTemplate>
