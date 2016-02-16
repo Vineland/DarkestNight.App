@@ -9,6 +9,7 @@ namespace Vineland.Necromancer.UI
 		public ChooseHeroesPage ()
 		{
 			InitializeComponent ();
+			Title = "Select Four Heroes";
 		}
 	}
 }

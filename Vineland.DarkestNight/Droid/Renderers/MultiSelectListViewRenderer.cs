@@ -7,18 +7,21 @@ using Vineland.Necromancer.UI.Droid;
 using Vineland.Necromancer.Core;
 using Android.Nfc;
 using Android.Views;
+using Android.Graphics;
 using System.Collections;
 using System.Collections.Generic;
 using Android.Content;
 using System.Linq;
 using Android.App;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 
-[assembly: ExportRenderer (typeof(MultiSelectListView<Hero>), typeof(HeroMultiSelectListViewRenderer))]
+[assembly: ExportRenderer (typeof(MultiSelectListView<Hero>), typeof(MultiSelectListViewRenderer<Hero>))]
 namespace Vineland.Necromancer.UI.Droid
 {
-	public class HeroMultiSelectListViewRenderer : ListViewRenderer
-	{
-		public HeroMultiSelectListViewRenderer ()
+		public class MultiSelectListViewRenderer<T> : ListViewRenderer
+{
+			public MultiSelectListViewRenderer ()
 		{
 		}
 
@@ -30,54 +33,29 @@ namespace Vineland.Necromancer.UI.Droid
 			}
 
 			if (e.NewElement != null) {
-				// subscribe
-				//Control.Adapter = new NativeAndroidListViewAdapter (Forms.Context as Android.App.Activity, e.NewElement as NativeListView);
-				//Control.ItemClick += OnItemClick;
-				var items = e.NewElement.ItemsSource as IEnumerable<Hero>;
+				var items = e.NewElement.ItemsSource as IEnumerable<T>;
 				Control.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
-				Control.Adapter = new ArrayAdapter<Hero> (Control.Context, Android.Resource.Layout.SimpleListItemMultipleChoice, items.ToArray ());
-
-				var selectedItems = (e.NewElement as MultiSelectListView<Hero>).SelectedItems;
-				int i = 0;
-				foreach (var item in items) {
-					Control.SetItemChecked (i, selectedItems.Contains (item));
-					i++;
-				}
+				Control.Adapter = new MultiSelectListViewAdapter<T> (this.Control.Context, items.ToList());
 			}
 		}
 	}
 
-	public class HeroListViewAdapter:BaseAdapter<Hero>{		
-		List<Hero> _heroes;
-		public HeroListViewAdapter (List<Hero> heroes)
-		{
-			_heroes = heroes;
-		}
-		public override Hero this [int index] {
-			get {
-				return _heroes [index];
-			}
-		}
-		public override int Count {
-			get {
+	public class MultiSelectListViewAdapter<T>:ArrayAdapter<T>{	
 
-				return _heroes.Count;
-			}
-		}
+		Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "baskerville_becker.ttf");
 
-		public override long GetItemId (int position)
+		public MultiSelectListViewAdapter (Context context, IList<T> items)
+			:base(context, Android.Resource.Layout.SimpleListItemMultipleChoice, items)
 		{
-			return _heroes[position].Id;
+
 		}
 
 		public override Android.Views.View GetView (int position, Android.Views.View convertView, ViewGroup parent)
 		{
-			if (convertView == null) {
-				var inflater = Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as LayoutInflater;
-				convertView = inflater.Inflate (Android.Resource.Layout.SimpleListItemMultipleChoice, null);
-			}
+			var view = (TextView)base.GetView (position, convertView, parent);
+			view.Typeface = font;
 
-			return convertView;
+			return view;
 			//convertView.
 		}
 	}

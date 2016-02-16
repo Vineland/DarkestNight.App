@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-x:Class="Vineland.Necromancer.UI.BlightLocationsPage"
-xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
- Padding="0, 70, 0, 0">
-	<ListView ItemsSource="{Binding Locations}" RowHeight="60">
-	<ListView.ItemTemplate>
-	<DataTemplate>
-	<ViewCell>
-	<AbsoluteLayout>
-	<Label Text="{Binding Name}" 
-        AbsoluteLayout.LayoutBounds="0, 0, 0.8, 1"
-        AbsoluteLayout.LayoutFlags="SizeProportional" 
-        VerticalTextAlignment="Center"/>
-        <ui:CustomStepper Value="{Binding NumberOfBlights}"
-        AbsoluteLayout.LayoutBounds="1, 0, 200, 40"
-        AbsoluteLayout.LayoutFlags="XProportional"
-        VerticalOptions="Center" />
-	</AbsoluteLayout>
-	</ViewCell>
-	</DataTemplate>
-	</ListView.ItemTemplate>
-	</ListView>
+x:Class="Vineland.Necromancer.UI.BlightLocationsPage" 
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
+Padding="20, 60, 20, 0">
+	<StackLayout>
+		<Image Source="darkness.png" />
+		<ui:CustomStepper Value="{Binding Darkness}" HorizontalOptions="Center" />
+		<ListView ItemsSource="{Binding Locations}" >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout Orientation="Horizontal">
+							<Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+							<ui:CustomStepper Value="{Binding NumberOfBlights}" VerticalOptions="Center" HorizontalOptions="End" Maximum="4"/>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>
 </ContentPage>

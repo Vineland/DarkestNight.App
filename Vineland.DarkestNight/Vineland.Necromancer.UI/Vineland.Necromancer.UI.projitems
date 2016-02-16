@@ -23,10 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.xaml.cs">
       <DependentUpon>CustomStepper.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckBoxCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiSelectListView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CarouselLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectHeroViewModel.cs" />
@@ -67,6 +65,9 @@
       <DependentUpon>NecromancerApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PagedCarouselPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

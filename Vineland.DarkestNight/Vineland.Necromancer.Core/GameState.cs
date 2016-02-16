@@ -22,7 +22,7 @@ namespace Vineland.Necromancer.Core
         public HeroesState Heroes { get; protected set; }
         public NecomancerState Necromancer { get; protected set; }
 
-        public int DarknessLevel { get; set; }
+        public int Darkness { get; set; }
         public bool PallOfSuffering { get; set; }
         public DarknessCardsMode Mode { get; set; }
         public bool DarknessTrackEffectsActive

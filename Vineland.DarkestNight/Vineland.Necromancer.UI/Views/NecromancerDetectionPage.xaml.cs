@@ -10,6 +10,7 @@ namespace Vineland.Necromancer.UI
 		public NecromancerDetectionPage ()
 		{
 			InitializeComponent ();
+			Title = "Night Phase";
 		}
 	}
 }

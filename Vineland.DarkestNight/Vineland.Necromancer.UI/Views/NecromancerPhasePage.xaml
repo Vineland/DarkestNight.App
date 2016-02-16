@@ -25,12 +25,12 @@ Padding="20, 70, 20, 0">
                 </ViewCell>
             </TableSection>
             <TableSection Title="Powers">
-                <SwitchCell Text="Focused Rituals" On="{Binding Necromancer.FocusedRituals}" />
-                <SwitchCell Text="Encroaching Shadows" On="{Binding Necromancer.EncroachingShadows}" />
-                <SwitchCell Text="Dying Land" On="{Binding Necromancer.DyingLand}" />
-                <SwitchCell Text="Overwhelm" On="{Binding Necromancer.Overwhelm}" />
-                <SwitchCell Text="Creeping Shadows" On="{Binding Necromancer.CreepingShadows}" />
-                <SwitchCell Text="Gates Active" On="{Binding Necromancer.GatesActive}" />
+                <ui:CheckButton Text="Focused Rituals" IsSelected="{Binding Necromancer.FocusedRituals}" />
+                <ui:CheckButton Text="Encroaching Shadows" IsSelected="{Binding Necromancer.EncroachingShadows}" />
+                <ui:CheckButton Text="Dying Land" IsSelected="{Binding Necromancer.DyingLand}" />
+                <ui:CheckButton Text="Overwhelm" IsSelected="{Binding Necromancer.Overwhelm}" />
+                <ui:CheckButton Text="Creeping Shadows" IsSelected="{Binding Necromancer.CreepingShadows}" />
+                <ui:CheckButton Text="Gates Active" IsSelected="{Binding Necromancer.GatesActive}" />
             </TableSection>
         </TableRoot>
     </TableView>

@@ -2,12 +2,9 @@
 <CarouselPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
-x:Class="Vineland.Necromancer.UI.PlayerPhasePage" 
-Padding="0, 70, 0, 0"
-ItemsSource="{Binding Heroes}">
-	<CarouselPage.ItemTemplate>
-		<DataTemplate>
-			<ui:HeroPage />
-		</DataTemplate>
-	</CarouselPage.ItemTemplate>
+x:Class="Vineland.Necromancer.UI.PlayerPhasePage">
+	<CarouselPage.ToolbarItems>
+		<ToolbarItem Name="Night Falls" Command="{Binding NextPhase}">
+		</ToolbarItem>
+	</CarouselPage.ToolbarItems>
 </CarouselPage>

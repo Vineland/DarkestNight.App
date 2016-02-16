@@ -276,7 +276,7 @@ namespace Vineland.Necromancer.Core.Test
 		[Test]
 		public void Spawn_Darkness9LocationEmpty_OneNewBlight()
 		{
-			_gameState.DarknessLevel = 9;
+			_gameState.Darkness = 9;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
 			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights = 0;
@@ -289,7 +289,7 @@ namespace Vineland.Necromancer.Core.Test
 		[Test]
 		public void Spawn_Darkness10LocationEmpty_TwoNewBlights()
 		{
-			_gameState.DarknessLevel = 10;
+			_gameState.Darkness = 10;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
 			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights = 0;
@@ -302,7 +302,7 @@ namespace Vineland.Necromancer.Core.Test
 		[Test]
 		public void Spawn_Darkness10LocationNotEmpty_OneNewBlight()
 		{
-			_gameState.DarknessLevel = 10;
+			_gameState.Darkness = 10;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
 			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights = 1;
@@ -327,7 +327,7 @@ namespace Vineland.Necromancer.Core.Test
 		[Test]
 		public void Spawn_Darkness19RollOne_OneNewBlight()
 		{
-			_gameState.DarknessLevel = 19;
+			_gameState.Darkness = 19;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 
 			var result = _necromancerService.Activate(_gameState, roll:1);
@@ -338,7 +338,7 @@ namespace Vineland.Necromancer.Core.Test
 		[Test]
 		public void Spawn_Darkness20RollOne_TwoNewBlights()
 		{
-			_gameState.DarknessLevel = 20;
+			_gameState.Darkness = 20;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 
 			var result = _necromancerService.Activate(_gameState, roll:1);
@@ -349,7 +349,7 @@ namespace Vineland.Necromancer.Core.Test
 		[Test]
 		public void Spawn_Darkness20Roll3_OneNewBlight()
 		{
-			_gameState.DarknessLevel = 20;
+			_gameState.Darkness = 20;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 
 			var result = _necromancerService.Activate(_gameState, roll:3);
@@ -535,7 +535,7 @@ namespace Vineland.Necromancer.Core.Test
 		public void Spawn_DyingLand_DarknessTrackEffectsLocationEmpty_NoAdditionalBlight()
 		{
 			_gameState.Mode = DarknessCardsMode.Midnight;
-			_gameState.DarknessLevel = 10;
+			_gameState.Darkness = 10;
 			_gameState.Necromancer.DyingLand = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
 			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =0;
@@ -549,7 +549,7 @@ namespace Vineland.Necromancer.Core.Test
 		public void Spawn_DyingLand_DarknessTrackEffectsLocationHasOneBlight_AdditionalBlight()
 		{
 			_gameState.Mode = DarknessCardsMode.Midnight;
-			_gameState.DarknessLevel = 10;
+			_gameState.Darkness = 10;
 			_gameState.Necromancer.DyingLand = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
 			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =1;

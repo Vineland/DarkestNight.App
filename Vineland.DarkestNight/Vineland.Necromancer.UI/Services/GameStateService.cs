@@ -31,7 +31,7 @@ namespace Vineland.Necromancer.UI
 		{			
 			var gameState = new GameState ();
 			gameState.CreatedDate = DateTime.Now;
-			gameState.DarknessLevel = appSettings.StartingDarkness;
+			gameState.Darkness = appSettings.StartingDarkness;
 			gameState.PallOfSuffering = appSettings.PallOfSuffering;
 			gameState.Mode = appSettings.DarknessCardsMode;
 

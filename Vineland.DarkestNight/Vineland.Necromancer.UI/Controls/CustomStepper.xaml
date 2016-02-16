@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Vineland.Necromancer.UI.CustomStepper">
 	<StackLayout Orientation="Horizontal" Spacing="10">
-	<Button x:Name="DecrementButton" Text="-"/>
-	<Label x:Name="ValueLabel" VerticalOptions="Center"/>
-	<Button x:Name="IncrementButton" Text="+"/>
+		<Image x:Name="DecrementButton" Source="minus" />
+		<Label x:Name="ValueLabel" VerticalOptions="Center" />
+		<Image x:Name="IncrementButton" Source="plus" />
 	</StackLayout>
 </ContentView>

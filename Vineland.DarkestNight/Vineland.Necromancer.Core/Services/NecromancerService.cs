@@ -123,10 +123,10 @@ namespace Vineland.Necromancer.Core
             //standard darkness track effects
             if (gameState.DarknessTrackEffectsActive)
             {
-				if (gameState.DarknessLevel >= 10 && result.NewLocation.NumberOfBlights == 0)
+				if (gameState.Darkness >= 10 && result.NewLocation.NumberOfBlights == 0)
                     result.NumberOfBlightsToNewLocation++;
 
-				if (gameState.DarknessLevel >= 20 && (result.MovementRoll == 1 || result.MovementRoll == 2))
+				if (gameState.Darkness >= 20 && (result.MovementRoll == 1 || result.MovementRoll == 2))
                     result.NumberOfBlightsToNewLocation++;
             }
 
@@ -143,11 +143,11 @@ namespace Vineland.Necromancer.Core
                 if (gameState.Necromancer.DyingLand)
                 {
                     if (gameState.DarknessTrackEffectsActive
-                        && gameState.DarknessLevel >= 10
+                        && gameState.Darkness >= 10
                         && result.NewLocation.NumberOfBlights == 1)
                         result.NumberOfBlightsToNewLocation++;
                     else if ((!gameState.DarknessTrackEffectsActive
-                        || gameState.DarknessLevel < 10)
+                        || gameState.Darkness < 10)
                         && result.NewLocation.NumberOfBlights == 0)
                         result.NumberOfBlightsToNewLocation++;
                 }

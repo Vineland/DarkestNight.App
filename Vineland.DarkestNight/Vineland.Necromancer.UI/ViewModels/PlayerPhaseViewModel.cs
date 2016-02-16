@@ -44,9 +44,9 @@ namespace Vineland.Necromancer.UI
 			MessagingCenter.Unsubscribe<SelectHeroViewModel, Hero> (this, "HeroSelected");
 		}
 
-		public int DarknessLevel {
-			get { return _gameStateService.CurrentGame.DarknessLevel; }
-			set { _gameStateService.CurrentGame.DarknessLevel = value; }
+		public int Darkness {
+			get { return _gameStateService.CurrentGame.Darkness; }
+			set { _gameStateService.CurrentGame.Darkness = value; }
 		}
 
 		public List<Hero> Heroes{

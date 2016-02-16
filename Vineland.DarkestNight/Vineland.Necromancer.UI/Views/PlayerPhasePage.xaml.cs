@@ -11,6 +11,14 @@ namespace Vineland.Necromancer.UI
 		{
 			InitializeComponent ();
 		}
+
+		protected override void OnBindingContextChanged ()
+		{
+			Children.Clear ();
+			Children.Add (new BlightLocationsPage ());
+			foreach (var hero in (BindingContext as PlayerPhaseViewModel).Heroes)
+				Children.Add (new HeroPage () { BindingContext = hero });
+		}
 	}
 }
 

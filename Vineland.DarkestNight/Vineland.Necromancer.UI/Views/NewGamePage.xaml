@@ -4,7 +4,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core"
 x:Class="Vineland.Necromancer.UI.NewGamePage"
-Padding="20, 70, 20, 20">
+Padding="20, 60, 20, 20">
 <ContentPage.ToolbarItems>
       <ToolbarItem Name="Choose Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
 </ContentPage.ToolbarItems>
@@ -24,7 +24,7 @@ Padding="20, 70, 20, 20">
       <RowDefinition Height="Auto" />
 
     </Grid.RowDefinitions>
-    <Label Text="Starting Darkness" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
+    <Label Text="Starting Darkness" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
 	<ui:CustomStepper Value="{Binding Darkness}" Grid.Column="1" Grid.Row="0"/>	
 
 	<Label Text="Game Mode" Grid.Column="0" Grid.Row="1" VerticalOptions="Center"/>

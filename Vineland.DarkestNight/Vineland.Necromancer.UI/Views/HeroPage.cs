@@ -17,7 +17,8 @@ namespace Vineland.Necromancer.UI
 			base.OnParentSet ();
 
 			var hero = BindingContext as Hero;
-			this.BackgroundImage = "background.png";
+			//this.BackgroundImage = "background.png";
+			this.Padding = new Thickness (20, 60, 20, 0);
 			var grid = new Grid
 			{
 				RowSpacing=20,
