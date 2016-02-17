@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NecromancerDetectionPage : ContentPage
+	public partial class NecromancerResultsPage : ContentPage
 	{
-		public NecromancerDetectionPage ()
+		public NecromancerResultsPage ()
 		{
 			InitializeComponent ();
 			Title = "Night Phase";

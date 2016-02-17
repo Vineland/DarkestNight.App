@@ -29,7 +29,6 @@ namespace Vineland.Necromancer.UI.Droid
 
 				control.Checked = checkBoxElement.IsSelected;
 				control.CheckedChange += (sender, args) => { checkBoxElement.IsSelected = args.IsChecked;};
-				control.SetBackground (Resources.GetDrawable (Resource.Drawable.checkbox_background));
 				control.SetButtonDrawable(Resources.GetDrawable (Resource.Drawable.checkbox_button));
 
 				this.SetNativeControl(control);

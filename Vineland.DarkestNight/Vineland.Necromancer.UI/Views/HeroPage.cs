@@ -17,7 +17,7 @@ namespace Vineland.Necromancer.UI
 			base.OnParentSet ();
 
 			var hero = BindingContext as Hero;
-			//this.BackgroundImage = "background.png";
+
 			this.Padding = new Thickness (20, 60, 20, 0);
 			var grid = new Grid
 			{
@@ -42,9 +42,8 @@ namespace Vineland.Necromancer.UI
 				FontSize = Device.GetNamedSize (NamedSize.Large, typeof(Label)),
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				HorizontalTextAlignment = TextAlignment.Center,
-				//BackgroundColor = Color.FromHex("#BCFFFCCC")
+				Text = hero.Name.ToUpper()
 			};
-			nameLabel.SetBinding<Hero>(Label.TextProperty, h => h.Name);
 			grid.Children.Add (nameLabel, 0, 2,0,1);
 
 			grid.Children.Add (new Label() { Text= "Secrecy" , VerticalOptions=LayoutOptions.Center}, 0, 1);
@@ -64,7 +63,7 @@ namespace Vineland.Necromancer.UI
 			var optionLabel = string.Empty;
 			var property = string.Empty;
 			switch (hero.Name) {
-			case "Rogue":
+			case "Ranger":
 				optionLabel = "Hermit";
 				property = "HermitActive";
 				break;

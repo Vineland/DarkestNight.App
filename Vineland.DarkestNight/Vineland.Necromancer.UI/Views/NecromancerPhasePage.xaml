@@ -1,37 +1,54 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
- xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core"
- x:Class="Vineland.Necromancer.UI.NecromancerPhasePage"
-Padding="20, 70, 20, 0">
-<ContentPage.ToolbarItems>
-      <ToolbarItem Name="Detect" Command="{Binding Detect}"></ToolbarItem>
-</ContentPage.ToolbarItems>
-	<TableView Intent="Data">
-        <TableRoot>
-            <TableSection>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-						<Label Text="Darkness" VerticalOptions="Center"/>
-						<ui:CustomStepper Value="{Binding DarknessLevel}" HorizontalOptions="EndAndExpand"  />
-                	</StackLayout>
-                </ViewCell>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-						<Label Text="Location" VerticalOptions="Center"/>
-						<ui:BindablePicker x:TypeArguments="core:Location" ItemsSource="{Binding AllLocations}" SelectedIndex="{Binding Necromancer.LocationId}" HorizontalOptions="EndAndExpand"  />
-                	</StackLayout>
-                </ViewCell>
-            </TableSection>
-            <TableSection Title="Powers">
-                <ui:CheckButton Text="Focused Rituals" IsSelected="{Binding Necromancer.FocusedRituals}" />
-                <ui:CheckButton Text="Encroaching Shadows" IsSelected="{Binding Necromancer.EncroachingShadows}" />
-                <ui:CheckButton Text="Dying Land" IsSelected="{Binding Necromancer.DyingLand}" />
-                <ui:CheckButton Text="Overwhelm" IsSelected="{Binding Necromancer.Overwhelm}" />
-                <ui:CheckButton Text="Creeping Shadows" IsSelected="{Binding Necromancer.CreepingShadows}" />
-                <ui:CheckButton Text="Gates Active" IsSelected="{Binding Necromancer.GatesActive}" />
-            </TableSection>
-        </TableRoot>
-    </TableView>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
+xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core" 
+x:Class="Vineland.Necromancer.UI.NecromancerPhasePage" Padding="20, 70, 20, 0">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Name="Detect" Command="{Binding Detect}">
+		</ToolbarItem>
+	</ContentPage.ToolbarItems>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Label Text="Darkness" VerticalOptions="Center" />
+		<ui:CustomStepper Value="{Binding DarknessLevel}" HorizontalOptions="End" Grid.Column="1" />
+
+		<Label Text="Location" VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+		<ui:BindablePicker x:TypeArguments="core:Location" 
+		ItemsSource="{Binding AllLocations}" 
+		SelectedIndex="{Binding Necromancer.LocationId}" 
+		HorizontalOptions="End"  Grid.Row="1" Grid.Column="1"/>
+
+		<Label Text="Focused Rituals" VerticalOptions="Center" Grid.Row="2" Grid.Column="0"/>
+		<ui:CheckButton IsSelected="{Binding Necromancer.FocusedRituals}" Grid.Row="2" Grid.Column="1" HorizontalOptions="End" />
+
+		<Label Text="Encroaching Shadows" VerticalOptions="Center" Grid.Row="3" Grid.Column="0"/>
+		<ui:CheckButton IsSelected="{Binding Necromancer.EncroachingShadows}" Grid.Row="3" Grid.Column="1" HorizontalOptions="End" />
+
+		<Label Text="Dying Land" VerticalOptions="Center" Grid.Row="4" Grid.Column="0"/>
+		<ui:CheckButton IsSelected="{Binding Necromancer.DyingLand}" Grid.Row="4" Grid.Column="1" HorizontalOptions="End" />
+
+		<Label Text="Overwhelm" VerticalOptions="Center" Grid.Row="5" Grid.Column="0"/>
+		<ui:CheckButton IsSelected="{Binding Necromancer.Overwhelm}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" />
+
+		<Label Text="Creeping Shadows" VerticalOptions="Center" Grid.Row="6" Grid.Column="0"/>
+		<ui:CheckButton IsSelected="{Binding Necromancer.CreepingShadows}" Grid.Row="6" Grid.Column="1" HorizontalOptions="End" />
+
+		<Label Text="Gates Active" VerticalOptions="Center" Grid.Row="7" Grid.Column="0"/>
+		<ui:CheckButton IsSelected="{Binding Necromancer.GatesActive}" Grid.Row="7" Grid.Column="1" HorizontalOptions="End" />
+	</Grid>
 </ContentPage>

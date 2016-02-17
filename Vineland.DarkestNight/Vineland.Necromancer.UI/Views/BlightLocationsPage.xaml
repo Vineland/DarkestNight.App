@@ -4,6 +4,10 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 x:Class="Vineland.Necromancer.UI.BlightLocationsPage" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 Padding="20, 60, 20, 0">
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Name="Night Falls" Command="{Binding NextPhase}"  Icon="night"></ToolbarItem>
+	</ContentPage.ToolbarItems>
 	<StackLayout>
 		<Image Source="darkness.png" />
 		<ui:CustomStepper Value="{Binding Darkness}" HorizontalOptions="Center" />

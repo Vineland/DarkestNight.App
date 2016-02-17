@@ -5,18 +5,18 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class PlayerPhasePage : CarouselPage
+	public partial class HeroPhasePage : CarouselPage
 	{
-		public PlayerPhasePage ()
+		public HeroPhasePage ()
 		{
 			InitializeComponent ();
 		}
 
 		protected override void OnBindingContextChanged ()
 		{
-			Children.Clear ();
+			//Children.Clear ();
 			Children.Add (new BlightLocationsPage ());
-			foreach (var hero in (BindingContext as PlayerPhaseViewModel).Heroes)
+			foreach (var hero in (BindingContext as HeroPhaseViewModel).Heroes)
 				Children.Add (new HeroPage () { BindingContext = hero });
 		}
 	}

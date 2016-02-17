@@ -15,6 +15,9 @@ x:Class="Vineland.Necromancer.UI.NecromancerApp">
 				<Setter Property="FontSize" Value="20" />
 				<Setter Property="TextColor" Value="Black" />
 			</Style>
+			<Style TargetType="ListView">
+				<Setter Property="SeparatorColor" Value="#63402D"/>
+			</Style>
 <!--			<Style TargetType="ui:CheckButton">
 				<Setter Property="BackgroundColor" Value="#00000000" />
 			</Style>-->

@@ -15,16 +15,17 @@ using System.Linq;
 using Android.App;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Android.Content.Res;
 
 [assembly: ExportRenderer (typeof(MultiSelectListView<Hero>), typeof(MultiSelectListViewRenderer<Hero>))]
 namespace Vineland.Necromancer.UI.Droid
 {
-		public class MultiSelectListViewRenderer<T> : ListViewRenderer
+		public class MultiSelectListViewRenderer<T> : CustomListViewRenderer
 {
 			public MultiSelectListViewRenderer ()
 		{
 		}
-
+			
 		protected override void OnElementChanged (ElementChangedEventArgs<Xamarin.Forms.ListView> e)
 		{
 			base.OnElementChanged (e);
@@ -56,7 +57,6 @@ namespace Vineland.Necromancer.UI.Droid
 			view.Typeface = font;
 
 			return view;
-			//convertView.
 		}
 	}
 }

@@ -13,12 +13,12 @@ using System.Security.Cryptography;
 
 namespace Vineland.Necromancer.UI
 {
-	public class PlayerPhaseViewModel : BaseViewModel
+	public class HeroPhaseViewModel : BaseViewModel
 	{
 		NavigationService _navigationService;
 		GameStateService _gameStateService;
 
-		public PlayerPhaseViewModel (NavigationService navigationService, GameStateService gameStateService)
+		public HeroPhaseViewModel (NavigationService navigationService, GameStateService gameStateService)
 		{
 			_gameStateService = gameStateService;
 			_navigationService = navigationService;

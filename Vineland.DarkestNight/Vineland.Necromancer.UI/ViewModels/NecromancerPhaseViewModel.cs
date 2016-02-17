@@ -33,7 +33,7 @@ namespace Vineland.Necromancer.UI
 			get{
 				return new RelayCommand (() => {
 					_gameStateService.Save();
-					_navigationService.Push<NecromancerDetectionPage>();
+					_navigationService.Push<NecromancerResultsPage>();
 				});
 			}
 		}

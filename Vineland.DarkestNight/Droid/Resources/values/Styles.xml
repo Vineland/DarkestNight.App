@@ -13,6 +13,8 @@
     <item name="android:actionMenuTextColor">#fff</item>
 <!--	<item name="android:dialogTheme">@style/dialogTheme</item>
     <item name="android:alertDialogTheme">@style/dialogTheme</item>-->
+
+    <item name="android:listChoiceIndicatorMultiple">@drawable/checkbox_button</item>
     <item name="android:spinnerStyle">@style/SpinnerStyle</item>
 </style>
 

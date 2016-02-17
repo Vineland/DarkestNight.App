@@ -27,7 +27,7 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand (
 					() => {
 						_gameStateService.Continue ();
-						_navigationService.Push<PlayerPhasePage> ();
+						_navigationService.Push<HeroPhasePage> ();
 					},
 					() => {
 						return _gameStateService.CurrentGame != null;

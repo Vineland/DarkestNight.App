@@ -4,18 +4,16 @@ using Vineland.Necromancer.Core;
 using System.Runtime.InteropServices;
 using Android.Util;
 using GalaSoft.MvvmLight.Command;
-//using Android.Graphics.Drawables;
-//using Android.Views.InputMethods;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NecromancerDetectionViewModel :BaseViewModel
+	public class NecromancerResultsViewModel :BaseViewModel
 	{
 		NecromancerService _necromancerService;
 		NavigationService _navigationService;
 		GameStateService _gameStateService;
 
-		public NecromancerDetectionViewModel (GameStateService gameStateService, NecromancerService necromancerService, NavigationService navigationService)
+		public NecromancerResultsViewModel (GameStateService gameStateService, NecromancerService necromancerService, NavigationService navigationService)
 		{
 			_gameStateService = gameStateService;
 			_necromancerService = necromancerService;
@@ -96,7 +94,7 @@ namespace Vineland.Necromancer.UI
 					_gameStateService.CurrentGame.Locations.Single(x=>x.Id == LocationIds.Monastery).NumberOfBlights += Result.NumberOfBlightsToMonastery;
 					_gameStateService.Save();
 
-					_navigationService.PopTo<PlayerPhasePage>();
+					_navigationService.PopTo<HeroPhasePage>();
 				});
 			}
 		}
