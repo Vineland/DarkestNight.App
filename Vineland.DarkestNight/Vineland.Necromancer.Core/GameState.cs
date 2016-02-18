@@ -49,10 +49,10 @@ namespace Vineland.Necromancer.Core
         public bool AuraOfHumilityActive { get; set; }
 		public bool RuneOfMisdirectionActive { get; set; }
 
-		public bool BlindingBlackAttained { get; set; }
-		public bool ElusiveSpiritAttained { get; set; }
-		public bool DecoyAttained { get; set; }
-		public bool ProphecyOfDoomAttained { get; set; }
+		public bool BlindingBlackActive { get; set; }
+		public bool ElusiveSpiritActive { get; set; }
+		public bool DecoyActive { get; set; }
+		public int ProphecyOfDoomRoll { get; set; }
         #endregion
     }
 

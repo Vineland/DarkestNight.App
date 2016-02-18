@@ -5,12 +5,12 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NecromancerResultsPage : ContentPage
+	public partial class NecromancerResultsPage : CarouselPage
 	{
 		public NecromancerResultsPage ()
 		{
 			InitializeComponent ();
-			Title = "Night Phase";
+			Title = "Necromancer Phase";
 		}
 	}
 }

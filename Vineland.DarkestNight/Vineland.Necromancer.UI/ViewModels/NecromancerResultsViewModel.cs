@@ -4,6 +4,11 @@ using Vineland.Necromancer.Core;
 using System.Runtime.InteropServices;
 using Android.Util;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
+using Android.Views.InputMethods;
+using Vineland.Necromancer.UI;
+using System.Collections.ObjectModel;
+using Android.App;
 
 namespace Vineland.Necromancer.UI
 {
@@ -19,22 +24,63 @@ namespace Vineland.Necromancer.UI
 			_necromancerService = necromancerService;
 			_navigationService = navigationService;
 
-			Result = _necromancerService.Activate (_gameStateService.CurrentGame);
+			var results = new List<NecromancerActivationResult> ();
+			if(_gameStateService.CurrentGame.Heroes.ProphecyOfDoomRoll == 0)
+				results.Add(_necromancerService.Activate (_gameStateService.CurrentGame));
+			else
+				results.Add(_necromancerService.Activate (_gameStateService.CurrentGame, roll: _gameStateService.CurrentGame.Heroes.ProphecyOfDoomRoll));
+
+			if(_gameStateService.CurrentGame.Heroes.RuneOfMisdirectionActive)
+				results.Add(_necromancerService.Activate (_gameStateService.CurrentGame));
+
+			Results = results.Select (x => new NecromancerActivationResultViewModel (x, _gameStateService, _necromancerService));
 		}
 
-		private NecromancerActivationResult _result;
-		public NecromancerActivationResult Result {
-			get { return _result; }
-			set {
+		public IEnumerable<NecromancerActivationResultViewModel> Results { get; set; }
+
+		public NecromancerActivationResultViewModel SelectedResult { get; set; }
+
+
+		public RelayCommand Accept {
+			get {
+				return new RelayCommand (() => {
+					
+					_gameStateService.CurrentGame.Heroes.ProphecyOfDoomRoll = 0;
+					_gameStateService.CurrentGame.Necromancer.LocationId = SelectedResult.Result.NewLocation.Id;
+					_gameStateService.CurrentGame.Locations.Single (x => x.Id == SelectedResult.Result.NewLocation.Id).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToNewLocation;
+					_gameStateService.CurrentGame.Locations.Single (x => x.Id == LocationIds.Monastery).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToMonastery;
+					_gameStateService.Save ();
+
+					_navigationService.PopTo<HeroPhasePage> ();
+				});
+			}
+		}
+	}
+
+	public class NecromancerActivationResultViewModel : BaseViewModel{
+
+		NecromancerActivationResult _result;
+		GameStateService _gameStateService;
+		NecromancerService _necromancerService;
+
+		public NecromancerActivationResultViewModel (NecromancerActivationResult result, GameStateService gameStateService, NecromancerService necroService)
+		{
+			_result = result;
+			_gameStateService = gameStateService;
+			_necromancerService = necroService;
+		}
+
+		public NecromancerActivationResult Result{
+			get{ return _result; }
+			set{
 				_result = value;
 				RaisePropertyChanged (() => Result);
 			}
 		}
 
-
 		public bool BlindingBlackAvailable {
 			get {
-				return Result.DetectedHero != null && _gameStateService.CurrentGame.Heroes.BlindingBlackAttained;
+				return Result.DetectedHero != null && _gameStateService.CurrentGame.Heroes.BlindingBlackActive;
 			}
 		}
 
@@ -51,17 +97,16 @@ namespace Vineland.Necromancer.UI
 				var wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
 
 				return Result.DetectedHero != null
-					&& _gameStateService.CurrentGame.Heroes.DecoyAttained
-				&& (wayfarer != null
-				&& wayfarer.LocationId != LocationIds.Monastery
-				&& wayfarer.Secrecy >= Result.DetectionRoll);
+					&& _gameStateService.CurrentGame.Heroes.DecoyActive
+					&& (wayfarer != null
+						&& wayfarer.LocationId != LocationIds.Monastery
+						&& wayfarer.Secrecy >= Result.DetectionRoll);
 			}
 		}
 
 		public RelayCommand DecoyCommand {
 			get {
 				return new RelayCommand (() => {
-
 					var wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
 					Result = _necromancerService.Activate(_gameStateService.CurrentGame, detectedHero: wayfarer);
 				});
@@ -71,7 +116,7 @@ namespace Vineland.Necromancer.UI
 		public bool ElusiveSpiritAvailable {
 			get { 
 				return Result.DetectedHero != null
-					&& _gameStateService.CurrentGame.Heroes.ElusiveSpiritAttained
+					&& _gameStateService.CurrentGame.Heroes.ElusiveSpiritActive
 					&& Result.DetectionRoll == Result.DetectedHero.Secrecy + 1; 
 			}
 		}
@@ -84,21 +129,6 @@ namespace Vineland.Necromancer.UI
 				});
 			}
 		}
-
-		public RelayCommand Accept{
-			get{
-				return new RelayCommand (() => {
-
-					_gameStateService.CurrentGame.Necromancer.LocationId = Result.NewLocation.Id;
-					_gameStateService.CurrentGame.Locations.Single(x=>x.Id == Result.NewLocation.Id).NumberOfBlights += Result.NumberOfBlightsToNewLocation;
-					_gameStateService.CurrentGame.Locations.Single(x=>x.Id == LocationIds.Monastery).NumberOfBlights += Result.NumberOfBlightsToMonastery;
-					_gameStateService.Save();
-
-					_navigationService.PopTo<HeroPhasePage>();
-				});
-			}
-		}
-
 	}
 }
 

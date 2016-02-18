@@ -16,6 +16,7 @@ namespace Vineland.Necromancer.Core
         public int LocationId { get; set; }
 
 		public bool IsActive { get; set; }
+		public bool IsIgnored { get; set; }
 		public bool HasFallen { get; set; }
 
 		public Hero ()
