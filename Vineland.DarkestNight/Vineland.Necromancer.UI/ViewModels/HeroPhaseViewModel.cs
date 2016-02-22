@@ -10,6 +10,7 @@ using Android.Util;
 using Xamarin.Forms;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Vineland.Necromancer.UI
 {
@@ -23,65 +24,83 @@ namespace Vineland.Necromancer.UI
 			_gameStateService = gameStateService;
 			_navigationService = navigationService;
 
-			MessagingCenter.Subscribe<SelectHeroViewModel,Hero>(this, "HeroSelected", (sender, hero) => {
-				//TODO review this at some point
-				var fallenHero = Heroes.FirstOrDefault(x=>x.HasFallen);
-				var insertIndex = 0;
-				if(fallenHero != null)
-				{
-					insertIndex = Heroes.IndexOf(fallenHero);
-					Heroes.Remove(fallenHero);
-				}
-				Heroes.Insert(insertIndex, hero);
-				Heroes = new List<Hero>(Heroes);
-				RaisePropertyChanged (() => Heroes);
-				_gameStateService.Save();
-			});
+			Heroes = new ObservableCollection<Hero> (_gameStateService.CurrentGame.Heroes.Active);
+
+			MessagingCenter.Subscribe<SelectHeroViewModel,Hero> (this, "HeroSelected", OnHeroSelected);
 		}
 
 		public override void Cleanup ()
 		{
-			MessagingCenter.Unsubscribe<SelectHeroViewModel, Hero> (this, "HeroSelected");
+			base.Cleanup ();
+			MessagingCenter.Unsubscribe<SelectHeroViewModel,Hero> (this, "HeroSelected");
 		}
 
-		public int Darkness {
-			get { return _gameStateService.CurrentGame.Darkness; }
-			set { _gameStateService.CurrentGame.Darkness = value; }
+		public ObservableCollection<Hero> Heroes { get; private set; }
+
+		public Hero SelectedHero {get;set;}
+
+		public RelayCommand NextPhase {
+			get {
+				return new RelayCommand (() => {
+					_gameStateService.Save ();
+					_navigationService.Push<NecromancerPhasePage> ();
+				});
+			}
 		}
 
-		public List<Hero> Heroes{
-			get { return _gameStateService.CurrentGame.Heroes.Active; }
-			set{ _gameStateService.CurrentGame.Heroes.Active = value; }
-		}
 
-		public Vineland.Necromancer.Core.HeroesState HeroesState{
-			get { return _gameStateService.CurrentGame.Heroes; }
-		}
+		Hero _heroToRemove;
 
-		public RelayCommand<Hero> RemoveHero
-		{
-			get 
-			{ 
+		public RelayCommand<Hero> RemoveHero {
+			get { 
 				return new RelayCommand<Hero> (
 					(hero) => { 
-						hero.HasFallen = true;
-						_navigationService.Push<SelectHeroPage>();
+						_heroToRemove = hero;
+						_navigationService.Push<SelectHeroPage> ();
 					});
 			}
 		}
 
-		public List<Location> Locations{
-			get { return _gameStateService.CurrentGame.Locations; }
+		private void OnHeroSelected (SelectHeroViewModel sender, Hero selectedHero)
+		{
+			//no hero was selected i.e they backed out or cancelled
+			if (selectedHero == null)
+				return;
+
+			//remove current hero
+			var index = Heroes.IndexOf (_heroToRemove);
+			Heroes.Remove (_heroToRemove);
+			Heroes.Insert (index, selectedHero);
+			SelectedHero = selectedHero;
+			RaisePropertyChanged (() => SelectedHero);
+			Task.Run (() => {
+				_gameStateService.CurrentGame.Heroes.Active = Heroes.ToList ();
+				_gameStateService.Save ();
+			});
 		}
 
-		public RelayCommand NextPhase{
-			get{
+
+		public RelayCommand Blights {
+			get {
 				return new RelayCommand (() => {
-					_gameStateService.Save();
-					_navigationService.Push<NecromancerPhasePage>();
+					_navigationService.Push<BlightLocationsPage> ();
 				});
 			}
 		}
+
+		public int Darkness {
+			get { return _gameStateService.CurrentGame.Darkness; }
+			set {
+				_gameStateService.CurrentGame.Darkness = value;
+				RaisePropertyChanged (() => Darkness);
+			}
+		}
+
+
+		public Vineland.Necromancer.Core.HeroesState HeroesState {
+			get { return _gameStateService.CurrentGame.Heroes; }
+		}
+
 	}
 }
 

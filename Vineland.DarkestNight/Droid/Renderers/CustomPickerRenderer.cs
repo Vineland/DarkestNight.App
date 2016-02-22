@@ -61,7 +61,7 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			var view = (TextView)base.GetDropDownView (position, convertView, parent);
 			view.Typeface = font;
-			view.SetBackgroundColor (Android.Graphics.Color.ParseColor("#FFFEEE"));//(Resource.Color.beige));
+			//view.SetBackgroundColor (Android.Graphics.Color.ParseColor("#FFFEEE"));//(Resource.Color.beige));
 			view.Gravity = GravityFlags.Center;
 			return view;
 

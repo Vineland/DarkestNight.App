@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight;
 
 namespace Vineland.Necromancer.Core
 {
-	public class Hero : ObservableObject
+	public class Hero
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -34,7 +34,7 @@ namespace Vineland.Necromancer.Core
 			new Hero() { Id=6, Name="Crusader", Secrecy=4},
 			new Hero() { Id=7, Name="Druid"},
 			new Hero() { Id=8, Name="Enchanter", Secrecy=5},
-			new Hero() { Id=9, Name="Excorcist"},
+			new Hero() { Id=9, Name="Exorcist"},
 			new Hero() { Id=10, Name="Knight"},
 			new Hero() { Id=11, Name="Mercenary"},
 			new Hero() { Id=12, Name="Mesmer"},
@@ -50,11 +50,11 @@ namespace Vineland.Necromancer.Core
 			new Hero() { Id=22, Name="Seer"},
 			new Hero() { Id=23, Name="Shaman", Secrecy=7},
 			new Hero() { Id=24, Name="Tamer", Secrecy=5},
+			new Hero() { Id=29, Name="Tinker"},
 			new Hero() { Id=25, Name="Valkyrie", Secrecy=5},
 			new Hero() { Id=26, Name="Wayfarer", Secrecy=5},
 			new Hero() { Id=27, Name="Wind Dancer"},
 			new Hero() { Id=28,Name="Wizard", Secrecy=5},
-			new Hero() { Id=29, Name="Tinker"}
 		};
 
 		public override string ToString ()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vineland.Necromancer.Core.Services;
+using System.Globalization;
 
 namespace Vineland.Necromancer.Core
 {
@@ -86,6 +87,7 @@ namespace Vineland.Necromancer.Core
 		private void Move (GameState gameState, NecromancerActivationResult result)
 		{
 			var currentLocation = gameState.Locations.Single (x => x.Id == gameState.Necromancer.LocationId);
+			result.OldLocation = currentLocation;
 
 			if (result.DetectedHero != null) {
 				var heroLocation = gameState.Locations.Single (x => x.Id == result.DetectedHero.LocationId);
@@ -177,12 +179,48 @@ namespace Vineland.Necromancer.Core
 
 		public int DetectionRoll { get; set; }
 
+		public Location OldLocation { get; set; }
+
 		public Location NewLocation { get; set; }
+
+		public string MovementMessage{
+			get{
+				if (NewLocation.Id == OldLocation.Id)
+					return "The Necromancer remains at the " + NewLocation.Name;
+
+				return "The Necromancer moves to the " + OldLocation.Name;
+			}
+			
+		}
 
 		public int NumberOfBlightsToNewLocation { get; set; }
 
+		public string NumberOfBlightsToNewLocationMessage{
+			get { 
+				if (NumberOfBlightsToNewLocation == 0)
+					return string.Empty;
+				
+				return string.Format ("+{0} blight{2} to the {1}", NumberOfBlightsToNewLocation, NewLocation.Name, NumberOfBlightsToNewLocation == 1 ? string.Empty: "s");
+			}
+		}
+
 		public int NumberOfBlightsToMonastery { get; set; }
+		public string NumberOfBlightsToMonasteryMessage{
+			get { 
+				if (NumberOfBlightsToMonastery == 0)
+					return string.Empty;
+
+				return string.Format ("+{0} blight{1} to the Monastery", NumberOfBlightsToMonastery, NumberOfBlightsToMonastery == 1 ? string.Empty: "s");
+			}
+		}
 
 		public bool SpawnQuest { get; set; }
+		public string SpawnQuestMessage{
+			get{
+				if (SpawnQuest)
+					return string.Format ("+1 quest to the {0}", OldLocation.Name);
+				return string.Empty;
+			}
+		}
 	}
 }

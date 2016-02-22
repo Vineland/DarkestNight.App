@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Xml.Schema;
 
 namespace Vineland.Necromancer.UI
 {
@@ -51,7 +52,8 @@ namespace Vineland.Necromancer.UI
 		{
 			Maximum = int.MaxValue;
 
-			var layout = new StackLayout () { Orientation = StackOrientation.Horizontal, Spacing = 10 };
+			//var layout = new RelativeLayout ();// { Orientation = StackOrientation.Horizontal, Spacing = 10 };
+			var layout = new StackLayout() { Orientation = StackOrientation.Horizontal, Spacing = 10};
 			DecrementImage = new Image () { Source = Minus };
 			ValueLabel = new Label () { FontFamily = "hobo", VerticalOptions= LayoutOptions.Center};
 			IncrementImage = new Image () { Source = Plus };
@@ -70,10 +72,12 @@ namespace Vineland.Necromancer.UI
 				})
 			});
 
-			layout.Children.Add (DecrementImage);
+			//layout.Children.Add (DecrementImage, xConstraint: Constraint.Constant(0));
+			//layout.Children.Add (ValueLabel, xConstraint:Constraint.RelativeToParent((parent) => parent.Width / 3));
+			//layout.Children.Add (IncrementImage, xConstraint:Constraint.RelativeToParent((parent) => (parent.Width / 3) * 2));
+			layout.Children.Add(DecrementImage);
 			layout.Children.Add (ValueLabel);
 			layout.Children.Add (IncrementImage);
-
 			Content = layout;
 		}
 	}

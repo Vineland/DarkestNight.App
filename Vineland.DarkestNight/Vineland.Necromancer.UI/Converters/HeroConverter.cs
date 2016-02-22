@@ -12,7 +12,7 @@ namespace Vineland.Necromancer.UI
 		{
 			var hero = value as Hero;
 			if (hero == null)
-				return "No hero";
+				return "None";
 
 			return hero.Name;
 		}

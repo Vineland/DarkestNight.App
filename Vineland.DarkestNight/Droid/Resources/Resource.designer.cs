@@ -1744,11 +1744,17 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f01000d
 			public const int cardUseCompatPadding = 2130771981;
 			
+			// aapt resource value: 0x7f010119
+			public const int centered = 2130772249;
+			
 			// aapt resource value: 0x7f0100c4
 			public const int checkboxStyle = 2130772164;
 			
 			// aapt resource value: 0x7f0100c5
 			public const int checkedTextViewStyle = 2130772165;
+			
+			// aapt resource value: 0x7f010124
+			public const int clipPadding = 2130772260;
 			
 			// aapt resource value: 0x7f010051
 			public const int closeIcon = 2130772049;
@@ -1921,8 +1927,41 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0100f8
 			public const int fabSize = 2130772216;
 			
+			// aapt resource value: 0x7f010130
+			public const int fadeDelay = 2130772272;
+			
+			// aapt resource value: 0x7f010131
+			public const int fadeLength = 2130772273;
+			
+			// aapt resource value: 0x7f01012f
+			public const int fades = 2130772271;
+			
+			// aapt resource value: 0x7f01011d
+			public const int fillColor = 2130772253;
+			
+			// aapt resource value: 0x7f010125
+			public const int footerColor = 2130772261;
+			
+			// aapt resource value: 0x7f010128
+			public const int footerIndicatorHeight = 2130772264;
+			
+			// aapt resource value: 0x7f010127
+			public const int footerIndicatorStyle = 2130772263;
+			
+			// aapt resource value: 0x7f010129
+			public const int footerIndicatorUnderlinePadding = 2130772265;
+			
+			// aapt resource value: 0x7f010126
+			public const int footerLineHeight = 2130772262;
+			
+			// aapt resource value: 0x7f01012a
+			public const int footerPadding = 2130772266;
+			
 			// aapt resource value: 0x7f01003e
 			public const int gapBetweenBars = 2130772030;
+			
+			// aapt resource value: 0x7f010123
+			public const int gapWidth = 2130772259;
 			
 			// aapt resource value: 0x7f010052
 			public const int goIcon = 2130772050;
@@ -2010,6 +2049,12 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 0x7f0100e1
 			public const int layout_scrollInterpolator = 2130772193;
+			
+			// aapt resource value: 0x7f01012b
+			public const int linePosition = 2130772267;
+			
+			// aapt resource value: 0x7f010122
+			public const int lineWidth = 2130772258;
 			
 			// aapt resource value: 0x7f0100af
 			public const int listChoiceBackgroundIndicator = 2130772143;
@@ -2104,6 +2149,9 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0100da
 			public const int paddingStart = 2130772186;
 			
+			// aapt resource value: 0x7f01011e
+			public const int pageColor = 2130772254;
+			
 			// aapt resource value: 0x7f0100ac
 			public const int panelBackground = 2130772140;
 			
@@ -2143,6 +2191,9 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0100c7
 			public const int radioButtonStyle = 2130772167;
 			
+			// aapt resource value: 0x7f01011f
+			public const int radius = 2130772255;
+			
 			// aapt resource value: 0x7f0100c8
 			public const int ratingBarStyle = 2130772168;
 			
@@ -2164,6 +2215,12 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f010094
 			public const int selectableItemBackgroundBorderless = 2130772116;
 			
+			// aapt resource value: 0x7f01012c
+			public const int selectedBold = 2130772268;
+			
+			// aapt resource value: 0x7f01011a
+			public const int selectedColor = 2130772250;
+			
 			// aapt resource value: 0x7f010046
 			public const int showAsAction = 2130772038;
 			
@@ -2175,6 +2232,9 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 0x7f010036
 			public const int singleChoiceItemLayout = 2130772022;
+			
+			// aapt resource value: 0x7f010120
+			public const int snap = 2130772256;
 			
 			// aapt resource value: 0x7f01003c
 			public const int spinBars = 2130772028;
@@ -2196,6 +2256,12 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 0x7f0100ec
 			public const int statusBarScrim = 2130772204;
+			
+			// aapt resource value: 0x7f010121
+			public const int strokeColor = 2130772257;
+			
+			// aapt resource value: 0x7f01011b
+			public const int strokeWidth = 2130772251;
 			
 			// aapt resource value: 0x7f010059
 			public const int submitBackground = 2130772057;
@@ -2332,6 +2398,9 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0100cd
 			public const int titleMargins = 2130772173;
 			
+			// aapt resource value: 0x7f01012d
+			public const int titlePadding = 2130772269;
+			
 			// aapt resource value: 0x7f0100cb
 			public const int titleTextAppearance = 2130772171;
 			
@@ -2350,11 +2419,20 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f010099
 			public const int toolbarStyle = 2130772121;
 			
+			// aapt resource value: 0x7f01012e
+			public const int topPadding = 2130772270;
+			
 			// aapt resource value: 0x7f01005a
 			public const int track = 2130772058;
 			
+			// aapt resource value: 0x7f01011c
+			public const int unselectedColor = 2130772252;
+			
 			// aapt resource value: 0x7f010055
 			public const int voiceIcon = 2130772053;
+			
+			// aapt resource value: 0x7f010118
+			public const int vpiCirclePageIndicatorStyle = 2130772248;
 			
 			// aapt resource value: 0x7f010061
 			public const int windowActionBar = 2130772065;
@@ -2420,6 +2498,12 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f090006
 			public const int abc_config_showMenuShortcutsWhenKeyboardPresent = 2131296262;
 			
+			// aapt resource value: 0x7f090007
+			public const int default_circle_indicator_centered = 2131296263;
+			
+			// aapt resource value: 0x7f090008
+			public const int default_circle_indicator_snap = 2131296264;
+			
 			static Boolean()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -2433,32 +2517,32 @@ namespace Vineland.Necromancer.UI.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f08004a
-			public const int abc_background_cache_hint_selector_material_dark = 2131230794;
+			// aapt resource value: 0x7f08004d
+			public const int abc_background_cache_hint_selector_material_dark = 2131230797;
 			
-			// aapt resource value: 0x7f08004b
-			public const int abc_background_cache_hint_selector_material_light = 2131230795;
+			// aapt resource value: 0x7f08004e
+			public const int abc_background_cache_hint_selector_material_light = 2131230798;
 			
-			// aapt resource value: 0x7f08004c
-			public const int abc_color_highlight_material = 2131230796;
+			// aapt resource value: 0x7f08004f
+			public const int abc_color_highlight_material = 2131230799;
 			
 			// aapt resource value: 0x7f080004
 			public const int abc_input_method_navigation_guard = 2131230724;
 			
-			// aapt resource value: 0x7f08004d
-			public const int abc_primary_text_disable_only_material_dark = 2131230797;
-			
-			// aapt resource value: 0x7f08004e
-			public const int abc_primary_text_disable_only_material_light = 2131230798;
-			
-			// aapt resource value: 0x7f08004f
-			public const int abc_primary_text_material_dark = 2131230799;
-			
 			// aapt resource value: 0x7f080050
-			public const int abc_primary_text_material_light = 2131230800;
+			public const int abc_primary_text_disable_only_material_dark = 2131230800;
 			
 			// aapt resource value: 0x7f080051
-			public const int abc_search_url_text = 2131230801;
+			public const int abc_primary_text_disable_only_material_light = 2131230801;
+			
+			// aapt resource value: 0x7f080052
+			public const int abc_primary_text_material_dark = 2131230802;
+			
+			// aapt resource value: 0x7f080053
+			public const int abc_primary_text_material_light = 2131230803;
+			
+			// aapt resource value: 0x7f080054
+			public const int abc_search_url_text = 2131230804;
 			
 			// aapt resource value: 0x7f080005
 			public const int abc_search_url_text_normal = 2131230725;
@@ -2469,11 +2553,11 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f080007
 			public const int abc_search_url_text_selected = 2131230727;
 			
-			// aapt resource value: 0x7f080052
-			public const int abc_secondary_text_material_dark = 2131230802;
+			// aapt resource value: 0x7f080055
+			public const int abc_secondary_text_material_dark = 2131230805;
 			
-			// aapt resource value: 0x7f080053
-			public const int abc_secondary_text_material_light = 2131230803;
+			// aapt resource value: 0x7f080056
+			public const int abc_secondary_text_material_light = 2131230806;
 			
 			// aapt resource value: 0x7f080008
 			public const int accent_material_dark = 2131230728;
@@ -2537,6 +2621,15 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 0x7f080003
 			public const int cardview_shadow_start_color = 2131230723;
+			
+			// aapt resource value: 0x7f08004a
+			public const int default_circle_indicator_fill_color = 2131230794;
+			
+			// aapt resource value: 0x7f08004b
+			public const int default_circle_indicator_page_color = 2131230795;
+			
+			// aapt resource value: 0x7f08004c
+			public const int default_circle_indicator_stroke_color = 2131230796;
 			
 			// aapt resource value: 0x7f08003e
 			public const int design_fab_shadow_end_color = 2131230782;
@@ -2679,11 +2772,11 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f08003b
 			public const int switch_thumb_disabled_material_light = 2131230779;
 			
-			// aapt resource value: 0x7f080054
-			public const int switch_thumb_material_dark = 2131230804;
+			// aapt resource value: 0x7f080057
+			public const int switch_thumb_material_dark = 2131230807;
 			
-			// aapt resource value: 0x7f080055
-			public const int switch_thumb_material_light = 2131230805;
+			// aapt resource value: 0x7f080058
+			public const int switch_thumb_material_light = 2131230808;
 			
 			// aapt resource value: 0x7f08003c
 			public const int switch_thumb_normal_material_dark = 2131230780;
@@ -2892,6 +2985,12 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 0x7f060003
 			public const int cardview_default_radius = 2131099651;
+			
+			// aapt resource value: 0x7f060066
+			public const int default_circle_indicator_radius = 2131099750;
+			
+			// aapt resource value: 0x7f060067
+			public const int default_circle_indicator_stroke_width = 2131099751;
 			
 			// aapt resource value: 0x7f060054
 			public const int design_appbar_elevation = 2131099732;
@@ -3210,175 +3309,262 @@ namespace Vineland.Necromancer.UI.Droid
 			public const int abc_textfield_search_material = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int background = 2130837566;
+			public const int acolyte = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
-			public const int check_selected = 2130837567;
+			public const int alchemist = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int check_unselected = 2130837568;
+			public const int background = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int checkbox_background = 2130837569;
+			public const int background_dark = 2130837569;
 			
 			// aapt resource value: 0x7f020042
-			public const int checkbox_button = 2130837570;
+			public const int bard = 2130837570;
 			
 			// aapt resource value: 0x7f020043
-			public const int darkness = 2130837571;
+			public const int channeler = 2130837571;
 			
 			// aapt resource value: 0x7f020044
-			public const int day = 2130837572;
+			public const int check_selected = 2130837572;
 			
 			// aapt resource value: 0x7f020045
-			public const int default_text_colour = 2130837573;
+			public const int check_unselected = 2130837573;
 			
 			// aapt resource value: 0x7f020046
-			public const int design_fab_background = 2130837574;
+			public const int checkbox_background = 2130837574;
 			
 			// aapt resource value: 0x7f020047
-			public const int design_snackbar_background = 2130837575;
+			public const int checkbox_button = 2130837575;
 			
 			// aapt resource value: 0x7f020048
-			public const int ic_cast_dark = 2130837576;
+			public const int conjurer = 2130837576;
 			
 			// aapt resource value: 0x7f020049
-			public const int ic_cast_disabled_light = 2130837577;
+			public const int crusader = 2130837577;
 			
 			// aapt resource value: 0x7f02004a
-			public const int ic_cast_light = 2130837578;
+			public const int darkness = 2130837578;
 			
 			// aapt resource value: 0x7f02004b
-			public const int ic_cast_off_light = 2130837579;
+			public const int day = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int ic_cast_on_0_light = 2130837580;
+			public const int default_text_colour = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int ic_cast_on_1_light = 2130837581;
+			public const int design_fab_background = 2130837581;
 			
 			// aapt resource value: 0x7f02004e
-			public const int ic_cast_on_2_light = 2130837582;
+			public const int design_snackbar_background = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int ic_cast_on_light = 2130837583;
+			public const int druid = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int ic_launcher = 2130837584;
+			public const int enchanter = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int ic_media_pause = 2130837585;
+			public const int exorcist = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int ic_media_play = 2130837586;
+			public const int ic_cast_dark = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int ic_media_route_disabled_mono_dark = 2130837587;
+			public const int ic_cast_disabled_light = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int ic_media_route_off_mono_dark = 2130837588;
+			public const int ic_cast_light = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_media_route_on_0_mono_dark = 2130837589;
+			public const int ic_cast_off_light = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_media_route_on_1_mono_dark = 2130837590;
+			public const int ic_cast_on_0_light = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int ic_media_route_on_2_mono_dark = 2130837591;
+			public const int ic_cast_on_1_light = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int ic_media_route_on_mono_dark = 2130837592;
+			public const int ic_cast_on_2_light = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int ic_pause_dark = 2130837593;
+			public const int ic_cast_on_light = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int ic_pause_light = 2130837594;
+			public const int ic_launcher = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_play_dark = 2130837595;
+			public const int ic_media_pause = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_play_light = 2130837596;
+			public const int ic_media_play = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_setting_dark = 2130837597;
+			public const int ic_media_route_disabled_mono_dark = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_setting_light = 2130837598;
+			public const int ic_media_route_off_mono_dark = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int icon = 2130837599;
+			public const int ic_media_route_on_0_mono_dark = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int minus = 2130837600;
+			public const int ic_media_route_on_1_mono_dark = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int minus_disabled = 2130837601;
+			public const int ic_media_route_on_2_mono_dark = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int mr_ic_cast_dark = 2130837602;
+			public const int ic_media_route_on_mono_dark = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int mr_ic_cast_light = 2130837603;
+			public const int ic_pause_dark = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837604;
+			public const int ic_pause_light = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int mr_ic_media_route_connecting_mono_light = 2130837605;
+			public const int ic_play_dark = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int mr_ic_media_route_mono_dark = 2130837606;
+			public const int ic_play_light = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int mr_ic_media_route_mono_light = 2130837607;
+			public const int ic_setting_dark = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int mr_ic_pause_dark = 2130837608;
+			public const int ic_setting_light = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int mr_ic_pause_light = 2130837609;
+			public const int knight = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int mr_ic_play_dark = 2130837610;
+			public const int mercenary = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int mr_ic_play_light = 2130837611;
+			public const int mesmer = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int mr_ic_settings_dark = 2130837612;
+			public const int minus = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int mr_ic_settings_light = 2130837613;
+			public const int minus_disabled = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int night = 2130837614;
-			
-			// aapt resource value: 0x7f020076
-			public const int notification_template_icon_bg = 2130837622;
+			public const int monk = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int nymph = 2130837615;
+			public const int mr_ic_cast_dark = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int playstore_icon = 2130837616;
+			public const int mr_ic_cast_light = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int plus = 2130837617;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int plus_disabled = 2130837618;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int secrecy = 2130837619;
+			public const int mr_ic_media_route_mono_dark = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int splash = 2130837620;
+			public const int mr_ic_media_route_mono_light = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int splashscreen = 2130837621;
+			public const int mr_ic_pause_dark = 2130837621;
+			
+			// aapt resource value: 0x7f020076
+			public const int mr_ic_pause_light = 2130837622;
+			
+			// aapt resource value: 0x7f020077
+			public const int mr_ic_play_dark = 2130837623;
+			
+			// aapt resource value: 0x7f020078
+			public const int mr_ic_play_light = 2130837624;
+			
+			// aapt resource value: 0x7f020079
+			public const int mr_ic_settings_dark = 2130837625;
+			
+			// aapt resource value: 0x7f02007a
+			public const int mr_ic_settings_light = 2130837626;
+			
+			// aapt resource value: 0x7f02007b
+			public const int necromancer_large = 2130837627;
+			
+			// aapt resource value: 0x7f02007c
+			public const int night = 2130837628;
+			
+			// aapt resource value: 0x7f020093
+			public const int notification_template_icon_bg = 2130837651;
+			
+			// aapt resource value: 0x7f02007d
+			public const int nymph = 2130837629;
+			
+			// aapt resource value: 0x7f02007e
+			public const int paragon = 2130837630;
+			
+			// aapt resource value: 0x7f02007f
+			public const int playstore_icon = 2130837631;
+			
+			// aapt resource value: 0x7f020080
+			public const int plus = 2130837632;
+			
+			// aapt resource value: 0x7f020081
+			public const int plus_disabled = 2130837633;
+			
+			// aapt resource value: 0x7f020082
+			public const int priest = 2130837634;
+			
+			// aapt resource value: 0x7f020083
+			public const int prince = 2130837635;
+			
+			// aapt resource value: 0x7f020084
+			public const int ranger = 2130837636;
+			
+			// aapt resource value: 0x7f020085
+			public const int rogue = 2130837637;
+			
+			// aapt resource value: 0x7f020086
+			public const int scholar = 2130837638;
+			
+			// aapt resource value: 0x7f020087
+			public const int scout = 2130837639;
+			
+			// aapt resource value: 0x7f020088
+			public const int secrecy = 2130837640;
+			
+			// aapt resource value: 0x7f020089
+			public const int seer = 2130837641;
+			
+			// aapt resource value: 0x7f02008a
+			public const int shaman = 2130837642;
+			
+			// aapt resource value: 0x7f02008b
+			public const int splash = 2130837643;
+			
+			// aapt resource value: 0x7f02008c
+			public const int splashscreen = 2130837644;
+			
+			// aapt resource value: 0x7f02008d
+			public const int tamer = 2130837645;
+			
+			// aapt resource value: 0x7f02008e
+			public const int tinker = 2130837646;
+			
+			// aapt resource value: 0x7f02008f
+			public const int valkyrie_large = 2130837647;
+			
+			// aapt resource value: 0x7f020090
+			public const int wayfarer = 2130837648;
+			
+			// aapt resource value: 0x7f020091
+			public const int winddancer = 2130837649;
+			
+			// aapt resource value: 0x7f020092
+			public const int wizard = 2130837650;
 			
 			static Drawable()
 			{
@@ -3393,38 +3579,38 @@ namespace Vineland.Necromancer.UI.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b0064
-			public const int CheckBox = 2131427428;
+			// aapt resource value: 0x7f0b0066
+			public const int CheckBox = 2131427430;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int action0 = 2131427445;
+			// aapt resource value: 0x7f0b0077
+			public const int action0 = 2131427447;
 			
-			// aapt resource value: 0x7f0b0055
-			public const int action_bar = 2131427413;
+			// aapt resource value: 0x7f0b0057
+			public const int action_bar = 2131427415;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int action_bar_activity_content = 2131427328;
 			
-			// aapt resource value: 0x7f0b0054
-			public const int action_bar_container = 2131427412;
+			// aapt resource value: 0x7f0b0056
+			public const int action_bar_container = 2131427414;
 			
-			// aapt resource value: 0x7f0b0050
-			public const int action_bar_root = 2131427408;
+			// aapt resource value: 0x7f0b0052
+			public const int action_bar_root = 2131427410;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int action_bar_spinner = 2131427329;
 			
-			// aapt resource value: 0x7f0b0039
-			public const int action_bar_subtitle = 2131427385;
+			// aapt resource value: 0x7f0b003b
+			public const int action_bar_subtitle = 2131427387;
 			
-			// aapt resource value: 0x7f0b0038
-			public const int action_bar_title = 2131427384;
+			// aapt resource value: 0x7f0b003a
+			public const int action_bar_title = 2131427386;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int action_context_bar = 2131427414;
+			// aapt resource value: 0x7f0b0058
+			public const int action_context_bar = 2131427416;
 			
-			// aapt resource value: 0x7f0b0079
-			public const int action_divider = 2131427449;
+			// aapt resource value: 0x7f0b007b
+			public const int action_divider = 2131427451;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_menu_divider = 2131427330;
@@ -3432,26 +3618,26 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_presenter = 2131427331;
 			
-			// aapt resource value: 0x7f0b0052
-			public const int action_mode_bar = 2131427410;
+			// aapt resource value: 0x7f0b0054
+			public const int action_mode_bar = 2131427412;
 			
-			// aapt resource value: 0x7f0b0051
-			public const int action_mode_bar_stub = 2131427409;
+			// aapt resource value: 0x7f0b0053
+			public const int action_mode_bar_stub = 2131427411;
 			
-			// aapt resource value: 0x7f0b003a
-			public const int action_mode_close_button = 2131427386;
+			// aapt resource value: 0x7f0b003c
+			public const int action_mode_close_button = 2131427388;
 			
-			// aapt resource value: 0x7f0b003b
-			public const int activity_chooser_view_content = 2131427387;
+			// aapt resource value: 0x7f0b003d
+			public const int activity_chooser_view_content = 2131427389;
 			
-			// aapt resource value: 0x7f0b0045
-			public const int alertTitle = 2131427397;
+			// aapt resource value: 0x7f0b0047
+			public const int alertTitle = 2131427399;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int always = 2131427356;
 			
-			// aapt resource value: 0x7f0b006d
-			public const int art = 2131427437;
+			// aapt resource value: 0x7f0b006f
+			public const int art = 2131427439;
 			
 			// aapt resource value: 0x7f0b0019
 			public const int beginning = 2131427353;
@@ -3459,14 +3645,14 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b0028
 			public const int bottom = 2131427368;
 			
-			// aapt resource value: 0x7f0b004b
-			public const int buttonPanel = 2131427403;
+			// aapt resource value: 0x7f0b004d
+			public const int buttonPanel = 2131427405;
 			
-			// aapt resource value: 0x7f0b0072
-			public const int buttons = 2131427442;
+			// aapt resource value: 0x7f0b0074
+			public const int buttons = 2131427444;
 			
-			// aapt resource value: 0x7f0b0076
-			public const int cancel_action = 2131427446;
+			// aapt resource value: 0x7f0b0078
+			public const int cancel_action = 2131427448;
 			
 			// aapt resource value: 0x7f0b0029
 			public const int center = 2131427369;
@@ -3477,11 +3663,11 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b002b
 			public const int center_vertical = 2131427371;
 			
-			// aapt resource value: 0x7f0b004d
-			public const int checkbox = 2131427405;
+			// aapt resource value: 0x7f0b004f
+			public const int checkbox = 2131427407;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int chronometer = 2131427452;
+			// aapt resource value: 0x7f0b007e
+			public const int chronometer = 2131427454;
 			
 			// aapt resource value: 0x7f0b0031
 			public const int clip_horizontal = 2131427377;
@@ -3492,38 +3678,38 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b001d
 			public const int collapseActionView = 2131427357;
 			
-			// aapt resource value: 0x7f0b0046
-			public const int contentPanel = 2131427398;
+			// aapt resource value: 0x7f0b0048
+			public const int contentPanel = 2131427400;
 			
-			// aapt resource value: 0x7f0b004a
-			public const int custom = 2131427402;
+			// aapt resource value: 0x7f0b004c
+			public const int custom = 2131427404;
 			
-			// aapt resource value: 0x7f0b0049
-			public const int customPanel = 2131427401;
+			// aapt resource value: 0x7f0b004b
+			public const int customPanel = 2131427403;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int decor_content_parent = 2131427411;
+			// aapt resource value: 0x7f0b0055
+			public const int decor_content_parent = 2131427413;
 			
-			// aapt resource value: 0x7f0b003e
-			public const int default_activity_button = 2131427390;
+			// aapt resource value: 0x7f0b0040
+			public const int default_activity_button = 2131427392;
 			
-			// aapt resource value: 0x7f0b006c
-			public const int default_control_frame = 2131427436;
+			// aapt resource value: 0x7f0b006e
+			public const int default_control_frame = 2131427438;
 			
 			// aapt resource value: 0x7f0b000d
 			public const int disableHome = 2131427341;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int disconnect = 2131427443;
+			// aapt resource value: 0x7f0b0075
+			public const int disconnect = 2131427445;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int edit_query = 2131427415;
+			// aapt resource value: 0x7f0b0059
+			public const int edit_query = 2131427417;
 			
 			// aapt resource value: 0x7f0b001a
 			public const int end = 2131427354;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int end_padder = 2131427457;
+			// aapt resource value: 0x7f0b0083
+			public const int end_padder = 2131427459;
 			
 			// aapt resource value: 0x7f0b0022
 			public const int enterAlways = 2131427362;
@@ -3534,11 +3720,11 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b0024
 			public const int exitUntilCollapsed = 2131427364;
 			
-			// aapt resource value: 0x7f0b003c
-			public const int expand_activities_button = 2131427388;
+			// aapt resource value: 0x7f0b003e
+			public const int expand_activities_button = 2131427390;
 			
-			// aapt resource value: 0x7f0b004c
-			public const int expanded_menu = 2131427404;
+			// aapt resource value: 0x7f0b004e
+			public const int expanded_menu = 2131427406;
 			
 			// aapt resource value: 0x7f0b0033
 			public const int fill = 2131427379;
@@ -3558,47 +3744,47 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b000e
 			public const int homeAsUp = 2131427342;
 			
-			// aapt resource value: 0x7f0b0040
-			public const int icon = 2131427392;
+			// aapt resource value: 0x7f0b0042
+			public const int icon = 2131427394;
 			
 			// aapt resource value: 0x7f0b001e
 			public const int ifRoom = 2131427358;
 			
-			// aapt resource value: 0x7f0b003d
-			public const int image = 2131427389;
+			// aapt resource value: 0x7f0b003f
+			public const int image = 2131427391;
 			
-			// aapt resource value: 0x7f0b0080
-			public const int info = 2131427456;
+			// aapt resource value: 0x7f0b0082
+			public const int info = 2131427458;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int left = 2131427373;
 			
-			// aapt resource value: 0x7f0b007a
-			public const int line1 = 2131427450;
+			// aapt resource value: 0x7f0b007c
+			public const int line1 = 2131427452;
 			
-			// aapt resource value: 0x7f0b007e
-			public const int line3 = 2131427454;
+			// aapt resource value: 0x7f0b0080
+			public const int line3 = 2131427456;
 			
 			// aapt resource value: 0x7f0b000a
 			public const int listMode = 2131427338;
 			
-			// aapt resource value: 0x7f0b003f
-			public const int list_item = 2131427391;
+			// aapt resource value: 0x7f0b0041
+			public const int list_item = 2131427393;
 			
-			// aapt resource value: 0x7f0b0078
-			public const int media_actions = 2131427448;
+			// aapt resource value: 0x7f0b007a
+			public const int media_actions = 2131427450;
 			
-			// aapt resource value: 0x7f0b006b
-			public const int media_route_control_frame = 2131427435;
+			// aapt resource value: 0x7f0b006d
+			public const int media_route_control_frame = 2131427437;
 			
-			// aapt resource value: 0x7f0b0067
-			public const int media_route_list = 2131427431;
+			// aapt resource value: 0x7f0b0069
+			public const int media_route_list = 2131427433;
 			
-			// aapt resource value: 0x7f0b0070
-			public const int media_route_volume_layout = 2131427440;
+			// aapt resource value: 0x7f0b0072
+			public const int media_route_volume_layout = 2131427442;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int media_route_volume_slider = 2131427441;
+			// aapt resource value: 0x7f0b0073
+			public const int media_route_volume_slider = 2131427443;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int middle = 2131427355;
@@ -3621,14 +3807,14 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b0026
 			public const int parallax = 2131427366;
 			
-			// aapt resource value: 0x7f0b0042
-			public const int parentPanel = 2131427394;
+			// aapt resource value: 0x7f0b0044
+			public const int parentPanel = 2131427396;
 			
 			// aapt resource value: 0x7f0b0027
 			public const int pin = 2131427367;
 			
-			// aapt resource value: 0x7f0b006e
-			public const int play_pause = 2131427438;
+			// aapt resource value: 0x7f0b0070
+			public const int play_pause = 2131427440;
 			
 			// aapt resource value: 0x7f0b0005
 			public const int progress_circular = 2131427333;
@@ -3636,14 +3822,14 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b0006
 			public const int progress_horizontal = 2131427334;
 			
-			// aapt resource value: 0x7f0b004f
-			public const int radio = 2131427407;
+			// aapt resource value: 0x7f0b0051
+			public const int radio = 2131427409;
 			
 			// aapt resource value: 0x7f0b002e
 			public const int right = 2131427374;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int route_name = 2131427433;
+			// aapt resource value: 0x7f0b006b
+			public const int route_name = 2131427435;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int screen = 2131427349;
@@ -3651,50 +3837,50 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b0025
 			public const int scroll = 2131427365;
 			
-			// aapt resource value: 0x7f0b0047
-			public const int scrollView = 2131427399;
+			// aapt resource value: 0x7f0b0049
+			public const int scrollView = 2131427401;
 			
 			// aapt resource value: 0x7f0b0037
 			public const int scrollable = 2131427383;
 			
-			// aapt resource value: 0x7f0b0059
-			public const int search_badge = 2131427417;
-			
-			// aapt resource value: 0x7f0b0058
-			public const int search_bar = 2131427416;
+			// aapt resource value: 0x7f0b005b
+			public const int search_badge = 2131427419;
 			
 			// aapt resource value: 0x7f0b005a
-			public const int search_button = 2131427418;
-			
-			// aapt resource value: 0x7f0b005f
-			public const int search_close_btn = 2131427423;
-			
-			// aapt resource value: 0x7f0b005b
-			public const int search_edit_frame = 2131427419;
-			
-			// aapt resource value: 0x7f0b0061
-			public const int search_go_btn = 2131427425;
+			public const int search_bar = 2131427418;
 			
 			// aapt resource value: 0x7f0b005c
-			public const int search_mag_icon = 2131427420;
+			public const int search_button = 2131427420;
+			
+			// aapt resource value: 0x7f0b0061
+			public const int search_close_btn = 2131427425;
 			
 			// aapt resource value: 0x7f0b005d
-			public const int search_plate = 2131427421;
-			
-			// aapt resource value: 0x7f0b005e
-			public const int search_src_text = 2131427422;
-			
-			// aapt resource value: 0x7f0b0062
-			public const int search_voice_btn = 2131427426;
+			public const int search_edit_frame = 2131427421;
 			
 			// aapt resource value: 0x7f0b0063
-			public const int select_dialog_listview = 2131427427;
+			public const int search_go_btn = 2131427427;
 			
-			// aapt resource value: 0x7f0b006a
-			public const int settings = 2131427434;
+			// aapt resource value: 0x7f0b005e
+			public const int search_mag_icon = 2131427422;
 			
-			// aapt resource value: 0x7f0b004e
-			public const int shortcut = 2131427406;
+			// aapt resource value: 0x7f0b005f
+			public const int search_plate = 2131427423;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int search_src_text = 2131427424;
+			
+			// aapt resource value: 0x7f0b0064
+			public const int search_voice_btn = 2131427428;
+			
+			// aapt resource value: 0x7f0b0065
+			public const int select_dialog_listview = 2131427429;
+			
+			// aapt resource value: 0x7f0b006c
+			public const int settings = 2131427436;
+			
+			// aapt resource value: 0x7f0b0050
+			public const int shortcut = 2131427408;
 			
 			// aapt resource value: 0x7f0b0010
 			public const int showCustom = 2131427344;
@@ -3705,11 +3891,11 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b0012
 			public const int showTitle = 2131427346;
 			
-			// aapt resource value: 0x7f0b0066
-			public const int snackbar_action = 2131427430;
+			// aapt resource value: 0x7f0b0068
+			public const int snackbar_action = 2131427432;
 			
-			// aapt resource value: 0x7f0b0065
-			public const int snackbar_text = 2131427429;
+			// aapt resource value: 0x7f0b0067
+			public const int snackbar_text = 2131427431;
 			
 			// aapt resource value: 0x7f0b0007
 			public const int split_action_bar = 2131427335;
@@ -3726,47 +3912,53 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0b002f
 			public const int start = 2131427375;
 			
-			// aapt resource value: 0x7f0b0077
-			public const int status_bar_latest_event_content = 2131427447;
+			// aapt resource value: 0x7f0b0079
+			public const int status_bar_latest_event_content = 2131427449;
 			
-			// aapt resource value: 0x7f0b0074
-			public const int stop = 2131427444;
+			// aapt resource value: 0x7f0b0076
+			public const int stop = 2131427446;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int submit_area = 2131427424;
+			// aapt resource value: 0x7f0b0062
+			public const int submit_area = 2131427426;
 			
-			// aapt resource value: 0x7f0b006f
-			public const int subtitle = 2131427439;
+			// aapt resource value: 0x7f0b0071
+			public const int subtitle = 2131427441;
 			
 			// aapt resource value: 0x7f0b000c
 			public const int tabMode = 2131427340;
 			
+			// aapt resource value: 0x7f0b0081
+			public const int text = 2131427457;
+			
 			// aapt resource value: 0x7f0b007f
-			public const int text = 2131427455;
+			public const int text2 = 2131427455;
+			
+			// aapt resource value: 0x7f0b004a
+			public const int textSpacerNoButtons = 2131427402;
 			
 			// aapt resource value: 0x7f0b007d
-			public const int text2 = 2131427453;
+			public const int time = 2131427453;
 			
-			// aapt resource value: 0x7f0b0048
-			public const int textSpacerNoButtons = 2131427400;
+			// aapt resource value: 0x7f0b0043
+			public const int title = 2131427395;
 			
-			// aapt resource value: 0x7f0b007b
-			public const int time = 2131427451;
+			// aapt resource value: 0x7f0b006a
+			public const int title_bar = 2131427434;
 			
-			// aapt resource value: 0x7f0b0041
-			public const int title = 2131427393;
-			
-			// aapt resource value: 0x7f0b0068
-			public const int title_bar = 2131427432;
-			
-			// aapt resource value: 0x7f0b0044
-			public const int title_template = 2131427396;
+			// aapt resource value: 0x7f0b0046
+			public const int title_template = 2131427398;
 			
 			// aapt resource value: 0x7f0b0030
 			public const int top = 2131427376;
 			
-			// aapt resource value: 0x7f0b0043
-			public const int topPanel = 2131427395;
+			// aapt resource value: 0x7f0b0045
+			public const int topPanel = 2131427397;
+			
+			// aapt resource value: 0x7f0b0038
+			public const int triangle = 2131427384;
+			
+			// aapt resource value: 0x7f0b0039
+			public const int underline = 2131427385;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int up = 2131427336;
@@ -3807,6 +3999,9 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 0x7f0a0003
 			public const int cancel_button_image_alpha = 2131361795;
+			
+			// aapt resource value: 0x7f0a0006
+			public const int default_circle_indicator_orientation = 2131361798;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int design_snackbar_text_max_lines = 2131361797;
@@ -5368,6 +5563,44 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 9
 			public const int CardView_contentPaddingTop = 9;
 			
+			public static int[] CirclePageIndicator = new int[] {
+					16842948,
+					16842964,
+					2130772249,
+					2130772251,
+					2130772253,
+					2130772254,
+					2130772255,
+					2130772256,
+					2130772257};
+			
+			// aapt resource value: 1
+			public const int CirclePageIndicator_android_background = 1;
+			
+			// aapt resource value: 0
+			public const int CirclePageIndicator_android_orientation = 0;
+			
+			// aapt resource value: 2
+			public const int CirclePageIndicator_centered = 2;
+			
+			// aapt resource value: 4
+			public const int CirclePageIndicator_fillColor = 4;
+			
+			// aapt resource value: 5
+			public const int CirclePageIndicator_pageColor = 5;
+			
+			// aapt resource value: 6
+			public const int CirclePageIndicator_radius = 6;
+			
+			// aapt resource value: 7
+			public const int CirclePageIndicator_snap = 7;
+			
+			// aapt resource value: 8
+			public const int CirclePageIndicator_strokeColor = 8;
+			
+			// aapt resource value: 3
+			public const int CirclePageIndicator_strokeWidth = 3;
+			
 			public static int[] CollapsingAppBarLayout_LayoutParams = new int[] {
 					2130772194,
 					2130772195};
@@ -5549,6 +5782,36 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 4
 			public const int FloatingActionButton_rippleColor = 4;
+			
+			public static int[] LinePageIndicator = new int[] {
+					16842964,
+					2130772249,
+					2130772250,
+					2130772251,
+					2130772252,
+					2130772258,
+					2130772259};
+			
+			// aapt resource value: 0
+			public const int LinePageIndicator_android_background = 0;
+			
+			// aapt resource value: 1
+			public const int LinePageIndicator_centered = 1;
+			
+			// aapt resource value: 6
+			public const int LinePageIndicator_gapWidth = 6;
+			
+			// aapt resource value: 5
+			public const int LinePageIndicator_lineWidth = 5;
+			
+			// aapt resource value: 2
+			public const int LinePageIndicator_selectedColor = 2;
+			
+			// aapt resource value: 3
+			public const int LinePageIndicator_strokeWidth = 3;
+			
+			// aapt resource value: 4
+			public const int LinePageIndicator_unselectedColor = 4;
 			
 			public static int[] LinearLayoutCompat = new int[] {
 					16842927,
@@ -6522,6 +6785,68 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 3
 			public const int Theme_windowNoTitle = 3;
 			
+			public static int[] TitlePageIndicator = new int[] {
+					16842901,
+					16842904,
+					16842964,
+					2130772250,
+					2130772260,
+					2130772261,
+					2130772262,
+					2130772263,
+					2130772264,
+					2130772265,
+					2130772266,
+					2130772267,
+					2130772268,
+					2130772269,
+					2130772270};
+			
+			// aapt resource value: 2
+			public const int TitlePageIndicator_android_background = 2;
+			
+			// aapt resource value: 1
+			public const int TitlePageIndicator_android_textColor = 1;
+			
+			// aapt resource value: 0
+			public const int TitlePageIndicator_android_textSize = 0;
+			
+			// aapt resource value: 4
+			public const int TitlePageIndicator_clipPadding = 4;
+			
+			// aapt resource value: 5
+			public const int TitlePageIndicator_footerColor = 5;
+			
+			// aapt resource value: 8
+			public const int TitlePageIndicator_footerIndicatorHeight = 8;
+			
+			// aapt resource value: 7
+			public const int TitlePageIndicator_footerIndicatorStyle = 7;
+			
+			// aapt resource value: 9
+			public const int TitlePageIndicator_footerIndicatorUnderlinePadding = 9;
+			
+			// aapt resource value: 6
+			public const int TitlePageIndicator_footerLineHeight = 6;
+			
+			// aapt resource value: 10
+			public const int TitlePageIndicator_footerPadding = 10;
+			
+			// aapt resource value: 11
+			public const int TitlePageIndicator_linePosition = 11;
+			
+			// aapt resource value: 12
+			public const int TitlePageIndicator_selectedBold = 12;
+			
+			// aapt resource value: 3
+			public const int TitlePageIndicator_selectedColor = 3;
+			
+			// aapt resource value: 13
+			public const int TitlePageIndicator_titlePadding = 13;
+			
+			// aapt resource value: 14
+			public const int TitlePageIndicator_topPadding = 14;
+			
 			public static int[] Toolbar = new int[] {
 					16842927,
 					16843072,
@@ -6624,6 +6949,28 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 23
 			public const int Toolbar_titleTextColor = 23;
 			
+			public static int[] UnderlinePageIndicator = new int[] {
+					16842964,
+					2130772250,
+					2130772271,
+					2130772272,
+					2130772273};
+			
+			// aapt resource value: 0
+			public const int UnderlinePageIndicator_android_background = 0;
+			
+			// aapt resource value: 3
+			public const int UnderlinePageIndicator_fadeDelay = 3;
+			
+			// aapt resource value: 4
+			public const int UnderlinePageIndicator_fadeLength = 4;
+			
+			// aapt resource value: 2
+			public const int UnderlinePageIndicator_fades = 2;
+			
+			// aapt resource value: 1
+			public const int UnderlinePageIndicator_selectedColor = 1;
+			
 			public static int[] View = new int[] {
 					16842752,
 					16842970,
@@ -6659,6 +7006,12 @@ namespace Vineland.Necromancer.UI.Droid
 			
 			// aapt resource value: 2
 			public const int ViewBackgroundHelper_backgroundTintMode = 2;
+			
+			public static int[] ViewPagerIndicator = new int[] {
+					2130772248};
+			
+			// aapt resource value: 0
+			public const int ViewPagerIndicator_vpiCirclePageIndicatorStyle = 0;
 			
 			public static int[] ViewStubCompat = new int[] {
 					16842960,

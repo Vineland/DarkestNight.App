@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms" 
-xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
-x:Class="Vineland.Necromancer.UI.HeroPhasePage">
-</CarouselPage>
+<ui:CustomCarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+ xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
+ x:Class="Vineland.Necromancer.UI.HeroPhasePage" 
+ ItemsSource="{Binding Heroes}"
+ SelectedItem="{Binding SelectedHero}">
+	<CarouselPage.ToolbarItems>
+		<ToolbarItem Name="Necromancer" Command="{Binding NextPhase}">
+		</ToolbarItem>
+	</CarouselPage.ToolbarItems>
+	<CarouselPage.ItemTemplate>
+		<DataTemplate>
+			<ui:HeroPage />
+		</DataTemplate>
+	</CarouselPage.ItemTemplate>
+</ui:CustomCarouselPage>

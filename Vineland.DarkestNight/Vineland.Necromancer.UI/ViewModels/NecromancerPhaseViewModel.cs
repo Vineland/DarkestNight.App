@@ -16,7 +16,7 @@ namespace Vineland.Necromancer.UI
 			_gameStateService = gameStateService;
 		}
 
-		public int DarknessLevel{
+		public int Darkness{
 			get { return _gameStateService.CurrentGame.Darkness; }
 			set{ _gameStateService.CurrentGame.Darkness = value; }
 		}

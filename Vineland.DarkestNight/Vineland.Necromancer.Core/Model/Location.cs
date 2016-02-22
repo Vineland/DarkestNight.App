@@ -8,25 +8,13 @@ using GalaSoft.MvvmLight;
 
 namespace Vineland.Necromancer.Core
 {
-	public class Location :ObservableObject
+	public class Location
 	{
 		public int Id { get; set; }
 
 		public string Name { get; set; }
 
-		private int _numberOfBlights;
-
-		public int NumberOfBlights { 
-			get{ return _numberOfBlights; }
-			set {
-				if (_numberOfBlights != value)
-				{
-					_numberOfBlights = value;
-					RaisePropertyChanged (() => NumberOfBlights);
-				}
-
-			}
-		}
+		public int NumberOfBlights {get;set;}
 
 		public int[] Pathways { get; set; }
 

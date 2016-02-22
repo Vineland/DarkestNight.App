@@ -29,6 +29,7 @@ namespace Vineland.Necromancer.UI.Droid
 				var actionbar = (int) styledAttributes.GetDimension(0, 0);
 				styledAttributes.Recycle ();
 				Control.SetPadding (0, actionbar, 0, 0);
+				Control.ChoiceMode = Android.Widget.ChoiceMode.None;
 			}
 		}
 	}

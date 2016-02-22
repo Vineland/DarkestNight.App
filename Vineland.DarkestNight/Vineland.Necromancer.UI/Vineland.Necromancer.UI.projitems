@@ -55,7 +55,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectItemModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\PagedCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroPhaseViewModel.cs" />
@@ -66,6 +65,8 @@
       <DependentUpon>NecromancerResultsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerResultsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCarouselPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BlightsLocationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
