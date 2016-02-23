@@ -12,10 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SharedBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\ISettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\EnumUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AppSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChooseHeroesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewGameViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
@@ -67,6 +65,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BlightsLocationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -105,6 +107,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerResultsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

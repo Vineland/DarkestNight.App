@@ -10,10 +10,18 @@ namespace Vineland.Necromancer.UI
 		NavigationService _navigationService;
 		GameStateService _gameStateService;
 
-		public NecromancerPhaseViewModel (NavigationService navigationService, GameStateService gameStateService)
+		public NecromancerPhaseViewModel (NavigationService navigationService, 
+			GameStateService gameStateService,
+			Settings settings)
 		{
 			_navigationService = navigationService;
 			_gameStateService = gameStateService;
+		}
+
+		public Settings Settings { get; private set; }
+
+		public bool ShowDarknessCardOptions{
+			get { return _gameStateService.CurrentGame.Mode != DarknessCardsMode.None; }
 		}
 
 		public int Darkness{
@@ -37,8 +45,6 @@ namespace Vineland.Necromancer.UI
 				});
 			}
 		}
-
-
 	}
 }
 

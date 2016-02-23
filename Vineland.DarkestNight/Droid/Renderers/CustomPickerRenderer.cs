@@ -17,8 +17,8 @@ namespace Vineland.Necromancer.UI.Droid
 		protected override void OnElementChanged (Xamarin.Forms.Platform.Android.ElementChangedEventArgs<Picker> e)
 		{
 			base.OnElementChanged (e);
-			if (e.OldElement == null) { 
-				
+			if (e.OldElement == null) 
+			{				
 				var spinner = new Spinner (this.Context);
 				var adapter = new SpinnerAdapter (this.Context, Android.Resource.Layout.SimpleSpinnerItem, Element.Items);
 				adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);

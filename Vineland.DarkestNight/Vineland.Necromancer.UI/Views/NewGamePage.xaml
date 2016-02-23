@@ -12,8 +12,8 @@ Padding="20, 60, 20, 20">
 
 
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
 
     </Grid.ColumnDefinitions>
 
@@ -25,13 +25,13 @@ Padding="20, 60, 20, 20">
 
     </Grid.RowDefinitions>
     <Label Text="Starting Darkness" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" />
-	<ui:CustomStepper Value="{Binding Darkness}" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>	
+	<ui:CustomStepper Value="{Binding Settings.StartingDarkness}" Grid.Column="1" Grid.Row="0" />	
 
-	<Label Text="Game Mode" Grid.Column="0" Grid.Row="1" VerticalOptions="Center"/>
-	<ui:BindablePicker x:TypeArguments="core:DarknessCardsMode"  ItemsSource="{Binding DarknessCardsModeOptions}" SelectedItem="{Binding Mode}" Grid.Column="1" Grid.Row="1"/>	
+	<Label Text="Game Mode" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" IsVisible="{Binding Settings.FromTheAbyss}"/>
+	<ui:BindablePicker x:TypeArguments="core:DarknessCardsMode"  ItemsSource="{Binding DarknessCardsModeOptions}" SelectedItem="{Binding Settings.DarknessCardsMode}" Grid.Column="1" Grid.Row="1"  IsVisible="{Binding Settings.FromTheAbyss}"/>	
 
-	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Column="0" Grid.Row="2"/>
-	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="2" HorizontalOptions="End" />
+	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Column="0" Grid.Row="2" IsVisible="{Binding Settings.WithAnInnerLight}"/>
+	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="2" IsVisible="{Binding Settings.WithAnInnerLight}" HorizontalOptions="End" />
 
 </Grid>
 </ContentPage>

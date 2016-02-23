@@ -18,7 +18,9 @@ namespace Vineland.Necromancer.UI
 		NavigationService _navigationService;
 		GameStateService _gameStateService;
 
-		public NecromancerResultsViewModel (GameStateService gameStateService, NecromancerService necromancerService, NavigationService navigationService)
+		public NecromancerResultsViewModel (GameStateService gameStateService, 
+			NecromancerService necromancerService, 
+			NavigationService navigationService)
 		{
 			_gameStateService = gameStateService;
 			_necromancerService = necromancerService;

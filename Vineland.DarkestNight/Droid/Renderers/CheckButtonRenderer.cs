@@ -21,18 +21,25 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			base.OnElementChanged (e);
 
-			if(e.NewElement != null)
-			{
+			if (e.OldElement == null) {
 				var checkBoxElement = Element as CheckButton;
 
-				var control = new Android.Widget.CheckBox(this.Context);
+				var control = new Android.Widget.CheckBox (this.Context);
 
 				control.Checked = checkBoxElement.IsSelected;
-				control.CheckedChange += (sender, args) => { checkBoxElement.IsSelected = args.IsChecked;};
-				control.SetButtonDrawable(Resources.GetDrawable (Resource.Drawable.checkbox_button));
+				control.CheckedChange += Control_CheckedChange;
+				control.SetButtonDrawable (Resources.GetDrawable (Resource.Drawable.checkbox_button));
 
-				this.SetNativeControl(control);
+				this.SetNativeControl (control);
+			} else if (e.NewElement == null) 
+			{
+				(Control as Android.Widget.CheckBox).CheckedChange -= Control_CheckedChange;
 			}
+		}
+
+		void Control_CheckedChange (object sender, Android.Widget.CompoundButton.CheckedChangeEventArgs e)
+		{ 
+			(Element as CheckButton).IsSelected = e.IsChecked;
 		}
 	}
 }

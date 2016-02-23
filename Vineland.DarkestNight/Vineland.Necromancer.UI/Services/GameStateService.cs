@@ -27,7 +27,7 @@ namespace Vineland.Necromancer.UI
 				Continue ();
 		}
 
-		public void NewGame (AppSettings appSettings)
+		public void NewGame (Settings appSettings)
 		{			
 			var gameState = new GameState ();
 			gameState.CreatedDate = DateTime.Now;

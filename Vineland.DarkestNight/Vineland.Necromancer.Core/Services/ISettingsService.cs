@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Vineland.DarkestNight.UI.Services
+namespace Vineland.Necromancer.Core
 {
     public interface ISettingsService
     {

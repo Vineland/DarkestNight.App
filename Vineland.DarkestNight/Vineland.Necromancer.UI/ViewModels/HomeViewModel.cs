@@ -43,5 +43,13 @@ namespace Vineland.Necromancer.UI
 					}); 
 			}
 		}
+
+		public RelayCommand SettingsCommand{
+			get{
+				return new RelayCommand (() => {
+					_navigationService.Push<SettingsPage>();
+				});
+			}
+		}
 	}
 }

@@ -19,10 +19,8 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			base.OnElementChanged (e);
 
-			if (e.OldElement != null) {
-			}
-
-			if (e.NewElement != null) {
+			if (e.OldElement == null) 
+			{
 				Control.SetClipToPadding (false);
 				TypedArray styledAttributes = this.Context.Theme.ObtainStyledAttributes(
 					new int[] { Android.Resource.Attribute.ActionBarSize });

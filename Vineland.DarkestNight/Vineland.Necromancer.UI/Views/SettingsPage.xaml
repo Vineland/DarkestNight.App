@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="Vineland.Necromancer.UI.SettingsPage"
+   xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+    Padding="20,60,20,20">
+	<Grid RowSpacing="10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Label Text="EXPANSIONS" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+		<Label Text="With An Inner Light" Grid.Row="1" />
+		<ui:CheckButton IsSelected="{Binding Settings.WithAnInnerLight}" Grid.Row="1" Grid.Column="1" />
+		<Label Text="On Shifting Winds" Grid.Row="2" />
+		<ui:CheckButton IsSelected="{Binding Settings.OnShiftingWinds}" Grid.Row="2" Grid.Column="1" />
+		<Label Text="From The Abyss" Grid.Row="3" />
+		<ui:CheckButton IsSelected="{Binding Settings.FromTheAbyss}" Grid.Row="3" Grid.Column="1" />
+		<Label Text="In Tales Of Old" Grid.Row="4" />
+		<ui:CheckButton IsSelected="{Binding Settings.InTalesOfOld}" Grid.Row="4" Grid.Column="1" />
+		<Label Text="Nymph Promo" Grid.Row="5" />
+		<ui:CheckButton IsSelected="{Binding Settings.NymphPromo}" Grid.Row="5" Grid.Column="1" />
+		<Label Text="Enchanter Promo" Grid.Row="6" />
+		<ui:CheckButton IsSelected="{Binding Settings.EnchanterPromo}" Grid.Row="6" Grid.Column="1" />
+		<Label Text="Mercenary Promo" Grid.Row="7" />
+		<ui:CheckButton IsSelected="{Binding Settings.MercenaryPromo}" Grid.Row="7" Grid.Column="1" />
+		<Label Text="Tinker Promo" Grid.Row="8" />
+		<ui:CheckButton IsSelected="{Binding Settings.TinkerPromo}" Grid.Row="8" Grid.Column="1" />
+	</Grid>
+</ContentPage>

@@ -157,18 +157,6 @@ namespace Vineland.Necromancer.Core
 			if (gameState.PallOfSuffering && (result.MovementRoll == 3 || result.MovementRoll == 4))
 				result.SpawnQuest = true;
 		}
-
-		/// <summary>
-		/// Reset effects that only last one phase
-		/// </summary>
-		/// <param name="gameState">Game state.</param>
-		public void FinishPhase (GameState gameState)
-		{
-			
-			gameState.Heroes.ProphecyOfDoomRoll = 0;
-			foreach (var hero in gameState.Heroes.Active)
-				hero.IsIgnored = false;
-		}
 	}
 
 	public class NecromancerActivationResult

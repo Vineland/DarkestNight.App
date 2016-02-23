@@ -130,7 +130,7 @@ namespace Vineland.Necromancer.UI
 
 			var changeHeroButton = new Button () {
 				Text = "Defeated",
-				HorizontalOptions = LayoutOptions.CenterAndExpand
+				HorizontalOptions = LayoutOptions.Fill
 			};
 			changeHeroButton.SetBinding (Button.CommandProperty, new Binding ("RemoveHero", source: this.GetParentPage ().BindingContext));
 			changeHeroButton.CommandParameter = hero;
@@ -139,7 +139,7 @@ namespace Vineland.Necromancer.UI
 			var blightsButton = new Button () 
 			{
 				Text = "Blights",
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
+				HorizontalOptions = LayoutOptions.Fill,
 			};
 			blightsButton.SetBinding (Button.CommandProperty, new Binding ("Blights", source: this.GetParentPage ().BindingContext));
 			grid.Children.Add (blightsButton, 0, 2, 6, 7);

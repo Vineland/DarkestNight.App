@@ -30,10 +30,8 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			base.OnElementChanged (e);
 
-			if (e.OldElement != null) {
-			}
-
-			if (e.NewElement != null) {
+			if (e.OldElement == null) 
+			{
 				var items = e.NewElement.ItemsSource as IEnumerable<T>;
 				Control.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
 				Control.Adapter = new MultiSelectListViewAdapter<T> (this.Control.Context, items.ToList());

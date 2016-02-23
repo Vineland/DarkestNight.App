@@ -3,7 +3,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core" 
-x:Class="Vineland.Necromancer.UI.NecromancerPhasePage" Padding="20, 70, 20, 20" >
+x:Class="Vineland.Necromancer.UI.NecromancerPhasePage" Padding="20, 60, 20, 20" >
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Name="Detect" Command="{Binding Detect}">
 		</ToolbarItem>
@@ -37,23 +37,23 @@ x:Class="Vineland.Necromancer.UI.NecromancerPhasePage" Padding="20, 70, 20, 20" 
 		SelectedIndex="{Binding Necromancer.LocationId}" 
 		HorizontalOptions="End"  Grid.Row="2" Grid.Column="1"/>
 
-		<Label Text="Focused Rituals" VerticalOptions="Center" Grid.Row="3" />
-		<ui:CheckButton IsSelected="{Binding Necromancer.FocusedRituals}" Grid.Row="3" Grid.Column="1" HorizontalOptions="End" />
+		<Label Text="Focused Rituals" VerticalOptions="Center" Grid.Row="3" IsVisible="{Binding ShowDarknessCardOptions}" />
+		<ui:CheckButton IsSelected="{Binding Necromancer.FocusedRituals}" Grid.Row="3" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ShowDarknessCardOptions}" />
 
-		<Label Text="Encroaching Shadows" VerticalOptions="Center" Grid.Row="4" />
-		<ui:CheckButton IsSelected="{Binding Necromancer.EncroachingShadows}" Grid.Row="4" Grid.Column="1" HorizontalOptions="End" />
+		<Label Text="Encroaching Shadows" VerticalOptions="Center" Grid.Row="4" IsVisible="{Binding ShowDarknessCardOptions}" />
+		<ui:CheckButton IsSelected="{Binding Necromancer.EncroachingShadows}" Grid.Row="4" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ShowDarknessCardOptions}" />
 
-		<Label Text="Dying Land" VerticalOptions="Center" Grid.Row="5" />
-		<ui:CheckButton IsSelected="{Binding Necromancer.DyingLand}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" />
+		<Label Text="Dying Land" VerticalOptions="Center" Grid.Row="5" IsVisible="{Binding ShowDarknessCardOptions}" />
+		<ui:CheckButton IsSelected="{Binding Necromancer.DyingLand}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ShowDarknessCardOptions}"/>
 
-		<Label Text="Overwhelm" VerticalOptions="Center" Grid.Row="6" />
-		<ui:CheckButton IsSelected="{Binding Necromancer.Overwhelm}" Grid.Row="6" Grid.Column="1" HorizontalOptions="End" />
+		<Label Text="Overwhelm" VerticalOptions="Center" Grid.Row="6" IsVisible="{Binding ShowDarknessCardOptions}" />
+		<ui:CheckButton IsSelected="{Binding Necromancer.Overwhelm}" Grid.Row="6" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ShowDarknessCardOptions}" />
 
-		<Label Text="Creeping Shadows" VerticalOptions="Center" Grid.Row="7" />
-		<ui:CheckButton IsSelected="{Binding Necromancer.CreepingShadows}" Grid.Row="7" Grid.Column="1" HorizontalOptions="End" />
+		<Label Text="Creeping Shadows" VerticalOptions="Center" Grid.Row="7" IsVisible="{Binding ShowDarknessCardOptions}" />
+		<ui:CheckButton IsSelected="{Binding Necromancer.CreepingShadows}" Grid.Row="7" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding ShowDarknessCardOptions}"/>
 
-		<Label Text="Gates Active" VerticalOptions="Center" Grid.Row="8" />
-		<ui:CheckButton IsSelected="{Binding Necromancer.GatesActive}" Grid.Row="8" Grid.Column="1" HorizontalOptions="End" />
+		<Label Text="Gate Active" VerticalOptions="Center" Grid.Row="8" IsVisible="{Binding Settings.OnShiftingWinds}" />
+		<ui:CheckButton IsSelected="{Binding Necromancer.GatesActive}" Grid.Row="8" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding Settings.OnShiftingWinds}" />
 
 
 		<Image Source="darkness.png" HorizontalOptions="Center" VerticalOptions="End" Grid.Row="9" Grid.ColumnSpan="2"/>

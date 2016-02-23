@@ -10,6 +10,7 @@ using Android.OS;
 using Vineland.DarkestNight.UI.Droid.Infrastructure;
 using Vineland.Necromancer.Core.Services;
 using Vineland.DarkestNight.UI;
+using Xamarin;
 
 namespace Vineland.Necromancer.UI.Droid
 {
@@ -22,31 +23,34 @@ namespace Vineland.Necromancer.UI.Droid
 			base.SetTheme(Resource.Style.Theme_AppTheme);
 			base.OnCreate (bundle);
 
-			#if RELEASE
-			Insights.Initialize("a7b011498c4a5e09ac640c9c044374a16aa995ae", ApplicationContext);
-			#endif
+			//#if RELEASE
+			Insights.Initialize("0b86252c1fff1cce0924366fd12f82f6c55f29aa", ApplicationContext);
+			//#endif
 
 			try
 			{
-
+				LogHelper.Info("Bootstrapper");
 				var bootstrapper = new AndroidBootstrapper();
 				bootstrapper.Run();
 
+				LogHelper.Info("Initialising Forms");
 				global::Xamarin.Forms.Forms.Init (this, bundle);
 
+				LogHelper.Info("Loading  NecromancerApp");
 				LoadApplication (new NecromancerApp ());
 
 				AndroidEnvironment.UnhandledExceptionRaiser += new EventHandler<RaiseThrowableEventArgs>(AndroidEnvironment_UnhandledExceptionRaiser);
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				LogHelper.Error(ex);
+				throw;
 			}
 		}
 
 		private void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
 		{
-			//LogHelper.Log(TAG, "Unhandled Exception: {0}" + e.Exception);
+			LogHelper.Error(e.Exception);
 		}
 	}
 }

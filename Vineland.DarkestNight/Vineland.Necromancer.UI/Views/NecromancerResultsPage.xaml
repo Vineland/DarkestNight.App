@@ -41,22 +41,23 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 					<Label Text="Roll" />
 					<Label Text="{Binding Result.MovementRoll}"  HorizontalOptions="End" FontFamily="hobo" Grid.Column="1"/>
 
-					<Label Text="Detected Hero" Grid.Row="2"/>
-					<Label Text="{Binding Result.DetectedHero, Converter={StaticResource heroConverter}}"  HorizontalOptions="End" FontFamily="hobo" Grid.Row="2" Grid.Column="1"/>
+					<Label Text="Detected Hero" Grid.Row="1"/>
+					<Label Text="{Binding Result.DetectedHero, Converter={StaticResource heroConverter}}"  HorizontalOptions="End" FontFamily="hobo" Grid.Row="1" Grid.Column="1"/>
 
-					<Label Text="Location"  Grid.Row="3"/>
-					<Label Text="{Binding Result.NewLocation, Converter={StaticResource locationConverter}}"  HorizontalOptions="End" FontFamily="hobo" Grid.Row="3" Grid.Column="1"/>
+					<Label Text="Location"  Grid.Row="2"/>
+					<Label Text="{Binding Result.NewLocation, Converter={StaticResource locationConverter}}"  HorizontalOptions="End" FontFamily="hobo" Grid.Row="2" Grid.Column="1"/>
 
-					<Label Text="Spawn" Grid.Row="4"/>
-					<Label Text="{Binding Result.NumberOfBlightsToNewLocationMessage}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="4" Grid.ColumnSpan="2"/>
+					<Label Text="Spawn" Grid.Row="3"/>
+					<Label Text="{Binding Result.NumberOfBlightsToNewLocationMessage}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="3" Grid.ColumnSpan="2"/>
 
-					<Label Text="{Binding Result.NumberOfBlightsToMonasteryMessage}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="5" Grid.ColumnSpan="2"/>
+					<Label Text="{Binding Result.NumberOfBlightsToMonasteryMessage}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="4" Grid.ColumnSpan="2"/>
 
-					<Label Text="{Binding Result.SpawnQuestMessage}"  FontFamily="hobo" HorizontalOptions="End" Grid.Row="6" Grid.ColumnSpan="2"/>
+					<Label Text="{Binding Result.SpawnQuestMessage}"  FontFamily="hobo" HorizontalOptions="End" Grid.Row="5" Grid.ColumnSpan="2"/>
 
-					<Button Text="Blinding Black" Command="{Binding BlindingBlackCommand}" IsVisible="{Binding BlindingBlackVisible}" Grid.Row="7" Grid.ColumnSpan="2"/>
-					<Button Text="Decoy" Command="{Binding DecoyCommand}" IsVisible="{Binding DecoyVisible}" Grid.Row="8" Grid.ColumnSpan="2"/>
-					<Button Text="Elusive Spirit" Command="{Binding ElusiveSpiritCommand}" IsVisible="{Binding ElusiveSpiritVisible}" Grid.Row="9" Grid.ColumnSpan="2"/>
+					<Button Text="Blinding Black" Command="{Binding BlindingBlackCommand}" IsVisible="{Binding BlindingBlackVisible}" Grid.Row="6" Grid.ColumnSpan="2"/>
+					<Button Text="Decoy" Command="{Binding DecoyCommand}" IsVisible="{Binding DecoyVisible}" Grid.Row="7" Grid.ColumnSpan="2"/>
+					<Button Text="Elusive Spirit" Command="{Binding ElusiveSpiritCommand}" IsVisible="{Binding ElusiveSpiritVisible}" Grid.Row="8" Grid.ColumnSpan="2"/>
+
 				</Grid>
 			</ContentPage>
 		</DataTemplate>

@@ -18,13 +18,13 @@ namespace Vineland.Necromancer.UI
 		NavigationService _navigationService;
 		GameStateService _gameStateService;
 
-		public ChooseHeroesViewModel(GameStateService gameStateService, NavigationService navigationService)
+		public ChooseHeroesViewModel(GameStateService gameStateService, NavigationService navigationService, HeroService heroService)
 		{
 			_gameStateService = gameStateService;
 			_navigationService = navigationService;
 			SelectedHeroes = new ObservableCollection<Hero> ();
 			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
-			Heroes = Hero.All;
+			Heroes = heroService.GetAll();
 		}
  
 		public List<Hero> Heroes { get; private set; }
@@ -35,7 +35,7 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (
 					() => {
-						_gameStateService.CurrentGame.Heroes.Active = SelectedHeroes.ToList();
+						_gameStateService.CurrentGame.Heroes.Active = SelectedHeroes.OrderBy(x=>x.Name).ToList();
 						_gameStateService.Save ();
 						_navigationService.Push<HeroPhasePage>(true);
 					},
