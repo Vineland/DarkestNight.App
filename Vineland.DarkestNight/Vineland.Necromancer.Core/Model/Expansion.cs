@@ -4,7 +4,7 @@ namespace Vineland.Necromancer.Core
 {
 	public enum Expansion
 	{
-		BaseGame,
+		BaseGame = 0,
 		WithAnInnerLight,
 		OnShiftingWinds,
 		FromTheAbyss,

@@ -11,10 +11,12 @@ namespace Vineland.Necromancer.Core
 	public class NecromancerService
 	{
 		D6GeneratorService _d6GeneratorService;
+		DataService _dataService;
 
-		public NecromancerService (D6GeneratorService d6GeneratorService)
+		public NecromancerService (D6GeneratorService d6GeneratorService, DataService dataService)
 		{
 			_d6GeneratorService = d6GeneratorService;
+			_dataService = dataService;
 		}
 
 		/// <summary>

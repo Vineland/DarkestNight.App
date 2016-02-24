@@ -17,14 +17,11 @@ namespace Vineland.Necromancer.UI
 		public NavigationService (PageService pageService)
 		{
 			_pageService = pageService;
-
-			//_navigation = new NavigationPage (_pageService.CreatePage<HomePage> ());
 		}
 
 		public void SetNavigation (INavigation navigation)
 		{
 			_navigation = navigation;
-
 		}
 
 		public async void Pop ()
@@ -64,15 +61,18 @@ namespace Vineland.Necromancer.UI
 				throw new Exception ("_navigation is null");
 
 			try {
-					var page = _pageService.CreatePage<T>();
-					await _navigation.PushAsync (page as Page);
-					if(clearBackStack){
+				var newPage = _pageService.CreatePage<T> ();
+				await _navigation.PushAsync (newPage as Page);
+				if (clearBackStack) {
+					//remove all pages between the root page and target page
+					var pagesToRemove = new List<Page> ();
+					for (int i = 1; i < _navigation.NavigationStack.Count - 1; i++)
+						pagesToRemove.Add (_navigation.NavigationStack [i]);
 
-						//remove all pages between the current page and target page
-						for (int i = 1; i < _navigation.NavigationStack.Count - 1; i++) {
-							_navigation.RemovePage (_navigation.NavigationStack [i]);
-						}
-					}
+					foreach (var page in pagesToRemove)
+						_navigation.RemovePage (page);
+				}
+
 			} catch (Exception ex) {
 				throw ex;
 			}

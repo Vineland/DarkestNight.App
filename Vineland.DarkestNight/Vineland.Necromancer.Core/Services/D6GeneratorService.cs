@@ -17,7 +17,7 @@ namespace Vineland.Necromancer.Core.Services
 
         public virtual int RollDemBones()
         {
-            return _generator.Next(1, 6);
+            return _generator.Next(1, 7);
         }
     }
 }

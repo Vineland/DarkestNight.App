@@ -31,7 +31,7 @@ Padding="20, 60, 20, 20">
 	<ui:BindablePicker x:TypeArguments="core:DarknessCardsMode"  ItemsSource="{Binding DarknessCardsModeOptions}" SelectedItem="{Binding Settings.DarknessCardsMode}" Grid.Column="1" Grid.Row="1"  IsVisible="{Binding Settings.FromTheAbyss}"/>	
 
 	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Column="0" Grid.Row="2" IsVisible="{Binding Settings.WithAnInnerLight}"/>
-	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="2" IsVisible="{Binding Settings.WithAnInnerLight}" HorizontalOptions="End" />
+	<ui:CheckButton IsSelected="{Binding Settings.PallOfSuffering}" Grid.Column="1" Grid.Row="2" IsVisible="{Binding Settings.WithAnInnerLight}" HorizontalOptions="End" />
 
 </Grid>
 </ContentPage>

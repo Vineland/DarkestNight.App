@@ -21,6 +21,10 @@ namespace Vineland.Necromancer.Core
 
 		public List<Location> Locations { get; set; }
 
+		public List<MapCard> MapDeck { get; set; }
+
+		public List<MapCard> MapDiscard { get; set; }
+
 		public HeroesState Heroes { get; protected set; }
 
 		public NecomancerState Necromancer { get; protected set; }

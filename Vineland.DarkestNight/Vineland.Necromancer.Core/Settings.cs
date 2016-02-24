@@ -28,7 +28,7 @@ namespace Vineland.Necromancer.Core
 
 		public int StartingDarkness
 		{
-			get { return _settingsService.LoadInt(STARTING_DARKNESS, @default: 5); }
+			get { return _settingsService.LoadInt(STARTING_DARKNESS); }
 			set { _settingsService.SaveInt(STARTING_DARKNESS, value); }
 		}
 

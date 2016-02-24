@@ -14,9 +14,11 @@ namespace Vineland.Necromancer.Core
 
 		public string Name { get; set; }
 
-		public int NumberOfBlights {get;set;}
+		public int NumberOfBlights { get; set; }
 
 		public int[] Pathways { get; set; }
+
+		public List<Blight> Blights { get; set; }
 
 		public static List<Location> All {
 			get{ return _all; }
@@ -26,40 +28,47 @@ namespace Vineland.Necromancer.Core
 			new Location () {
 				Id = LocationIds.Monastery,
 				Name = "Monastery",
-				Pathways = new int[0]{ }
+				Pathways = new int[0]{ },
+				Blights = new List<Blight> ()
 			},
 			new Location () {
 				Id = LocationIds.Mountains,
 				Name = "Mountains",
-				Pathways = new int[6]{ 2, 3, 1, 3, 2, 1 }
+				Pathways = new int[6]{ 2, 3, 1, 3, 2, 1 },
+				Blights = new List<Blight> ()
 			},
 			new Location () {
 				Id = LocationIds.Castle,
 				Name = "Castle",
-				Pathways = new int[6]{ 4, 3, 1, 2, 3, 2 }
+				Pathways = new int[6]{ 4, 3, 1, 2, 3, 2 },
+				Blights = new List<Blight> ()
 			},
 			new Location () {
 				Id = LocationIds.Village,
 				Name = "Village",
-				Pathways = new int[6]{ 1, 5, 6, 2, 4, 3 }
+				Pathways = new int[6]{ 1, 5, 6, 2, 4, 3 },
+				Blights = new List<Blight> ()
 			},
 			new Location () {
 				Id = LocationIds.Swamp,
 				Name = "Swamp",
-				Pathways = new int[6] { 5, 3, 2, 4, 3, 4 }
+				Pathways = new int[6] { 5, 3, 2, 4, 3, 4 },
+				Blights = new List<Blight> ()
 			},
 			new Location () {
 				Id = LocationIds.Ruins,
 				Name = "Ruins",
-				Pathways = new int[6]{ 6, 4, 3, 5, 3, 5 }
+				Pathways = new int[6]{ 6, 4, 3, 5, 3, 5 },
+				Blights = new List<Blight> ()
 			},
 			new Location () {
 				Id = LocationIds.Forest,
 				Name = "Forest",
-				Pathways = new int[]{ 3, 5, 6, 3, 5, 6 }
+				Pathways = new int[]{ 3, 5, 6, 3, 5, 6 },
+				Blights = new List<Blight> ()
 			}
 		}
-		                                              );
+      );
 
 		public override string ToString ()
 		{

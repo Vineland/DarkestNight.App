@@ -16,12 +16,15 @@ namespace Vineland.Necromancer.UI
 	public class GameStateService
 	{
 		FileService _fileService;
+		DataService _dataService;
 
 		public GameState CurrentGame { get; private set; }
 
-		public GameStateService (FileService fileService)
+		public GameStateService (FileService fileService,
+		                         DataService dataService)
 		{
 			_fileService = fileService;
+			_dataService = dataService;
 
 			if (_fileService.DoesFileExist (AppConstants.SaveFilePath))
 				Continue ();
@@ -29,18 +32,33 @@ namespace Vineland.Necromancer.UI
 
 		public void NewGame (Settings appSettings)
 		{			
-			var gameState = new GameState ();
-			gameState.CreatedDate = DateTime.Now;
-			gameState.Darkness = appSettings.StartingDarkness;
-			gameState.PallOfSuffering = appSettings.PallOfSuffering;
-			gameState.Mode = appSettings.DarknessCardsMode;
+			CurrentGame = new GameState ();
+			CurrentGame.CreatedDate = DateTime.Now;
+			CurrentGame.Darkness = appSettings.StartingDarkness;
+			CurrentGame.PallOfSuffering = appSettings.PallOfSuffering;
+			CurrentGame.Mode = appSettings.DarknessCardsMode;
 
-			gameState.Necromancer.LocationId = LocationIds.Ruins;
-			gameState.Locations = new List<Location> (Location.All);
-			gameState.Locations.ForEach (x => x.NumberOfBlights = 1);
-			gameState.Locations [0].NumberOfBlights = 0;
+			CurrentGame.Necromancer.LocationId = LocationIds.Ruins;
 
-			CurrentGame = gameState;
+			LogHelper.Info ("Setting up Map deck");
+			CurrentGame.MapDeck = _dataService.GetMapCards (appSettings);
+			CurrentGame.MapDiscard = new List<MapCard> ();
+
+			CurrentGame.Locations = new List<Location> (Location.All);
+
+			var startingMapCard = DrawMapCard ();
+
+			CurrentGame.Locations.ForEach (x => {
+				x.Blights = new List<Blight> ();
+				if (x.Id == LocationIds.Monastery) {
+					x.NumberOfBlights = 0;
+				} else {
+					x.NumberOfBlights = 1;
+					var blightName = startingMapCard.Rows.Single (r => r.Location == x.Name).Blight;
+					LogHelper.Info (string.Format ("Adding {0} blight to {1}", blightName, x.Name));
+					x.Blights.Add (_dataService.GetBlight (blightName));
+				}
+			});
 		}
 
 		public async void Save ()
@@ -53,6 +71,25 @@ namespace Vineland.Necromancer.UI
 		public void Continue ()
 		{
 			CurrentGame = JsonConvert.DeserializeObject<GameState> (_fileService.LoadFile (AppConstants.SaveFilePath));
+		}
+
+		public MapCard DrawMapCard ()
+		{
+			if (!CurrentGame.MapDeck.Any ()) {
+				LogHelper.Info ("Shuffling discard and forming new Map deck");
+				CurrentGame.MapDiscard.Shuffle ();
+
+				CurrentGame.MapDeck = CurrentGame.MapDiscard;
+
+				CurrentGame.MapDiscard = new List<MapCard> ();
+			}
+
+			var mapCard = CurrentGame.MapDeck.First ();
+
+			CurrentGame.MapDeck.Remove (mapCard);
+			CurrentGame.MapDiscard.Add (mapCard);
+
+			return mapCard;
 		}
 	}
 }
