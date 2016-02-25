@@ -1,13 +1,48 @@
 ﻿[  
 	{ 
 		"Name":"Confusion",
-      "Number":3,
       "Expansion":0,
       "GlobalEffect":0,
-      "Weight":1},
+      "Weight":1
+		},
+	{ 
+		"Name":"Confusion",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+		},
+	{ 
+		"Name":"Confusion",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+		},
    {  
       "Name":"Corruption",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Corruption",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Corruption",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Curse",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Curse",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
@@ -21,189 +56,420 @@
    },
    {  
       "Name":"Dark Fog",
-      "Number":2,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Dark Fog",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Desecration",
-      "Number":2,
+      "Expansion":0,
+      "GlobalEffect":1,
+      "Weight":1
+   },
+   {  
+      "Name":"Desecration",
       "Expansion":0,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Evil Presence",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Evil Presence",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Evil Presence",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Lich",
-      "Number":2,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Lich",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Shades",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Shades",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Shades",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Shroud",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Shroud",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Shroud",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Skeletons",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Skeletons",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Skeletons",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Spies",
-      "Number":4,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Spies",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Spies",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Spies",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Taint",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Taint",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Taint",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Unholy Aura",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Unholy Aura",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Unholy Aura",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Vampire",
-      "Number":2,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Vampire",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Vampire",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Zombies",
-      "Number":3,
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Zombies",
+      "Expansion":0,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Zombies",
       "Expansion":0,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Crows",
-      "Number":3,
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Crows",
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Crows",
       "Expansion":2,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Decay",
-      "Number":2,
+      "Expansion":2,
+      "GlobalEffect":1,
+      "Weight":1
+   },
+   {  
+      "Name":"Decay",
       "Expansion":2,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Gate",
-      "Number":2,
+      "Expansion":2,
+      "GlobalEffect":1,
+      "Weight":1
+   },
+   {  
+      "Name":"Gate",
       "Expansion":2,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Oblivion",
-      "Number":3,
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Oblivion",
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Oblivion",
       "Expansion":2,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Omen",
-      "Number":3,
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Omen",
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Omen",
       "Expansion":2,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Revenants",
-      "Number":3,
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Revenants",
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Revenants",
       "Expansion":2,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Specters",
-      "Number":3,
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Specters",
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Specters",
       "Expansion":2,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Webs",
-      "Number":3,
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Webs",
+      "Expansion":2,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Webs",
       "Expansion":2,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Enigma",
-      "Number":2,
+      "Expansion":4,
+      "GlobalEffect":1,
+      "Weight":1
+   },
+   {  
+      "Name":"Enigma",
       "Expansion":4,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Flux Cage",
-      "Number":2,
+      "Expansion":4,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Flux Cage",
       "Expansion":4,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Nexus",
-      "Number":1,
       "Expansion":4,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Stigma",
-      "Number":2,
+      "Expansion":4,
+      "GlobalEffect":1,
+      "Weight":1
+   },
+   {  
+      "Name":"Stigma",
       "Expansion":4,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Terror",
-      "Number":2,
+      "Expansion":4,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Terror",
       "Expansion":4,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Void",
-      "Number":3,
+      "Expansion":4,
+      "GlobalEffect":0,
+      "Weight":2
+   },
+   {  
+      "Name":"Void",
+      "Expansion":4,
+      "GlobalEffect":0,
+      "Weight":2
+   },
+   {  
+      "Name":"Void",
       "Expansion":4,
       "GlobalEffect":0,
       "Weight":2
    },
    {  
       "Name":"Wraiths",
-      "Number":2,
+      "Expansion":4,
+      "GlobalEffect":0,
+      "Weight":1
+   },
+   {  
+      "Name":"Wraiths",
       "Expansion":4,
       "GlobalEffect":0,
       "Weight":1

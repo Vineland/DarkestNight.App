@@ -7,26 +7,20 @@ namespace Vineland.Necromancer.UI
 {
 	public class NecromancerPhaseViewModel : BaseViewModel
 	{
-		NavigationService _navigationService;
-		GameStateService _gameStateService;
 
-		public NecromancerPhaseViewModel (NavigationService navigationService, 
-			GameStateService gameStateService,
-			Settings settings)
+		public NecromancerPhaseViewModel (Settings settings)
 		{
-			_navigationService = navigationService;
-			_gameStateService = gameStateService;
 		}
 
 		public Settings Settings { get; private set; }
 
 		public bool ShowDarknessCardOptions{
-			get { return _gameStateService.CurrentGame.Mode != DarknessCardsMode.None; }
+			get { return Application.CurrentGame.Mode != DarknessCardsMode.None; }
 		}
 
 		public int Darkness{
-			get { return _gameStateService.CurrentGame.Darkness; }
-			set{ _gameStateService.CurrentGame.Darkness = value; }
+			get { return Application.CurrentGame.Darkness; }
+			set{ Application.CurrentGame.Darkness = value; }
 		}
 
 		public List<Location> AllLocations{
@@ -34,14 +28,14 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public NecomancerState Necromancer{
-			get{ return _gameStateService.CurrentGame.Necromancer; }
+			get{ return Application.CurrentGame.Necromancer; }
 		}
 
 		public RelayCommand Detect{
 			get{
 				return new RelayCommand (() => {
-					_gameStateService.Save();
-					_navigationService.Push<NecromancerResultsPage>();
+					Application.SaveCurrentGame();
+					Application.Navigation.Push<NecromancerResultsPage>();
 				});
 			}
 		}

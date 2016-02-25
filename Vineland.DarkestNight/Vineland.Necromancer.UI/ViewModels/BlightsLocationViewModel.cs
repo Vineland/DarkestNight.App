@@ -6,20 +6,17 @@ namespace Vineland.Necromancer.UI
 {
 	public class BlightLocationsViewModel : BaseViewModel
 	{
-		GameStateService _gameStateService;
-
-		public BlightLocationsViewModel (GameStateService gameStateService)
+		public BlightLocationsViewModel ()
 		{
-			_gameStateService = gameStateService;
 		}
 
 		public List<Location> Locations {
-			get{ return _gameStateService.CurrentGame.Locations; }
+			get{ return Application.CurrentGame.Locations; }
 		}
 
 		public override void OnBackButtonPressed ()
 		{
-			_gameStateService.Save ();
+			Application.SaveCurrentGame();
 		}
 	}
 }

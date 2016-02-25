@@ -13,24 +13,18 @@ namespace Vineland.Necromancer.UI
 {
 	public class HomeViewModel : BaseViewModel
 	{
-		NavigationService _navigationService;
-		GameStateService _gameStateService;
-
-		public HomeViewModel (GameStateService gameStateService, NavigationService navigationService)
+		public HomeViewModel ()
 		{
-			_gameStateService = gameStateService;
-			_navigationService = navigationService;
 		}
 
 		public RelayCommand ContinueGameCommand {
 			get { 
 				return new RelayCommand (
 					() => {
-						_gameStateService.Continue ();
-						_navigationService.Push<HeroPhasePage> ();
+						Application.Navigation.Push<HeroPhasePage> ();
 					},
 					() => {
-						return _gameStateService.CurrentGame != null;
+						return Application.CurrentGame != null;
 					}); 
 			}
 		}
@@ -39,7 +33,7 @@ namespace Vineland.Necromancer.UI
 			get { 
 				return new RelayCommand (
 					() => { 
-							_navigationService.Push<NewGamePage> ();
+						Application.Navigation.Push<NewGamePage> ();
 					}); 
 			}
 		}
@@ -47,7 +41,7 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand SettingsCommand{
 			get{
 				return new RelayCommand (() => {
-					_navigationService.Push<SettingsPage>();
+					Application.Navigation.Push<SettingsPage>();
 				});
 			}
 		}

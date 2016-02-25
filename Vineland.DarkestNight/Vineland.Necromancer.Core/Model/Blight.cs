@@ -9,15 +9,9 @@ namespace Vineland.Necromancer.Core
 
 		public int Weight { get; set; }
 
-		public int Number { get; set; }
-
 		public bool GlobalEffect { get; set; }
 
 		public Expansion Expansion { get; set; }
-
-		public Blight Clone(){
-			return (Blight)this.MemberwiseClone();
-		}
 	}
 }
 

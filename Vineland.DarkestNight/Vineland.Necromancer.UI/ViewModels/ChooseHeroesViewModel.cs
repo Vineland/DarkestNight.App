@@ -1,27 +1,22 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Vineland.Necromancer.Core;
-using System.Linq;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Text;
 using Android.Util;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
 using Vineland.DarkestNight.UI;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {
 	public class ChooseHeroesViewModel : BaseViewModel
     {
-		NavigationService _navigationService;
-		GameStateService _gameStateService;
-
-		public ChooseHeroesViewModel(GameStateService gameStateService, NavigationService navigationService, HeroService heroService)
+		public ChooseHeroesViewModel(HeroService heroService)
 		{
-			_gameStateService = gameStateService;
-			_navigationService = navigationService;
 			SelectedHeroes = new ObservableCollection<Hero> ();
 			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
 			Heroes = heroService.GetAll();
@@ -35,9 +30,9 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (
 					() => {
-						_gameStateService.CurrentGame.Heroes.Active = SelectedHeroes.OrderBy(x=>x.Name).ToList();
-						_gameStateService.Save ();
-						_navigationService.Push<HeroPhasePage>(true);
+						Application.CurrentGame.Heroes.Active = SelectedHeroes.OrderBy(x=>x.Name).ToList();
+						Application.SaveCurrentGame ();
+						Application.Navigation.Push<HeroPhasePage>(true);
 					},
 					() => {
 						return SelectedHeroes.Count() == 4;

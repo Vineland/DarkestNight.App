@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using System.Dynamic;
 
 namespace Vineland.Necromancer.Core
 {
@@ -16,14 +17,11 @@ namespace Vineland.Necromancer.Core
 			Necromancer = new NecomancerState ();
 		}
 
-
-		public DateTime CreatedDate { get; set; }
-
 		public List<Location> Locations { get; set; }
 
-		public List<MapCard> MapDeck { get; set; }
+		public Deck<MapCard> MapCards { get; set; }
 
-		public List<MapCard> MapDiscard { get; set; }
+		public List<Blight> BlightPool { get; set; }
 
 		public HeroesState Heroes { get; protected set; }
 
@@ -34,6 +32,8 @@ namespace Vineland.Necromancer.Core
 		public bool PallOfSuffering { get; set; }
 
 		public DarknessCardsMode Mode { get; set; }
+
+		//public bool SpawnBlights { get; set; }
 
 		public bool DarknessTrackEffectsActive {
 			get {

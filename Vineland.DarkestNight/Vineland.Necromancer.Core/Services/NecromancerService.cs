@@ -114,7 +114,7 @@ namespace Vineland.Necromancer.Core
 
 			//standard darkness track effects
 			if (gameState.DarknessTrackEffectsActive) {
-				if (gameState.Darkness >= 10 && result.NewLocation.NumberOfBlights == 0)
+				if (gameState.Darkness >= 10 && result.NewLocation.BlightCount == 0)
 					result.NumberOfBlightsToNewLocation++;
 
 				if (gameState.Darkness >= 20 && (result.MovementRoll == 1 || result.MovementRoll == 2))
@@ -133,24 +133,24 @@ namespace Vineland.Necromancer.Core
 				if (gameState.Necromancer.DyingLand) {
 					if (gameState.DarknessTrackEffectsActive
 					    && gameState.Darkness >= 10
-					    && result.NewLocation.NumberOfBlights == 1)
+						&& result.NewLocation.BlightCount == 1)
 						result.NumberOfBlightsToNewLocation++;
 					else if ((!gameState.DarknessTrackEffectsActive
 					         || gameState.Darkness < 10)
-					         && result.NewLocation.NumberOfBlights == 0)
+						&& result.NewLocation.BlightCount == 0)
 						result.NumberOfBlightsToNewLocation++;
 				}
 
 				if (gameState.Necromancer.EncroachingShadows && result.MovementRoll == 6)
 					result.NumberOfBlightsToMonastery++;
 
-				if (gameState.Necromancer.Overwhelm && result.NewLocation.NumberOfBlights < 4 && result.NewLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation >= 4)
+				if (gameState.Necromancer.Overwhelm && result.NewLocation.BlightCount < 4 && result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation >= 4)
 					result.NumberOfBlightsToMonastery++;
 			}
 
 			//check for spill over to monastery
-			if (result.NewLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation > 4) {
-				var overflow = (result.NewLocation.NumberOfBlights + result.NumberOfBlightsToNewLocation) - 4;
+			if (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation > 4) {
+				var overflow = (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation) - 4;
 				result.NumberOfBlightsToNewLocation -= overflow;
 				result.NumberOfBlightsToMonastery += overflow;
 			}

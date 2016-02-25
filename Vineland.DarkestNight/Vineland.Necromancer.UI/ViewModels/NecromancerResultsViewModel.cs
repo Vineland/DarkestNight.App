@@ -15,27 +15,21 @@ namespace Vineland.Necromancer.UI
 	public class NecromancerResultsViewModel :BaseViewModel
 	{
 		NecromancerService _necromancerService;
-		NavigationService _navigationService;
-		GameStateService _gameStateService;
 
-		public NecromancerResultsViewModel (GameStateService gameStateService, 
-			NecromancerService necromancerService, 
-			NavigationService navigationService)
+		public NecromancerResultsViewModel (NecromancerService necromancerService)
 		{
-			_gameStateService = gameStateService;
 			_necromancerService = necromancerService;
-			_navigationService = navigationService;
 
 			var results = new List<NecromancerActivationResult> ();
-			if (_gameStateService.CurrentGame.Heroes.ProphecyOfDoomRoll == 0)
-				results.Add (_necromancerService.Activate (_gameStateService.CurrentGame));
+			if (Application.CurrentGame.Heroes.ProphecyOfDoomRoll == 0)
+				results.Add (_necromancerService.Activate (Application.CurrentGame));
 			else
-				results.Add (_necromancerService.Activate (_gameStateService.CurrentGame, roll: _gameStateService.CurrentGame.Heroes.ProphecyOfDoomRoll));
+				results.Add (_necromancerService.Activate (Application.CurrentGame, roll: Application.CurrentGame.Heroes.ProphecyOfDoomRoll));
 
-			if (_gameStateService.CurrentGame.Heroes.RuneOfMisdirectionActive)
-				results.Add (_necromancerService.Activate (_gameStateService.CurrentGame));
+			if (Application.CurrentGame.Heroes.RuneOfMisdirectionActive)
+				results.Add (_necromancerService.Activate (Application.CurrentGame));
 
-			Results = results.Select (x => new NecromancerActivationResultViewModel (x, _gameStateService, _necromancerService)).ToList();
+			Results = results.Select (x => new NecromancerActivationResultViewModel (x, _necromancerService)).ToList();
 			SelectedResult = Results.First ();
 		}
 
@@ -48,13 +42,14 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (() => {
 					
-					_gameStateService.CurrentGame.Heroes.ProphecyOfDoomRoll = 0;
-					_gameStateService.CurrentGame.Necromancer.LocationId = SelectedResult.Result.NewLocation.Id;
-					_gameStateService.CurrentGame.Locations.Single (x => x.Id == SelectedResult.Result.NewLocation.Id).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToNewLocation;
-					_gameStateService.CurrentGame.Locations.Single (x => x.Id == LocationIds.Monastery).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToMonastery;
-					_gameStateService.Save ();
+					Application.CurrentGame.Heroes.ProphecyOfDoomRoll = 0;
+					Application.CurrentGame.Necromancer.LocationId = SelectedResult.Result.NewLocation.Id;
+					//TODO spawn blights
+					//Application.CurrentGame.Locations.Single (x => x.Id == SelectedResult.Result.NewLocation.Id).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToNewLocation;
+					//Application.CurrentGame.Locations.Single (x => x.Id == LocationIds.Monastery).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToMonastery;
+					Application.SaveCurrentGame ();
 
-					_navigationService.PopTo<HeroPhasePage> ();
+					Application.Navigation.PopTo<HeroPhasePage> ();
 				});
 			}
 		}
@@ -64,13 +59,11 @@ namespace Vineland.Necromancer.UI
 	{
 
 		NecromancerActivationResult _result;
-		GameStateService _gameStateService;
 		NecromancerService _necromancerService;
 
-		public NecromancerActivationResultViewModel (NecromancerActivationResult result, GameStateService gameStateService, NecromancerService necroService)
+		public NecromancerActivationResultViewModel (NecromancerActivationResult result, NecromancerService necroService)
 		{
 			_result = result;
-			_gameStateService = gameStateService;
 			_necromancerService = necroService;
 		}
 
@@ -84,14 +77,14 @@ namespace Vineland.Necromancer.UI
 
 		public bool BlindingBlackVisible {
 			get {
-				return _gameStateService.CurrentGame.Heroes.BlindingBlackActive;
+				return Application.CurrentGame.Heroes.BlindingBlackActive;
 			}
 		}
 
 		public RelayCommand BlindingBlackCommand {
 			get {
 				return new RelayCommand (() => {
-					Result = _necromancerService.Activate (_gameStateService.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: _gameStateService.CurrentGame.Heroes.Active.Select (x => x.Id).ToArray ());
+					Result = _necromancerService.Activate (Application.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: Application.CurrentGame.Heroes.Active.Select (x => x.Id).ToArray ());
 				},
 					() => {
 						return Result.DetectedHero != null;
@@ -101,18 +94,18 @@ namespace Vineland.Necromancer.UI
 
 		public bool DecoyVisible {
 			get {
-				return _gameStateService.CurrentGame.Heroes.DecoyActive;
+				return Application.CurrentGame.Heroes.DecoyActive;
 			}
 		}
 
 		public RelayCommand DecoyCommand {
 			get {
 				return new RelayCommand (() => {
-					var wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
-					Result = _necromancerService.Activate (_gameStateService.CurrentGame, detectedHero: wayfarer);
+					var wayfarer = Application.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
+					Result = _necromancerService.Activate (Application.CurrentGame, detectedHero: wayfarer);
 				},
 					() => {
-						var wayfarer = _gameStateService.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
+						var wayfarer = Application.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
 
 						return Result.DetectedHero != null
 						&& (wayfarer != null
@@ -124,7 +117,7 @@ namespace Vineland.Necromancer.UI
 
 		public bool ElusiveSpiritVisible {
 			get { 
-				return _gameStateService.CurrentGame.Heroes.ElusiveSpiritActive;
+				return Application.CurrentGame.Heroes.ElusiveSpiritActive;
 			}
 		}
 
@@ -132,7 +125,7 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (() => {
 					//TODO could be triggered more than once
-					Result = _necromancerService.Activate (_gameStateService.CurrentGame, heroesToIgnore: new int[] { Result.DetectedHero.Id });
+					Result = _necromancerService.Activate (Application.CurrentGame, heroesToIgnore: new int[] { Result.DetectedHero.Id });
 				},
 					() => {
 						return Result.DetectedHero != null && Result.DetectionRoll == Result.DetectedHero.Secrecy + 1; 

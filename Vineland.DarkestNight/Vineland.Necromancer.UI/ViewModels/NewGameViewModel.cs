@@ -13,17 +13,13 @@ using Vineland.DarkestNight.UI;
 namespace Vineland.Necromancer.UI
 {
 	public class NewGameViewModel :BaseViewModel
-    {
-		NavigationService _navigationService;
-		GameStateService _gameStateService;
+	{
+		GameStateFactory _factory;
 
-		public NewGameViewModel(GameStateService gameStateService, 
-			NavigationService navigationService, 
-			Settings settings)
+		public NewGameViewModel(Settings settings, GameStateFactory factory)
         {
-			_gameStateService = gameStateService;
-			_navigationService = navigationService;
 			Settings = settings;
+			_factory = factory;
             DarknessCardsModeOptions = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
         }
 
@@ -34,8 +30,8 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand ChooseHeroes{
 			get{
 				return new RelayCommand (() => {
-					_gameStateService.NewGame(Settings);
-					_navigationService.Push<ChooseHeroesPage>();
+					Application.CurrentGame = _factory.CreateGameState(Settings);
+					Application.Navigation.Push<ChooseHeroesPage>();
 				});
 			}
 		}

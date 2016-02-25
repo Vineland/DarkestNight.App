@@ -20,7 +20,7 @@ namespace Vineland.Necromancer.UI.Droid
 						label.Typeface = Typeface.CreateFromAsset (Forms.Context.Assets, e.NewElement.FontFamily + ".ttf");
 
 				} catch (Exception ex) {
-				
+					throw;
 				}
 			}
 		}

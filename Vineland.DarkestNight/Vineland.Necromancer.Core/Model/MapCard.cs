@@ -2,6 +2,7 @@
 using System.Dynamic;
 using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.Core
 {

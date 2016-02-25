@@ -43,47 +43,39 @@ namespace Vineland.Necromancer.Core
 			}
 		}
 
-		public DataService ()
+		Settings _settings;
+
+		public DataService (Settings settings)
 		{
-			
+			_settings = settings;
 		}
 
-		public List<Blight> GetBlights (Settings settings)
+		public List<Blight> GetBlights ()
 		{
 			var blights = Blights.Where (x => x.Expansion == Expansion.BaseGame).ToList ();
 
-			if (settings.OnShiftingWinds)
+			if (_settings.OnShiftingWinds)
 				blights.AddRange (Blights.Where (x => x.Expansion == Expansion.OnShiftingWinds));
 
-			if (settings.InTalesOfOld)
+			if (_settings.InTalesOfOld)
 				blights.AddRange (Blights.Where (x => x.Expansion == Expansion.InTalesOfOld));
 
 			return blights.OrderBy (x => x.Name).ToList ();
 		}
 
-		public Blight GetBlight (string name)
-		{
-			return Blights.SingleOrDefault(x => x.Name == name).Clone();
-		}
-
-		public List<MapCard> GetMapCards (Settings settings)
+		public List<MapCard> GetMapCards ()
 		{
 			var mapCards = MapCards.Where (x => x.Expansion == Expansion.BaseGame).ToList ();
 
-			if (settings.OnShiftingWinds)
+			if (_settings.OnShiftingWinds)
 				mapCards.AddRange (MapCards.Where (x => x.Expansion == Expansion.OnShiftingWinds));
 
-			if (settings.InTalesOfOld)
+			if (_settings.InTalesOfOld)
 				mapCards.AddRange (MapCards.Where (x => x.Expansion == Expansion.InTalesOfOld));
 			
 			mapCards.Shuffle ();
 
 			return mapCards;
-		}
-
-		public MapCard GetMapCard (int id)
-		{			
-			return MapCards.SingleOrDefault (x => x.Id == id);
 		}
 
 		private string ReadEmbeddedResource (string resourceId)

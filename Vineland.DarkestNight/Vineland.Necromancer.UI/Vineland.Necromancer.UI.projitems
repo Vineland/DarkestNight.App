@@ -45,14 +45,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\GameStateService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\BasePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NecromancerApp.xaml.cs">
       <DependentUpon>NecromancerApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroPhaseViewModel.cs" />
@@ -69,6 +67,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

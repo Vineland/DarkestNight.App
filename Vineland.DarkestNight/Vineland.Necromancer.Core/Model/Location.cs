@@ -14,11 +14,20 @@ namespace Vineland.Necromancer.Core
 
 		public string Name { get; set; }
 
-		public int NumberOfBlights { get; set; }
+		//public int NumberOfBlights { get; set; }
 
 		public int[] Pathways { get; set; }
 
 		public List<Blight> Blights { get; set; }
+
+		public int BlightCount
+		{
+			get{ 
+				if(Blights.Any())
+					return Blights.Sum (x => x.Weight); 
+				return 0;
+			}
+		}
 
 		public static List<Location> All {
 			get{ return _all; }

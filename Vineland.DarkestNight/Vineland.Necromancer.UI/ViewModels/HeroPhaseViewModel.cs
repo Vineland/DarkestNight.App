@@ -16,15 +16,9 @@ namespace Vineland.Necromancer.UI
 {
 	public class HeroPhaseViewModel : BaseViewModel
 	{
-		NavigationService _navigationService;
-		GameStateService _gameStateService;
-
-		public HeroPhaseViewModel (NavigationService navigationService, GameStateService gameStateService)
+		public HeroPhaseViewModel ()
 		{
-			_gameStateService = gameStateService;
-			_navigationService = navigationService;
-
-			Heroes = new ObservableCollection<Hero> (_gameStateService.CurrentGame.Heroes.Active);
+			Heroes = new ObservableCollection<Hero> (Application.CurrentGame.Heroes.Active);
 
 			MessagingCenter.Subscribe<SelectHeroViewModel,Hero> (this, "HeroSelected", OnHeroSelected);
 		}
@@ -42,8 +36,8 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand NextPhase {
 			get {
 				return new RelayCommand (() => {
-					_gameStateService.Save ();
-					_navigationService.Push<NecromancerPhasePage> ();
+					Application.SaveCurrentGame();
+					Application.Navigation.Push<NecromancerPhasePage> ();
 				});
 			}
 		}
@@ -56,7 +50,7 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand<Hero> (
 					(hero) => { 
 						_heroToRemove = hero;
-						_navigationService.Push<SelectHeroPage> ();
+						Application.Navigation.Push<SelectHeroPage> ();
 					});
 			}
 		}
@@ -74,8 +68,8 @@ namespace Vineland.Necromancer.UI
 			SelectedHero = selectedHero;
 			RaisePropertyChanged (() => SelectedHero);
 			Task.Run (() => {
-				_gameStateService.CurrentGame.Heroes.Active = Heroes.ToList ();
-				_gameStateService.Save ();
+				Application.CurrentGame.Heroes.Active = Heroes.ToList ();
+				Application.SaveCurrentGame ();
 			});
 		}
 
@@ -83,22 +77,22 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand Blights {
 			get {
 				return new RelayCommand (() => {
-					_navigationService.Push<BlightLocationsPage> ();
+					Application.Navigation.Push<BlightLocationsPage> ();
 				});
 			}
 		}
 
 		public int Darkness {
-			get { return _gameStateService.CurrentGame.Darkness; }
+			get { return Application.CurrentGame.Darkness; }
 			set {
-				_gameStateService.CurrentGame.Darkness = value;
+				Application.CurrentGame.Darkness = value;
 				RaisePropertyChanged (() => Darkness);
 			}
 		}
 
 
 		public Vineland.Necromancer.Core.HeroesState HeroesState {
-			get { return _gameStateService.CurrentGame.Heroes; }
+			get { return Application.CurrentGame.Heroes; }
 		}
 
 	}

@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight;
 using Vineland.Necromancer.UI;
 using XLabs.Ioc;
+using Vineland.Necromancer.Core;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
@@ -11,8 +13,9 @@ namespace Vineland.Necromancer.UI
 		{
 		}
 
-		public NavigationService Navigation {
-			get { return Resolver.Resolve<NavigationService> (); }
+		public NecromancerApp Application
+		{
+			get { return (Xamarin.Forms.Application.Current as NecromancerApp); }
 		}
 
 		public virtual void OnAppearing() { }

@@ -9,14 +9,9 @@ namespace Vineland.Necromancer.UI
 {
 	public class SelectHeroViewModel :BaseViewModel
 	{
-		NavigationService _navigationService;
-		GameStateService _gameStateService;
-
-		public SelectHeroViewModel (NavigationService navigationService, GameStateService gameStateService, HeroService heroService)
+		public SelectHeroViewModel (HeroService heroService)
 		{
-			_navigationService = navigationService;
-			_gameStateService = gameStateService;
-			AvailableHeroes = heroService.GetAll().Where(x => !_gameStateService.CurrentGame.Heroes.Active.Any(y => y.Id == x.Id)).ToList();
+			AvailableHeroes = heroService.GetAll().Where(x => !Application.CurrentGame.Heroes.Active.Any(y => y.Id == x.Id)).ToList();
 		}
 
 		public IList<Hero> AvailableHeroes { get; private set; }
@@ -29,7 +24,7 @@ namespace Vineland.Necromancer.UI
 				_selectedHero = value;
 				if (value != null) {
 					MessagingCenter.Send<SelectHeroViewModel, Hero> (this, "HeroSelected", value);
-					_navigationService.Pop ();
+					Application.Navigation.Pop ();
 				}
 			}
 		}
