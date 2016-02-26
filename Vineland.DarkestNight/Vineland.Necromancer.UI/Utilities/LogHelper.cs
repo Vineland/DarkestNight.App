@@ -31,7 +31,7 @@ namespace Vineland.Necromancer.UI
 
 		private static void Log (string message)
 		{
-			Console.Write (AppConstants.AppName + " - " + message);
+			Console.WriteLine(AppConstants.AppName + " - " + message);
 		}
 	}
 

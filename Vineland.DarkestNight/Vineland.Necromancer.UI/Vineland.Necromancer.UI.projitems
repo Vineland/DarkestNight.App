@@ -25,9 +25,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectHeroViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerPhaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\PageService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml.cs">
-      <DependentUpon>BlightLocationsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml.cs">
       <DependentUpon>ChooseHeroesPage.xaml</DependentUpon>
     </Compile>
@@ -67,7 +64,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\BlightCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -80,9 +78,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

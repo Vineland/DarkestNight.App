@@ -24,7 +24,7 @@ namespace Vineland.Necromancer.Core
 			}
 		}
 
-		public void SpawnBlight (Location location, GameState gameState)
+		public Blight SpawnBlight (Location location, GameState gameState)
 		{
 			var blightName = gameState.MapCards.DrawCard ().Rows.Single (r => r.Location == location.Name).Blight;
 			var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
@@ -33,6 +33,8 @@ namespace Vineland.Necromancer.Core
 				gameState.BlightPool.Remove (blight);
 			} else //if there are no blights of that type left to spawn try the next card
 				SpawnBlight (location, gameState);
+
+			return blight;
 		}
 
 		public void DestroyBlight (Location location, Blight blight, GameState gameState)

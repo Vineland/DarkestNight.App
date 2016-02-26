@@ -74,7 +74,8 @@ namespace Vineland.Necromancer.UI
 				}
 
 			} catch (Exception ex) {
-				throw ex;
+				LogHelper.Error(ex);
+				throw;
 			}
 		}
 	}

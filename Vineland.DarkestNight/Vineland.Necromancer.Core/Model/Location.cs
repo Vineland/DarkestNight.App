@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight;
 
 namespace Vineland.Necromancer.Core
 {
-	public class Location
+	public class Location: IComparable
 	{
 		public int Id { get; set; }
 
@@ -82,6 +82,17 @@ namespace Vineland.Necromancer.Core
 		public override string ToString ()
 		{
 			return this.Name;
+		}
+
+		public int CompareTo (object obj)
+		{
+			var location = obj as Location;
+			if (this.Id < location.Id)
+				return -1;
+			if (this.Id == location.Id)
+				return 0;
+			
+			return 1;
 		}
 	}
 
