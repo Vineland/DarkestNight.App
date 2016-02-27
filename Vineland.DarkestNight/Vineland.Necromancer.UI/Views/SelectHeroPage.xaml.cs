@@ -9,8 +9,10 @@ namespace Vineland.Necromancer.UI
 	{
 		public SelectHeroPage ()
 		{
+			Title = "Select New Heroe";
+			BackgroundImage = "background";
+
 			InitializeComponent ();
-			Title = "Select New Hero";
 		}
 	}
 }

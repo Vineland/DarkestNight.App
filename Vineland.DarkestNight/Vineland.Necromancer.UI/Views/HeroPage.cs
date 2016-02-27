@@ -20,9 +20,8 @@ namespace Vineland.Necromancer.UI
 			if (hero == null)
 				return;
 			
-			this.Padding = new Thickness (20, 60, 20, 40);
 			var grid = new Grid {
-
+				Padding = new Thickness(20,20,20,40),
 				RowSpacing = 10,
 //				RowDefinitions = {
 //					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },

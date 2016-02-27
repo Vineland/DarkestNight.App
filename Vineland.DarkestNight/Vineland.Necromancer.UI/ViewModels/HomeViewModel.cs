@@ -8,6 +8,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Vineland.DarkestNight.UI;
 using Android.InputMethodServices;
+using Newtonsoft.Json;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {
@@ -15,6 +17,14 @@ namespace Vineland.Necromancer.UI
 	{
 		public HomeViewModel ()
 		{
+		}
+
+		public override void OnAppearing ()
+		{
+			if (Application.CurrentGame == null && Application.FileService.DoesFileExist (AppConstants.SaveFilePath))
+				Application.CurrentGame = JsonConvert.DeserializeObject<GameState> (Application.FileService.LoadFile (AppConstants.SaveFilePath));
+
+			RaisePropertyChanged (() => ContinueGameCommand);
 		}
 
 		public RelayCommand ContinueGameCommand {

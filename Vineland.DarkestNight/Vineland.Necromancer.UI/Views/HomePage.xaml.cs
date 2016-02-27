@@ -13,9 +13,11 @@ namespace Vineland.Necromancer.UI
 		public HomePage ()
 		{
 			InitializeComponent ();
-			Title = "Home";
-			//BackgroundImage = "background2.jpg";
-			//NavigationPage.SetHasNavigationBar (this, false);
+		}
+
+		protected override void OnAppearing ()
+		{
+			(BindingContext as BaseViewModel).OnAppearing ();
 		}
 	}
 }

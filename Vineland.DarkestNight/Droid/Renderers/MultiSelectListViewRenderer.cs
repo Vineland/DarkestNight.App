@@ -20,7 +20,7 @@ using Android.Content.Res;
 [assembly: ExportRenderer (typeof(MultiSelectListView<Hero>), typeof(MultiSelectListViewRenderer<Hero>))]
 namespace Vineland.Necromancer.UI.Droid
 {
-		public class MultiSelectListViewRenderer<T> : CustomListViewRenderer
+		public class MultiSelectListViewRenderer<T> : ListViewRenderer
 {
 			public MultiSelectListViewRenderer ()
 		{

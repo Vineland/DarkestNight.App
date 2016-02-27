@@ -26,8 +26,6 @@ namespace Vineland.Necromancer.UI
 			InitializeComponent ();
 
 			FileService = Resolver.Resolve<FileService> ();
-			if (FileService.DoesFileExist (AppConstants.SaveFilePath))
-				CurrentGame = JsonConvert.DeserializeObject<GameState> (FileService.LoadFile (AppConstants.SaveFilePath));
 			
 			MainPage = new NavigationPage (Resolver.Resolve<PageService> ().CreatePage<HomePage> ());
 

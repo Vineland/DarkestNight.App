@@ -7,7 +7,6 @@ namespace Vineland.Necromancer.UI
 {
 	public class NecromancerPhaseViewModel : BaseViewModel
 	{
-
 		public NecromancerPhaseViewModel (Settings settings)
 		{
 		}

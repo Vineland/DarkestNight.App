@@ -66,6 +66,8 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\BlightCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationHeaderCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

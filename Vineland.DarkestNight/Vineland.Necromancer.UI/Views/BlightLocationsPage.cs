@@ -12,17 +12,21 @@ namespace Vineland.Necromancer.UI
 	{
 		public BlightLocationsPage ()
 		{
-		}
-
-		protected override void OnBindingContextChanged ()
-		{
-			var viewModel = BindingContext as BlightLocationsViewModel;
-
+			Title = "Blights";
+			BackgroundImage = "background";
+//		}
+//
+//		protected override void OnBindingContextChanged ()
+//		{
+//			var viewModel = BindingContext as BlightLocationsViewModel;
+//
 			var flowListView = new FlowListView() {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				SeparatorVisibility = SeparatorVisibility.None,
-
+				//GroupDisplayBinding = new Binding("Location.Name"),
+				//HasUnevenRows=false,
+				//GroupHeaderTemplate = new DataTemplate(typeof(LocationHeaderCell)),
 				FlowColumnsTemplates = new List<FlowColumnTemplateSelector>() {
 					new BlightAddTemplateSelector(),
 					new BlightAddTemplateSelector(),
@@ -36,13 +40,7 @@ namespace Vineland.Necromancer.UI
 			};
 
 			flowListView.SetBinding<BlightLocationsViewModel>(FlowListView.FlowItemsSourceProperty, v => v.Blights);
-			flowListView.FlowItemTapped += (sender, e) => {
-				var item = e.Item as BlightViewModel;
-				if (item != null){
-					LogHelper.Info(string.Format("FlowListView tapped: {0}", item.Blight.Name));
-					viewModel.RemoveBlight(item);
-				}
-			};
+			flowListView.FlowItemTapped += FlowListView_FlowItemTapped;
 
 			Content = new StackLayout() {
 				HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -52,6 +50,20 @@ namespace Vineland.Necromancer.UI
 				}
 			};
 		}
+
+		async void FlowListView_FlowItemTapped (object sender, ItemTappedEventArgs e)
+		{
+			var item = e.Item as BlightViewModel;
+			if (item != null){
+				LogHelper.Info(string.Format("FlowListView tapped: {0}", item.Blight.Name));
+				var answer = await DisplayAlert("Confirm", "Are you sure you want to remove this blight?", "Yes", "No");
+				if (answer) {
+					(BindingContext as BlightLocationsViewModel).RemoveBlight (item);
+				}
+			}
+		}
+
+
 	}
 
 	public class BlightAddTemplateSelector : FlowColumnTemplateSelector{

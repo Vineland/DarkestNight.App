@@ -48,12 +48,8 @@ namespace Vineland.Necromancer.UI
 
 			Task.Run (() => {
 				_blightService.DestroyBlight (blightViewModel.Location, blightViewModel.Blight, Application.CurrentGame);
+				Application.SaveCurrentGame();
 			});
-		}
-
-		public override void OnBackButtonPressed ()
-		{
-			Application.SaveCurrentGame();
 		}
 	}
 

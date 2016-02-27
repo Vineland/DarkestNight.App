@@ -3,8 +3,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.ChooseHeroesPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core"
-Padding="20,0,0,0">
+xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core">
 <ContentPage.ToolbarItems>
 	<ToolbarItem Name="Start Game" Command="{Binding StartGame}"></ToolbarItem>
 </ContentPage.ToolbarItems>

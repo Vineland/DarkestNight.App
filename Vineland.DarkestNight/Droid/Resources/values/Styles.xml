@@ -7,7 +7,7 @@
   </style>
 
   <style name="Theme.AppTheme" parent="android:Theme.Holo.Light">
-    <item name="android:windowBackground">@drawable/background</item>
+    <item name="android:windowBackground">@drawable/background_framed</item>
     <item name="android:windowActionBarOverlay">true</item>
     <item name="android:actionBarStyle">@style/action_bar_theme</item>
     <item name="android:actionMenuTextColor">#fff</item>

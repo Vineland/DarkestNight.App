@@ -40,5 +40,13 @@ namespace Vineland.Necromancer.UI
 				);
 			}
 		}
+
+		public override void OnDisappearing ()
+		{
+			//if no heroes where selected we must be going back to the home screen
+			//ensure the the current game is null otherwise you'll be able to 'continue' this game
+			if (!SelectedHeroes.Any ())
+				Application.CurrentGame = null;
+		}
     }
 }
