@@ -392,85 +392,85 @@
    },
    {  
       "Name":"Enigma",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Enigma",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Flux Cage",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Flux Cage",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Nexus",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Stigma",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Stigma",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":1,
       "Weight":1
    },
    {  
       "Name":"Terror",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Terror",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Void",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":2
    },
    {  
       "Name":"Void",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":2
    },
    {  
       "Name":"Void",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":2
    },
    {  
       "Name":"Wraiths",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":1
    },
    {  
       "Name":"Wraiths",
-      "Expansion":4,
+      "Expansion":8,
       "GlobalEffect":0,
       "Weight":1
    }

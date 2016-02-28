@@ -31,7 +31,7 @@ namespace Vineland.Necromancer.Core
 
 			gameState.BlightPool = _dataService.GetBlights ();
 
-			gameState.Locations = new List<Location> (Location.All);
+			gameState.Locations = _dataService.GetLocations();
 
 			_blightService.SpawnStartingBlights (gameState);
 

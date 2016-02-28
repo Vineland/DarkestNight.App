@@ -13,8 +13,9 @@ namespace Vineland.Necromancer.UI
 		protected override void OnBindingContextChanged ()
 		{
 			//var huh = BindingContext as ObservableCollection;
-
-			View = new Label () { Text = "Wuh?" };
+			var label = new Label();
+			label.SetBinding (Label.TextProperty, new Binding ("Key"));
+			View = label;
 		}
 	}
 }

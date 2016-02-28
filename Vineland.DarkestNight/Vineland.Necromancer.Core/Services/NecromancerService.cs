@@ -11,12 +11,10 @@ namespace Vineland.Necromancer.Core
 	public class NecromancerService
 	{
 		D6GeneratorService _d6GeneratorService;
-		DataService _dataService;
 
-		public NecromancerService (D6GeneratorService d6GeneratorService, DataService dataService)
+		public NecromancerService (D6GeneratorService d6GeneratorService)
 		{
 			_d6GeneratorService = d6GeneratorService;
-			_dataService = dataService;
 		}
 
 		/// <summary>
@@ -149,11 +147,11 @@ namespace Vineland.Necromancer.Core
 			}
 
 			//check for spill over to monastery
-			if (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation > 4) {
-				var overflow = (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation) - 4;
-				result.NumberOfBlightsToNewLocation -= overflow;
-				result.NumberOfBlightsToMonastery += overflow;
-			}
+//			if (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation > 4) {
+//				var overflow = (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation) - 4;
+//				result.NumberOfBlightsToNewLocation -= overflow;
+//				result.NumberOfBlightsToMonastery += overflow;
+//			}
             
 			//check if a quest needs to be spawned
 			if (gameState.PallOfSuffering && (result.MovementRoll == 3 || result.MovementRoll == 4))

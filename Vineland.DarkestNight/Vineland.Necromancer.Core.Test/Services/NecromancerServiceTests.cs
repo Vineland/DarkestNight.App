@@ -13,6 +13,7 @@ namespace Vineland.Necromancer.Core.Test
 		NecromancerService _necromancerService;
 		GameState _gameState;
 		Mock<D6GeneratorService> _mockD6Service;
+		DataService _dataService;
 
 		[SetUp]
 		public void Setup()
@@ -21,12 +22,11 @@ namespace Vineland.Necromancer.Core.Test
 			_mockD6Service.Setup(x => x.RollDemBones()).Returns(6);
 
 			_necromancerService = new NecromancerService(_mockD6Service.Object);
+			_dataService = new DataService(null);
 
 			_gameState = new GameState();
-			_gameState.Locations = new List<Location> (Location.All);
+			_gameState.Locations = new List<Location> (_dataService.GetLocations());
 		}
-
-
 
 		[Test]
 		public void Detect_HeroSecrecy6Roll6_NoDetections()
@@ -279,7 +279,7 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Darkness = 9;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights = 0;
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight>();
 
 			var result = _necromancerService.Activate(_gameState, roll: 3);
 
@@ -292,7 +292,7 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Darkness = 10;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights = 0;
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight>();
 
 			var result = _necromancerService.Activate(_gameState,roll: 3);
 
@@ -305,7 +305,7 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Darkness = 10;
 			_gameState.Mode = DarknessCardsMode.Midnight;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights = 1;
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight>(){ new Blight()};
 
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
@@ -316,7 +316,12 @@ namespace Vineland.Necromancer.Core.Test
 		public void Spawn_NewLocationHas4Blights_OneNewBlightAtMonastery()
 		{
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights = 4;
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+				new Blight(),
+				new Blight(),
+				new Blight(),
+				new Blight()
+			};
 
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
@@ -472,8 +477,10 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Mode = DarknessCardsMode.Standard;
 			_gameState.Necromancer.Overwhelm = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =2;
-
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+				new Blight(),
+				new Blight(),
+			};
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
 			Assert.AreEqual(0, result.NumberOfBlightsToMonastery);
@@ -485,8 +492,11 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Mode = DarknessCardsMode.Standard;
 			_gameState.Necromancer.Overwhelm = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =3;
-
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+				new Blight(),
+				new Blight(),
+				new Blight(),
+			};
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
 			Assert.AreEqual(1, result.NumberOfBlightsToMonastery);
@@ -498,8 +508,11 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Mode = DarknessCardsMode.Standard;
 			_gameState.Necromancer.Overwhelm = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =4;
-
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+				new Blight(),
+				new Blight(),
+				new Blight(),
+			};
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
 			Assert.AreEqual(1, result.NumberOfBlightsToMonastery);
@@ -511,8 +524,8 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Mode = DarknessCardsMode.Twilight;
 			_gameState.Necromancer.DyingLand = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =0;
-
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+			};
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
 			Assert.AreEqual(2, result.NumberOfBlightsToNewLocation);
@@ -524,8 +537,9 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Mode = DarknessCardsMode.Twilight;
 			_gameState.Necromancer.DyingLand = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =1;
-
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+				new Blight(),
+			};
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
 			Assert.AreEqual(1, result.NumberOfBlightsToNewLocation);
@@ -538,8 +552,8 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Darkness = 10;
 			_gameState.Necromancer.DyingLand = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =0;
-
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+			};
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
 			Assert.AreEqual(2, result.NumberOfBlightsToNewLocation);
@@ -552,8 +566,9 @@ namespace Vineland.Necromancer.Core.Test
 			_gameState.Darkness = 10;
 			_gameState.Necromancer.DyingLand = true;
 			_gameState.Necromancer.LocationId = LocationIds.Ruins;
-			_gameState.Locations.Single (x => x.Id == LocationIds.Village).NumberOfBlights =1;
-
+			_gameState.Locations.Single (x => x.Id == LocationIds.Village).Blights = new List<Blight> () {
+				new Blight(),
+			};
 			var result = _necromancerService.Activate(_gameState, roll:3);
 
 			Assert.AreEqual(2, result.NumberOfBlightsToNewLocation);

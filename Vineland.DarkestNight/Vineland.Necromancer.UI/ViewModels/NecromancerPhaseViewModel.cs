@@ -23,7 +23,7 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public List<Location> AllLocations{
-			get { return Location.All; }
+			get { return Application.CurrentGame.Locations; }
 		}
 
 		public NecomancerState Necromancer{

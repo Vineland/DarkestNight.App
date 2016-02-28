@@ -11,6 +11,7 @@ namespace Vineland.Necromancer.UI
 		public HeroPhasePage ()
 		{ 
 			InitializeComponent ();
+			Title = /*We could be */ "Heroes"; /*Just for one day*/
 		}
 	}
 }

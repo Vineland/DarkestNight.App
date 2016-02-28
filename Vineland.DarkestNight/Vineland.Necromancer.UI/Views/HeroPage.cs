@@ -74,7 +74,7 @@ namespace Vineland.Necromancer.UI
 
 			var locationPicker = new BindablePicker<Location> ();
 			locationPicker.SetBinding<Hero> (BindablePicker<Location>.SelectedIndexProperty, h => h.LocationId);
-			locationPicker.ItemsSource = Location.All;
+			locationPicker.SetBinding (BindablePicker<Location>.ItemsSourceProperty, new Binding ("Locations", source: this.GetParentPage ().BindingContext));
 
 			grid.Children.Add (locationPicker, 1, 3);
 

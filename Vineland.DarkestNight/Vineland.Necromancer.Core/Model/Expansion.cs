@@ -2,17 +2,18 @@
 
 namespace Vineland.Necromancer.Core
 {
+	[Flags]
 	public enum Expansion
 	{
 		BaseGame = 0,
-		WithAnInnerLight,
-		OnShiftingWinds,
-		FromTheAbyss,
-		InTalesOfOld,
-		NymphPromo,
-		EnchanterPromo,
-		MercenaryPromo,
-		TinkerPromo
+		WithAnInnerLight = 1,
+		OnShiftingWinds =2,
+		FromTheAbyss = 4,
+		InTalesOfOld = 8,
+		NymphPromo = 16,
+		EnchanterPromo = 32,
+		MercenaryPromo = 64,
+		TinkerPromo = 128
 	}
 }
 

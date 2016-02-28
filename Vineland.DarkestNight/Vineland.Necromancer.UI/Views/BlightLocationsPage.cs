@@ -26,7 +26,9 @@ namespace Vineland.Necromancer.UI
 				SeparatorVisibility = SeparatorVisibility.None,
 				//GroupDisplayBinding = new Binding("Location.Name"),
 				//HasUnevenRows=false,
-				//GroupHeaderTemplate = new DataTemplate(typeof(LocationHeaderCell)),
+				RowHeight=72,
+				HasUnevenRows = true,
+				GroupHeaderTemplate = new DataTemplate(typeof(LocationHeaderCell)),
 				FlowColumnsTemplates = new List<FlowColumnTemplateSelector>() {
 					new BlightAddTemplateSelector(),
 					new BlightAddTemplateSelector(),
@@ -85,7 +87,7 @@ namespace Vineland.Necromancer.UI
 		{
 			var blightModel = (BlightViewModel)bindingContext;
 
-			return blightModel.Location.Name;
+			return blightModel.Location.Name.ToUpper();
 		}
 	}
 

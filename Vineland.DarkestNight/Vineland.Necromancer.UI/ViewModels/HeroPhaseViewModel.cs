@@ -90,6 +90,10 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		public List<Location> Locations {
+			get { return Application.CurrentGame.Locations; }
+		}
+
 
 		public Vineland.Necromancer.Core.HeroesState HeroesState {
 			get { return Application.CurrentGame.Heroes; }

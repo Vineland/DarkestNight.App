@@ -6,7 +6,7 @@ namespace Vineland.Necromancer.Core
 {
     public class Settings
     {
-
+		private const string EXPANSIONS = "Expansions";
         private const string DARKNESS_CARDS_MODE = "DarknessCardsMode";
         private const string PALL_OF_SUFFERING = "PallOfSuffering";
         private const string STARTING_DARKNESS = "StartingDarkness";
@@ -43,6 +43,11 @@ namespace Vineland.Necromancer.Core
             get { return (DarknessCardsMode)_settingsService.LoadInt(DARKNESS_CARDS_MODE); }
             set { _settingsService.SaveInt(DARKNESS_CARDS_MODE, (int)value); }
         }
+
+		public int Expansions{
+			get { return _settingsService.LoadInt (EXPANSIONS); }
+			set{ _settingsService.SaveInt (EXPANSIONS, value); }
+		}
 
 		public bool WithAnInnerLight
 		{

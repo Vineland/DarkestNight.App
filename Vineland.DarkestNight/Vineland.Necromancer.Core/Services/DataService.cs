@@ -78,6 +78,10 @@ namespace Vineland.Necromancer.Core
 			return mapCards;
 		}
 
+		public List<Location> GetLocations(){
+			return Locations;
+		}
+
 		private string ReadEmbeddedResource (string resourceId)
 		{
 			var assembly = typeof(DataService).GetTypeInfo ().Assembly;
