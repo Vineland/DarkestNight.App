@@ -22,7 +22,7 @@ namespace Vineland.Necromancer.UI
 		public override void OnAppearing ()
 		{
 			if (Application.CurrentGame == null && Application.FileService.DoesFileExist (AppConstants.SaveFilePath))
-				Application.CurrentGame = JsonConvert.DeserializeObject<GameState> (Application.FileService.LoadFile (AppConstants.SaveFilePath));
+				Application.CurrentGame = JsonConvert.DeserializeObject<GameState> (Application.FileService.LoadFile (AppConstants.SaveFilePath), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 
 			RaisePropertyChanged (() => ContinueGameCommand);
 		}

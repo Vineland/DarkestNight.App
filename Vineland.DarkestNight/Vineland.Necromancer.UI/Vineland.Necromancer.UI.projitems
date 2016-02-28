@@ -68,6 +68,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\BlightCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationHeaderCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Partial\HeroView.xaml.cs">
+      <DependentUpon>HeroView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -78,6 +82,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Partial\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
@@ -105,6 +110,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partial\HeroView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

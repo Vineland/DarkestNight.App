@@ -23,17 +23,6 @@ namespace Vineland.Necromancer.UI
 			var grid = new Grid {
 				Padding = new Thickness(20,20,20,40),
 				RowSpacing = 10,
-//				RowDefinitions = {
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//					new RowDefinition { Height = GridLength.Auto },
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-//				},
 				RowDefinitions = {
 					new RowDefinition { Height = GridLength.Auto },
 					new RowDefinition { Height = GridLength.Auto },
@@ -109,6 +98,18 @@ namespace Vineland.Necromancer.UI
 				optionLabel = "Blinding Black";
 				property = "BlindingBlackActive";
 				break;
+			case "Scholar":
+				optionLabel = "Ancient Defense";
+				property = "AncientDefenseLocationId";
+				break;
+			case "Conjurer":
+				optionLabel = "Invisible Barrier";
+				property = "InvisibleBarrierLocationId";
+				break;
+//			case "Shaman":
+//				optionLabel = "Spirit Sight";
+//				property = "SpiritSightMapCard";
+//				break;
 			}
 
 			if (!string.IsNullOrEmpty (property)) {
@@ -117,12 +118,12 @@ namespace Vineland.Necromancer.UI
 
 				if (property == "ProphecyOfDoomRoll") {
 					var picker = new CustomStepper () { Maximum = 6, HorizontalOptions = LayoutOptions.End };
-					picker.SetBinding (CustomStepper.ValueProperty, new Binding ("HeroesState." + property, source: this.GetParentPage ().BindingContext));
+					picker.SetBinding (CustomStepper.ValueProperty, new Binding (property));
 					grid.Children.Add (picker, 1, 4);
 
 				} else {
 					var switchControl = new CheckButton () { HorizontalOptions = LayoutOptions.End };
-					switchControl.SetBinding (CheckButton.IsSelectedProperty, new Binding ("HeroesState." + property, source: this.GetParentPage ().BindingContext));
+					switchControl.SetBinding (CheckButton.IsSelectedProperty, new Binding (property));
 					grid.Children.Add (switchControl, 1, 4);
 				}
 			} 

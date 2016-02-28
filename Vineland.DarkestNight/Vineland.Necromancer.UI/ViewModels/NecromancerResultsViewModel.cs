@@ -16,20 +16,30 @@ namespace Vineland.Necromancer.UI
 	{
 		NecromancerService _necromancerService;
 
+		#region Notable Heroes
+
+		Seer _seer;
+		Wizard _wizard;
+
+		#endregion
+
 		public NecromancerResultsViewModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
 
+			_seer = Application.CurrentGame.Heroes.GetHero<Seer> ();
+			_wizard = Application.CurrentGame.Heroes.GetHero<Wizard> ();
+
 			var results = new List<NecromancerActivationResult> ();
-			if (Application.CurrentGame.Heroes.ProphecyOfDoomRoll == 0)
+			if (_seer != null && _seer.ProphecyOfDoomRoll == 0)
 				results.Add (_necromancerService.Activate (Application.CurrentGame));
 			else
-				results.Add (_necromancerService.Activate (Application.CurrentGame, roll: Application.CurrentGame.Heroes.ProphecyOfDoomRoll));
+				results.Add (_necromancerService.Activate (Application.CurrentGame, roll: _seer.ProphecyOfDoomRoll));
 
-			if (Application.CurrentGame.Heroes.RuneOfMisdirectionActive)
+			if (_wizard != null && _wizard.RuneOfMisdirectionActive)
 				results.Add (_necromancerService.Activate (Application.CurrentGame));
 
-			Results = results.Select (x => new NecromancerActivationResultViewModel (x, _necromancerService)).ToList();
+			Results = results.Select (x => new NecromancerActivationResultViewModel (x, _necromancerService)).ToList ();
 			SelectedResult = Results.First ();
 		}
 
@@ -42,7 +52,7 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (() => {
 					
-					Application.CurrentGame.Heroes.ProphecyOfDoomRoll = 0;
+					_seer.ProphecyOfDoomRoll = 0;
 					Application.CurrentGame.Necromancer.LocationId = SelectedResult.Result.NewLocation.Id;
 					//TODO spawn blights
 					//Application.CurrentGame.Locations.Single (x => x.Id == SelectedResult.Result.NewLocation.Id).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToNewLocation;
@@ -60,11 +70,19 @@ namespace Vineland.Necromancer.UI
 
 		NecromancerActivationResult _result;
 		NecromancerService _necromancerService;
+		Acolyte _acolyte;
+		Wayfarer _wayfarer;
+		Valkyrie _valkyrie;
+		Shaman _shaman;
 
 		public NecromancerActivationResultViewModel (NecromancerActivationResult result, NecromancerService necroService)
 		{
 			_result = result;
 			_necromancerService = necroService;
+			_acolyte = Application.CurrentGame.Heroes.GetHero<Acolyte> ();
+			_wayfarer = Application.CurrentGame.Heroes.GetHero <Wayfarer> ();
+			_valkyrie = Application.CurrentGame.Heroes.GetHero <Valkyrie> ();
+			_shaman = Application.CurrentGame.Heroes.GetHero<Shaman> ();
 		}
 
 		public NecromancerActivationResult Result {
@@ -75,63 +93,81 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public bool BlindingBlackVisible {
-			get {
-				return Application.CurrentGame.Heroes.BlindingBlackActive;
-			}
-		}
 
-		public RelayCommand BlindingBlackCommand {
-			get {
-				return new RelayCommand (() => {
-					Result = _necromancerService.Activate (Application.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: Application.CurrentGame.Heroes.Active.Select (x => x.Id).ToArray ());
-				},
-					() => {
-						return Result.DetectedHero != null;
-					});
-			}
-		}
 
-		public bool DecoyVisible {
-			get {
-				return Application.CurrentGame.Heroes.DecoyActive;
-			}
-		}
-
-		public RelayCommand DecoyCommand {
-			get {
-				return new RelayCommand (() => {
-					var wayfarer = Application.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
-					Result = _necromancerService.Activate (Application.CurrentGame, detectedHero: wayfarer);
-				},
-					() => {
-						var wayfarer = Application.CurrentGame.Heroes.Active.SingleOrDefault (x => x.Name == "Wayfarer");
-
-						return Result.DetectedHero != null
-						&& (wayfarer != null
-						&& wayfarer.LocationId != LocationIds.Monastery
-						&& wayfarer.Secrecy >= Result.DetectionRoll);
-					});
-			}
-		}
-
-		public bool ElusiveSpiritVisible {
-			get { 
-				return Application.CurrentGame.Heroes.ElusiveSpiritActive;
-			}
-		}
-
-		public RelayCommand ElusiveSpiritCommand {
-			get {
-				return new RelayCommand (() => {
-					//TODO could be triggered more than once
-					Result = _necromancerService.Activate (Application.CurrentGame, heroesToIgnore: new int[] { Result.DetectedHero.Id });
-				},
-					() => {
-						return Result.DetectedHero != null && Result.DetectionRoll == Result.DetectedHero.Secrecy + 1; 
-					});
-			}
-		}
+//		public RelayCommand IgnoreAllHeroesCommand {
+//			get {
+//				return new RelayCommand (() => {
+//					Result = _necromancerService.Activate (Application.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: Application.CurrentGame.Heroes.Select (x => x.Id).ToArray ());
+//				},
+//					() => {
+//						return Result.DetectedHero != null;
+//					});
+//			}
+//		}
+//
+//		List<int> _heroesToIgnore = new List<int> ();
+//
+//		public RelayCommand IgnoreHeroCommand {
+//			get {
+//				return new RelayCommand (() => {
+//					_heroesToIgnore.Add (Result.DetectedHero.Id);
+//					Result = _necromancerService.Activate (Application.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: _heroesToIgnore);
+//				},
+//					() => {
+//						return Result.DetectedHero != null;
+//					});
+//			}
+//		}
+				public RelayCommand BlindingBlackCommand {
+					get {
+						return new RelayCommand (() => {
+							Result = _necromancerService.Activate (Application.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: Application.CurrentGame.Heroes.Select (x => x.Id).ToArray ());
+							_acolyte.BlindingBlackActive = false;
+						},
+							() => {
+								return Result.DetectedHero != null;
+							});
+					}
+				}
+		
+				public bool DecoyVisible {
+					get {
+						return _wayfarer != null && _wayfarer.DecoyActive;
+					}
+				}
+		
+				public RelayCommand DecoyCommand {
+					get {
+						return new RelayCommand (() => {
+							Result = _necromancerService.Activate (Application.CurrentGame, detectedHero: _wayfarer);
+						},
+							() => {
+								return Result.DetectedHero != null
+								&& (_wayfarer != null
+								&& _wayfarer.LocationId != LocationIds.Monastery
+								&& _wayfarer.Secrecy >= Result.DetectionRoll);
+							});
+					}
+				}
+		
+				public bool ElusiveSpiritVisible {
+					get {
+						return _valkyrie != null && _valkyrie.ElusiveSpiritActive;
+					}
+				}
+		
+				public RelayCommand ElusiveSpiritCommand {
+					get {
+						return new RelayCommand (() => {
+							//TODO could be triggered more than once
+							Result = _necromancerService.Activate (Application.CurrentGame, heroesToIgnore: new int[] { Result.DetectedHero.Id });
+						},
+							() => {
+								return Result.DetectedHero != null && Result.DetectionRoll == Result.DetectedHero.Secrecy + 1;
+							});
+					}
+				}
 	}
 }
 

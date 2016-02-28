@@ -16,6 +16,10 @@ namespace Vineland.Necromancer.Core
         public int LocationId { get; set; }
 		public Expansion Expansion { get; set; }
 
+		#region Artifacts
+		public bool HasVoidArmor { get; set; }
+		#endregion
+
 		public Hero ()
 		{
 			LocationId = LocationIds.Monastery;

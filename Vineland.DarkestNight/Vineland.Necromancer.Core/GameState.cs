@@ -13,7 +13,6 @@ namespace Vineland.Necromancer.Core
 	{
 		public GameState ()
 		{
-			Heroes = new HeroesState ();
 			Necromancer = new NecomancerState ();
 		}
 
@@ -23,7 +22,7 @@ namespace Vineland.Necromancer.Core
 
 		public List<Blight> BlightPool { get; set; }
 
-		public HeroesState Heroes { get; protected set; }
+		public List<Hero> Heroes { get; set; }
 
 		public NecomancerState Necromancer { get; protected set; }
 
@@ -33,43 +32,12 @@ namespace Vineland.Necromancer.Core
 
 		public DarknessCardsMode Mode { get; set; }
 
-		//public bool SpawnBlights { get; set; }
-
 		public bool DarknessTrackEffectsActive {
 			get {
 				return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
 			}
 		}
 
-	}
-
-	public class HeroesState
-	{
-
-		public HeroesState ()
-		{
-			Active = new List<Hero> ();
-		}
-
-		public List<Hero> Active { get; set; }
-
-		#region Effects
-
-		public bool HermitActive { get; set; }
-
-		public bool AuraOfHumilityActive { get; set; }
-
-		public bool RuneOfMisdirectionActive { get; set; }
-
-		public bool BlindingBlackActive { get; set; }
-
-		public bool ElusiveSpiritActive { get; set; }
-
-		public bool DecoyActive { get; set; }
-
-		public int ProphecyOfDoomRoll { get; set; }
-
-		#endregion
 	}
 
 	public class NecomancerState

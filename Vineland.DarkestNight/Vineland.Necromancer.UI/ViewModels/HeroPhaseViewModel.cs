@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Dalvik.SystemInterop;
 
 namespace Vineland.Necromancer.UI
 {
@@ -18,7 +19,7 @@ namespace Vineland.Necromancer.UI
 	{
 		public HeroPhaseViewModel ()
 		{
-			Heroes = new ObservableCollection<Hero> (Application.CurrentGame.Heroes.Active);
+			Heroes = new ObservableCollection<Hero> (Application.CurrentGame.Heroes);
 
 			MessagingCenter.Subscribe<SelectHeroViewModel,Hero> (this, "HeroSelected", OnHeroSelected);
 		}
@@ -31,12 +32,12 @@ namespace Vineland.Necromancer.UI
 
 		public ObservableCollection<Hero> Heroes { get; private set; }
 
-		public Hero SelectedHero {get;set;}
+		public Hero SelectedHero { get; set; }
 
 		public RelayCommand NextPhase {
 			get {
 				return new RelayCommand (() => {
-					Application.SaveCurrentGame();
+					Application.SaveCurrentGame ();
 					Application.Navigation.Push<NecromancerPhasePage> ();
 				});
 			}
@@ -68,7 +69,7 @@ namespace Vineland.Necromancer.UI
 			SelectedHero = selectedHero;
 			RaisePropertyChanged (() => SelectedHero);
 			Task.Run (() => {
-				Application.CurrentGame.Heroes.Active = Heroes.ToList ();
+				Application.CurrentGame.Heroes = Heroes.ToList ();
 				Application.SaveCurrentGame ();
 			});
 		}
@@ -94,11 +95,14 @@ namespace Vineland.Necromancer.UI
 			get { return Application.CurrentGame.Locations; }
 		}
 
-
-		public Vineland.Necromancer.Core.HeroesState HeroesState {
-			get { return Application.CurrentGame.Heroes; }
+		public List<SelectListItem<int?>> OptionLocationIds {
+			get 
+			{
+				var options = Application.CurrentGame.Locations.Select (x => new SelectListItem<int?> () { Name = x.Name, Value = x.Id }).ToList();
+				options.Insert (0, new SelectListItem<int?>{ Name = "None", Value = null });
+				return options;
+			}
 		}
-
 	}
 }
 

@@ -9,9 +9,9 @@ namespace Vineland.Necromancer.UI
 {
 	public class SelectHeroViewModel :BaseViewModel
 	{
-		public SelectHeroViewModel (HeroService heroService)
+		public SelectHeroViewModel (DataService dataService)
 		{
-			AvailableHeroes = heroService.GetAll().Where(x => !Application.CurrentGame.Heroes.Active.Any(y => y.Id == x.Id)).ToList();
+			AvailableHeroes = dataService.GetAllHeroes().Where(x => !Application.CurrentGame.Heroes.Any(y => y.Id == x.Id)).ToList();
 		}
 
 		public IList<Hero> AvailableHeroes { get; private set; }

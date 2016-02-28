@@ -37,9 +37,24 @@ namespace Vineland.Necromancer.Core
 		{
 			get{
 				if (_locations == null) {
-					_locations = JsonConvert.DeserializeObject<List<Location>> (ReadEmbeddedResource ("Vineland.Necromancer.Core.locations.json"));;
+					_locations = JsonConvert.DeserializeObject<List<Location>> (ReadEmbeddedResource ("Vineland.Necromancer.Core.Resources.locations.json"));;
 				}
 				return _locations;
+			}
+		}
+
+		List<Hero> _heroes;
+		private List<Hero> Heroes 
+		{
+			get{
+				if (_heroes == null) {
+					_heroes = JsonConvert.DeserializeObject<List<Hero>> (ReadEmbeddedResource ("Vineland.Necromancer.Core.Resources.heroes.json"),
+						new JsonSerializerSettings 
+						{ 
+							TypeNameHandling = TypeNameHandling.Objects 
+						});;
+				}
+				return _heroes;
 			}
 		}
 
@@ -77,6 +92,37 @@ namespace Vineland.Necromancer.Core
 
 			return mapCards;
 		}
+
+		public List<Hero> GetAllHeroes(){
+			var heroes = Heroes.Where (x => x.Expansion == Expansion.BaseGame).ToList();
+
+			if (_settings.WithAnInnerLight)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.WithAnInnerLight));
+
+			if (_settings.OnShiftingWinds)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.OnShiftingWinds));
+
+			if (_settings.FromTheAbyss)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.FromTheAbyss));
+
+			if (_settings.InTalesOfOld)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.InTalesOfOld));
+
+			if (_settings.NymphPromo)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.NymphPromo));
+
+			if (_settings.EnchanterPromo)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.EnchanterPromo));
+
+			if (_settings.MercenaryPromo)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.MercenaryPromo));
+
+			if (_settings.TinkerPromo)
+				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.TinkerPromo));
+
+			return heroes.OrderBy(x=> x.Name).ToList();
+		}
+
 
 		public List<Location> GetLocations(){
 			return Locations;

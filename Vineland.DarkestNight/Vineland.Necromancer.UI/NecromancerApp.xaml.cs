@@ -39,7 +39,8 @@ namespace Vineland.Necromancer.UI
 		public async void SaveCurrentGame ()
 		{
 			await Task.Run (() => {
-				FileService.SaveFile (AppConstants.SaveFilePath, JsonConvert.SerializeObject (CurrentGame));
+				var gameJson = JsonConvert.SerializeObject (CurrentGame, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+				FileService.SaveFile (AppConstants.SaveFilePath, gameJson);
 			});
 		}
 

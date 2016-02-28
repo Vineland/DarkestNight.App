@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vineland.Necromancer.Core.Services;
 using System.Globalization;
+using System.Xml.Linq;
 
 namespace Vineland.Necromancer.Core
 {
@@ -50,16 +51,16 @@ namespace Vineland.Necromancer.Core
 		                     int[] heroesToIgnore)
 		{
 			//first check if any heroes can be detected
-			var exposedHeroes = gameState.Heroes.Active.Where (x => x.LocationId != LocationIds.Monastery && x.Secrecy < result.DetectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
+			var exposedHeroes = gameState.Heroes.Where (x => x.LocationId != LocationIds.Monastery && x.Secrecy < result.DetectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
 
 			//special hero effects
-			if (gameState.Heroes.HermitActive)
-				exposedHeroes = exposedHeroes.Where (x => !(x.Name == "Ranger" && x.LocationId == LocationIds.Swamp));
+			var ranger = gameState.Heroes.SingleOrDefault(x=>x is Ranger) as Ranger;
+			if (ranger != null && ranger.HermitActive && ranger.LocationId == LocationIds.Swamp)
+				exposedHeroes = exposedHeroes.Where (h => h != ranger);
 
-			if (gameState.Heroes.AuraOfHumilityActive) {
-				var paragonLocationId = gameState.Heroes.Active.First (x => x.Name == "Paragon").LocationId;
-				exposedHeroes = exposedHeroes.Where (x => x.LocationId != paragonLocationId);
-			}
+			var paragon = gameState.Heroes.SingleOrDefault (h => h is Paragon) as Paragon;
+			if (paragon != null && paragon.AuraOfHumilityActive)
+				exposedHeroes = exposedHeroes.Where (x => x.LocationId != paragon.LocationId);
 
 			if (exposedHeroes.Any ()) {
 				//figure out which hero the necromancer is pursuing
@@ -122,7 +123,7 @@ namespace Vineland.Necromancer.Core
 			//darkness card effects
 			if (gameState.Mode != DarknessCardsMode.None) {
 				if (gameState.Necromancer.FocusedRituals
-				    && !gameState.Heroes.Active.Any (x => x.LocationId == result.NewLocation.Id))
+				    && !gameState.Heroes.Any (x => x.LocationId == result.NewLocation.Id))
 					result.NumberOfBlightsToNewLocation++;
 
 				if (gameState.Necromancer.CreepingShadows && (result.MovementRoll == 5 || result.MovementRoll == 6))
@@ -210,5 +211,7 @@ namespace Vineland.Necromancer.Core
 				return string.Empty;
 			}
 		}
+
+		public string Notes{ get; set; }
 	}
 }

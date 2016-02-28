@@ -15,11 +15,11 @@ namespace Vineland.Necromancer.UI
 {
 	public class ChooseHeroesViewModel : BaseViewModel
     {
-		public ChooseHeroesViewModel(HeroService heroService)
+		public ChooseHeroesViewModel(DataService dataService)
 		{
 			SelectedHeroes = new ObservableCollection<Hero> ();
 			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
-			Heroes = heroService.GetAll();
+			Heroes = dataService.GetAllHeroes();
 		}
  
 		public List<Hero> Heroes { get; private set; }
@@ -30,7 +30,7 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (
 					() => {
-						Application.CurrentGame.Heroes.Active = SelectedHeroes.OrderBy(x=>x.Name).ToList();
+						Application.CurrentGame.Heroes = SelectedHeroes.OrderBy(x=>x.Name).ToList();
 						Application.SaveCurrentGame ();
 						Application.Navigation.Push<HeroPhasePage>(true);
 					},
