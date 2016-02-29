@@ -13,7 +13,7 @@ namespace Vineland.Necromancer.Core
 
 		public void SpawnStartingBlights (GameState gameState)
 		{
-			var mapCard = gameState.MapCards.DrawCard ();
+			var mapCard = gameState.MapCards.Draw();
 			foreach (var row in mapCard.Rows) {
 				if (row.Location == "Monastery")
 					continue;
@@ -26,7 +26,7 @@ namespace Vineland.Necromancer.Core
 
 		public Blight SpawnBlight (Location location, GameState gameState)
 		{
-			var blightName = gameState.MapCards.DrawCard ().Rows.Single (r => r.Location == location.Name).Blight;
+			var blightName = gameState.MapCards.Draw().Rows.Single (r => r.Location == location.Name).Blight;
 			var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
 			if (blight != null) {
 				location.Blights.Add (blight);

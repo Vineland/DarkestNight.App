@@ -7,10 +7,11 @@ namespace Vineland.Necromancer.Core
 {
 	public class Deck<T>
 	{
-		public Deck (){
+		public Deck ()
+		{
 		}
 
-		public void Initialise(List<T> cards)
+		public void Initialise (List<T> cards)
 		{
 			DrawPile = cards;
 			DiscardPile = new List<T> ();
@@ -20,14 +21,39 @@ namespace Vineland.Necromancer.Core
 
 		public List<T> DiscardPile { get; set; }
 
-		public T DrawCard ()
+		public T Draw ()
 		{
 			CheckDrawPile ();
 
-			var card = DrawPile.First ();
+			var card = DrawPile.First();
 
+			return card;
+		}
+
+		public void Discard (T card)
+		{
+
+			if (DrawPile.Contains (card))
+				DrawPile.Remove (card);
+			
+			DiscardPile.Add (card);			
+		}
+
+		public void Place (T card, DeckPosition position)
+		{
+			switch (position) {
+			case DeckPosition.Top:
+				DrawPile.Insert (0, card);
+				break;
+			case DeckPosition.Bottom:
+				DrawPile.Add (card);
+				break;
+			}
+		}
+
+		public T Take(){
+			var card = Draw ();
 			DrawPile.Remove (card);
-			DiscardPile.Add (card);
 
 			return card;
 		}
@@ -42,6 +68,12 @@ namespace Vineland.Necromancer.Core
 				DiscardPile = new List<T> ();
 			}
 		}
+	}
+
+	public enum DeckPosition
+	{
+		Top,
+		Bottom
 	}
 }
 
