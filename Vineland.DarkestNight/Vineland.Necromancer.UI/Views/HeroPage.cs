@@ -20,52 +20,48 @@ namespace Vineland.Necromancer.UI
 			if (hero == null)
 				return;
 			
-			var grid = new Grid {
-				Padding = new Thickness(20,20,20,40),
-				RowSpacing = 10,
-				RowDefinitions = {
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = new GridLength (1, GridUnitType.Star) },
-					new RowDefinition { Height = GridLength.Auto },
-				},
-				ColumnDefinitions = {
-					new ColumnDefinition { Width = GridLength.Auto },
-					new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) }
-				}
+			var absoluteLayout = new AbsoluteLayout {
+				Padding = new Thickness(20,0,20,40)
 			};
 
 			var nameLabel = new Label () {
 
 				FontSize = Device.GetNamedSize (NamedSize.Large, typeof(Label)),
-				HorizontalOptions = LayoutOptions.Center,
+				VerticalTextAlignment = TextAlignment.Center,
+				HorizontalTextAlignment = TextAlignment.Center,
 				Text = hero.Name.ToUpper (),
 			};
-			grid.Children.Add (nameLabel, 0, 2, 0, 1);
+
+			absoluteLayout.Children.Add (nameLabel, new Rectangle (0, 0, 1, 48), AbsoluteLayoutFlags.WidthProportional);
 
 			var image = new Image () {
 				Source = ImageSource.FromFile (hero.Name.Replace (" ", string.Empty).ToLower ()),
 				HorizontalOptions = LayoutOptions.Center
 			};
-			grid.Children.Add (image, 0, 2, 1, 2);
-			grid.Children.Add (new Label () { Text = "Secrecy", VerticalOptions = LayoutOptions.Center }, 0, 2);
+			absoluteLayout.Children.Add (image, new Rectangle(0.5,48, 96,96), AbsoluteLayoutFlags.XProportional);
 
-			var secrecyStepper = new CustomStepper () { HorizontalOptions = LayoutOptions.End, Maximum = 9 };
+
+			absoluteLayout.Children.Add (new Label () { Text = "Secrecy", VerticalTextAlignment = TextAlignment.Center },
+				new Rectangle(0, 152, 0.6, 32),
+				AbsoluteLayoutFlags.WidthProportional);
+
+			var secrecyStepper = new CustomStepper () { Maximum = 9 };
 			secrecyStepper.SetBinding<Hero> (CustomStepper.ValueProperty, h => h.Secrecy);
-			grid.Children.Add (secrecyStepper, 1, 2);
+			absoluteLayout.Children.Add (secrecyStepper, 
+				new Rectangle(1, 152, 96, 32),
+				AbsoluteLayoutFlags.XProportional);
 
-			grid.Children.Add (new Label () { Text = "Location", VerticalOptions = LayoutOptions.Center }, 0, 3);
+			absoluteLayout.Children.Add (new Label () { Text = "Location", VerticalTextAlignment = TextAlignment.Center },
+				new Rectangle (0, 192, 0.6, 32),
+				AbsoluteLayoutFlags.WidthProportional);
 
 			var locationPicker = new BindablePicker<Location> ();
 			locationPicker.SetBinding<Hero> (BindablePicker<Location>.SelectedIndexProperty, h => h.LocationId);
 			locationPicker.SetBinding (BindablePicker<Location>.ItemsSourceProperty, new Binding ("Locations", source: this.GetParentPage ().BindingContext));
 
-			grid.Children.Add (locationPicker, 1, 3);
+			absoluteLayout.Children.Add (locationPicker,
+				new Rectangle(1,192,0.4,32),
+				AbsoluteLayoutFlags.WidthProportional | AbsoluteLayoutFlags.XProportional);
 
 			var optionLabel = string.Empty;
 			var property = string.Empty;
@@ -97,6 +93,7 @@ namespace Vineland.Necromancer.UI
 			case "Acolyte":
 				optionLabel = "Blinding Black";
 				property = "BlindingBlackActive";
+				//absoluteLayout.Children.Add (new AcolyteOptions(), 0, 2, 5, 6);				
 				break;
 			case "Scholar":
 				optionLabel = "Ancient Defense";
@@ -106,27 +103,46 @@ namespace Vineland.Necromancer.UI
 				optionLabel = "Invisible Barrier";
 				property = "InvisibleBarrierLocationId";
 				break;
+//			default:
+//				absoluteLayout.Children.Add (new HeroView (), 0, 2, 5, 6);
+//				break;
 //			case "Shaman":
 //				optionLabel = "Spirit Sight";
 //				property = "SpiritSightMapCard";
 //				break;
 			}
-
+//
+			int offset = 0;
 			if (!string.IsNullOrEmpty (property)) {
-
-				grid.Children.Add (new Label () { Text = optionLabel, VerticalOptions = LayoutOptions.Center }, 0, 4);
+				offset = 40;
+				absoluteLayout.Children.Add (new Label () { Text = optionLabel, VerticalTextAlignment = TextAlignment.Center }, 
+					new Rectangle(0,232,0.6,32),
+					AbsoluteLayoutFlags.WidthProportional);
 
 				if (property == "ProphecyOfDoomRoll") {
-					var picker = new CustomStepper () { Maximum = 6, HorizontalOptions = LayoutOptions.End };
+					var picker = new CustomStepper () { Maximum = 6};
 					picker.SetBinding (CustomStepper.ValueProperty, new Binding (property));
-					grid.Children.Add (picker, 1, 4);
+					absoluteLayout.Children.Add (picker, 
+						new Rectangle(1,232, 96,32),
+						AbsoluteLayoutFlags.XProportional);
 
 				} else {
-					var switchControl = new CheckButton () { HorizontalOptions = LayoutOptions.End };
+					var switchControl = new CheckButton ();
 					switchControl.SetBinding (CheckButton.IsSelectedProperty, new Binding (property));
-					grid.Children.Add (switchControl, 1, 4);
+					absoluteLayout.Children.Add (switchControl, 
+						new Rectangle(1,232, 32,32),
+						AbsoluteLayoutFlags.XProportional);
 				}
 			} 
+			absoluteLayout.Children.Add (new Label () { Text = "Void Amour", VerticalTextAlignment = TextAlignment.Center }, 
+				new Rectangle(0,string.IsNullOrEmpty(property)? 232: 272,0.6,32),
+				AbsoluteLayoutFlags.WidthProportional);
+			
+			var voidAmorControl = new CheckButton ();
+			voidAmorControl.SetBinding<Hero> (CheckButton.IsSelectedProperty, h=>h.HasVoidArmor);
+			absoluteLayout.Children.Add (voidAmorControl, 
+				new Rectangle(1, 232 + offset, 32,32),
+				AbsoluteLayoutFlags.XProportional);
 
 			var changeHeroButton = new Button () {
 				Text = "Defeated",
@@ -134,7 +150,9 @@ namespace Vineland.Necromancer.UI
 			};
 			changeHeroButton.SetBinding (Button.CommandProperty, new Binding ("RemoveHero", source: this.GetParentPage ().BindingContext));
 			changeHeroButton.CommandParameter = hero;
-			grid.Children.Add (changeHeroButton, 0, 2, 5, 6);
+			absoluteLayout.Children.Add (changeHeroButton,
+				new Rectangle(0,272 + offset, 1, 48),
+				AbsoluteLayoutFlags.WidthProportional);
 
 			var blightsButton = new Button () 
 			{
@@ -142,18 +160,23 @@ namespace Vineland.Necromancer.UI
 				HorizontalOptions = LayoutOptions.Fill,
 			};
 			blightsButton.SetBinding (Button.CommandProperty, new Binding ("Blights", source: this.GetParentPage ().BindingContext));
-			grid.Children.Add (blightsButton, 0, 2, 6, 7);
+			absoluteLayout.Children.Add (blightsButton,
+				new Rectangle(0,320 + offset, 1, 48),
+				AbsoluteLayoutFlags.WidthProportional);
 
-			grid.Children.Add (new Image () {
-				Source = ImageSource.FromFile ("darkness"),
-				VerticalOptions = LayoutOptions.End,
-				HorizontalOptions = LayoutOptions.Center
-			}, 0, 2, 7, 8);
-			var darknessStepper = new CustomStepper () { HorizontalOptions = LayoutOptions.Center };
+			var stackLayout = new StackLayout() {Spacing=10};
+			stackLayout.Children.Add (new Image () {
+				Source = ImageSource.FromFile ("darkness")
+			});
+			var darknessStepper = new CustomStepper ();
 			darknessStepper.SetBinding (CustomStepper.ValueProperty, new Binding ("Darkness", source: this.GetParentPage ().BindingContext));
-			grid.Children.Add (darknessStepper, 0, 2, 8, 9);
+			stackLayout.Children.Add (darknessStepper);
 
-			Content = grid;
+			absoluteLayout.Children.Add (stackLayout,
+				new Rectangle (0.5, 1, 96, 90),
+				AbsoluteLayoutFlags.PositionProportional);
+
+			Content = absoluteLayout;
 		}
 	}
 }

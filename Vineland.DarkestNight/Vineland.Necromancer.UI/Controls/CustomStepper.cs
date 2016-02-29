@@ -53,9 +53,10 @@ namespace Vineland.Necromancer.UI
 			Maximum = int.MaxValue;
 
 			//var layout = new RelativeLayout ();// { Orientation = StackOrientation.Horizontal, Spacing = 10 };
-			var layout = new StackLayout() { Orientation = StackOrientation.Horizontal, Spacing = 10};
+			var layout = new AbsoluteLayout();
+
 			DecrementImage = new Image () { Source = Minus };
-			ValueLabel = new Label () { FontFamily = "hobo", VerticalOptions= LayoutOptions.Center};
+			ValueLabel = new Label () { FontFamily = "hobo", VerticalOptions= LayoutOptions.Center, HorizontalTextAlignment=TextAlignment.Center};
 			IncrementImage = new Image () { Source = Plus };
 
 			DecrementImage.GestureRecognizers.Add (new TapGestureRecognizer () {
@@ -75,9 +76,9 @@ namespace Vineland.Necromancer.UI
 			//layout.Children.Add (DecrementImage, xConstraint: Constraint.Constant(0));
 			//layout.Children.Add (ValueLabel, xConstraint:Constraint.RelativeToParent((parent) => parent.Width / 3));
 			//layout.Children.Add (IncrementImage, xConstraint:Constraint.RelativeToParent((parent) => (parent.Width / 3) * 2));
-			layout.Children.Add(DecrementImage);
-			layout.Children.Add (ValueLabel);
-			layout.Children.Add (IncrementImage);
+			layout.Children.Add(DecrementImage, new Rectangle(0,0,32,32));
+			layout.Children.Add (ValueLabel, new Rectangle(32,0,32,32));
+			layout.Children.Add (IncrementImage, new Rectangle(64,0,32,32));
 			Content = layout;
 		}
 	}

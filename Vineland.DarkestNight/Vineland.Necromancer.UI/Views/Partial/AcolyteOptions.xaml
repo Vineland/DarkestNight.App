@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+ x:Class="Vineland.Necromancer.UI.AcolyteOptions"
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI">
+	<ContentView.Content>
+		<AbsoluteLayout>
+
+			<Label Text="Blinding Black" VerticalTextAlignment="Center" AbsoluteLayout.LayoutFlags="WidthProportional"  AbsoluteLayout.LayoutBounds="0,0, 0.6, 32" />
+			<ui:CheckButton IsSelected="{Binding BlindingBlackActive}"  AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,0,32,32" />
+
+			<Label Text="Void Armor" VerticalTextAlignment="Center" AbsoluteLayout.LayoutFlags="WidthProportional"  AbsoluteLayout.LayoutBounds="0,40, 0.6, 32" />
+			<ui:CheckButton IsSelected="{Binding HasVoidAmor}" AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,40,32,32" />
+		</AbsoluteLayout>
+	</ContentView.Content>
+</ContentView>

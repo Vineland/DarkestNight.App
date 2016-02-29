@@ -87,7 +87,7 @@ namespace Vineland.Necromancer.UI
 		{
 			var blightModel = (BlightViewModel)bindingContext;
 
-			return blightModel.Location.Name.ToUpper();
+			return blightModel.Location.Name;
 		}
 	}
 
