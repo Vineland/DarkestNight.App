@@ -17,11 +17,11 @@ namespace Vineland.Necromancer.Core
 
 	public class MapCardRow
 	{
-		public string Location { get; set; }
+		public int LocationId { get; set; }
 
-		public string Blight { get; set; }
+		public string BlightName { get; set; }
 
-		public string Item { get; set; }
+		public string ItemName { get; set; }
 	}
 }
 

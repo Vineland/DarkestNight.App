@@ -25,12 +25,12 @@ namespace Vineland.Necromancer.Core
 		/// <param name="detectedHero">Force this hero to be detected.</param>
 		/// <param name="roll">Force the detection roll.</param>
 		/// <param name="heroesToIgnore">Heroes that are ignored due to Elusive Spirit or Blinding Black</param>
-		public NecromancerActivationResult Activate (GameState gameState, 
+		public NecromancerDetectionResult Activate (GameState gameState, 
 		                                             Hero detectedHero = null,
 		                                             int? roll = null, 
 		                                             int[] heroesToIgnore = null)
 		{
-			var result = new NecromancerActivationResult ();
+			var result = new NecromancerDetectionResult ();
 			result.MovementRoll = roll.HasValue ? roll.Value : _d6GeneratorService.RollDemBones ();
 			result.DetectionRoll = gameState.Necromancer.GatesActive ? result.MovementRoll + 1 : result.MovementRoll;
 
@@ -47,7 +47,7 @@ namespace Vineland.Necromancer.Core
 			return result;
 		}
 
-		private void Detect (GameState gameState, NecromancerActivationResult result,
+		private void Detect (GameState gameState, NecromancerDetectionResult result,
 		                     int[] heroesToIgnore)
 		{
 			//first check if any heroes can be detected
@@ -85,7 +85,7 @@ namespace Vineland.Necromancer.Core
 				result.DetectedHero = null;
 		}
 
-		private void Move (GameState gameState, NecromancerActivationResult result)
+		private void Move (GameState gameState, NecromancerDetectionResult result)
 		{
 			var currentLocation = gameState.Locations.Single (x => x.Id == gameState.Necromancer.LocationId);
 			result.OldLocation = currentLocation;
@@ -106,7 +106,7 @@ namespace Vineland.Necromancer.Core
 				result.NewLocation = gameState.Locations.Single (x => x.Id == currentLocation.Pathways [result.MovementRoll - 1]);
 		}
 
-		private void Spawn (GameState gameState, NecromancerActivationResult result)
+		private void Spawn (GameState gameState, NecromancerDetectionResult result)
 		{
 			//spawn blights at necromancer's new location
 			result.NumberOfBlightsToNewLocation = 1;
@@ -160,7 +160,7 @@ namespace Vineland.Necromancer.Core
 		}
 	}
 
-	public class NecromancerActivationResult
+	public class NecromancerDetectionResult
 	{
 		public Hero DetectedHero { get; set; }
 

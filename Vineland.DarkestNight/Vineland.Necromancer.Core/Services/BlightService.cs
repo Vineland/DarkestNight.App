@@ -15,19 +15,28 @@ namespace Vineland.Necromancer.Core
 		{
 			var mapCard = gameState.MapCards.Draw();
 			foreach (var row in mapCard.Rows) {
-				if (row.Location == "Monastery")
+				if (row.LocationId == LocationIds.Monastery)
 					continue;
 				
-				var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == row.Blight);
-				gameState.Locations.Single (l => l.Name == row.Location).Blights.Add (blight);
+				var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == row.BlightName);
+				gameState.Locations.Single (l => l.Id == row.LocationId).Blights.Add (blight);
 				gameState.BlightPool.Remove (blight);
 			}
 		}
 
-		public Blight SpawnBlight (Location location, GameState gameState)
+		public Blight SpawnBlight (Location location, GameState gameState, Blight blight = null)
 		{
-			var blightName = gameState.MapCards.Draw().Rows.Single (r => r.Location == location.Name).Blight;
-			var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
+			//TODO: look into this - sometimes the draw has to be done seperately 
+			//(during the necromancer phase where the player can interrupt in various ways)
+			//and in those cases the blight will be passed in after it has been confirmed
+			//otherwise we can draw and spawn in one method. however, this resulting code is a bit messy
+			if(blight == null){
+				var card = gameState.MapCards.Draw ();
+				var blightName = card.Rows.Single (r => r.LocationId == location.Id).BlightName;
+				blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
+				gameState.MapCards.Discard (card);
+			}
+
 			if (blight != null) {
 				location.Blights.Add (blight);
 				gameState.BlightPool.Remove (blight);

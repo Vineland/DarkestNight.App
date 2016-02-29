@@ -26,18 +26,20 @@ namespace Vineland.Necromancer.UI
 				.ToDictionary (x => x.Name.Replace("ViewModel", "Page"), x => x);
 		}
 
-		public Page CreatePage<T>() where T: Page
+		public Page CreatePage<T>(object viewModel = null) where T: Page
 		{
 			var page = Resolver.Resolve<T>();
-			var viewModelType = _viewModelPageMappings [typeof(T).Name];
-			page.BindingContext = Resolver.Resolve(viewModelType);
+			if (viewModel == null) 
+			{
+				var viewModelType = _viewModelPageMappings [typeof(T).Name];
+				viewModel = Resolver.Resolve (viewModelType);
+			}
+
+			page.BindingContext = viewModel;
+
 			return page;
 		}
 
-//		public Type GetPageType<T>()
-//		{
-//			return _viewModelPageMappings [typeof(T).Name];			
-//		}
 	}
 }
 

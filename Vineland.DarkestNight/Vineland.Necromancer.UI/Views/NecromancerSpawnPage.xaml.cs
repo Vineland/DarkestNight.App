@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NecromancerResultsPage : CustomCarouselPage
+	public partial class NecromancerSpawnPage : ContentPage
 	{
-		public NecromancerResultsPage ()
+		public NecromancerSpawnPage ()
 		{
 			InitializeComponent ();
 		}

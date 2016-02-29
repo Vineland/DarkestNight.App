@@ -54,10 +54,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPhasePage.xaml.cs">
       <DependentUpon>HeroPhasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerResultsPage.xaml.cs">
-      <DependentUpon>NecromancerResultsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerResultsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BlightsLocationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
@@ -74,6 +70,14 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Partial\AcolyteOptions.xaml.cs">
       <DependentUpon>AcolyteOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerSpawnViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerDetectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml.cs">
+      <DependentUpon>NecromancerDetectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerSpawnPage.xaml.cs">
+      <DependentUpon>NecromancerSpawnPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -109,9 +113,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroPhasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerResultsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -119,6 +120,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partial\AcolyteOptions.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerSpawnPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

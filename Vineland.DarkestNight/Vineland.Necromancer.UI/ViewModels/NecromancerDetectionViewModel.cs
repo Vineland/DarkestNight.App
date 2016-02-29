@@ -9,10 +9,11 @@ using Android.Views.InputMethods;
 using Vineland.Necromancer.UI;
 using System.Collections.ObjectModel;
 using Android.App;
+using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NecromancerResultsViewModel :BaseViewModel
+	public class NecromancerDetectionViewModel :BaseViewModel
 	{
 		NecromancerService _necromancerService;
 
@@ -23,15 +24,15 @@ namespace Vineland.Necromancer.UI
 
 		#endregion
 
-		public NecromancerResultsViewModel (NecromancerService necromancerService)
+		public NecromancerDetectionViewModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
 
 			_seer = Application.CurrentGame.Heroes.GetHero<Seer> ();
 			_wizard = Application.CurrentGame.Heroes.GetHero<Wizard> ();
 
-			var results = new List<NecromancerActivationResult> ();
-			if (_seer != null && _seer.ProphecyOfDoomRoll == 0)
+			var results = new List<NecromancerDetectionResult> ();
+			if (_seer == null || _seer.ProphecyOfDoomRoll == 0)
 				results.Add (_necromancerService.Activate (Application.CurrentGame));
 			else
 				results.Add (_necromancerService.Activate (Application.CurrentGame, roll: _seer.ProphecyOfDoomRoll));
@@ -39,43 +40,44 @@ namespace Vineland.Necromancer.UI
 			if (_wizard != null && _wizard.RuneOfMisdirectionActive)
 				results.Add (_necromancerService.Activate (Application.CurrentGame));
 
-			Results = results.Select (x => new NecromancerActivationResultViewModel (x, _necromancerService)).ToList ();
+			Results = results.Select (x => new NecromancerDetectionResultViewModel (x, _necromancerService)).ToList ();
+
 			SelectedResult = Results.First ();
 		}
 
-		public List<NecromancerActivationResultViewModel> Results { get; set; }
+		public List<NecromancerDetectionResultViewModel> Results { get; set; }
 
-		public NecromancerActivationResultViewModel SelectedResult { get; set; }
+		public NecromancerDetectionResultViewModel SelectedResult { get; set; }
 
 
-		public RelayCommand Accept {
+		public RelayCommand SpawnBlightsCommand {
 			get {
 				return new RelayCommand (() => {
 					
 					_seer.ProphecyOfDoomRoll = 0;
 					Application.CurrentGame.Necromancer.LocationId = SelectedResult.Result.NewLocation.Id;
-					//TODO spawn blights
-					//Application.CurrentGame.Locations.Single (x => x.Id == SelectedResult.Result.NewLocation.Id).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToNewLocation;
-					//Application.CurrentGame.Locations.Single (x => x.Id == LocationIds.Monastery).NumberOfBlights += SelectedResult.Result.NumberOfBlightsToMonastery;
 					Application.SaveCurrentGame ();
 
-					Application.Navigation.PopTo<HeroPhasePage> ();
+					var viewModel = Resolver.Resolve<NecromancerSpawnViewModel>();
+					viewModel.Initialise(SelectedResult.Result.NumberOfBlightsToNewLocation, SelectedResult.Result.NumberOfBlightsToMonastery);
+
+					Application.Navigation.Push<NecromancerSpawnPage> (viewModel);
 				});
 			}
 		}
 	}
 
-	public class NecromancerActivationResultViewModel : BaseViewModel
+	public class NecromancerDetectionResultViewModel : BaseViewModel
 	{
 
-		NecromancerActivationResult _result;
+		NecromancerDetectionResult _result;
 		NecromancerService _necromancerService;
 		Acolyte _acolyte;
 		Wayfarer _wayfarer;
 		Valkyrie _valkyrie;
 		Shaman _shaman;
 
-		public NecromancerActivationResultViewModel (NecromancerActivationResult result, NecromancerService necroService)
+		public NecromancerDetectionResultViewModel(NecromancerDetectionResult result, NecromancerService necroService)
 		{
 			_result = result;
 			_necromancerService = necroService;
@@ -85,7 +87,7 @@ namespace Vineland.Necromancer.UI
 			_shaman = Application.CurrentGame.Heroes.GetHero<Shaman> ();
 		}
 
-		public NecromancerActivationResult Result {
+		public NecromancerDetectionResult Result {
 			get{ return _result; }
 			set {
 				_result = value;

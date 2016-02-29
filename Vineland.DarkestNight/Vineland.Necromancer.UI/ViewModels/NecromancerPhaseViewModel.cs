@@ -34,7 +34,7 @@ namespace Vineland.Necromancer.UI
 			get{
 				return new RelayCommand (() => {
 					Application.SaveCurrentGame();
-					Application.Navigation.Push<NecromancerResultsPage>();
+					Application.Navigation.Push<NecromancerDetectionPage>();
 				});
 			}
 		}

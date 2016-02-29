@@ -55,14 +55,15 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopAsync ();
 		}
 
-		public async void Push<T> (bool clearBackStack = false) where T : Page
+		public async void Push<T> (object viewModel = null, bool clearBackStack = false) where T : Page
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
 			try {
-				var newPage = _pageService.CreatePage<T> ();
+				var newPage = _pageService.CreatePage<T> (viewModel);
 				await _navigation.PushAsync (newPage as Page);
+
 				if (clearBackStack) {
 					//remove all pages between the root page and target page
 					var pagesToRemove = new List<Page> ();
