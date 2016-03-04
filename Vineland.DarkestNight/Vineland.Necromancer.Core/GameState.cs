@@ -37,7 +37,6 @@ namespace Vineland.Necromancer.Core
 				return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
 			}
 		}
-
 	}
 
 	public class NecomancerState

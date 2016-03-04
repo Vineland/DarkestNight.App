@@ -32,7 +32,7 @@ namespace Vineland.Necromancer.UI
 					() => {
 						Application.CurrentGame.Heroes = SelectedHeroes.OrderBy(x=>x.Name).ToList();
 						Application.SaveCurrentGame ();
-						Application.Navigation.Push<HeroPhasePage>(true);
+						Application.Navigation.Push<HeroPhasePage>(clearBackStack: true);
 					},
 					() => {
 						return SelectedHeroes.Count() == 4;

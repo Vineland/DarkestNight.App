@@ -17,9 +17,9 @@ namespace Vineland.Necromancer.Core
 			DiscardPile = new List<T> ();
 		}
 
-		protected List<T> DrawPile { get; set; }
+		public List<T> DrawPile { get; set; }
 
-		protected List<T> DiscardPile { get; set; }
+		public List<T> DiscardPile { get; set; }
 
 		public T Draw ()
 		{

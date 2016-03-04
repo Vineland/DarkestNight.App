@@ -19,7 +19,7 @@ namespace Vineland.Necromancer.UI
 		public NecromancerSpawnViewModel (BlightService blightService)
 		{
 			_blightService = blightService;
-			ProspectiveSpawns = new ObservableCollection<ProspectiveSpawn> ();
+			ProspectiveSpawns = new ObservableCollection<SpawnViewModel> ();
 		}
 
 		int _blightsToSpawnAtNewLocation;
@@ -35,7 +35,7 @@ namespace Vineland.Necromancer.UI
 			});
 		}
 
-		public ObservableCollection<ProspectiveSpawn> ProspectiveSpawns { get; set; }
+		public ObservableCollection<SpawnViewModel> ProspectiveSpawns { get; set; }
 
 		public Location NecromancerLocation {
 			get {
@@ -46,20 +46,18 @@ namespace Vineland.Necromancer.UI
 		private void GetAllProspectiveBlights ()
 		{
 			//if this ain't our first rodeo, put everything back - we gonna can take another crack
-			foreach (var spawn in ProspectiveSpawns.Reverse()) 
-			{				
-				Application.CurrentGame.BlightPool.Add (spawn.Blight);
-				spawn.Cards.Reverse ();
-				spawn.Cards.ForEach( c=> Application.CurrentGame.MapCards.Return (c));
+			foreach (var pb in ProspectiveSpawns.Reverse()) {				
+				Application.CurrentGame.BlightPool.Add (pb.Blight);
+				pb.Cards.Reverse ();
+				pb.Cards.ForEach (c => Application.CurrentGame.MapCards.Return (c));
 			}
 			ProspectiveSpawns.Clear ();
 
 			for (int i = 0; i < _blightsToSpawnAtNewLocation; i++) {
 				//we've gone over so spawn the blight at the monastery instead
-				if (NecromancerLocation.BlightCount + ProspectiveSpawns.Sum (x => x.LocationId == LocationIds.Monastery ? 0 : x.Blight.Weight) >= 4) {
+				if (NecromancerLocation.BlightCount + ProspectiveSpawns.Sum (x => x.Location.Id == LocationIds.Monastery ? 0 : x.Blight.Weight) >= 4) {
 					ProspectiveSpawns.Add (GetProspectiveSpawn (LocationIds.Monastery));
-				} else 
-				{
+				} else {
 					ProspectiveSpawns.Add (GetProspectiveSpawn (NecromancerLocation.Id));
 				}
 			}
@@ -69,10 +67,10 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		private ProspectiveSpawn GetProspectiveSpawn (int locationId)
+		private SpawnViewModel GetProspectiveSpawn (int locationId)
 		{
-			var prospectiveSpawn = new ProspectiveSpawn () {
-				LocationId = locationId
+			var prospectiveSpawn = new SpawnViewModel () {
+				Location = Application.CurrentGame.Locations.Single (l => l.Id == locationId)
 			};
 			do {
 				var card = Application.CurrentGame.MapCards.Draw ();
@@ -88,47 +86,44 @@ namespace Vineland.Necromancer.UI
 			return prospectiveSpawn;
 		}
 
-		public RelayCommand<ProspectiveSpawn> DestroyBlightCommand {
-			get {
-				return new RelayCommand<ProspectiveSpawn> (prospectiveSpawn => {
-					//if a blight is instantly destroyed we need to:
-					// 1) discard the cards used to spawn it
-					prospectiveSpawn.Cards.ForEach(c=> Application.CurrentGame.MapCards.Discard (c));
-					prospectiveSpawn.Cards.Clear();
-					// 2) decrement the required number of blights to spawn
-					if (prospectiveSpawn.LocationId != LocationIds.Monastery)
-						_blightsToSpawnAtNewLocation--;
-					else
-						_blightsToSpawnAtMonastery--;
+		public void DestroyBlightCommand (SpawnViewModel prospectiveBlight)
+		{
+			//if a blight is instantly destroyed we need to:
+			// 1) discard the cards used to spawn it
+			prospectiveBlight.Cards.ForEach (c => Application.CurrentGame.MapCards.Discard (c));
+			prospectiveBlight.Cards.Clear ();
+			// 2) decrement the required number of blights to spawn
+			if (prospectiveBlight.Location.Id != LocationIds.Monastery)
+				_blightsToSpawnAtNewLocation--;
+			else
+				_blightsToSpawnAtMonastery--;
 					
-					// 3) get the prospective blights again (in case this removal has changed spill over blights to the monastery)
-					GetAllProspectiveBlights ();					
-				});
-			}
+			// 3) get the prospective blights again (in case this removal has changed spill over blights to the monastery)
+			GetAllProspectiveBlights ();					
 		}
 
 		public RelayCommand AcceptCommand {
 			get {
-				return new RelayCommand (() => {
-					return;
+				return new RelayCommand (() => 
+					{
+						foreach(var spawn in ProspectiveSpawns)
+							spawn.Location.Blights.Add(spawn.Blight);
+
+						Application.Navigation.PopTo<HeroPhasePage>();
 				});
 			}
 		}
 	}
 
-	public class ProspectiveSpawn
+	public class SpawnViewModel : BlightViewModel
 	{
-		public int LocationId { get; set; }
-
 		/// <summary>
 		/// Multiple cards could have be drawn if none of a particular blight are in the pool
 		/// </summary>
 		/// <value>The card.</value>
 		public List<MapCard> Cards { get; set; }
 
-		public Blight Blight { get; set; }
-
-		public ProspectiveSpawn ()
+		public SpawnViewModel ()
 		{
 			Cards = new List<MapCard> ();
 		}

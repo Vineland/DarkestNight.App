@@ -36,7 +36,8 @@ namespace Vineland.DarkestNight.UI.Services
 
 		public string LoadFile(string fullPath){
 			using (var streamReader = new StreamReader(fullPath)) {
-				return streamReader.ReadToEnd();
+				var json = streamReader.ReadToEnd();
+				return json;
 			}
 		}
 

@@ -6,8 +6,8 @@ x:Class="Vineland.Necromancer.UI.NecromancerApp">
 	<Application.Resources>
 		<ResourceDictionary>
 			<Style TargetType="Button">
-				<Setter Property="BackgroundColor" Value="#BC63402D" />
-				<Setter Property="TextColor" Value="White" />
+				<Setter Property="BackgroundColor" Value="#78FFFCCC" />
+				<Setter Property="TextColor" Value="Black" />
 				<Setter Property="FontSize" Value="20" />
 			</Style>
 			<Style TargetType="Label">

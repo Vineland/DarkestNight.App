@@ -14,10 +14,11 @@ using Vineland.Necromancer.UI;
 using System.Runtime.InteropServices;
 
 using System.Linq;
+using System;
 
 #endregion
 
-[assembly : ExportRenderer(typeof (CustomCarouselPage), typeof (CxPagedCarouselPageRenderer))]
+[assembly : ExportRenderer (typeof(CustomCarouselPage), typeof(CxPagedCarouselPageRenderer))]
 
 namespace CaveBirdLabs.Forms.Platform.Android
 {
@@ -33,7 +34,9 @@ namespace CaveBirdLabs.Forms.Platform.Android
 
 		#region Constructors
 
-		public CxPagedCarouselPageRenderer() {}
+		public CxPagedCarouselPageRenderer ()
+		{
+		}
 
 		#endregion
 
@@ -43,21 +46,20 @@ namespace CaveBirdLabs.Forms.Platform.Android
 		{
 			base.OnElementPropertyChanged (sender, e);
 
-			switch (e.PropertyName)
-			{
+			switch (e.PropertyName) {
 			case "IsPagerVisible":
 				_viewPager.Visibility = _pagedCarouselPage.IsPagerVisible ? ViewStates.Visible : ViewStates.Gone;
 				break;
 			case "PagerItemColor":
-				SetPageIndicatorTintColor();
+				SetPageIndicatorTintColor ();
 				break;
 			case "SelectedPagerItemColor":
-				SetCurrentPageIndicatorTintColor();
+				SetCurrentPageIndicatorTintColor ();
 				break;
 			case "PagerPadding":
 			case "PagerXAlign":
 			case "PagerYAlign":
-				LayoutPageControl();
+				LayoutPageControl ();
 				break;
 			}
 		}
@@ -66,84 +68,86 @@ namespace CaveBirdLabs.Forms.Platform.Android
 
 		#region Private Methods
 
-		private void LayoutPageControl()
+		private void LayoutPageControl ()
 		{
 			var density = Resources.DisplayMetrics.Density;
 
-			float width = ViewGroup.MeasuredWidth - (float) _pagedCarouselPage.PagerPadding.Left - (float) _pagedCarouselPage.PagerPadding.Right;
+			float width = ViewGroup.MeasuredWidth - (float)_pagedCarouselPage.PagerPadding.Left - (float)_pagedCarouselPage.PagerPadding.Right;
 
-			float height = 30*density; // default height of the UIPageControl
+			float height = 30 * density; // default height of the UIPageControl
 
 			float x = 0;
-			switch (_pagedCarouselPage.PagerXAlign)
-			{
-				case Xamarin.Forms.TextAlignment.Center:
-					if (ViewGroup.MeasuredWidth != width)
-						x = (float) _pagedCarouselPage.PagerPadding.Left + (width/2);
+			switch (_pagedCarouselPage.PagerXAlign) {
+			case Xamarin.Forms.TextAlignment.Center:
+				if (ViewGroup.MeasuredWidth != width)
+					x = (float)_pagedCarouselPage.PagerPadding.Left + (width / 2);
 				_circlePageIndicator.Centered = true;
-					break;
+				break;
 			case Xamarin.Forms.TextAlignment.End:
-					x = ViewGroup.MeasuredWidth - width - (float) _pagedCarouselPage.PagerPadding.Right;
+				x = ViewGroup.MeasuredWidth - width - (float)_pagedCarouselPage.PagerPadding.Right;
 				_circlePageIndicator.Centered = false;
-					break;
+				break;
 			case Xamarin.Forms.TextAlignment.Start:
-					x = (float) _pagedCarouselPage.PagerPadding.Left;
+				x = (float)_pagedCarouselPage.PagerPadding.Left;
 				_circlePageIndicator.Centered = false;
-					break;
+				break;
 			}
 
 			float y = 0;
-			switch (_pagedCarouselPage.PagerYAlign)
-			{
+			switch (_pagedCarouselPage.PagerYAlign) {
 			case Xamarin.Forms.TextAlignment.Center:
 					// ignore top and bottom padding
-					y = (ViewGroup.MeasuredHeight - height)/2;
+				y = (ViewGroup.MeasuredHeight - height) / 2;
 					
-					break;
+				break;
 			case Xamarin.Forms.TextAlignment.End:
-					y = ViewGroup.MeasuredHeight - (float) _pagedCarouselPage.PagerPadding.Bottom - height;
+				y = ViewGroup.MeasuredHeight - (float)_pagedCarouselPage.PagerPadding.Bottom - height;
 					
-					break;
+				break;
 			case Xamarin.Forms.TextAlignment.Start:
-					y = (float) _pagedCarouselPage.PagerPadding.Top;
+				y = (float)_pagedCarouselPage.PagerPadding.Top;
 					
-					break;
+				break;
 			}
 
-			_circlePageIndicator.Layout((int) x, (int) y, (int) (width + x), (int) (height + y));
+			_circlePageIndicator.Layout ((int)x, (int)y, (int)(width + x), (int)(height + y));
 		}
 
-		private void SetCurrentPageIndicatorTintColor()
+		private void SetCurrentPageIndicatorTintColor ()
 		{
-			_circlePageIndicator.PageColor = _pagedCarouselPage.SelectedPagerItemColor != Color.Default ? _pagedCarouselPage.SelectedPagerItemColor.ToAndroid() : global::Android.Graphics.Color.White;
+			_circlePageIndicator.PageColor = _pagedCarouselPage.SelectedPagerItemColor != Color.Default ? _pagedCarouselPage.SelectedPagerItemColor.ToAndroid () : global::Android.Graphics.Color.White;
 		}
 
-		private void SetPageIndicatorTintColor()
+		private void SetPageIndicatorTintColor ()
 		{
-			_circlePageIndicator.FillColor = _pagedCarouselPage.PagerItemColor != Color.Default ? _pagedCarouselPage.PagerItemColor.ToAndroid() : global::Android.Graphics.Color.Transparent;
+			_circlePageIndicator.FillColor = _pagedCarouselPage.PagerItemColor != Color.Default ? _pagedCarouselPage.PagerItemColor.ToAndroid () : global::Android.Graphics.Color.Transparent;
 		}
 
 		#endregion
 
 		#region Protected Methods
 
-		protected override void OnAttachedToWindow()
+		protected override void OnAttachedToWindow ()
 		{
-			base.OnAttachedToWindow();
-			_circlePageIndicator.SetViewPager(_viewPager);
+			try {
+				base.OnAttachedToWindow ();
+				_circlePageIndicator.SetViewPager (_viewPager);
+			} catch (Exception ex) {
+				LogHelper.Error (ex);
+				throw;
+			}
 		}
 
-		protected override void OnElementChanged(ElementChangedEventArgs<CarouselPage> e)
+		protected override void OnElementChanged (ElementChangedEventArgs<CarouselPage> e)
 		{
-			base.OnElementChanged(e);
+			base.OnElementChanged (e);
 
-			_pagedCarouselPage = (CustomCarouselPage) Element;
+			_pagedCarouselPage = (CustomCarouselPage)Element;
 
 			_viewPager = null;
 
-			for (int i = 0; i < ViewGroup.ChildCount; i++)
-			{
-				_viewPager = ViewGroup.GetChildAt(i) as ViewPager;
+			for (int i = 0; i < ViewGroup.ChildCount; i++) {
+				_viewPager = ViewGroup.GetChildAt (i) as ViewPager;
 				if (_viewPager != null)
 					break;
 			}
@@ -152,32 +156,34 @@ namespace CaveBirdLabs.Forms.Platform.Android
 
 			var density = Resources.DisplayMetrics.Density;
 
-			_circlePageIndicator = new CirclePageIndicator(base.Context);
-			_circlePageIndicator.SetPadding(5, 5, 5, 5);
-			_circlePageIndicator.Radius = 5*density;
+			_circlePageIndicator = new CirclePageIndicator (base.Context);
+			_circlePageIndicator.SetPadding (5, 5, 5, 5);
+			_circlePageIndicator.Radius = 5 * density;
 			_circlePageIndicator.PageSelected += (object sender, PageSelectedEventArgs args) => {
+				if(Element.ItemsSource == null)
+					return;
+				
 				int count = 0;
-				foreach(var item in Element.ItemsSource)
-				{
-					if(count == args.Position){
+				foreach (var item in Element.ItemsSource) {
+					if (count == args.Position) {
 						Element.SelectedItem = item;
 						break;
 					}
 					count++;
 				}
 			};
-			SetPageIndicatorTintColor();
-			SetCurrentPageIndicatorTintColor();
+			SetPageIndicatorTintColor ();
+			SetCurrentPageIndicatorTintColor ();
 
-			AddView(_circlePageIndicator);
-			_circlePageIndicator.BringToFront();
+			AddView (_circlePageIndicator);
+			_circlePageIndicator.BringToFront ();
 
 		}
 
-		protected override void OnLayout(bool changed, int l, int t, int r, int b)
+		protected override void OnLayout (bool changed, int l, int t, int r, int b)
 		{
-			base.OnLayout(changed, l, t, r, b);
-			LayoutPageControl();
+			base.OnLayout (changed, l, t, r, b);
+			LayoutPageControl ();
 		}
 
 		#endregion

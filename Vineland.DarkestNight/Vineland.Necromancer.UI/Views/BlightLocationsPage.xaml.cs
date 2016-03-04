@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class NecromancerSpawnPage : ContentPage
+	public partial class BlightLocationsPage : ContentPage
 	{
-		public NecromancerSpawnPage ()
+		public BlightLocationsPage ()
 		{
 			InitializeComponent ();
 		}

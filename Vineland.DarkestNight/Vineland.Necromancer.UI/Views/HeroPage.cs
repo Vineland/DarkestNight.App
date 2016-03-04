@@ -38,21 +38,20 @@ namespace Vineland.Necromancer.UI
 				Source = ImageSource.FromFile (hero.Name.Replace (" ", string.Empty).ToLower ()),
 				HorizontalOptions = LayoutOptions.Center
 			};
-			absoluteLayout.Children.Add (image, new Rectangle(0.5,48, 96,96), AbsoluteLayoutFlags.XProportional);
-
+			absoluteLayout.Children.Add (image, new Rectangle(0.5,48, 72,72), AbsoluteLayoutFlags.XProportional);
 
 			absoluteLayout.Children.Add (new Label () { Text = "Secrecy", VerticalTextAlignment = TextAlignment.Center },
-				new Rectangle(0, 152, 0.6, 32),
+				new Rectangle(0, 128, 0.6, 32),
 				AbsoluteLayoutFlags.WidthProportional);
 
 			var secrecyStepper = new CustomStepper () { Maximum = 9 };
 			secrecyStepper.SetBinding<Hero> (CustomStepper.ValueProperty, h => h.Secrecy);
 			absoluteLayout.Children.Add (secrecyStepper, 
-				new Rectangle(1, 152, 96, 32),
+				new Rectangle(1, 128, 96, 32),
 				AbsoluteLayoutFlags.XProportional);
 
 			absoluteLayout.Children.Add (new Label () { Text = "Location", VerticalTextAlignment = TextAlignment.Center },
-				new Rectangle (0, 192, 0.6, 32),
+				new Rectangle (0, 168, 0.6, 32),
 				AbsoluteLayoutFlags.WidthProportional);
 
 			var locationPicker = new BindablePicker<Location> ();
@@ -60,7 +59,7 @@ namespace Vineland.Necromancer.UI
 			locationPicker.SetBinding (BindablePicker<Location>.ItemsSourceProperty, new Binding ("Locations", source: this.GetParentPage ().BindingContext));
 
 			absoluteLayout.Children.Add (locationPicker,
-				new Rectangle(1,192,0.4,32),
+				new Rectangle(1,168,0.4,32),
 				AbsoluteLayoutFlags.WidthProportional | AbsoluteLayoutFlags.XProportional);
 
 			var optionLabel = string.Empty;
@@ -92,8 +91,7 @@ namespace Vineland.Necromancer.UI
 				break;
 			case "Acolyte":
 				optionLabel = "Blinding Black";
-				property = "BlindingBlackActive";
-				//absoluteLayout.Children.Add (new AcolyteOptions(), 0, 2, 5, 6);				
+				property = "BlindingBlackActive";				
 				break;
 			case "Scholar":
 				optionLabel = "Ancient Defense";
@@ -112,37 +110,37 @@ namespace Vineland.Necromancer.UI
 //				break;
 			}
 //
-			int offset = 0;
 			if (!string.IsNullOrEmpty (property)) {
-				offset = 40;
 				absoluteLayout.Children.Add (new Label () { Text = optionLabel, VerticalTextAlignment = TextAlignment.Center }, 
-					new Rectangle(0,232,0.6,32),
+					new Rectangle(0,208,0.6,32),
 					AbsoluteLayoutFlags.WidthProportional);
 
 				if (property == "ProphecyOfDoomRoll") {
 					var picker = new CustomStepper () { Maximum = 6};
 					picker.SetBinding (CustomStepper.ValueProperty, new Binding (property));
 					absoluteLayout.Children.Add (picker, 
-						new Rectangle(1,232, 96,32),
+						new Rectangle(1,208, 96,32),
 						AbsoluteLayoutFlags.XProportional);
 
 				} else {
 					var switchControl = new CheckButton ();
 					switchControl.SetBinding (CheckButton.IsSelectedProperty, new Binding (property));
 					absoluteLayout.Children.Add (switchControl, 
-						new Rectangle(1,232, 32,32),
+						new Rectangle(1,208, 32,32),
 						AbsoluteLayoutFlags.XProportional);
 				}
 			} 
-			absoluteLayout.Children.Add (new Label () { Text = "Void Amour", VerticalTextAlignment = TextAlignment.Center }, 
-				new Rectangle(0,string.IsNullOrEmpty(property)? 232: 272,0.6,32),
-				AbsoluteLayoutFlags.WidthProportional);
-			
-			var voidAmorControl = new CheckButton ();
-			voidAmorControl.SetBinding<Hero> (CheckButton.IsSelectedProperty, h=>h.HasVoidArmor);
-			absoluteLayout.Children.Add (voidAmorControl, 
-				new Rectangle(1, 232 + offset, 32,32),
-				AbsoluteLayoutFlags.XProportional);
+//			absoluteLayout.Children.Add (new Label () { Text = "Void Amour", VerticalTextAlignment = TextAlignment.Center }, 
+//				new Rectangle(0,string.IsNullOrEmpty(property)? 232: 272,0.6,32),
+//				AbsoluteLayoutFlags.WidthProportional);
+//			
+//			var voidAmorControl = new CheckButton ();
+//			voidAmorControl.SetBinding<Hero> (CheckButton.IsSelectedProperty, h=>h.HasVoidArmor);
+//			absoluteLayout.Children.Add (voidAmorControl, 
+//				new Rectangle(1, 232 + offset, 32,32),
+//				AbsoluteLayoutFlags.XProportional);
+
+			var stackLayout = new StackLayout() {Spacing=8};
 
 			var changeHeroButton = new Button () {
 				Text = "Defeated",
@@ -150,9 +148,7 @@ namespace Vineland.Necromancer.UI
 			};
 			changeHeroButton.SetBinding (Button.CommandProperty, new Binding ("RemoveHero", source: this.GetParentPage ().BindingContext));
 			changeHeroButton.CommandParameter = hero;
-			absoluteLayout.Children.Add (changeHeroButton,
-				new Rectangle(0,272 + offset, 1, 48),
-				AbsoluteLayoutFlags.WidthProportional);
+			stackLayout.Children.Add (changeHeroButton);
 
 			var blightsButton = new Button () 
 			{
@@ -160,21 +156,22 @@ namespace Vineland.Necromancer.UI
 				HorizontalOptions = LayoutOptions.Fill,
 			};
 			blightsButton.SetBinding (Button.CommandProperty, new Binding ("Blights", source: this.GetParentPage ().BindingContext));
-			absoluteLayout.Children.Add (blightsButton,
-				new Rectangle(0,320 + offset, 1, 48),
-				AbsoluteLayoutFlags.WidthProportional);
+			stackLayout.Children.Add (blightsButton);
 
-			var stackLayout = new StackLayout() {Spacing=10};
-			stackLayout.Children.Add (new Image () {
-				Source = ImageSource.FromFile ("darkness")
-			});
-			var darknessStepper = new CustomStepper ();
-			darknessStepper.SetBinding (CustomStepper.ValueProperty, new Binding ("Darkness", source: this.GetParentPage ().BindingContext));
-			stackLayout.Children.Add (darknessStepper);
+			var searchButton = new Button () {
+				Text = "Search",
+				HorizontalOptions = LayoutOptions.Fill,
+			};
+			searchButton.SetBinding (Button.CommandProperty, new Binding ("Search", source: this.GetParentPage ().BindingContext));
+			stackLayout.Children.Add (searchButton);
 
+//			var darknessStepper = new CustomStepper ();
+//			darknessStepper.SetBinding (CustomStepper.ValueProperty, new Binding ("Darkness", source: this.GetParentPage ().BindingContext));
+//			stackLayout.Children.Add (darknessStepper);
+//
 			absoluteLayout.Children.Add (stackLayout,
-				new Rectangle (0.5, 1, 96, 90),
-				AbsoluteLayoutFlags.PositionProportional);
+				new Rectangle (0, 1, 1, 168),
+				AbsoluteLayoutFlags.YProportional | AbsoluteLayoutFlags.WidthProportional);
 
 			Content = absoluteLayout;
 		}

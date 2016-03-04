@@ -7,6 +7,10 @@ namespace Vineland.Necromancer.Core
 	{
 		public string Name { get; set; }
 
+		public string ImageName{
+			get { return string.Format ("blight_{0}", Name.ToLower ().Replace(" ", "_")); }
+		}
+
 		public int Weight { get; set; }
 
 		public bool GlobalEffect { get; set; }

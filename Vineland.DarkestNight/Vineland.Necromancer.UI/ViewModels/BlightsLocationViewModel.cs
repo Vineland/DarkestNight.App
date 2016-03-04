@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.Database;
 
 namespace Vineland.Necromancer.UI
 {
@@ -16,52 +17,73 @@ namespace Vineland.Necromancer.UI
 		public BlightLocationsViewModel (BlightService blightService)
 		{
 			_blightService = blightService;
-			Blights = new ObservableCollection<BlightViewModel> ();
-			foreach (var location in Application.CurrentGame.Locations) 
-			{
-				//need to put a dummy one for empty locations for FlowListView to work
-				if (!location.Blights.Any ())
-					Blights.Add (new BlightViewModel (location, null));
-				
-				foreach(var blight in location.Blights)
-					Blights.Add (new BlightViewModel (location, blight));				
+//			var blights = new ObservableCollection<BlightViewModel> ();
+//			foreach (var location in Application.CurrentGame.Locations) {
+//				//need to put a dummy one for empty locations for FlowListView to work
+//				if (!location.Blights.Any ())
+//					blights.Add (new BlightViewModel  { Location = location });
+//				
+//				foreach (var blight in location.Blights)
+//					blights.Add (new BlightViewModel  { Location = location, Blight = blight });				
+//			}
+//			Blights = blights;
+			Locations = new ObservableCollection<LocationViewModel> ();
+			foreach (var location in Application.CurrentGame.Locations) {
+				var locationVM = new LocationViewModel (location.Name);
+				foreach (var blight in location.Blights)
+					locationVM.Add (blight);
+
+				Locations.Add (locationVM);
 			}
 		}
 
-		public ObservableCollection<BlightViewModel> Blights {get;set;}
+		public ObservableCollection<BlightViewModel> Blights { get; set; }
+		public ObservableCollection<LocationViewModel> Locations { get; set; }
 
-		public void AddBlight(Location location){
+		public void AddBlight (Location location)
+		{
 			var blight = _blightService.SpawnBlight (location, Application.CurrentGame);
-			Blights.Add (new BlightViewModel (location, blight));
+			Blights.Add (new BlightViewModel () { Location = location, Blight = blight });
 			//yeck, yeck, yeck
-			var spacerBlight = Blights.FirstOrDefault(x => x.Location == location && x.Blight == null);
+			var spacerBlight = Blights.FirstOrDefault (x => x.Location == location && x.Blight == null);
 			if (spacerBlight != null)
 				Blights.Remove (spacerBlight);
 		}
 
-		public void RemoveBlight(BlightViewModel blightViewModel){
+		public void RemoveBlight (BlightViewModel blightViewModel)
+		{
 			
 			if (blightViewModel.Location.Blights.Count == 1)
-				Blights.Add(new BlightViewModel (blightViewModel.Location, null));
+				Blights.Add (new BlightViewModel () { Location = blightViewModel.Location });
 			
 			Blights.Remove (blightViewModel);
 
 			Task.Run (() => {
 				_blightService.DestroyBlight (blightViewModel.Location, blightViewModel.Blight, Application.CurrentGame);
-				Application.SaveCurrentGame();
+				Application.SaveCurrentGame ();
 			});
 		}
 	}
 
-	public class BlightViewModel
-	{		
-		public Location Location { get; protected set; }
-		public Blight Blight { get; protected set; }
+	public class LocationViewModel : ObservableCollection<Blight>
+	{
+		public String Name { get; private set; }        
 
-		public BlightViewModel (Location location, Blight blight)
+		public LocationViewModel(String Name)
 		{
-			Location = location;
-			Blight = blight;
+			this.Name = Name;            
+		}
+	}
+
+
+	public class BlightViewModel
+	{
+		public Location Location { get; set; }
+
+		public Blight Blight { get; set; }
+
+		public BlightViewModel ()
+		{
 		}
 	}
 }

@@ -22,6 +22,8 @@ namespace Vineland.Necromancer.Core
 				gameState.Locations.Single (l => l.Id == row.LocationId).Blights.Add (blight);
 				gameState.BlightPool.Remove (blight);
 			}
+
+			gameState.MapCards.Discard (mapCard);
 		}
 
 		public Blight SpawnBlight (Location location, GameState gameState, Blight blight = null)
