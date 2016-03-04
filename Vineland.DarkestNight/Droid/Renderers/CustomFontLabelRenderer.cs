@@ -14,14 +14,8 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			base.OnElementChanged (e);
 			if (e.OldElement == null) {
-				try {
-					var label = (TextView)Control;				
-					if(!string.IsNullOrEmpty(e.NewElement.FontFamily))
-						label.Typeface = Typeface.CreateFromAsset (Forms.Context.Assets, e.NewElement.FontFamily + ".ttf");
-
-				} catch (Exception ex) {
-					throw;
-				}
+				var label = (TextView)Control;				
+				label.Typeface = FontManager.GetFont (e.NewElement.FontFamily);
 			}
 		}
 	}

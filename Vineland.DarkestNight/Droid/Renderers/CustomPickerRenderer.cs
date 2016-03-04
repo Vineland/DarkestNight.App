@@ -42,7 +42,6 @@ namespace Vineland.Necromancer.UI.Droid
 
 	public class SpinnerAdapter: ArrayAdapter<string>
 	{
-		Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "hobo.ttf");
 		public SpinnerAdapter (Context context, int resource, IList<string> items)
 			:base(context, resource, items)
 		{
@@ -51,7 +50,8 @@ namespace Vineland.Necromancer.UI.Droid
 		public override Android.Views.View GetView (int position, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
 			var view = (TextView)base.GetView (position, convertView, parent);
-			view.Typeface = font;
+
+			view.Typeface = FontManager.GetFont("hobo");
 			//view.SetTextSize (Android.Util.ComplexUnitType.Dip, 24);
 			view.Gravity = GravityFlags.Right;
 			return view;
@@ -60,8 +60,9 @@ namespace Vineland.Necromancer.UI.Droid
 		public override Android.Views.View GetDropDownView (int position, Android.Views.View convertView, ViewGroup parent)
 		{
 			var view = (TextView)base.GetDropDownView (position, convertView, parent);
-			view.Typeface = font;
-			//view.SetBackgroundColor (Android.Graphics.Color.ParseColor("#FFFEEE"));//(Resource.Color.beige));
+
+			view.Typeface = FontManager.GetFont("hobo");
+			view.SetBackgroundColor (Android.Graphics.Color.ParseColor("#78FFFCCC"));//(Resource.Color.beige));
 			view.Gravity = GravityFlags.Center;
 			return view;
 

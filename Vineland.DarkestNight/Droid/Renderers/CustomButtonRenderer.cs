@@ -15,13 +15,8 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			base.OnElementChanged (e);
 			if (e.OldElement == null) {
-				try {
-					var button = (Android.Widget.Button)Control;
-					Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "baskerville_becker.ttf");
-					button.Typeface = font;
-				} catch (Exception ex) {
-
-				}
+				var button = (Android.Widget.Button)Control;
+				button.Typeface = FontManager.GetFont (e.NewElement.FontFamily);
 			}
 		}
 	}

@@ -41,8 +41,6 @@ namespace Vineland.Necromancer.UI.Droid
 
 	public class MultiSelectListViewAdapter<T>:ArrayAdapter<T>{	
 
-		Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "baskerville_becker.ttf");
-
 		public MultiSelectListViewAdapter (Context context, IList<T> items)
 			:base(context, Android.Resource.Layout.SimpleListItemMultipleChoice, items)
 		{
@@ -52,7 +50,7 @@ namespace Vineland.Necromancer.UI.Droid
 		public override Android.Views.View GetView (int position, Android.Views.View convertView, ViewGroup parent)
 		{
 			var view = (TextView)base.GetView (position, convertView, parent);
-			view.Typeface = font;
+			view.Typeface = FontManager.GetDefaultFont();
 
 			return view;
 		}

@@ -9,7 +9,7 @@ using Android.Util;
 [assembly: ExportRenderer (typeof(ImageCell), typeof(CustomImageCellRenderer))]
 namespace Vineland.Necromancer.UI.Droid
 {
-	public class CustomImageCellRenderer :ImageCellRenderer
+	public class CustomImageCellRenderer : ImageCellRenderer
 	{
 		public CustomImageCellRenderer ()
 		{
@@ -19,10 +19,10 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			var view = base.GetCellCore (item, convertView, parent, context) as BaseCellView;
 
-			var image = view.GetChildAt (0);
-			image.SetPadding (20, 0, 0, 0);
+			view.SetPadding (20, view.PaddingTop, view.PaddingRight, view.PaddingBottom); 
+
 			var label = (view.GetChildAt (1) as LinearLayout).GetChildAt(0) as TextView; //yikes!
-			label.Typeface = Typeface.CreateFromAsset (Forms.Context.Assets,"baskerville_becker.ttf");
+			label.Typeface = FontManager.GetDefaultFont();
 			label.SetTextColor (Android.Graphics.Color.Black);
 			label.SetTextSize (ComplexUnitType.Dip, 20);
 
