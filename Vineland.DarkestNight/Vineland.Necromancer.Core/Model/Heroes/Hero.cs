@@ -22,7 +22,7 @@ namespace Vineland.Necromancer.Core
 
 		public Hero ()
 		{
-			LocationId = LocationIds.Monastery;
+			LocationId = (int)LocationIds.Monastery;
 			Secrecy = 6;
 		}
 

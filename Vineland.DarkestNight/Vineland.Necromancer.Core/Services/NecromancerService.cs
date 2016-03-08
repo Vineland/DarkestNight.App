@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 using Vineland.Necromancer.Core.Services;
 using System.Globalization;
 using System.Xml.Linq;
+using System.Threading;
+using Newtonsoft.Json.Serialization;
 
 namespace Vineland.Necromancer.Core
 {
 	public class NecromancerService
 	{
 		D6GeneratorService _d6GeneratorService;
+		BlightService _blightService;
 
-		public NecromancerService (D6GeneratorService d6GeneratorService)
+		public NecromancerService (D6GeneratorService d6GeneratorService, BlightService blightService)
 		{
 			_d6GeneratorService = d6GeneratorService;
+			_blightService = blightService;
 		}
 
 		/// <summary>
@@ -23,16 +27,17 @@ namespace Vineland.Necromancer.Core
 		/// </summary>
 		/// <param name="gameState">Game state.</param>
 		/// <param name="detectedHero">Force this hero to be detected.</param>
-		/// <param name="roll">Force the detection roll.</param>
+		/// <param name="roll">Force the necromancer roll.</param>
 		/// <param name="heroesToIgnore">Heroes that are ignored due to Elusive Spirit or Blinding Black</param>
-		public NecromancerActivationResult Activate (GameState gameState, 
+		public NecromancerDetectionResult Activate (GameState gameState, 
 		                                             Hero detectedHero = null,
 		                                             int? roll = null, 
 		                                             int[] heroesToIgnore = null)
 		{
-			var result = new NecromancerActivationResult ();
+			var result = new NecromancerDetectionResult ();
 			result.MovementRoll = roll.HasValue ? roll.Value : _d6GeneratorService.RollDemBones ();
-			result.DetectionRoll = gameState.Necromancer.GatesActive ? result.MovementRoll + 1 : result.MovementRoll;
+			result.DetectionRoll = gameState.GatesActive ? result.MovementRoll + 1 : result.MovementRoll;
+			result.OldLocation = gameState.Locations.Single (l => l.Id == gameState.Necromancer.LocationId);
 
 			//detect
 			if (detectedHero == null)
@@ -41,21 +46,20 @@ namespace Vineland.Necromancer.Core
 				result.DetectedHero = detectedHero;
 
 			//move
-			Move (gameState, result);
-			Spawn (gameState, result);
-
+			result.NewLocation = Move (detectedHero, result.MovementRoll, gameState);
+			
 			return result;
 		}
 
-		private void Detect (GameState gameState, NecromancerActivationResult result,
+		private void Detect (GameState gameState, NecromancerDetectionResult result,
 		                     int[] heroesToIgnore)
 		{
 			//first check if any heroes can be detected
-			var exposedHeroes = gameState.Heroes.Where (x => x.LocationId != LocationIds.Monastery && x.Secrecy < result.DetectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
+			var exposedHeroes = gameState.Heroes.Where (x => x.LocationId != (int)LocationIds.Monastery && x.Secrecy < result.DetectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
 
 			//special hero effects
-			var ranger = gameState.Heroes.SingleOrDefault(x=>x is Ranger) as Ranger;
-			if (ranger != null && ranger.HermitActive && ranger.LocationId == LocationIds.Swamp)
+			var ranger = gameState.Heroes.SingleOrDefault (x => x is Ranger) as Ranger;
+			if (ranger != null && ranger.HermitActive && ranger.LocationId == (int)LocationIds.Swamp)
 				exposedHeroes = exposedHeroes.Where (h => h != ranger);
 
 			var paragon = gameState.Heroes.SingleOrDefault (h => h is Paragon) as Paragon;
@@ -65,7 +69,8 @@ namespace Vineland.Necromancer.Core
 			if (exposedHeroes.Any ()) {
 				//figure out which hero the necromancer is pursuing
 
-				if (gameState.Necromancer.GatesActive) { //if gates are active pick a random hero
+				if (gameState.GatesActive) { 
+					//if gates are active pick a random hero from those detectd
 					var index = new Random ().Next (0, exposedHeroes.Count () - 1);
 					result.DetectedHero = exposedHeroes.ToArray () [index];
 				} else if (exposedHeroes.Any (x => x.LocationId == gameState.Necromancer.LocationId)) {
@@ -85,82 +90,93 @@ namespace Vineland.Necromancer.Core
 				result.DetectedHero = null;
 		}
 
-		private void Move (GameState gameState, NecromancerActivationResult result)
+		/// <summary>
+		/// Moves the necromancer to a new location and returns the location moved to.
+		/// </summary>
+		/// <param name="detectedHero">Detected hero.</param>
+		/// <param name="movementRoll">Movement roll.</param>
+		/// <param name="gameState">Game state.</param>
+		private Location Move (Hero detectedHero, int movementRoll, GameState gameState)
 		{
 			var currentLocation = gameState.Locations.Single (x => x.Id == gameState.Necromancer.LocationId);
-			result.OldLocation = currentLocation;
+			Location newLocation = null;
 
-			if (result.DetectedHero != null) {
-				var heroLocation = gameState.Locations.Single (x => x.Id == result.DetectedHero.LocationId);
+			if (detectedHero != null) {
+				var heroLocation = gameState.Locations.Single (x => x.Id == detectedHero.LocationId);
 				var necromancerLocation = gameState.Locations.First (x => x.Id == gameState.Necromancer.LocationId);
 				//if the necromancer can reach the hero go directly to them
-				if (necromancerLocation.Pathways.Contains (heroLocation.Id) || gameState.Necromancer.GatesActive)
-					result.NewLocation = heroLocation;
+				if (necromancerLocation.Pathways.Contains (heroLocation.Id) || gameState.GatesActive)
+					newLocation = heroLocation;
 				else {
 					//the common locations between the hero and necromancer are the ones that the necro should move along
 					var commonLocationIds = necromancerLocation.Pathways.Intersect (heroLocation.Pathways).ToArray ();
 					var index = new Random ().Next (0, commonLocationIds.Length - 1);
-					result.NewLocation = gameState.Locations.Single (x => x.Id == commonLocationIds [index]);
+					newLocation = gameState.Locations.Single (x => x.Id == commonLocationIds [index]);
 				}
 			} else
-				result.NewLocation = gameState.Locations.Single (x => x.Id == currentLocation.Pathways [result.MovementRoll - 1]);
+				newLocation = gameState.Locations.Single (x => x.Id == currentLocation.Pathways [movementRoll - 1]);
+
+			gameState.Necromancer.LocationId = newLocation.Id;
+
+			return newLocation;
 		}
 
-		private void Spawn (GameState gameState, NecromancerActivationResult result)
+		public NecromancerSpawnResult Spawn (Location location, int necromancerRoll, GameState gameState)
 		{
-			//spawn blights at necromancer's new location
-			result.NumberOfBlightsToNewLocation = 1;
+			var notes = new StringBuilder ();
+			var result = new NecromancerSpawnResult (){ NewBlights = new List<Tuple<Location, Blight>> () };
+
+			//check if a quest needs to be spawned
+			if (gameState.PallOfSuffering && (necromancerRoll == 3 || necromancerRoll == 4))
+				result.SpawnQuest = true;
+
+			var initialBlightCount = location.BlightCount;
+			var monastery = gameState.Locations.Single (l => l.Id == (int)LocationIds.Monastery);
+
+			//spawn blight at necromancer's new location
+			result.NewBlights.Add (_blightService.SpawnBlight (location, gameState));		
 
 			//standard darkness track effects
 			if (gameState.DarknessTrackEffectsActive) {
-				if (gameState.Darkness >= 10 && result.NewLocation.BlightCount == 0)
-					result.NumberOfBlightsToNewLocation++;
+				if (gameState.Darkness >= 10 && location.BlightCount == 0)
+					result.NewBlights.Add (_blightService.SpawnBlight (location, gameState));
 
-				if (gameState.Darkness >= 20 && (result.MovementRoll == 1 || result.MovementRoll == 2))
-					result.NumberOfBlightsToNewLocation++;
+				if (gameState.Darkness >= 20 && (necromancerRoll == 1 || necromancerRoll == 2))
+					result.NewBlights.Add (_blightService.SpawnBlight (location, gameState));
 			}
 
 			//darkness card effects
 			if (gameState.Mode != DarknessCardsMode.None) {
 				if (gameState.Necromancer.FocusedRituals
-				    && !gameState.Heroes.Any (x => x.LocationId == result.NewLocation.Id))
-					result.NumberOfBlightsToNewLocation++;
+				    && !gameState.Heroes.Any (x => x.LocationId == location.Id))
+					result.NewBlights.Add (_blightService.SpawnBlight (location, gameState));
 
-				if (gameState.Necromancer.CreepingShadows && (result.MovementRoll == 5 || result.MovementRoll == 6))
-					result.NumberOfBlightsToNewLocation++;
+				if (gameState.Necromancer.CreepingShadows && (necromancerRoll == 5 || necromancerRoll == 6))
+					result.NewBlights.Add (_blightService.SpawnBlight (location, gameState));
 
 				if (gameState.Necromancer.DyingLand) {
 					if (gameState.DarknessTrackEffectsActive
 					    && gameState.Darkness >= 10
-						&& result.NewLocation.BlightCount == 1)
-						result.NumberOfBlightsToNewLocation++;
+					    && location.BlightCount == 1)
+						result.NewBlights.Add (_blightService.SpawnBlight (location, gameState));
 					else if ((!gameState.DarknessTrackEffectsActive
 					         || gameState.Darkness < 10)
-						&& result.NewLocation.BlightCount == 0)
-						result.NumberOfBlightsToNewLocation++;
+					         && location.BlightCount == 0)
+						result.NewBlights.Add (_blightService.SpawnBlight (location, gameState));
 				}
 
-				if (gameState.Necromancer.EncroachingShadows && result.MovementRoll == 6)
-					result.NumberOfBlightsToMonastery++;
+				if (gameState.Necromancer.EncroachingShadows && necromancerRoll == 6)
+					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
 
-				if (gameState.Necromancer.Overwhelm && result.NewLocation.BlightCount < 4 && result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation >= 4)
-					result.NumberOfBlightsToMonastery++;
+				if (gameState.Necromancer.Overwhelm && initialBlightCount < 4 && location.BlightCount >= 4)
+					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
+
 			}
-
-			//check for spill over to monastery
-//			if (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation > 4) {
-//				var overflow = (result.NewLocation.BlightCount + result.NumberOfBlightsToNewLocation) - 4;
-//				result.NumberOfBlightsToNewLocation -= overflow;
-//				result.NumberOfBlightsToMonastery += overflow;
-//			}
-            
-			//check if a quest needs to be spawned
-			if (gameState.PallOfSuffering && (result.MovementRoll == 3 || result.MovementRoll == 4))
-				result.SpawnQuest = true;
+			return result;
 		}
 	}
 
-	public class NecromancerActivationResult
+	public class NecromancerDetectionResult
 	{
 		public Hero DetectedHero { get; set; }
 
@@ -172,46 +188,15 @@ namespace Vineland.Necromancer.Core
 
 		public Location NewLocation { get; set; }
 
-		public string MovementMessage{
-			get{
-				if (NewLocation.Id == OldLocation.Id)
-					return "The Necromancer remains at the " + NewLocation.Name;
+		public string Notes{ get; set; }
+	}
 
-				return "The Necromancer moves to the " + OldLocation.Name;
-			}
-			
-		}
-
-		public int NumberOfBlightsToNewLocation { get; set; }
-
-		public string NumberOfBlightsToNewLocationMessage{
-			get { 
-				if (NumberOfBlightsToNewLocation == 0)
-					return string.Empty;
-				
-				return string.Format ("+{0} blight{2} to the {1}", NumberOfBlightsToNewLocation, NewLocation.Name, NumberOfBlightsToNewLocation == 1 ? string.Empty: "s");
-			}
-		}
-
-		public int NumberOfBlightsToMonastery { get; set; }
-		public string NumberOfBlightsToMonasteryMessage{
-			get { 
-				if (NumberOfBlightsToMonastery == 0)
-					return string.Empty;
-
-				return string.Format ("+{0} blight{1} to the Monastery", NumberOfBlightsToMonastery, NumberOfBlightsToMonastery == 1 ? string.Empty: "s");
-			}
-		}
+	public class NecromancerSpawnResult
+	{
+		public List<Tuple<Location, Blight>> NewBlights { get; set; }
 
 		public bool SpawnQuest { get; set; }
-		public string SpawnQuestMessage{
-			get{
-				if (SpawnQuest)
-					return string.Format ("+1 quest to the {0}", OldLocation.Name);
-				return string.Empty;
-			}
-		}
 
-		public string Notes{ get; set; }
+		public string Notes { get; set; }
 	}
 }

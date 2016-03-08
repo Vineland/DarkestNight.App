@@ -21,7 +21,7 @@ namespace Vineland.Necromancer.UI
 				return;
 			
 			var absoluteLayout = new AbsoluteLayout {
-				Padding = new Thickness(20,0,20,40)
+				Padding = new Thickness (20, 0, 20, 40)
 			};
 
 			var nameLabel = new Label () {
@@ -38,16 +38,16 @@ namespace Vineland.Necromancer.UI
 				Source = ImageSource.FromFile (hero.Name.Replace (" ", string.Empty).ToLower ()),
 				HorizontalOptions = LayoutOptions.Center
 			};
-			absoluteLayout.Children.Add (image, new Rectangle(0.5,48, 72,72), AbsoluteLayoutFlags.XProportional);
+			absoluteLayout.Children.Add (image, new Rectangle (0.5, 48, 72, 72), AbsoluteLayoutFlags.XProportional);
 
 			absoluteLayout.Children.Add (new Label () { Text = "Secrecy", VerticalTextAlignment = TextAlignment.Center },
-				new Rectangle(0, 128, 0.6, 32),
+				new Rectangle (0, 128, 0.6, 32),
 				AbsoluteLayoutFlags.WidthProportional);
 
 			var secrecyStepper = new CustomStepper () { Maximum = 9 };
 			secrecyStepper.SetBinding<Hero> (CustomStepper.ValueProperty, h => h.Secrecy);
 			absoluteLayout.Children.Add (secrecyStepper, 
-				new Rectangle(1, 128, 96, 32),
+				new Rectangle (1, 128, 96, 32),
 				AbsoluteLayoutFlags.XProportional);
 
 			absoluteLayout.Children.Add (new Label () { Text = "Location", VerticalTextAlignment = TextAlignment.Center },
@@ -59,9 +59,11 @@ namespace Vineland.Necromancer.UI
 			locationPicker.SetBinding (BindablePicker<Location>.ItemsSourceProperty, new Binding ("Locations", source: this.GetParentPage ().BindingContext));
 
 			absoluteLayout.Children.Add (locationPicker,
-				new Rectangle(1,168,0.4,32),
+				new Rectangle (1, 168, 0.4, 32),
 				AbsoluteLayoutFlags.WidthProportional | AbsoluteLayoutFlags.XProportional);
 
+
+			//TODO: this option stuff needs to be revisited at some point
 			var optionLabel = string.Empty;
 			var property = string.Empty;
 			switch (hero.Name) {
@@ -112,21 +114,33 @@ namespace Vineland.Necromancer.UI
 //
 			if (!string.IsNullOrEmpty (property)) {
 				absoluteLayout.Children.Add (new Label () { Text = optionLabel, VerticalTextAlignment = TextAlignment.Center }, 
-					new Rectangle(0,208,0.6,32),
+					new Rectangle (0, 208, 0.6, 32),
 					AbsoluteLayoutFlags.WidthProportional);
 
 				if (property == "ProphecyOfDoomRoll") {
-					var picker = new CustomStepper () { Maximum = 6};
+					var picker = new CustomStepper () { Maximum = 6 };
 					picker.SetBinding (CustomStepper.ValueProperty, new Binding (property));
 					absoluteLayout.Children.Add (picker, 
-						new Rectangle(1,208, 96,32),
+						new Rectangle (1, 208, 96, 32),
 						AbsoluteLayoutFlags.XProportional);
 
-				} else {
+				} else if (property == "InvisibleBarrierLocationId" || property == "AncientDefenseLocationId") {
+					var spinner = new BindablePicker<Location, int?> () { IncludeEmptyOption = true, ValueMember="Id" };
+					spinner.SetBinding (BindablePicker<Location,int?>.SelectedValueProperty, new Binding (property));
+					spinner.SetBinding (BindablePicker<Location,int?>.ItemsSourceProperty, new Binding ("Locations", source: this.GetParentPage ().BindingContext));
+					spinner.SelectedIndexChanged += (object sender, EventArgs e) => {
+						
+					};
+					absoluteLayout.Children.Add (spinner, 
+						new Rectangle (1, 208, 0.4, 32),
+						AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
+				}
+				else 
+				{
 					var switchControl = new CheckButton ();
 					switchControl.SetBinding (CheckButton.IsSelectedProperty, new Binding (property));
 					absoluteLayout.Children.Add (switchControl, 
-						new Rectangle(1,208, 32,32),
+						new Rectangle (1, 208, 32, 32),
 						AbsoluteLayoutFlags.XProportional);
 				}
 			} 
@@ -140,7 +154,7 @@ namespace Vineland.Necromancer.UI
 //				new Rectangle(1, 232 + offset, 32,32),
 //				AbsoluteLayoutFlags.XProportional);
 
-			var stackLayout = new StackLayout() {Spacing=8};
+			var stackLayout = new StackLayout () { Spacing = 8 };
 
 			var changeHeroButton = new Button () {
 				Text = "Defeated",
@@ -150,8 +164,7 @@ namespace Vineland.Necromancer.UI
 			changeHeroButton.CommandParameter = hero;
 			stackLayout.Children.Add (changeHeroButton);
 
-			var blightsButton = new Button () 
-			{
+			var blightsButton = new Button () {
 				Text = "Blights",
 				HorizontalOptions = LayoutOptions.Fill,
 			};

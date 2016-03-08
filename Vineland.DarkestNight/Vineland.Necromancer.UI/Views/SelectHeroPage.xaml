@@ -5,9 +5,10 @@ x:Class="Vineland.Necromancer.UI.SelectHeroPage">
 		<ListView ItemsSource="{Binding AvailableHeroes}" SelectedItem="{Binding SelectedHero}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<ViewCell>
+				<TextCell Text="{Binding Name}" />
+<!--					<ViewCell>
 						<Label Text="{Binding Name}" VerticalOptions="Center"/>
-					</ViewCell>
+					</ViewCell>-->
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>

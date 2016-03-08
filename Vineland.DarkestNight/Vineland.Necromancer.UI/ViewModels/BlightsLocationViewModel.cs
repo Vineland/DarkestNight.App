@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Database;
+using System.Runtime.InteropServices;
 
 namespace Vineland.Necromancer.UI
 {
@@ -17,38 +18,22 @@ namespace Vineland.Necromancer.UI
 		public BlightLocationsViewModel (BlightService blightService)
 		{
 			_blightService = blightService;
-//			var blights = new ObservableCollection<BlightViewModel> ();
-//			foreach (var location in Application.CurrentGame.Locations) {
-//				//need to put a dummy one for empty locations for FlowListView to work
-//				if (!location.Blights.Any ())
-//					blights.Add (new BlightViewModel  { Location = location });
-//				
-//				foreach (var blight in location.Blights)
-//					blights.Add (new BlightViewModel  { Location = location, Blight = blight });				
-//			}
-//			Blights = blights;
-			Locations = new ObservableCollection<LocationViewModel> ();
-			foreach (var location in Application.CurrentGame.Locations) {
-				var locationVM = new LocationViewModel (location.Name);
-				foreach (var blight in location.Blights)
-					locationVM.Add (blight);
-
-				Locations.Add (locationVM);
-			}
+			var models = Application.CurrentGame.Locations.Select (x => new BlightLocationViewModel (x.Name, x.Blights));
+			Locations = new ObservableCollection<BlightLocationViewModel> (models);
 		}
 
 		public ObservableCollection<BlightViewModel> Blights { get; set; }
-		public ObservableCollection<LocationViewModel> Locations { get; set; }
+		public ObservableCollection<BlightLocationViewModel> Locations { get; set; }
 
-		public void AddBlight (Location location)
-		{
-			var blight = _blightService.SpawnBlight (location, Application.CurrentGame);
-			Blights.Add (new BlightViewModel () { Location = location, Blight = blight });
-			//yeck, yeck, yeck
-			var spacerBlight = Blights.FirstOrDefault (x => x.Location == location && x.Blight == null);
-			if (spacerBlight != null)
-				Blights.Remove (spacerBlight);
-		}
+//		public void AddBlight (Location location)
+//		{
+//			var blight = _blightService.SpawnBlight (location, Application.CurrentGame);
+//			Blights.Add (new BlightViewModel () { Location = location, Blight = blight });
+//			//yeck, yeck, yeck
+//			var spacerBlight = Blights.FirstOrDefault (x => x.Location == location && x.Blight == null);
+//			if (spacerBlight != null)
+//				Blights.Remove (spacerBlight);
+//		}
 
 		public void RemoveBlight (BlightViewModel blightViewModel)
 		{
@@ -65,13 +50,14 @@ namespace Vineland.Necromancer.UI
 		}
 	}
 
-	public class LocationViewModel : ObservableCollection<Blight>
+	public class BlightLocationViewModel : ObservableCollection<Blight>
 	{
-		public String Name { get; private set; }        
+		public string LocationName { get; private set; }        
 
-		public LocationViewModel(String Name)
+		public BlightLocationViewModel(string locationName, IEnumerable<Blight> blights)
+			:base(blights)
 		{
-			this.Name = Name;            
+			LocationName = locationName;      
 		}
 	}
 

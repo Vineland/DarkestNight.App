@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class AcolyteOptions : ContentView
+	public partial class NecromancerSpawnPage : ContentPage
 	{
-		public AcolyteOptions ()
+		public NecromancerSpawnPage ()
 		{
 			InitializeComponent ();
 		}

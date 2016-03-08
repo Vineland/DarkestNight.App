@@ -13,9 +13,9 @@ namespace Vineland.Necromancer.Core
 
 		public void SpawnStartingBlights (GameState gameState)
 		{
-			var mapCard = gameState.MapCards.Draw();
+			var mapCard = gameState.MapCards.Draw ();
 			foreach (var row in mapCard.Rows) {
-				if (row.LocationId == LocationIds.Monastery)
+				if (row.LocationId == (int)LocationIds.Monastery)
 					continue;
 				
 				var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == row.BlightName);
@@ -26,26 +26,30 @@ namespace Vineland.Necromancer.Core
 			gameState.MapCards.Discard (mapCard);
 		}
 
-		public Blight SpawnBlight (Location location, GameState gameState, Blight blight = null)
+		/// <summary>
+		/// Spawns a blight at the specified locaiton. 
+		/// If the location is already at capacity then it spawns a blight at the monastery instead.
+		/// </summary>
+		/// <returns>A typle containting the blight spawned and the locaiton spawned at.</returns>
+		/// <param name="location">Location.</param>
+		/// <param name="gameState">Game state.</param>
+		public Tuple<Location, Blight> SpawnBlight (Location location, GameState gameState)
 		{
-			//TODO: look into this - sometimes the draw has to be done seperately 
-			//(during the necromancer phase where the player can interrupt in various ways)
-			//and in those cases the blight will be passed in after it has been confirmed
-			//otherwise we can draw and spawn in one method. however, this resulting code is a bit messy
-			if(blight == null){
-				var card = gameState.MapCards.Draw ();
-				var blightName = card.Rows.Single (r => r.LocationId == location.Id).BlightName;
-				blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
-				gameState.MapCards.Discard (card);
-			}
+			if (location.BlightCount >= 4)
+				location = gameState.Locations.Single (l => l.Id == (int)LocationIds.Monastery);
+			
+			var card = gameState.MapCards.Draw ();
+			var blightName = card.Rows.Single (r => r.LocationId == location.Id).BlightName;
+			var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
+			gameState.MapCards.Discard (card);
 
 			if (blight != null) {
 				location.Blights.Add (blight);
 				gameState.BlightPool.Remove (blight);
 			} else //if there are no blights of that type left to spawn try the next card
-				SpawnBlight (location, gameState);
+				return SpawnBlight (location, gameState);
 
-			return blight;
+			return new Tuple<Location, Blight>(location, blight);
 		}
 
 		public void DestroyBlight (Location location, Blight blight, GameState gameState)

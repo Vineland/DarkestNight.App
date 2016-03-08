@@ -91,7 +91,8 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public List<Location> Locations {
+		public List<Location> Locations 
+		{
 			get { return Application.CurrentGame.Locations; }
 		}
 

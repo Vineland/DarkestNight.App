@@ -49,15 +49,15 @@ namespace Vineland.Necromancer.Core
 		}
 	}
 
-	public static class LocationIds
+	public enum LocationIds
 	{
-		public static readonly int Monastery = 0;
-		public static readonly int Mountains = 1;
-		public static readonly int Castle = 2;
-		public static readonly int Village = 3;
-		public static readonly int Swamp = 4;
-		public static readonly int Ruins = 5;
-		public static readonly int Forest = 6;
+		Monastery = 0,
+		Mountains = 1,
+		Castle = 2,
+		Village = 3,
+		Swamp = 4,
+		Ruins = 5,
+		Forest = 6
 	}
 
 

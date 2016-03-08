@@ -37,6 +37,16 @@ namespace Vineland.Necromancer.Core
 				return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
 			}
 		}
+
+		public bool GatesActive{
+			get{ return Locations.Any (l => l.Blights.Any (b => b.Name == "Gate")); }
+		}
+
+
+		public GameState Clone(){
+			var json = JsonConvert.SerializeObject (this, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+			return JsonConvert.DeserializeObject<GameState> (json, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+		}
 	}
 
 	public class NecomancerState
@@ -56,8 +66,6 @@ namespace Vineland.Necromancer.Core
 		public bool CreepingShadows { get; set; }
 
 		#endregion
-
-		public bool GatesActive { get; set; }
 	}
 
 	public enum DarknessCardsMode

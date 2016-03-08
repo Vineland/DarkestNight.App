@@ -24,7 +24,7 @@ namespace Vineland.Necromancer.Core
 			gameState.PallOfSuffering = settings.PallOfSuffering;
 			gameState.Mode = settings.DarknessCardsMode;
 
-			gameState.Necromancer.LocationId = LocationIds.Ruins;
+			gameState.Necromancer.LocationId = (int)LocationIds.Ruins;
 
 			gameState.MapCards = new Deck<MapCard> ();
 			gameState.MapCards.Initialise (_dataService.GetMapCards ());

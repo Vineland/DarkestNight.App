@@ -14,118 +14,66 @@ namespace Vineland.Necromancer.UI
 {
 	public class NecromancerSpawnViewModel : BaseViewModel
 	{
-		BlightService _blightService;
+		NecromancerService _necromancerService;
+		NecromancerDetectionResult _detectionResult;
+		NecromancerSpawnResult _spawnResult;
 
-		public NecromancerSpawnViewModel (BlightService blightService)
+		public NecromancerSpawnViewModel (NecromancerService necromancerService)
 		{
-			_blightService = blightService;
-			ProspectiveSpawns = new ObservableCollection<SpawnViewModel> ();
+			_necromancerService = necromancerService;
 		}
 
-		int _blightsToSpawnAtNewLocation;
-		int _blightsToSpawnAtMonastery;
+		GameState _editableGameState;
 
-		public void Initialise (int blightsToSpawnAtNewLocation, int blightsToSpawnAtMonastery)
+		public void Initialise (NecromancerDetectionResult detectionResult, GameState editableGameState)
 		{
-			Task.Run (() => {
-				_blightsToSpawnAtNewLocation = blightsToSpawnAtNewLocation;
-				_blightsToSpawnAtMonastery = blightsToSpawnAtMonastery;
+			_editableGameState = editableGameState;
+			_detectionResult = detectionResult;
 
-				GetAllProspectiveBlights ();
-			});
+			_spawnResult = _necromancerService.Spawn (detectionResult.NewLocation, detectionResult.MovementRoll, _editableGameState);
+			var models = _spawnResult.NewBlights.GroupBy (x => x.Item1).Select (x => new BlightLocationViewModel (x.Key.Name, x.Select (y => y.Item2)));
+			NewBlightLocations = new ObservableCollection<BlightLocationViewModel> (models);
 		}
 
-		public ObservableCollection<SpawnViewModel> ProspectiveSpawns { get; set; }
+		public string Notes {get;set;}
+		public string SpawnQuestMessage { get; set; }
 
-		public Location NecromancerLocation {
-			get {
-				return Application.CurrentGame.Locations.Single (l => l.Id == Application.CurrentGame.Necromancer.LocationId);
-			}
-		}
+		public ObservableCollection<BlightLocationViewModel> NewBlightLocations { get; set; }
 
-		private void GetAllProspectiveBlights ()
-		{
-			//if this ain't our first rodeo, put everything back - we gonna can take another crack
-			foreach (var pb in ProspectiveSpawns.Reverse()) {				
-				Application.CurrentGame.BlightPool.Add (pb.Blight);
-				pb.Cards.Reverse ();
-				pb.Cards.ForEach (c => Application.CurrentGame.MapCards.Return (c));
-			}
-			ProspectiveSpawns.Clear ();
 
-			for (int i = 0; i < _blightsToSpawnAtNewLocation; i++) {
-				//we've gone over so spawn the blight at the monastery instead
-				if (NecromancerLocation.BlightCount + ProspectiveSpawns.Sum (x => x.Location.Id == LocationIds.Monastery ? 0 : x.Blight.Weight) >= 4) {
-					ProspectiveSpawns.Add (GetProspectiveSpawn (LocationIds.Monastery));
-				} else {
-					ProspectiveSpawns.Add (GetProspectiveSpawn (NecromancerLocation.Id));
-				}
-			}
-
-			for (int i = 0; i < _blightsToSpawnAtMonastery; i++) {
-				ProspectiveSpawns.Add (GetProspectiveSpawn (LocationIds.Monastery));
-			}
-		}
-
-		private SpawnViewModel GetProspectiveSpawn (int locationId)
-		{
-			var prospectiveSpawn = new SpawnViewModel () {
-				Location = Application.CurrentGame.Locations.Single (l => l.Id == locationId)
-			};
-			do {
-				var card = Application.CurrentGame.MapCards.Draw ();
-				var blightName = card.Rows.Single (x => x.LocationId == locationId).BlightName;
-
-				prospectiveSpawn.Blight = Application.CurrentGame.BlightPool.FirstOrDefault (b => b.Name == blightName);
-				prospectiveSpawn.Cards.Add (card);
-
-			} while(prospectiveSpawn.Blight == null);
-
-			Application.CurrentGame.BlightPool.Remove (prospectiveSpawn.Blight);
-
-			return prospectiveSpawn;
-		}
-
-		public void DestroyBlightCommand (SpawnViewModel prospectiveBlight)
-		{
-			//if a blight is instantly destroyed we need to:
-			// 1) discard the cards used to spawn it
-			prospectiveBlight.Cards.ForEach (c => Application.CurrentGame.MapCards.Discard (c));
-			prospectiveBlight.Cards.Clear ();
-			// 2) decrement the required number of blights to spawn
-			if (prospectiveBlight.Location.Id != LocationIds.Monastery)
-				_blightsToSpawnAtNewLocation--;
-			else
-				_blightsToSpawnAtMonastery--;
-					
-			// 3) get the prospective blights again (in case this removal has changed spill over blights to the monastery)
-			GetAllProspectiveBlights ();					
-		}
-
+//		public void DestroyBlightCommand (SpawnViewModel prospectiveBlight)
+//		{
+//			//if a blight is instantly destroyed we need to:
+//			// 1) discard the cards used to spawn it
+//			prospectiveBlight.Cards.ForEach (c => Application.CurrentGame.MapCards.Discard (c));
+//			prospectiveBlight.Cards.Clear ();
+//			// 2) decrement the required number of blights to spawn
+//			if (prospectiveBlight.Location.Id != LocationIds.Monastery)
+//				_blightsToSpawnAtNewLocation--;
+//			else
+//				_blightsToSpawnAtMonastery--;
+//					
+//			// 3) get the prospective blights again (in case this removal has changed spill over blights to the monastery)
+//			GetAllProspectiveBlights ();					
+//		}
+//
 		public RelayCommand AcceptCommand {
 			get {
 				return new RelayCommand (() => 
 					{
-						foreach(var spawn in ProspectiveSpawns)
-							spawn.Location.Blights.Add(spawn.Blight);
+						//TODO: rethink this whole process. It would be nice to just set the game state to the edited one but that
+						//breaks all bindings.
+						//propagate all the changes to the game state
+						Application.CurrentGame.MapCards = _editableGameState.MapCards;
+						Application.CurrentGame.Necromancer.LocationId = _editableGameState.Necromancer.LocationId;
+						Application.CurrentGame.Locations = _editableGameState.Locations;
+						Application.CurrentGame.BlightPool = _editableGameState.BlightPool;
+
+						Application.SaveCurrentGame ();
 
 						Application.Navigation.PopTo<HeroPhasePage>();
 				});
 			}
-		}
-	}
-
-	public class SpawnViewModel : BlightViewModel
-	{
-		/// <summary>
-		/// Multiple cards could have be drawn if none of a particular blight are in the pool
-		/// </summary>
-		/// <value>The card.</value>
-		public List<MapCard> Cards { get; set; }
-
-		public SpawnViewModel ()
-		{
-			Cards = new List<MapCard> ();
 		}
 	}
 }

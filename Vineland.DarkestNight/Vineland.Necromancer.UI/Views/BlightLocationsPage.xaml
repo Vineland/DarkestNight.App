@@ -5,7 +5,7 @@
 
   <ListView ItemsSource="{ Binding Locations }"
             IsGroupingEnabled="true"
-            GroupDisplayBinding="{ Binding Name }">
+            GroupDisplayBinding="{ Binding  LocationName }">
     <ListView.ItemTemplate>
       <DataTemplate>
 <!--      <ViewCell>

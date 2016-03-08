@@ -24,8 +24,6 @@ namespace Vineland.Necromancer.UI.Droid
 			if (string.IsNullOrEmpty (textCell.Text)) {
 				view.Visibility = Android.Views.ViewStates.Gone;
 			} else {
-				view.SetPadding (20, view.PaddingTop, view.PaddingRight, view.PaddingBottom); 
-
 				var label = (view.GetChildAt (1) as LinearLayout).GetChildAt(0) as TextView; //yikes!
 				label.Typeface = FontManager.GetDefaultFont();
 				label.SetTextColor (Android.Graphics.Color.Black);
