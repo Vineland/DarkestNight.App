@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Android.Database;
 using System.Runtime.InteropServices;
+using Android.Util;
 
 namespace Vineland.Necromancer.UI
 {
@@ -18,59 +19,95 @@ namespace Vineland.Necromancer.UI
 		public BlightLocationsViewModel (BlightService blightService)
 		{
 			_blightService = blightService;
-			var models = Application.CurrentGame.Locations.Select (x => new BlightLocationViewModel (x.Name, x.Blights));
-			Locations = new ObservableCollection<BlightLocationViewModel> (models);
+			var models = Application.CurrentGame.Locations.Select (l => new BlightLocationViewModel (l));
+			LocationSections = new ObservableCollection<BlightLocationViewModel> (models);
 		}
 
-		public ObservableCollection<BlightViewModel> Blights { get; set; }
-		public ObservableCollection<BlightLocationViewModel> Locations { get; set; }
+		public ObservableCollection<BlightLocationViewModel> LocationSections { get; set; }
 
-//		public void AddBlight (Location location)
-//		{
-//			var blight = _blightService.SpawnBlight (location, Application.CurrentGame);
-//			Blights.Add (new BlightViewModel () { Location = location, Blight = blight });
-//			//yeck, yeck, yeck
-//			var spacerBlight = Blights.FirstOrDefault (x => x.Location == location && x.Blight == null);
-//			if (spacerBlight != null)
-//				Blights.Remove (spacerBlight);
-//		}
+		BlightRowViewModel _selectedRow;
 
-		public void RemoveBlight (BlightViewModel blightViewModel)
+		public BlightRowViewModel SelectedRow {
+			get { return _selectedRow; }
+			set {
+				if (value != null) {
+					if (value.IsPlaceholder)
+						SpawnBlight (value);
+					else
+						DestoryBlight (value);
+				}
+				_selectedRow = null;
+				RaisePropertyChanged (() => SelectedRow);
+			}
+		}
+
+		public void SpawnBlight (BlightRowViewModel spawnRow)
 		{
-			
-			if (blightViewModel.Location.Blights.Count == 1)
-				Blights.Add (new BlightViewModel () { Location = blightViewModel.Location });
-			
-			Blights.Remove (blightViewModel);
+			var locationSection = LocationSections.Single (l => l.Contains (spawnRow));
+
+			var blight = _blightService.SpawnBlight (locationSection.Location, Application.CurrentGame).Item2;
+
+			locationSection.Insert (locationSection.Count - 1, new BlightRowViewModel (blight));
+			if (locationSection.Location.BlightCount >= 4)
+				locationSection.Remove (spawnRow);
 
 			Task.Run (() => {
-				_blightService.DestroyBlight (blightViewModel.Location, blightViewModel.Blight, Application.CurrentGame);
+				Application.SaveCurrentGame ();
+			});
+		}
+
+		public void DestoryBlight (BlightRowViewModel selectedRow)
+		{
+			
+			var locationSection = LocationSections.Single (l => l.Contains (selectedRow));
+			locationSection.Remove (selectedRow);
+			if (locationSection.Count < 4
+			    && !locationSection.Any (x => x.IsPlaceholder))
+				locationSection.Add (new BlightRowViewModel (null));
+
+			Task.Run (() => {				
+				_blightService.DestroyBlight (locationSection.Location, selectedRow.Blight, Application.CurrentGame);
 				Application.SaveCurrentGame ();
 			});
 		}
 	}
 
-	public class BlightLocationViewModel : ObservableCollection<Blight>
+	public class BlightLocationViewModel : ObservableCollection<BlightRowViewModel>
 	{
-		public string LocationName { get; private set; }        
+		public Location Location { get; private set; }
 
-		public BlightLocationViewModel(string locationName, IEnumerable<Blight> blights)
-			:base(blights)
+		public BlightLocationViewModel (Location location)
 		{
-			LocationName = locationName;      
+			Location = location;
+
+			foreach (var blight in location.Blights) {
+				this.Add (new BlightRowViewModel (blight));
+			}
+
+			if (location.BlightCount < 4)
+				this.Add (new BlightRowViewModel (null));
+			
 		}
 	}
 
-
-	public class BlightViewModel
+	public class BlightRowViewModel : BaseViewModel
 	{
-		public Location Location { get; set; }
+		public Blight Blight{ get ; private set; }
 
-		public Blight Blight { get; set; }
-
-		public BlightViewModel ()
+		public BlightRowViewModel (Blight blight)
 		{
+			Blight = blight;
 		}
+
+		public string Name {
+			get{ return Blight == null ? "Spawn Blight" : Blight.Name; }
+		}
+
+		public string ImageName {
+			get { return Blight == null ? "plus" : string.Format ("blight_{0}", Blight.Name.ToLower ().Replace (" ", "_")); }
+		}
+
+		public bool IsPlaceholder { get { return Blight == null; } }
 	}
 }
 

@@ -239,7 +239,7 @@ namespace Vineland.Necromancer.Core.Test
 
 			var result = _necromancerService.Activate(_gameState, detectedHero: new Hero() { Id = 1, LocationId = LocationIds.Mountains }, roll: 2);
 
-			Assert.IsTrue(result.NewLocation.Id == LocationIds.Village);
+			Assert.IsTrue(result.NewLocationId.Id == LocationIds.Village);
 		}
 
 		[Test]
@@ -249,7 +249,7 @@ namespace Vineland.Necromancer.Core.Test
 
 			var result = _necromancerService.Activate(_gameState, detectedHero: new Hero() { Id = 1, LocationId = LocationIds.Mountains }, roll: 2);
 
-			Assert.IsTrue(result.NewLocation.Id == LocationIds.Village || result.NewLocation.Id == LocationIds.Castle);
+			Assert.IsTrue(result.NewLocationId.Id == LocationIds.Village || result.NewLocationId.Id == LocationIds.Castle);
 		}
 
 		[Test]

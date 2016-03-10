@@ -3,9 +3,10 @@
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
  x:Class="Vineland.Necromancer.UI.BlightLocationsPage">
 
-  <ListView ItemsSource="{ Binding Locations }"
+  <ListView ItemsSource="{ Binding LocationSections }"
             IsGroupingEnabled="true"
-            GroupDisplayBinding="{ Binding  LocationName }">
+            GroupDisplayBinding="{ Binding  Location.Name }"
+            SelectedItem="{Binding SelectedRow }">
     <ListView.ItemTemplate>
       <DataTemplate>
 <!--      <ViewCell>
@@ -16,7 +17,6 @@
       </AbsoluteLayout>
       </ViewCell>-->
 	      <ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />
-        <!-- Or use a ViewCell -->
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>

@@ -9,7 +9,6 @@ namespace Vineland.Necromancer.UI
 		public ChooseHeroesPage ()
 		{
 			Title = "Select Heroes";
-			BackgroundImage = "background";
 
 			InitializeComponent ();
 		}

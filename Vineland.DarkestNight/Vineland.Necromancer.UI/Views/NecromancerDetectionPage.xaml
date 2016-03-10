@@ -27,14 +27,14 @@
 						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 					<Label Text="Roll" />
-					<Label Text="{Binding Result.MovementRoll}" HorizontalOptions="End" FontFamily="hobo" Grid.Column="1" />
+					<Label Text="{Binding Result.NecromancerRoll}" HorizontalOptions="End" FontFamily="hobo" Grid.Column="1" />
 					<Label Text="Detected Hero" Grid.Row="1" />
 					<Label Text="{Binding Result.DetectedHero, Converter={StaticResource heroConverter}}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="1" Grid.Column="1" />
 					<Label Text="Location" Grid.Row="2" />
-					<Label Text="{Binding Result.NewLocation, Converter={StaticResource locationConverter}}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="2" Grid.Column="1" />
+					<Label Text="{Binding NewLocation, Converter={StaticResource locationConverter}}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="2" Grid.Column="1" />
 
 					<StackLayout Spacing="10" Grid.Row="3" Grid.ColumnSpan="2">
-						<Button Text="Void Amor" Command="{Binding VoidAmorCommand}" IsVisible="{Binding VoidAmorVisible}" />
+						<Button Text="Void Amor" Command="{Binding VoidArmorCommand}" IsVisible="{Binding VoidArmorVisible}" />
 						<Button Text="Blinding Black" Command="{Binding BlindingBlackCommand}" IsVisible="{Binding BlindingBlackVisible}" />
 						<Button Text="Decoy" Command="{Binding DecoyCommand}" IsVisible="{Binding DecoyVisible}" />
 						<Button Text="Elusive Spirit" Command="{Binding ElusiveSpiritCommand}" IsVisible="{Binding ElusiveSpiritVisible}" />

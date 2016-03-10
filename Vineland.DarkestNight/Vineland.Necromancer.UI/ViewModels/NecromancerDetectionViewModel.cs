@@ -53,12 +53,9 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand SpawnCommand {
 			get {
 				return new RelayCommand (() => {
-					//TODO: do this here?
-					if (_seer != null)
-						_seer.ProphecyOfDoomRoll = 0;
 					
 					var viewModel = Resolver.Resolve<NecromancerSpawnViewModel> ();
-					viewModel.Initialise (SelectedResult.Result, SelectedResult.GameState.Clone());
+					viewModel.Initialise (SelectedResult.Result, SelectedResult.PendingGameState.Clone());
 
 					Application.Navigation.Push<NecromancerSpawnPage> (viewModel);
 				});
@@ -72,7 +69,7 @@ namespace Vineland.Necromancer.UI
 		NecromancerDetectionResult _result;
 		NecromancerService _necromancerService;
 
-		public GameState GameState { get; private set; }
+		public GameState PendingGameState { get; private set; }
 
 		Acolyte _acolyte;
 		Wayfarer _wayfarer;
@@ -95,8 +92,8 @@ namespace Vineland.Necromancer.UI
 		                                  int? roll = null, 
 		                                  int[] heroesToIgnore = null)
 		{
-			GameState = Application.CurrentGame.Clone ();
-			Result = _necromancerService.Activate (GameState, detectedHero, roll, heroesToIgnore);
+			PendingGameState = Application.CurrentGame.Clone ();
+			Result = _necromancerService.Activate (PendingGameState, detectedHero, roll, heroesToIgnore);
 		}
 
 		public NecromancerDetectionResult Result {
@@ -104,11 +101,17 @@ namespace Vineland.Necromancer.UI
 			set {
 				_result = value;
 				RaisePropertyChanged (() => Result);
+				RaisePropertyChanged (() => NewLocation);
 				RaisePropertyChanged (() => BlindingBlackVisible);
 				RaisePropertyChanged (() => DecoyVisible);
 				RaisePropertyChanged (() => VoidArmorVisible);
 				RaisePropertyChanged (() => ElusiveSpiritVisible);
 			}
+		}
+
+		public Location NewLocation
+		{
+			get{ return PendingGameState.Locations.SingleOrDefault (l => l.Id == Result.NewLocationId); }
 		}
 
 		List<int> _heroesToIgnore = new List<int> ();
@@ -121,8 +124,7 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (() => {
 					_heroesToIgnore.Add (Result.DetectedHero.Id);
-					//Result = _necromancerService.ActivateNecromancer (Application.CurrentGame, roll: Result.MovementRoll, heroesToIgnore: _heroesToIgnore);
-					ActivateNecromancer (roll: Result.MovementRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
+					ActivateNecromancer (roll: Result.NecromancerRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
 				},
 					() => {
 						return Result.DetectedHero != null;
@@ -142,9 +144,9 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand BlindingBlackCommand {
 			get {
 				return new RelayCommand (() => {
-					_heroesToIgnore = GameState.Heroes.Select (x => x.Id).ToList();
+					_heroesToIgnore = PendingGameState.Heroes.Select (x => x.Id).ToList();
 					_acolyte.BlindingBlackActive = false;
-					ActivateNecromancer (roll: Result.MovementRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
+					ActivateNecromancer (roll: Result.NecromancerRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
 				});
 			}
 		}
@@ -162,7 +164,7 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand DecoyCommand {
 			get {
 				return new RelayCommand (() => {
-					ActivateNecromancer (detectedHero: _wayfarer, roll: Result.MovementRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
+					ActivateNecromancer (detectedHero: _wayfarer, roll: Result.NecromancerRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
 				});
 			}
 		}
@@ -181,7 +183,7 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand (() => {
 					//TODO could be triggered more than once
 					_heroesToIgnore.Add (Result.DetectedHero.Id);
-					ActivateNecromancer(roll:Result.MovementRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
+					ActivateNecromancer(roll:Result.NecromancerRoll, heroesToIgnore: _heroesToIgnore.ToArray ());
 				});
 			}
 		}
