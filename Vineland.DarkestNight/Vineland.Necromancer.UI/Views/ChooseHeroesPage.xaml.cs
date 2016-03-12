@@ -8,9 +8,11 @@ namespace Vineland.Necromancer.UI
 	{
 		public ChooseHeroesPage ()
 		{
+			InitializeComponent ();
+
 			Title = "Select Heroes";
 
-			InitializeComponent ();
+			BackgroundImage = "background";
 		}
 
 		protected override void OnDisappearing ()

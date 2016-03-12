@@ -16,6 +16,7 @@ using Android.App;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Android.Content.Res;
+using Android.Graphics.Drawables;
 
 [assembly: ExportRenderer (typeof(MultiSelectListView<Hero>), typeof(MultiSelectListViewRenderer<Hero>))]
 namespace Vineland.Necromancer.UI.Droid
@@ -35,6 +36,8 @@ namespace Vineland.Necromancer.UI.Droid
 				var items = e.NewElement.ItemsSource as IEnumerable<T>;
 				Control.ChoiceMode = Android.Widget.ChoiceMode.Multiple;
 				Control.Adapter = new MultiSelectListViewAdapter<T> (this.Control.Context, items.ToList());
+				Control.Divider = new ColorDrawable (Android.Graphics.Color.ParseColor("#BC63402D"));
+				Control.DividerHeight = 1;
 			}
 		}
 	}
