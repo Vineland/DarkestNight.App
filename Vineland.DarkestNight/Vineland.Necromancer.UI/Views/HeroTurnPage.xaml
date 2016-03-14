@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:CustomCarouselPage xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
+x:Class="Vineland.Necromancer.UI.HeroTurnPage"
+ BackgroundImage="background">
+	<CarouselPage.ToolbarItems>
+		<ToolbarItem Name="Done" Command="{Binding DoneCommand}"></ToolbarItem>
+	</CarouselPage.ToolbarItems>
+		<ui:HeroPage BindingContext="{Binding HeroViewModel}" />
+		<ui:BlightLocationsPage BindingContext="{Binding BlightLocationsViewModel}" />
+</ui:CustomCarouselPage>

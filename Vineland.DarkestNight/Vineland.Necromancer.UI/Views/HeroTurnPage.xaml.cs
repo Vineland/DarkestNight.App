@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class HeroPhasePage : CustomCarouselPage
+	public partial class HeroTurnPage : CustomCarouselPage
 	{
-		public HeroPhasePage ()
+		public HeroTurnPage ()
 		{ 
 			InitializeComponent ();
-			Title = /*We could be */ "Heroes"; /*Just for one day*/
 		}
 	}
 }

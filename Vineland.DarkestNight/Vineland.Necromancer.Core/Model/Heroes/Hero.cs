@@ -13,18 +13,16 @@ namespace Vineland.Necromancer.Core
         public int Id { get; set; }
         public string Name { get; set; }
         public int Secrecy { get; set; }
+		public int SecrecyDefault { get; set; }
+		public int Grace { get; set; }
+		public int GraceDefault { get; set; }
         public int LocationId { get; set; }
 		public Expansion Expansion { get; set; }
 
 		#region Artifacts
 		public bool HasVoidArmor { get; set; }
+		public bool HasShieldOfRadiance { get; set; }
 		#endregion
-
-		public Hero ()
-		{
-			LocationId = (int)LocationIds.Monastery;
-			Secrecy = 6;
-		}
 
 		public override string ToString ()
 		{

@@ -50,7 +50,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroPhaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BlightsLocationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
@@ -68,13 +67,31 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml.cs">
       <DependentUpon>BlightLocationsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPhasePage.xaml.cs">
-      <DependentUpon>HeroPhasePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerSpawnPage.xaml.cs">
       <DependentUpon>NecromancerSpawnPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\HeroSelectedArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ActiveHeroesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml.cs">
+      <DependentUpon>ActiveHeroesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageSourceConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroTurnPage.xaml.cs">
+      <DependentUpon>HeroTurnPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroTurnViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\AcolyteViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\WizardViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ConjurerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\HeroViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ScholarViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ShamanViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ValkyrieViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\WayfarerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ParagonViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\RangerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\SeerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\AcolyteOptionsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -85,6 +102,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
@@ -114,10 +133,13 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroPhasePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerSpawnPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerSpawnPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroTurnPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

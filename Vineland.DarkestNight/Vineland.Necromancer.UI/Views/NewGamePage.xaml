@@ -23,8 +23,8 @@ x:Class="Vineland.Necromancer.UI.NewGamePage">
       <RowDefinition Height="Auto" />
 
     </Grid.RowDefinitions>
-    <Label Text="Starting Darkness" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" />
-	<ui:CustomStepper Value="{Binding Settings.StartingDarkness}" Grid.Column="1" Grid.Row="0" />	
+    <Label Text="Starting Darkness" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
+	<ui:CustomStepper Value="{Binding Settings.StartingDarkness}" Maximum="10" Grid.Column="1" Grid.Row="0" />	
 
 	<Label Text="Game Mode" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" IsVisible="{Binding Settings.FromTheAbyss}"/>
 	<ui:BindablePicker x:TypeArguments="core:DarknessCardsMode"  ItemsSource="{Binding DarknessCardsModeOptions}" SelectedItem="{Binding Settings.DarknessCardsMode}" Grid.Column="1" Grid.Row="1"  IsVisible="{Binding Settings.FromTheAbyss}"/>	

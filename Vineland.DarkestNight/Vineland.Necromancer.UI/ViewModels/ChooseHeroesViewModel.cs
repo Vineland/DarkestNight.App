@@ -26,13 +26,19 @@ namespace Vineland.Necromancer.UI
 
 		public ObservableCollection<Hero> SelectedHeroes { get; set; }
 
-		public RelayCommand StartGame{
+		public RelayCommand StartGame
+		{
 			get {
 				return new RelayCommand (
 					() => {
-						Application.CurrentGame.Heroes = SelectedHeroes.OrderBy(x=>x.Name).ToList();
+						Application.CurrentGame.Heroes = SelectedHeroes.ToList();
+						Application.CurrentGame.Heroes.ForEach(h=>
+							{ 
+								h.Secrecy = h.SecrecyDefault;
+								h.Grace = h.GraceDefault;
+							});
 						Application.SaveCurrentGame ();
-						Application.Navigation.Push<HeroPhasePage>(clearBackStack: true);
+						Application.Navigation.Push<ActiveHeroesPage>(clearBackStack: true);
 					},
 					() => {
 						return SelectedHeroes.Count() == 4;

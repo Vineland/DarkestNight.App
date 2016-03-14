@@ -2,21 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
  x:Class="Vineland.Necromancer.UI.BlightLocationsPage"
- BackgroundImage="background">
-
+ xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+ Title="Blights">
   <ListView ItemsSource="{ Binding LocationSections }"
             IsGroupingEnabled="true"
             GroupDisplayBinding="{ Binding  Location.Name }"
             SelectedItem="{Binding SelectedRow }">
     <ListView.ItemTemplate>
       <DataTemplate>
-<!--      <ViewCell>
-      <AbsoluteLayout Padding="20,0" >
-      <Image Source="{Binding ImageName}" AbsoluteLayout.LayoutBounds="0,0,48,48" VerticalOptions="Center" />
-      <Label Text="{Binding Name}" AbsoluteLayout.LayoutBounds="58,0,200, 48" VerticalTextAlignment="Center" />
-      <Button Text="X" AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,0,48,48" />
-      </AbsoluteLayout>
-      </ViewCell>-->
 	      <ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />
       </DataTemplate>
     </ListView.ItemTemplate>
