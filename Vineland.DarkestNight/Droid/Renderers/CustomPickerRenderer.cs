@@ -51,9 +51,10 @@ namespace Vineland.Necromancer.UI.Droid
 		{
 			var view = (TextView)base.GetView (position, convertView, parent);
 
+			view.Text = view.Text.Replace ("(Default)", string.Empty);
 			view.Typeface = FontManager.GetFont("hobo");
 			//view.SetTextSize (Android.Util.ComplexUnitType.Dip, 24);
-			view.Gravity = GravityFlags.Right;
+			view.Gravity = GravityFlags.Left;
 			return view;
 		}
 

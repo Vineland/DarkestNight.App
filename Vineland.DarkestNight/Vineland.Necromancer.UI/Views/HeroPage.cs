@@ -6,6 +6,7 @@ using System.Security.Policy;
 using Java.Net;
 using Dalvik.SystemInterop;
 using GalaSoft.MvvmLight;
+using System.Threading;
 
 namespace Vineland.Necromancer.UI
 {
@@ -41,27 +42,38 @@ namespace Vineland.Necromancer.UI
 			};
 			absoluteLayout.Children.Add (image, new Rectangle (0.5, 48, 72, 72), AbsoluteLayoutFlags.XProportional);
 
-			absoluteLayout.Children.Add (new Image () { Source = ImageSource.FromFile("secrecy") },
-				new Rectangle (0, 128, 32, 32));
+			var grid = new Grid () {
+				ColumnDefinitions = new ColumnDefinitionCollection(){
+					new ColumnDefinition() { Width = GridLength.Auto},
+					new ColumnDefinition() { Width = new GridLength(32, GridUnitType.Absolute)},
+					new ColumnDefinition() { Width = new GridLength(48, GridUnitType.Absolute)},
+					new ColumnDefinition() { Width = new GridLength(32, GridUnitType.Absolute)},
+					new ColumnDefinition() { Width = new GridLength(48, GridUnitType.Absolute)},
+					new ColumnDefinition() { Width = GridLength.Auto},
+				},
+				RowDefinitions = new RowDefinitionCollection(){
+					new RowDefinition() { Height = new GridLength(32, GridUnitType.Absolute)}
+				}
+			};
+
+			grid.Children.Add (new Image () { Source = ImageSource.FromFile ("secrecy") }, 1, 0);
 
 			var secrecyPicker = new BindablePicker<string> ();
 			secrecyPicker.ItemsSource = heroViewModel.SecrecyOptions;
 			secrecyPicker.SetBinding<HeroViewModel> (BindablePicker<string>.SelectedIndexProperty, h => h.Secrecy);
-			absoluteLayout.Children.Add (secrecyPicker, 
-				new Rectangle (0, 128, 0.5, 32),
-				AbsoluteLayoutFlags.WidthProportional);
+			grid.Children.Add (secrecyPicker, 2,0);
 
-			absoluteLayout.Children.Add (new Image () { Source = ImageSource.FromFile ("grace") },
-				new Rectangle (0.5, 128, 32, 32),
-				AbsoluteLayoutFlags.XProportional);
+			grid.Children.Add (new Image () { Source = ImageSource.FromFile ("grace") }, 3, 0);
 
 			var gracePicker = new BindablePicker<string> ();
 			gracePicker.ItemsSource = heroViewModel.GraceOptions;
 			gracePicker.SetBinding<HeroViewModel> (BindablePicker<string>.SelectedIndexProperty, h => h.Grace);
-			absoluteLayout.Children.Add (gracePicker, 
-				new Rectangle (1, 128, 0.5, 32),
-				AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
-			
+			grid.Children.Add (gracePicker, 4,0);
+
+			absoluteLayout.Children.Add (grid,
+				new Rectangle (0.5, 128, 160, 32),
+				AbsoluteLayoutFlags.XProportional);
+
 			absoluteLayout.Children.Add (new Label () { Text = "Location", VerticalTextAlignment = TextAlignment.Center },
 				new Rectangle (0, 168, 0.6, 32),
 				AbsoluteLayoutFlags.WidthProportional);
