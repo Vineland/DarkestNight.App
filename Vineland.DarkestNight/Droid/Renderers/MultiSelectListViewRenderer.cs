@@ -1,22 +1,22 @@
 ﻿using System;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms;
-using Android.Widget;
-using Vineland.Necromancer.UI;
-using Vineland.Necromancer.UI.Droid;
-using Vineland.Necromancer.Core;
-using Android.Nfc;
-using Android.Views;
-using Android.Graphics;
 using System.Collections;
 using System.Collections.Generic;
-using Android.Content;
 using System.Linq;
-using Android.App;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Android.App;
+using Android.Content;
 using Android.Content.Res;
+using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Nfc;
+using Android.Views;
+using Android.Widget;
+using Vineland.Necromancer.Core;
+using Vineland.Necromancer.UI;
+using Vineland.Necromancer.UI.Droid;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer (typeof(MultiSelectListView<Hero>), typeof(MultiSelectListViewRenderer<Hero>))]
 namespace Vineland.Necromancer.UI.Droid

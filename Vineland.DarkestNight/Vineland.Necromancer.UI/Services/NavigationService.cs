@@ -36,7 +36,7 @@ namespace Vineland.Necromancer.UI
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
-
+			
 			await _navigation.PopToRootAsync ();
 		}
 
@@ -78,6 +78,55 @@ namespace Vineland.Necromancer.UI
 				LogHelper.Error(ex);
 				throw;
 			}
+		}
+
+		public async void PushModal<T> (object viewModel = null) where T : Page
+		{
+			if (_navigation == null)
+				throw new Exception ("_navigation is null");
+
+			try {
+				var newPage = _pageService.CreatePage<T> (viewModel);
+				await _navigation.PushModalAsync (newPage as Page);
+			} catch (Exception ex) {
+				LogHelper.Error(ex);
+				throw;
+			}
+		}
+
+
+		public async void PopModal ()
+		{
+			if (_navigation == null)
+				throw new Exception ("_navigation is null");
+
+			await _navigation.PopModalAsync ();
+		}
+
+		public void DisplayAlert(string title, string message, string cancel){
+
+			if (_navigation == null)
+				throw new Exception ("_navigation is null");
+
+			_navigation.NavigationStack.Last().DisplayAlert(title, message, cancel);
+		}
+
+		public async Task<bool> DisplayConfirmation(string title, string message, string accept, string cancel){
+
+			if (_navigation == null)
+				throw new Exception ("_navigation is null");
+
+			var result = await _navigation.NavigationStack.Last().DisplayAlert(title, message, accept, cancel);
+
+			return result;
+		}
+
+		public string DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons){
+
+			if (_navigation == null)
+				throw new Exception ("_navigation is null");
+
+			return _navigation.NavigationStack.Last().DisplayActionSheet(title, cancel, destruction, buttons).Result;
 		}
 	}
 }

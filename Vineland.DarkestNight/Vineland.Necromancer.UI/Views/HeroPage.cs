@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Xamarin.Forms;
 using Vineland.Necromancer.Core;
 using System.Security.Policy;
@@ -44,31 +43,30 @@ namespace Vineland.Necromancer.UI
 
 			var grid = new Grid () {
 				ColumnDefinitions = new ColumnDefinitionCollection(){
-					new ColumnDefinition() { Width = GridLength.Auto},
 					new ColumnDefinition() { Width = new GridLength(32, GridUnitType.Absolute)},
 					new ColumnDefinition() { Width = new GridLength(48, GridUnitType.Absolute)},
 					new ColumnDefinition() { Width = new GridLength(32, GridUnitType.Absolute)},
 					new ColumnDefinition() { Width = new GridLength(48, GridUnitType.Absolute)},
-					new ColumnDefinition() { Width = GridLength.Auto},
 				},
 				RowDefinitions = new RowDefinitionCollection(){
 					new RowDefinition() { Height = new GridLength(32, GridUnitType.Absolute)}
 				}
 			};
 
-			grid.Children.Add (new Image () { Source = ImageSource.FromFile ("secrecy") }, 1, 0);
 
-			var secrecyPicker = new BindablePicker<string> ();
-			secrecyPicker.ItemsSource = heroViewModel.SecrecyOptions;
-			secrecyPicker.SetBinding<HeroViewModel> (BindablePicker<string>.SelectedIndexProperty, h => h.Secrecy);
-			grid.Children.Add (secrecyPicker, 2,0);
-
-			grid.Children.Add (new Image () { Source = ImageSource.FromFile ("grace") }, 3, 0);
+			grid.Children.Add (new Image () { Source = ImageSource.FromFile ("grace") }, 0, 0);
 
 			var gracePicker = new BindablePicker<string> ();
 			gracePicker.ItemsSource = heroViewModel.GraceOptions;
 			gracePicker.SetBinding<HeroViewModel> (BindablePicker<string>.SelectedIndexProperty, h => h.Grace);
-			grid.Children.Add (gracePicker, 4,0);
+			grid.Children.Add (gracePicker, 1,0);
+
+			grid.Children.Add (new Image () { Source = ImageSource.FromFile ("secrecy") }, 2, 0);
+
+			var secrecyPicker = new BindablePicker<string> ();
+			secrecyPicker.ItemsSource = heroViewModel.SecrecyOptions;
+			secrecyPicker.SetBinding<HeroViewModel> (BindablePicker<string>.SelectedIndexProperty, h => h.Secrecy);
+			grid.Children.Add (secrecyPicker, 3,0);
 
 			absoluteLayout.Children.Add (grid,
 				new Rectangle (0.5, 128, 160, 32),
@@ -186,8 +184,12 @@ namespace Vineland.Necromancer.UI
 				Text = "Defeated",
 				HorizontalOptions = LayoutOptions.Fill
 			};
-			changeHeroButton.SetBinding (Button.CommandProperty, new Binding ("RemoveHero", source: this.GetParentPage ().BindingContext));
-			changeHeroButton.CommandParameter = heroViewModel;
+			//changeHeroButton.SetBinding (Button.CommandProperty, new Binding ("RemoveHero"));
+			changeHeroButton.Clicked += async (sender, e) => {
+				var result = await DisplayAlert("Confirm", "Has this hero has been defeated?", "Yes", "No");
+				if(result)
+					heroViewModel.RemoveHero();
+			};
 			stackLayout.Children.Add (changeHeroButton);
 
 //			var blightsButton = new Button () {
@@ -197,12 +199,15 @@ namespace Vineland.Necromancer.UI
 //			blightsButton.SetBinding (Button.CommandProperty, new Binding ("Blights", source: this.GetParentPage ().BindingContext));
 //			stackLayout.Children.Add (blightsButton);
 //
-//			var searchButton = new Button () {
-//				Text = "Search",
-//				HorizontalOptions = LayoutOptions.Fill,
-//			};
-//			searchButton.SetBinding (Button.CommandProperty, new Binding ("Search", source: this.GetParentPage ().BindingContext));
-//			stackLayout.Children.Add (searchButton);
+			var searchButton = new Button () {
+			Text = "Search",
+				HorizontalOptions = LayoutOptions.Fill,
+			};
+			searchButton.Clicked += async (sender, e) => {
+				var option = await DisplayActionSheet("Number Of Cards To Draw", "Cancel", null, "1", "2", "3", "4");
+				heroViewModel.Search(option);
+			};
+			stackLayout.Children.Add (searchButton);
 
 //			var darknessStepper = new CustomStepper ();
 //			darknessStepper.SetBinding (CustomStepper.ValueProperty, new Binding ("Darkness", source: this.GetParentPage ().BindingContext));
@@ -214,6 +219,11 @@ namespace Vineland.Necromancer.UI
 
 
 			Content = absoluteLayout;
+		}
+
+		protected override void OnDisappearing ()
+		{
+			base.OnDisappearing ();
 		}
 	}
 }

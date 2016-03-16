@@ -14,51 +14,44 @@ namespace Vineland.Necromancer.UI
 
 		public ActiveHeroesViewModel ()
 		{			
-			Heroes = new ObservableCollection<HeroRowViewModel> (Application.CurrentGame.Heroes.Select (x => new HeroRowViewModel (x)).ToList());
-			//MessagingCenter.Subscribe<SelectHeroViewModel,Hero> (this, "HeroSelected", OnHeroSelected);
+			HeroRows = new ObservableCollection<HeroRowModel> (Application.CurrentGame.Heroes.Select (x => new HeroRowModel (x)).ToList());
+
+			MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
 		}
 
 		public override void Cleanup ()
 		{
-			base.Cleanup ();
-			//MessagingCenter.Unsubscribe<SelectHeroViewModel,Hero> (this, "HeroSelected");
+			base.OnDisappearing ();
+
+			MessagingCenter.Unsubscribe<HeroViewModel,Hero> (this, "HeroDefeated");
 		}
 
-		public ObservableCollection<HeroRowViewModel> Heroes { get; private set; }
+		public ObservableCollection<HeroRowModel> HeroRows { get; private set; }
 
-		public HeroRowViewModel SelectedRow { 
+		public HeroRowModel SelectedRow { 
 			get { return null; }
 			set{
 				if(value != null)
-					Application.Navigation.Push<HeroTurnPage>(new HeroTurnViewModel(value.Hero));
+					Application.Navigation.Push<HeroPage>(new HeroViewModel(value.Hero));
 			}
 		}
-		//		HeroRowViewModel _heroRowToRemove;
-		//		public RelayCommand<HeroRowViewModel> RemoveHero {
-		//			get {
-		//				return new RelayCommand<HeroRowViewModel> (
-		//					(heroRow) => {
-		//						_heroToRemove = heroRow;
-		//						Application.Navigation.Push<SelectHeroPage> ();
-		//					});
-		//			}
-		//		}
-		//
-		//		private void OnHeroSelected (SelectHeroViewModel sender, Hero selectedHero)
-		//		{
-		//			//no hero was selected i.e they backed out or cancelled
-		//			if (selectedHero == null)
-		//				return;
-		//
-		//			//remove current hero
-		//			var index = Heroes.IndexOf (_heroToRemove);
-		//			Heroes.Remove (_heroToRemove);
-		//			Heroes.Insert (index, selectedHero);
-		//			Task.Run (() => {
-		//				Application.CurrentGame.Heroes = Heroes.ToList ();
-		//				Application.SaveCurrentGame ();
-		//			});
-		//		}
+
+		private void OnHeroDefeated (HeroViewModel sender, HeroDefeatedArgs args)
+		{
+			var defeatedHeroRow = HeroRows.SingleOrDefault (x => x.Hero.Id == args.DefeatedHero.Id);
+			if (defeatedHeroRow != null)
+				HeroRows.Remove (defeatedHeroRow);
+
+			args.NewHero.Grace = args.NewHero.GraceDefault;
+			args.NewHero.Secrecy = args.NewHero.SecrecyDefault;
+
+			HeroRows.Add (new HeroRowModel (args.NewHero));
+
+			Task.Run (() => {
+				Application.CurrentGame.Heroes = HeroRows.Select(x=> x.Hero).ToList ();
+				Application.SaveCurrentGame ();
+			});
+		}
 
 		//		public int Darkness {
 		//			get { return Application.CurrentGame.Darkness; }
@@ -78,11 +71,11 @@ namespace Vineland.Necromancer.UI
 		}
 	}
 
-	public class HeroRowViewModel: BaseViewModel
+	public class HeroRowModel: BaseViewModel
 	{
 		public Hero Hero;
 
-		public HeroRowViewModel (Hero hero)
+		public HeroRowModel (Hero hero)
 		{
 			Hero = hero;
 		}

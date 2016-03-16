@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+x:Class="Vineland.Necromancer.UI.MapCardPage">
+	<ListView ItemsSource="{Binding Rows}" RowHeight="64">
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ViewCell>
+					<AbsoluteLayout BackgroundColor="{Binding BackgroundColor}" Padding="10,0">
+						<Label Text="{Binding LocationName}" AbsoluteLayout.LayoutBounds="0,0,1,64" AbsoluteLayout.LayoutFlags="WidthProportional" VerticalTextAlignment="Center"/>
+						<Image Source="{Binding BlightImage}" AbsoluteLayout.LayoutBounds="1,8,200,48" AbsoluteLayout.LayoutFlags="XProportional" HorizontalOptions="Start" />
+						<Image Source="{Binding ItemImage}" AbsoluteLayout.LayoutBounds="1,8,48,48" AbsoluteLayout.LayoutFlags="XProportional"  />
+					</AbsoluteLayout>
+				</ViewCell>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+</ContentPage>

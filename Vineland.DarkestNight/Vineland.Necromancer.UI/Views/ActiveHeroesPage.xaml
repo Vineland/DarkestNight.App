@@ -7,17 +7,17 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI">
 		<ToolbarItem Name="Necromancer" Command="{Binding NextPhase}">
 		</ToolbarItem>
 	</ContentPage.ToolbarItems>
-		<ListView ItemsSource="{Binding Heroes}" SelectedItem="{Binding SelectedRow}" HasUnevenRows="true">
+		<ListView x:Name="ListView" ItemsSource="{Binding HeroRows}" SelectedItem="{Binding SelectedRow}" RowHeight="96">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
 						<AbsoluteLayout>
 							<Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="12,12,72,72" />
 							<Label Text="{Binding Name}" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="96,0, 1, 32" />
-							<Image Source="secrecy" AbsoluteLayout.LayoutBounds="96,32, 32, 32" />
-							<Label Text="{Binding Secrecy}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="128,32, 32, 32" />
-							<Image Source="grace" AbsoluteLayout.LayoutBounds="160,32, 32, 32" />
-							<Label Text="{Binding Grace}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="192,32, 32, 32" />
+							<Image Source="grace" AbsoluteLayout.LayoutBounds="96,32, 32, 32" />
+							<Label Text="{Binding Grace}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="128,32, 32, 32" />
+							<Image Source="secrecy" AbsoluteLayout.LayoutBounds="160,32, 32, 32" />
+							<Label Text="{Binding Secrecy}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="192,32, 32, 32" />
 							<Label Text="{Binding Location}" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="96,64, 1, 32" />
 						</AbsoluteLayout>
 					</ViewCell>

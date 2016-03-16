@@ -5,6 +5,9 @@ using GalaSoft.MvvmLight.Command;
 using System.Linq;
 using System.Collections.Generic;
 using Android.Util;
+using XLabs.Ioc;
+using Android.OS;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
@@ -21,33 +24,59 @@ namespace Vineland.Necromancer.UI
 			get{ return _hero.Name.ToUpper (); }
 		}
 
-		public RelayCommand<Hero> RemoveHero {
-			get { 
-				return new RelayCommand<Hero> (
-					(hero) => { 
-						//_heroToRemove = hero;
-						Application.Navigation.Push<SelectHeroPage> ();
-					});
-			}
+//		public RelayCommand RemoveHero {
+//			get { 
+//				return new RelayCommand (
+//					() => 
+//					{ 	
+//						var confirmed = Application.Navigation.DisplayConfirmation("Confirm", "This hero has been defeated?", "Yes", "No");
+//						if(confirmed){
+//							var viewModel = new SelectHeroViewModel(Resolver.Resolve<DataService>());
+//							viewModel.HeroSelected += OnHeroSelected;
+//							Application.Navigation.Push<SelectHeroPage> (viewModel);
+//						}
+//					});
+//			}
+//		}
+
+		public void RemoveHero(){
+			var viewModel = new SelectHeroViewModel(Resolver.Resolve<DataService>());
+			viewModel.HeroSelected += OnHeroSelected;
+			Application.Navigation.Push<SelectHeroPage> (viewModel);
 		}
 
-		private void OnHeroSelected (SelectHeroViewModel sender, Hero selectedHero)
+		void OnHeroSelected (object sender, Hero newHero)
 		{
-			//no hero was selected i.e they backed out or cancelled
-			if (selectedHero == null)
-				return;
+			(sender as SelectHeroViewModel).HeroSelected -= OnHeroSelected;
 
-			//remove current hero
-			//			var index = Heroes.IndexOf (_heroToRemove);
-			//			Heroes.Remove (_heroToRemove);
-			//			Heroes.Insert (index, selectedHero);
-			//			SelectedHero = selectedHero;
-			//			RaisePropertyChanged (() => SelectedHero);
-			//			Task.Run (() => {
-			//				Application.CurrentGame.Heroes = Heroes.ToList ();
-			//				Application.SaveCurrentGame ();
-			//			});
+			MessagingCenter.Send<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated",
+				new HeroDefeatedArgs () {
+					DefeatedHero = _hero,
+					NewHero = newHero
+				});
+			
+			Application.Navigation.Pop ();
 		}
+
+
+		public void Search(string option){
+			var numberOfCards = 0;
+			if(int.TryParse(option, out numberOfCards))
+				Application.Navigation.Push<SearchPage>(new SearchViewModel(numberOfCards));
+		}
+
+//		public RelayCommand Search{
+//			get{
+//				return new RelayCommand(
+//					()=> {
+//
+//						var option = Application.Navigation.DisplayActionSheet("Number Of Cards To Draw", "Cancel", null, "1", "2", "3", "4");
+//						var numberOfCards = 0;
+//						if(int.TryParse(option, out numberOfCards))
+//							Application.Navigation.Push<SearchPage>(new SearchViewModel(numberOfCards));
+//				});
+//			}
+//		}
 
 		public int Secrecy {
 			get{ return _hero.Secrecy; }
@@ -149,6 +178,11 @@ namespace Vineland.Necromancer.UI
 			else
 				return new HeroViewModel (hero);
 		}
+	}
+
+	public class HeroDefeatedArgs{
+		public Hero DefeatedHero;
+		public Hero NewHero;
 	}
 }
 
