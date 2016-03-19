@@ -17,6 +17,22 @@ namespace Vineland.Necromancer.UI.Droid
 			if (e.OldElement == null) {
 				var button = (Android.Widget.Button)Control;
 				button.Typeface = FontManager.GetFont (e.NewElement.FontFamily);
+
+			}
+		}
+
+		protected override void OnLayout (bool changed, int l, int t, int r, int b)
+		{
+			base.OnLayout (changed, l, t, r, b);
+			if (changed) {
+				var drawables = Control.GetCompoundDrawables ();
+				if (drawables [0] != null) {
+					Rect drawableBounds = new Rect ();
+					drawables [0].CopyBounds (drawableBounds);
+					int leftOffset = ((Control.Width - Control.PaddingLeft - Control.PaddingRight) - drawableBounds.Width ()) / 2;
+					drawableBounds.Offset (leftOffset, 0);
+					drawables [0].SetBounds (drawableBounds.Left, drawableBounds.Top, drawableBounds.Right, drawableBounds.Bottom);
+				}
 			}
 		}
 	}

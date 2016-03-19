@@ -4,8 +4,7 @@ xmlns="http://xamarin.com/schemas/2014/forms"
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.SearchPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-ItemsSource="{Binding MapCards}" 
-Padding="0,0,0,40">
+ItemsSource="{Binding MapCards}">
 	<CarouselPage.ItemTemplate>
 		<DataTemplate>
 			<ui:MapCardPage />

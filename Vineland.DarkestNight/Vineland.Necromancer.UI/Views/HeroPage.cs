@@ -6,6 +6,7 @@ using Java.Net;
 using Dalvik.SystemInterop;
 using GalaSoft.MvvmLight;
 using System.Threading;
+using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
@@ -77,7 +78,7 @@ namespace Vineland.Necromancer.UI
 				AbsoluteLayoutFlags.WidthProportional);
 
 			var locationPicker = new BindablePicker<Location> () { ItemsSource = heroViewModel.Locations};
-			locationPicker.SetBinding<HeroViewModel> (BindablePicker<Location>.SelectedIndexProperty, h => h.Location);
+			locationPicker.SetBinding<HeroViewModel> (BindablePicker<Location>.SelectedItemProperty, h => h.Location);
 
 			absoluteLayout.Children.Add (locationPicker,
 				new Rectangle (1, 168, 0.4, 32),
@@ -181,16 +182,19 @@ namespace Vineland.Necromancer.UI
 			var stackLayout = new StackLayout () { Spacing = 8 };
 
 			var changeHeroButton = new Button () {
-				Text = "Defeated",
-				HorizontalOptions = LayoutOptions.Fill
+				Image = ImageSource.FromFile("death") as FileImageSource
 			};
 			//changeHeroButton.SetBinding (Button.CommandProperty, new Binding ("RemoveHero"));
 			changeHeroButton.Clicked += async (sender, e) => {
-				var result = await DisplayAlert("Confirm", "Has this hero has been defeated?", "Yes", "No");
+				var result = await Resolver.Resolve<IDisplayAlertService>().DisplayConfirmation(null, "This hero has been defeated?", "Yes", "No");
 				if(result)
 					heroViewModel.RemoveHero();
 			};
-			stackLayout.Children.Add (changeHeroButton);
+
+			absoluteLayout.Children.Add (changeHeroButton,
+				new Rectangle (0, 1, 48, 48),
+				AbsoluteLayoutFlags.YProportional);
+			//stackLayout.Children.Add (changeHeroButton);
 
 //			var blightsButton = new Button () {
 //				Text = "Blights",

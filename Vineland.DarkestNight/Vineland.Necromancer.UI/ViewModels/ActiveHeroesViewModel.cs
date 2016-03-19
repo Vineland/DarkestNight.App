@@ -17,6 +17,7 @@ namespace Vineland.Necromancer.UI
 			HeroRows = new ObservableCollection<HeroRowModel> (Application.CurrentGame.Heroes.Select (x => new HeroRowModel (x)).ToList());
 
 			MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
+			MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroUpdated", OnHeroUpdated);
 		}
 
 		public override void Cleanup ()
@@ -51,6 +52,10 @@ namespace Vineland.Necromancer.UI
 				Application.CurrentGame.Heroes = HeroRows.Select(x=> x.Hero).ToList ();
 				Application.SaveCurrentGame ();
 			});
+		}
+
+		private void OnHeroUpdated(HeroViewModel sender, Hero hero){
+			HeroRows.SingleOrDefault (x => x.Hero.Id == hero.Id).Updated ();
 		}
 
 		//		public int Darkness {
@@ -96,6 +101,13 @@ namespace Vineland.Necromancer.UI
 		public int Secrecy { get { return Hero.Secrecy; } }
 
 		public int Grace { get { return Hero.Grace; } }
+
+		public void Updated()
+		{
+			RaisePropertyChanged (() => Secrecy);
+			RaisePropertyChanged (() => Grace);
+			RaisePropertyChanged (() => Location);
+		}
 	}
 }
 

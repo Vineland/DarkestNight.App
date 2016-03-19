@@ -24,21 +24,6 @@ namespace Vineland.Necromancer.UI
 			get{ return _hero.Name.ToUpper (); }
 		}
 
-//		public RelayCommand RemoveHero {
-//			get { 
-//				return new RelayCommand (
-//					() => 
-//					{ 	
-//						var confirmed = Application.Navigation.DisplayConfirmation("Confirm", "This hero has been defeated?", "Yes", "No");
-//						if(confirmed){
-//							var viewModel = new SelectHeroViewModel(Resolver.Resolve<DataService>());
-//							viewModel.HeroSelected += OnHeroSelected;
-//							Application.Navigation.Push<SelectHeroPage> (viewModel);
-//						}
-//					});
-//			}
-//		}
-
 		public void RemoveHero(){
 			var viewModel = new SelectHeroViewModel(Resolver.Resolve<DataService>());
 			viewModel.HeroSelected += OnHeroSelected;
@@ -65,22 +50,16 @@ namespace Vineland.Necromancer.UI
 				Application.Navigation.Push<SearchPage>(new SearchViewModel(numberOfCards));
 		}
 
-//		public RelayCommand Search{
-//			get{
-//				return new RelayCommand(
-//					()=> {
-//
-//						var option = Application.Navigation.DisplayActionSheet("Number Of Cards To Draw", "Cancel", null, "1", "2", "3", "4");
-//						var numberOfCards = 0;
-//						if(int.TryParse(option, out numberOfCards))
-//							Application.Navigation.Push<SearchPage>(new SearchViewModel(numberOfCards));
-//				});
-//			}
-//		}
-
 		public int Secrecy {
-			get{ return _hero.Secrecy; }
-			set{ _hero.Secrecy = value; }
+			get{ 
+				return _hero.Secrecy; 
+			}
+			set{ 
+				if (_hero.Secrecy != value) {
+					_hero.Secrecy = value; 
+					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroUpdated", _hero);
+				}
+			}
 		}
 
 		public List<string> SecrecyOptions {
@@ -100,7 +79,12 @@ namespace Vineland.Necromancer.UI
 
 		public int Grace {
 			get{ return _hero.Grace; }
-			set{ _hero.Grace = value; }
+			set{ 
+				if (_hero.Grace != value) {
+					_hero.Grace = value; 
+					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroUpdated", _hero);
+				}
+			}
 		}
 
 
@@ -123,6 +107,7 @@ namespace Vineland.Necromancer.UI
 			set {
 				if (_hero.LocationId != value.Id) {
 					_hero.LocationId = value.Id;
+					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroUpdated", _hero);
 				}
 			}
 		}
