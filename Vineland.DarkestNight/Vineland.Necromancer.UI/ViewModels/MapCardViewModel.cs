@@ -8,15 +8,15 @@ namespace Vineland.Necromancer.UI
 {
 	public class MapCardViewModel : BaseViewModel
 	{
-		MapCard _mapCard;
+		public MapCard MapCard { get; private set; }
 
 		public MapCardViewModel (MapCard mapCard)
 		{
-			_mapCard = mapCard;
+			MapCard = mapCard;
 
 			Rows = new List<MapCardRowModel> ();
-			for (int i = 0; i < _mapCard.Rows.Count; i++) {
-				var row = _mapCard.Rows [i];
+			for (int i = 0; i < MapCard.Rows.Count; i++) {
+				var row = MapCard.Rows [i];
 				Rows.Add (new MapCardRowModel () {
 					LocationName = Application.CurrentGame.Locations.Single (l => l.Id == row.LocationId).Name,
 					BlightImage = ImageSourceUtil.GetBlightImage (row.BlightName),
@@ -31,15 +31,15 @@ namespace Vineland.Necromancer.UI
 
 		public void Discard()
 		{	
-			Application.CurrentGame.MapCards.Discard (_mapCard);
+			Application.CurrentGame.MapCards.Discard (MapCard);
 		}
 
 		public void ReturnToTop(){
-			Application.CurrentGame.MapCards.Return(_mapCard);
+			Application.CurrentGame.MapCards.Return(MapCard);
 		}
 
 		public void ReturnToBottom(){
-			Application.CurrentGame.MapCards.Return (_mapCard, DeckPosition.Bottom);
+			Application.CurrentGame.MapCards.Return (MapCard, DeckPosition.Bottom);
 		}
 
 

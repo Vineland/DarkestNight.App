@@ -5,6 +5,10 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 x:Class="Vineland.Necromancer.UI.SearchPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 ItemsSource="{Binding MapCards}">
+	<CarouselPage.ToolbarItems>
+		<ToolbarItem Name="Discard" Command="{Binding DiscardCommand}">
+		</ToolbarItem>
+	</CarouselPage.ToolbarItems>
 	<CarouselPage.ItemTemplate>
 		<DataTemplate>
 			<ui:MapCardPage />
