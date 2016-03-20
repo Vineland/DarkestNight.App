@@ -9,11 +9,6 @@ namespace Vineland.Necromancer.UI
 	{
 		GameState _editableGameState;
 
-		public enum MapDeckContext
-		{
-			Search
-		}
-
 		public SearchViewModel (int cardsToDraw)
 		{
 			_editableGameState = Application.CurrentGame.Clone ();
@@ -37,16 +32,6 @@ namespace Vineland.Necromancer.UI
 					Application.Navigation.Pop ();
 				});
 			}
-		}
-
-		public void ReturnToTop ()
-		{
-			MapCards.ForEach (x => x.ReturnToTop ());
-		}
-
-		public void ReturnToBottom ()
-		{
-			MapCards.ForEach (x => x.ReturnToBottom ());
 		}
 	}
 }

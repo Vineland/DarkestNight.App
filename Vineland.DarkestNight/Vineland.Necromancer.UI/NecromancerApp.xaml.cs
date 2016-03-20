@@ -27,7 +27,7 @@ namespace Vineland.Necromancer.UI
 
 			FileService = Resolver.Resolve<FileService> ();
 			
-			MainPage = new NavigationPage (Resolver.Resolve<PageService> ().CreatePage<HomePage> ());
+			MainPage = new CustomNavigationPage (Resolver.Resolve<PageService> ().CreatePage<HomePage> ());
 
 			Navigation = Resolver.Resolve<NavigationService> ();
 			Navigation.SetNavigation (MainPage.Navigation);

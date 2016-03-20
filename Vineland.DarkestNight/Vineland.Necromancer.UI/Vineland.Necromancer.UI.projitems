@@ -102,6 +102,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageSourceUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectHeroViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDisplayAlertService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\CustomNavigationPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

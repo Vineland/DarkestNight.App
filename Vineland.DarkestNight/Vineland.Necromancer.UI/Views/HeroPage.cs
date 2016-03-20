@@ -144,11 +144,12 @@ namespace Vineland.Necromancer.UI
 						new Rectangle (1, 176, 0.4, 32),
 						AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
 				} else if (property == "SpiritSightCommand") {
+					offset = 56;
 					var button = new Button ();
 					button.SetBinding (Button.TextProperty, new Binding ("SpiritSightButtonLabel"));
 					button.SetBinding (Button.CommandProperty, new Binding (property));
 					absoluteLayout.Children.Add (button, 
-						new Rectangle (1, 176, 0.4, 32),
+						new Rectangle (1, 176, 0.4, 48),
 						AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
 				}
 				else 
@@ -234,6 +235,7 @@ namespace Vineland.Necromancer.UI
 		protected override void OnDisappearing ()
 		{
 			base.OnDisappearing ();
+			(BindingContext as BaseViewModel).OnDisappearing ();
 		}
 	}
 }

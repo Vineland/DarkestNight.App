@@ -24,6 +24,7 @@ namespace Vineland.Necromancer.UI
 			base.OnDisappearing ();
 
 			MessagingCenter.Unsubscribe<HeroViewModel,Hero> (this, "HeroDefeated");
+			MessagingCenter.Unsubscribe<HeroViewModel, Hero> (this, "HeroUpdated");
 		}
 
 		public ObservableCollection<HeroRowModel> HeroRows { get; private set; }
@@ -32,7 +33,7 @@ namespace Vineland.Necromancer.UI
 			get { return null; }
 			set{
 				if(value != null)
-					Application.Navigation.Push<HeroPage>(new HeroViewModel(value.Hero));
+					Application.Navigation.Push<HeroPage>(HeroViewModel.Create(value.Hero));
 			}
 		}
 
