@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Linq;
-using Vineland.DarkestNight.UI.Services;
+using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Vineland.DarkestNight.UI;
-using Android.InputMethodServices;
 using Newtonsoft.Json;
+using Vineland.DarkestNight.UI;
+using Vineland.DarkestNight.UI.Services;
 using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI

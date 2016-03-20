@@ -13,7 +13,6 @@ namespace Vineland.Necromancer.UI
 		public NewGamePage ()
 		{
 			InitializeComponent();
-			Title = "Setup";
 		}
 	}
 }

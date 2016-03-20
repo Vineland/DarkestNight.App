@@ -1,16 +1,11 @@
 ﻿using System;
-using Vineland.Necromancer.Core;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Android.Util;
 using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
-using Android.Views.InputMethods;
-using Android.Nfc.CardEmulators;
-using Java.Nio.Channels;
+using Vineland.Necromancer.Core;
 using Xamarin.Forms;
-using Android.App;
 
 namespace Vineland.Necromancer.UI
 {
@@ -116,7 +111,7 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public string Name {
-			get{ return _blight == null ? "Spawn Quest" : _blight.Name; }
+			get{ return _blight == null ? "Add Quest" : _blight.Name; }
 		}
 
 		public string ImageName {

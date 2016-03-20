@@ -1,17 +1,13 @@
 ﻿using System;
-using GalaSoft.MvvmLight;
 using System.Collections.Generic;
-using Vineland.Necromancer.Core;
-using Vineland.DarkestNight.UI;
-using System.Runtime.InteropServices;
-using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
-using Android.Util;
-using Xamarin.Forms;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
-using Dalvik.SystemInterop;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Vineland.DarkestNight.UI;
+using Vineland.Necromancer.Core;
+using Xamarin.Forms;
 using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI

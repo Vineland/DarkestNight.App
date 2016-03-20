@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Linq;
-using Vineland.Necromancer.Core;
-using System.Runtime.InteropServices;
-using Android.Util;
-using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
-using Android.Views.InputMethods;
-using Vineland.Necromancer.UI;
 using System.Collections.ObjectModel;
-using Android.App;
+using System.Linq;
+using GalaSoft.MvvmLight.Command;
+using Vineland.Necromancer.Core;
+using Vineland.Necromancer.UI;
 using XLabs.Ioc;
-using System.Dynamic;
 
 namespace Vineland.Necromancer.UI
 {
@@ -112,6 +107,10 @@ namespace Vineland.Necromancer.UI
 		public Location NewLocation
 		{
 			get{ return PendingGameState.Locations.SingleOrDefault (l => l.Id == Result.NewLocationId); }
+		}
+
+		public string Notes{
+			get { return  Result.Notes; }
 		}
 
 		List<int> _heroesToIgnore = new List<int> ();

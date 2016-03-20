@@ -5,7 +5,6 @@ using Vineland.Necromancer.Core;
 using GalaSoft.MvvmLight.Command;
 using System.Threading.Tasks;
 using System.Linq;
-using Android.Util;
 
 namespace Vineland.Necromancer.UI
 {

@@ -21,7 +21,7 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public string Name {
-			get{ return _hero.Name.ToUpper (); }
+			get{ return _hero.Name; }//.ToUpper (); }
 		}
 
 		public void RemoveHero(){

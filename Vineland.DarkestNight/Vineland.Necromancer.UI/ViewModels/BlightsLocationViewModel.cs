@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Vineland.Necromancer.Core;
-using Android.Views.InputMethods;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Android.Database;
-using System.Runtime.InteropServices;
-using Android.Util;
 
 namespace Vineland.Necromancer.UI
 {

@@ -3,9 +3,10 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core"
-x:Class="Vineland.Necromancer.UI.NewGamePage">
+x:Class="Vineland.Necromancer.UI.NewGamePage"
+Title="New Game">
 <ContentPage.ToolbarItems>
-      <ToolbarItem Name="Choose Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
+      <ToolbarItem Name="Select Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
 </ContentPage.ToolbarItems>
 <Grid RowSpacing="20" Padding="20">
 

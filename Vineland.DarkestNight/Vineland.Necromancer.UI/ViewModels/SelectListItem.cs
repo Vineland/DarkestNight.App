@@ -1,5 +1,4 @@
 ﻿using System;
-using Android.Nfc;
 
 namespace Vineland.Necromancer.UI
 {
