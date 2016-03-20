@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace Vineland.Necromancer.UI
 {
@@ -8,32 +9,25 @@ namespace Vineland.Necromancer.UI
 		#region Declarations
 
 		public static readonly BindableProperty IsPagerVisibleProperty =
-			BindableProperty.Create<CustomCarouselPage, bool>(
-				p => p.IsPagerVisible, true);
+			BindableProperty.Create("IsPagerVisible", typeof(bool), typeof(CustomCarouselPage), true);
 
 		public static readonly BindableProperty PagerItemColorProperty =
-			BindableProperty.Create<CustomCarouselPage, Color>(
-				p => p.PagerItemColor, Color.FromHex("#BC666666"));
+			BindableProperty.Create("PagerItemColor", typeof(Color), typeof(CustomCarouselPage), Color.FromHex("#BC666666"));
 
 		public static readonly BindableProperty PagerMinimumWidthProperty =
-			BindableProperty.Create<CustomCarouselPage, double>(
-				p => p.PagerMinimumWidth, 0);
+			BindableProperty.Create("PagerMinimumWidth", typeof(double), typeof(CustomCarouselPage), 0d);
 
 		public static readonly BindableProperty PagerPaddingProperty =
-			BindableProperty.Create<CustomCarouselPage, Thickness>(
-				p => p.PagerPadding, new Thickness(0, 0, 0, 20));
+			BindableProperty.Create("PagerPadding", typeof(Thickness), typeof(CustomCarouselPage), new Thickness(0, 0, 0, 20));
 
 		public static readonly BindableProperty PagerXAlignProperty =
-			BindableProperty.Create<CustomCarouselPage, TextAlignment>(
-				p => p.PagerXAlign, TextAlignment.Center);
+			BindableProperty.Create("PagerXAlign", typeof(TextAlignment), typeof(CustomCarouselPage), TextAlignment.Center);
 
 		public static readonly BindableProperty PagerYAlignProperty =
-			BindableProperty.Create<CustomCarouselPage, TextAlignment>(
-				p => p.PagerYAlign, TextAlignment.End);
+			BindableProperty.Create ("PagerYAlign", typeof(TextAlignment), typeof(CustomCarouselPage), TextAlignment.End);
 
 		public static readonly BindableProperty SelectedPagerItemColorProperty =
-			BindableProperty.Create<CustomCarouselPage, Color>(
-				p => p.SelectedPagerItemColor, Color.FromHex("#BC63402d"));
+			BindableProperty.Create("SelectedPagerItemColor", typeof(Color), typeof(CustomCarouselPage), Color.FromHex("#BC63402d"));
 
 		#endregion
 
@@ -82,6 +76,18 @@ namespace Vineland.Necromancer.UI
 		}
 
 		#endregion
+
+		protected override void OnPropertyChanged (string propertyName)
+		{
+			base.OnPropertyChanged (propertyName);
+			if (propertyName == "ItemsSource") {
+				var count = 0;
+				foreach (var item in ItemsSource) {
+					count++;
+				}
+				IsPagerVisible = count > 1;
+			}
+		}
 	}
 }
 

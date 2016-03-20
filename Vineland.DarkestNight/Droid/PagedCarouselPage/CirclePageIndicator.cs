@@ -8,7 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Java.Interop;
 using Vineland.Necromancer.UI.Droid;
-
+using Android.Support.V4.Content;
 
 namespace CaveBirdLabs.Forms.Platform.Android
 {
@@ -56,10 +56,10 @@ namespace CaveBirdLabs.Forms.Platform.Android
 			if(IsInEditMode) return;
 
 			var res = Resources;
-			var defaultPageColor = res.GetColor(Resource.Color.default_circle_indicator_page_color);
-			var defaultFillColor = res.GetColor(Resource.Color.default_circle_indicator_fill_color);
+			var defaultPageColor = new Color(ContextCompat.GetColor(context, Resource.Color.default_circle_indicator_page_color));
+			var defaultFillColor = new Color(ContextCompat.GetColor(context, Resource.Color.default_circle_indicator_fill_color));
 			var defaultOrientation = res.GetInteger(Resource.Integer.default_circle_indicator_orientation);
-			var defaultStrokeColor = res.GetColor(Resource.Color.default_circle_indicator_stroke_color);
+			var defaultStrokeColor = new Color(ContextCompat.GetColor(context, Resource.Color.default_circle_indicator_stroke_color));
 			var defaultStrokeWidth = res.GetDimension(Resource.Dimension.default_circle_indicator_stroke_width);
 			var defaultRadius = res.GetDimension(Resource.Dimension.default_circle_indicator_radius);
 			var defaultCentered = res.GetBoolean(Resource.Boolean.default_circle_indicator_centered);
@@ -82,8 +82,8 @@ namespace CaveBirdLabs.Forms.Platform.Android
 
 			var background = a.GetDrawable(Resource.Styleable.CirclePageIndicator_android_background);
 			if (null != background)
-				SetBackgroundDrawable(background);
-
+				SetBackgroundResource(Resource.Styleable.CirclePageIndicator_android_background);
+			
 			a.Recycle();
 
 			var configuration = ViewConfiguration.Get(context);
@@ -360,13 +360,13 @@ namespace CaveBirdLabs.Forms.Platform.Android
 			if(_viewPager == view) return;
 
 			if(null != _viewPager)
-				_viewPager.SetOnPageChangeListener(null);
+				_viewPager.ClearOnPageChangeListeners();
 
 			if(null == view.Adapter)
 				throw new InvalidOperationException("ViewPager does not have an Adapter instance.");
 
 			_viewPager = view;
-			_viewPager.SetOnPageChangeListener(this);
+			_viewPager.AddOnPageChangeListener(this);
 			Invalidate();
 		}
 

@@ -6,6 +6,7 @@ using Xamarin.Forms.Platform.Android;
 using Android.Views;
 using Android.App;
 using Android.Graphics.Drawables;
+using Android.Support.V4.Content;
 
 
 [assembly: ExportRenderer (typeof(CheckButton), typeof(CheckButtonRenderer))]
@@ -28,7 +29,7 @@ namespace Vineland.Necromancer.UI.Droid
 
 				control.Checked = checkBoxElement.IsSelected;
 				control.CheckedChange += Control_CheckedChange;
-				control.SetButtonDrawable (Resources.GetDrawable (Resource.Drawable.checkbox_button));
+				control.SetButtonDrawable (Context.GetDrawable (Resource.Drawable.checkbox_button));
 
 				this.SetNativeControl (control);
 			} else if (e.NewElement == null) 

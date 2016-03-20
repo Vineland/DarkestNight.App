@@ -6,7 +6,8 @@ namespace Vineland.Necromancer.UI
 {
 	public class MultiSelectListView<T> : ListView
 	{
-		public static BindableProperty SelectedItemsProperty = BindableProperty.Create<MultiSelectListView<T>, ObservableCollection<T>>(x=>x.SelectedItems, null);
+		public static BindableProperty SelectedItemsProperty = 
+			BindableProperty.Create("SelectedItems", typeof(ObservableCollection<T>), typeof(MultiSelectListView<T>), null);
 
 		public ObservableCollection<T> SelectedItems
 		{
