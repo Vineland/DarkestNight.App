@@ -109,10 +109,6 @@ namespace Vineland.Necromancer.UI
 			get{ return PendingGameState.Locations.SingleOrDefault (l => l.Id == Result.NewLocationId); }
 		}
 
-		public string Notes{
-			get { return  Result.Notes; }
-		}
-
 		List<int> _heroesToIgnore = new List<int> ();
 
 		public bool VoidArmorVisible {

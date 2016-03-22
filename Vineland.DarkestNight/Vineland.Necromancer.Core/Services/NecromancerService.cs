@@ -39,6 +39,14 @@ namespace Vineland.Necromancer.Core
 			result.DetectionRoll = gameState.GatesActive ? result.NecromancerRoll + 1 : result.NecromancerRoll;
 			result.OldLocationId = gameState.Necromancer.LocationId;
 
+			result.DarknessIncrease = 1 + gameState.Locations.SelectMany (x => x.Blights).Count (x => x.Name == "Desecration");
+			if (gameState.Heroes.Any (x => x.HasShieldOfRadiance) && result.NecromancerRoll == 6) {
+				result.DarknessIncrease--;
+				result.Notes += "Shield of Radiance triggered" + Environment.NewLine;
+			}
+
+			gameState.Darkness += result.DarknessIncrease;
+				
 			//detect
 			if (detectedHero == null)
 				Detect (gameState, result, heroesToIgnore);
@@ -180,6 +188,16 @@ namespace Vineland.Necromancer.Core
 					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
 
 			}
+
+			//darkness tipping over 30
+			if (gameState.Darkness > 30) {
+				var overflowCount = gameState.Darkness - 30;
+
+				for (int i = 0; i < overflowCount; i++)
+					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
+
+				gameState.Darkness = 30;
+			}
 			return result;
 		}
 	}
@@ -187,6 +205,8 @@ namespace Vineland.Necromancer.Core
 	public class NecromancerDetectionResult
 	{
 		public Hero DetectedHero { get; set; }
+
+		public int DarknessIncrease {get;set;}
 
 		public int NecromancerRoll { get; set; }
 

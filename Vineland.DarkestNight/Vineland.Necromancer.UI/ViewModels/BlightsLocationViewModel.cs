@@ -18,6 +18,23 @@ namespace Vineland.Necromancer.UI
 			_blightService = blightService;
 			var models = Application.CurrentGame.Locations.Select (l => new BlightLocationViewModel (l, blightService, Application));
 			LocationSections = new ObservableCollection<BlightLocationViewModel> (models);
+
+			MessagingCenter.Subscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
+		}
+
+		public override void Cleanup ()
+		{
+			base.OnDisappearing ();
+			MessagingCenter.Unsubscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete");
+		}
+
+		public void OnNecromancerPhaseComplete(NecromancerSpawnViewModel sender)
+		{
+			//TODO: only add the new rows
+			var models = Application.CurrentGame.Locations.Select (l => new BlightLocationViewModel (l, _blightService, Application));
+			LocationSections.Clear ();
+			foreach(var model in models)
+				LocationSections.Add(model);
 		}
 
 		public ObservableCollection<BlightLocationViewModel> LocationSections { get; set; }
@@ -82,7 +99,7 @@ namespace Vineland.Necromancer.UI
 			_blightService = blightService;
 
 			foreach (var blight in location.Blights)
-				this.Add (new BlightRowViewModel (blight));			
+				this.Add (new BlightRowViewModel (blight));	
 		}
 
 		public RelayCommand AddBlightCommand {

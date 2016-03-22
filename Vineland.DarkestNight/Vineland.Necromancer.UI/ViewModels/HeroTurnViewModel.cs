@@ -9,6 +9,7 @@ using Vineland.DarkestNight.UI;
 using Vineland.Necromancer.Core;
 using Xamarin.Forms;
 using XLabs.Ioc;
+using System.Runtime.CompilerServices;
 
 namespace Vineland.Necromancer.UI
 {
@@ -17,7 +18,18 @@ namespace Vineland.Necromancer.UI
 		public HeroTurnViewModel (ActiveHeroesViewModel activeHeroesViewModel, BlightLocationsViewModel blightLocationsViewModel)
 		{
 			ActiveHeroesViewModel = activeHeroesViewModel;
-				BlightLocationsViewModel = blightLocationsViewModel;
+			BlightLocationsViewModel = blightLocationsViewModel;
+
+			MessagingCenter.Subscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
+		}
+
+		public override void Cleanup ()
+		{
+			MessagingCenter.Unsubscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete");
+		}
+
+		public void OnNecromancerPhaseComplete(NecromancerSpawnViewModel sender){
+			
 		}
 
 		public ActiveHeroesViewModel ActiveHeroesViewModel { get; private set; }

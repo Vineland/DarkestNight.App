@@ -51,6 +51,7 @@ namespace Vineland.Necromancer.UI
 						//TODO: rethink this whole process. It would be nice to just set the game state to the edited one but that
 						//breaks all bindings.
 						//propagate all the changes to the game state
+						Application.CurrentGame.Darkness = _pendingGameState.Darkness;
 						Application.CurrentGame.MapCards = _pendingGameState.MapCards;
 						Application.CurrentGame.Necromancer.LocationId = _pendingGameState.Necromancer.LocationId;
 						Application.CurrentGame.Locations = _pendingGameState.Locations;
