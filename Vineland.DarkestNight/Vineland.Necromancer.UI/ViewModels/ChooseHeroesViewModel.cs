@@ -38,7 +38,7 @@ namespace Vineland.Necromancer.UI
 								h.Grace = h.GraceDefault;
 							});
 						Application.SaveCurrentGame ();
-						Application.Navigation.Push<ActiveHeroesPage>(clearBackStack: true);
+						Application.Navigation.Push<HeroTurnPage>(clearBackStack: true);
 					},
 					() => {
 						return SelectedHeroes.Count() == 4;

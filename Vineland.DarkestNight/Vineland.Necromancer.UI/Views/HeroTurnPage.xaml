@@ -5,8 +5,8 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 x:Class="Vineland.Necromancer.UI.HeroTurnPage"
  BackgroundImage="background">
 	<CarouselPage.ToolbarItems>
-		<ToolbarItem Name="Done" Command="{Binding DoneCommand}"></ToolbarItem>
+		<ToolbarItem Name="Necromancer" Command="{Binding NextPhase}"></ToolbarItem>
 	</CarouselPage.ToolbarItems>
-		<ui:HeroPage BindingContext="{Binding HeroViewModel}" />
+		<ui:ActiveHeroesPage BindingContext="{Binding ActiveHeroesViewModel}" />
 		<ui:BlightLocationsPage BindingContext="{Binding BlightLocationsViewModel}" />
 </ui:CustomCarouselPage>

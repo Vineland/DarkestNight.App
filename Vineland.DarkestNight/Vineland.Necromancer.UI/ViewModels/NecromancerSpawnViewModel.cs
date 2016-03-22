@@ -76,7 +76,7 @@ namespace Vineland.Necromancer.UI
 
 						MessagingCenter.Send<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete");
 
-						Application.Navigation.PopTo<ActiveHeroesPage>();
+						Application.Navigation.PopTo<HeroTurnPage>();
 				});
 			}
 		}

@@ -4,10 +4,10 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 x:Class="Vineland.Necromancer.UI.ActiveHeroesPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 Title="Heroes">
-	<ContentPage.ToolbarItems>
+<!--	<ContentPage.ToolbarItems>
 		<ToolbarItem Name="Necromancer" Command="{Binding NextPhase}">
 		</ToolbarItem>
-	</ContentPage.ToolbarItems>
+	</ContentPage.ToolbarItems>-->
 		<ListView x:Name="ListView" ItemsSource="{Binding HeroRows}" SelectedItem="{Binding SelectedRow}" RowHeight="96">
 			<ListView.ItemTemplate>
 				<DataTemplate>

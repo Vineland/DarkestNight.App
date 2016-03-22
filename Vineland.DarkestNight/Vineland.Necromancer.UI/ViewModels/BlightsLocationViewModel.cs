@@ -21,19 +21,21 @@ namespace Vineland.Necromancer.UI
 
 		public ObservableCollection<BlightLocationViewModel> LocationSections { get; set; }
 
-		BlightRowViewModel _selectedRow;
-
-		public BlightRowViewModel SelectedRow {
-			get { return _selectedRow; }
-			set {
-				if (value != null) {
-					if (value.IsPlaceholder)
-						SpawnBlight (value);
-					else
-						DestoryBlight (value);
+		public async void BlightRowSelected(BlightRowViewModel selectedBlightRow){
+			if (selectedBlightRow.IsPlaceholder)
+				SpawnBlight (selectedBlightRow);
+			else {
+				var action = await Application.Navigation.DisplayActionSheet (string.Empty, "Cancel", string.Empty, "Destroy", "Move");
+				if (action == "Destroy")
+					DestoryBlight (selectedBlightRow);
+				
+				if(action=="Move")
+				{
+					var newLocationName = await Application.Navigation.DisplayActionSheet ("New Location", "Cancel", string.Empty, Application.CurrentGame.Locations.Select (x => x.Name).ToArray ());
+					if (newLocationName != "Cancel") {
+						MoveBlight (selectedBlightRow, newLocationName);
+					}
 				}
-				_selectedRow = null;
-				RaisePropertyChanged (() => SelectedRow);
 			}
 		}
 
@@ -64,6 +66,23 @@ namespace Vineland.Necromancer.UI
 			Task.Run (() => {				
 				_blightService.DestroyBlight (locationSection.Location, selectedRow.Blight, Application.CurrentGame);
 				Application.SaveCurrentGame ();
+			});
+		}
+
+		public void MoveBlight(BlightRowViewModel rowToMove, string newLocation){
+
+			var currentLocationSection = LocationSections.Single (l => l.Contains (rowToMove));
+			if (currentLocationSection.Location.Name == newLocation)
+				return;
+
+			var newLocationSection = LocationSections.Single (l => l.Location.Name == newLocation);
+			currentLocationSection.Remove (rowToMove);
+			newLocationSection.Insert (0, rowToMove);
+
+			Task.Run (() => {
+				currentLocationSection.Location.Blights.Remove(rowToMove.Blight);
+				newLocationSection.Location.Blights.Add(rowToMove.Blight);
+				Application.SaveCurrentGame();
 			});
 		}
 	}

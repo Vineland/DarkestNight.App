@@ -103,12 +103,12 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopModalAsync ();
 		}
 
-		public void DisplayAlert(string title, string message, string cancel){
+		public async void DisplayAlert(string title, string message, string cancel){
 
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
-			_navigation.NavigationStack.Last().DisplayAlert(title, message, cancel);
+			await _navigation.NavigationStack.Last().DisplayAlert(title, message, cancel);
 		}
 
 		public async Task<bool> DisplayConfirmation(string title, string message, string accept, string cancel){
@@ -121,12 +121,14 @@ namespace Vineland.Necromancer.UI
 			return result;
 		}
 
-		public string DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons){
+		public async Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons){
 
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
 
-			return _navigation.NavigationStack.Last().DisplayActionSheet(title, cancel, destruction, buttons).Result;
+			var result = await _navigation.NavigationStack.Last().DisplayActionSheet(title, cancel, destruction, buttons);
+
+			return result;
 		}
 	}
 }

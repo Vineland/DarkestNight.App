@@ -14,23 +14,32 @@ namespace Vineland.Necromancer.UI
 {
 	public class HeroTurnViewModel : BaseViewModel
 	{
-		public HeroTurnViewModel (Hero hero)
+		public HeroTurnViewModel (ActiveHeroesViewModel activeHeroesViewModel, BlightLocationsViewModel blightLocationsViewModel)
 		{
-			HeroViewModel = HeroViewModel.Create(hero);
-			BlightLocationsViewModel = Resolver.Resolve<BlightLocationsViewModel> ();
+			ActiveHeroesViewModel = activeHeroesViewModel;
+				BlightLocationsViewModel = blightLocationsViewModel;
 		}
 
-		public HeroViewModel HeroViewModel { get; set; }
+		public ActiveHeroesViewModel ActiveHeroesViewModel { get; private set; }
 		public BlightLocationsViewModel BlightLocationsViewModel { get; private set; }
 
-		public RelayCommand DoneCommand {
+
+		public RelayCommand NextPhase {
 			get {
 				return new RelayCommand (() => {
 					Application.SaveCurrentGame ();
-					Application.Navigation.Pop();
+					Application.Navigation.Push<NecromancerPhasePage> ();
 				});
 			}
 		}
+//		public RelayCommand DoneCommand {
+//			get {
+//				return new RelayCommand (() => {
+//					Application.SaveCurrentGame ();
+//					Application.Navigation.Pop();
+//				});
+//			}
+//		}
 	}
 }
 

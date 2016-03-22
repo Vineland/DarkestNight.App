@@ -4,10 +4,10 @@
  x:Class="Vineland.Necromancer.UI.BlightLocationsPage"
  xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
  Title="Blights">
-  <ListView ItemsSource="{ Binding LocationSections }"
+  <ListView x:Name="ListView"
+  			ItemsSource="{ Binding LocationSections }"
             IsGroupingEnabled="true"
-            GroupDisplayBinding="{ Binding  Location.Name }"
-            SelectedItem="{Binding SelectedRow }">
+            GroupDisplayBinding="{ Binding  Location.Name }">
     <ListView.ItemTemplate>
       <DataTemplate>
 	      <ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />
