@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-x:Class="Vineland.Necromancer.UI.ActiveHeroesPage"
-xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+x:Class="Vineland.Necromancer.UI.ActiveHeroesPage" 
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 Title="Heroes">
-<!--	<ContentPage.ToolbarItems>
-		<ToolbarItem Name="Necromancer" Command="{Binding NextPhase}">
-		</ToolbarItem>
-	</ContentPage.ToolbarItems>-->
+	<StackLayout>
+		<Image Source="darkness" HorizontalOptions="Center" />
+		<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center"/>
 		<ListView x:Name="ListView" ItemsSource="{Binding HeroRows}" SelectedItem="{Binding SelectedRow}" RowHeight="96">
 			<ListView.ItemTemplate>
 				<DataTemplate>
@@ -25,4 +24,5 @@ Title="Heroes">
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
+	</StackLayout>
 </ContentPage>

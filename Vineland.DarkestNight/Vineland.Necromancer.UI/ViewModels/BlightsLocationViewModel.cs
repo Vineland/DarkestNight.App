@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 
 namespace Vineland.Necromancer.UI
 {
@@ -15,53 +16,32 @@ namespace Vineland.Necromancer.UI
 		public BlightLocationsViewModel (BlightService blightService)
 		{
 			_blightService = blightService;
-			var models = Application.CurrentGame.Locations.Select (l => new BlightLocationViewModel (l));
+			var models = Application.CurrentGame.Locations.Select (l => new BlightLocationViewModel (l, blightService, Application));
 			LocationSections = new ObservableCollection<BlightLocationViewModel> (models);
 		}
 
 		public ObservableCollection<BlightLocationViewModel> LocationSections { get; set; }
 
-		public async void BlightRowSelected(BlightRowViewModel selectedBlightRow){
-			if (selectedBlightRow.IsPlaceholder)
-				SpawnBlight (selectedBlightRow);
-			else {
-				var action = await Application.Navigation.DisplayActionSheet (string.Empty, "Cancel", string.Empty, "Destroy", "Move");
-				if (action == "Destroy")
-					DestoryBlight (selectedBlightRow);
+		public async void BlightRowSelected (BlightRowViewModel selectedBlightRow)
+		{
+			
+			var action = await Application.Navigation.DisplayActionSheet (string.Empty, "Cancel", string.Empty, "Destroy", "Move");
+			if (action == "Destroy")
+				DestroyBlight (selectedBlightRow);
 				
-				if(action=="Move")
-				{
-					var newLocationName = await Application.Navigation.DisplayActionSheet ("New Location", "Cancel", string.Empty, Application.CurrentGame.Locations.Select (x => x.Name).ToArray ());
-					if (newLocationName != "Cancel") {
-						MoveBlight (selectedBlightRow, newLocationName);
-					}
+			if (action == "Move") {
+				var newLocationName = await Application.Navigation.DisplayActionSheet ("New Location", "Cancel", string.Empty, Application.CurrentGame.Locations.Select (x => x.Name).ToArray ());
+				if (newLocationName != "Cancel") {
+					MoveBlight (selectedBlightRow, newLocationName);
 				}
 			}
 		}
 
-		public void SpawnBlight (BlightRowViewModel spawnRow)
-		{
-			var locationSection = LocationSections.Single (l => l.Contains (spawnRow));
-
-			var blight = _blightService.SpawnBlight (locationSection.Location, Application.CurrentGame).Item2;
-
-			locationSection.Insert (locationSection.Count - 1, new BlightRowViewModel (blight));
-			if (locationSection.Location.BlightCount >= 4)
-				locationSection.Remove (spawnRow);
-
-			Task.Run (() => {
-				Application.SaveCurrentGame ();
-			});
-		}
-
-		public void DestoryBlight (BlightRowViewModel selectedRow)
+		public void DestroyBlight (BlightRowViewModel selectedRow)
 		{
 			
 			var locationSection = LocationSections.Single (l => l.Contains (selectedRow));
 			locationSection.Remove (selectedRow);
-			if (locationSection.Count < 4
-			    && !locationSection.Any (x => x.IsPlaceholder))
-				locationSection.Add (new BlightRowViewModel (null));
 
 			Task.Run (() => {				
 				_blightService.DestroyBlight (locationSection.Location, selectedRow.Blight, Application.CurrentGame);
@@ -69,7 +49,8 @@ namespace Vineland.Necromancer.UI
 			});
 		}
 
-		public void MoveBlight(BlightRowViewModel rowToMove, string newLocation){
+		public void MoveBlight (BlightRowViewModel rowToMove, string newLocation)
+		{
 
 			var currentLocationSection = LocationSections.Single (l => l.Contains (rowToMove));
 			if (currentLocationSection.Location.Name == newLocation)
@@ -80,9 +61,9 @@ namespace Vineland.Necromancer.UI
 			newLocationSection.Insert (0, rowToMove);
 
 			Task.Run (() => {
-				currentLocationSection.Location.Blights.Remove(rowToMove.Blight);
-				newLocationSection.Location.Blights.Add(rowToMove.Blight);
-				Application.SaveCurrentGame();
+				currentLocationSection.Location.Blights.Remove (rowToMove.Blight);
+				newLocationSection.Location.Blights.Add (rowToMove.Blight);
+				Application.SaveCurrentGame ();
 			});
 		}
 	}
@@ -91,17 +72,70 @@ namespace Vineland.Necromancer.UI
 	{
 		public Location Location { get; private set; }
 
-		public BlightLocationViewModel (Location location)
+		NecromancerApp _application;
+		BlightService _blightService;
+
+		public BlightLocationViewModel (Location location, BlightService blightService, NecromancerApp application)
 		{
 			Location = location;
+			_application = application;
+			_blightService = blightService;
 
-			foreach (var blight in location.Blights) {
-				this.Add (new BlightRowViewModel (blight));
+			foreach (var blight in location.Blights)
+				this.Add (new BlightRowViewModel (blight));			
+		}
+
+		public RelayCommand AddBlightCommand {
+			get { 
+				return new RelayCommand (async () => {
+				
+					var action = await _application.Navigation.DisplayActionSheet (
+						"New Blight", 
+						"Cancel", 
+						string.Empty, 
+						"Spawn", 
+						"Select");
+					switch (action) 
+					{
+						case "Spawn":
+							SpawnBlight ();
+							break;
+						case "Select":
+							SelectBlight();
+							break;						
+					}
+				}, 
+				()=>{
+						return this.Sum(x=>x.Blight.Weight) < 4;
+				});
 			}
+		}
 
-			if (location.BlightCount < 4)
-				this.Add (new BlightRowViewModel (null));
-			
+
+		public void SpawnBlight ()
+		{
+			var blight = _blightService.SpawnBlight (Location, _application.CurrentGame).Item2;
+
+			this.Add (new BlightRowViewModel (blight));
+
+			Task.Run (() => {
+				_application.SaveCurrentGame ();
+			});
+		}
+
+		public async void SelectBlight(){
+			var blightOptions = _application.CurrentGame.BlightPool.Select (x => x.Name).Distinct ();
+			var option = await _application.Navigation.DisplayActionSheet ("Select Blight", "Cancel", null, blightOptions.ToArray ());
+			if (option == "Cancel")
+				return;
+
+			var blight = _application.CurrentGame.BlightPool.FirstOrDefault(x=>x.Name == option);
+			this.Add (new BlightRowViewModel (blight));
+			Task.Run (() => {
+				_application.CurrentGame.BlightPool.Remove(blight);
+				Location.Blights.Add(blight);
+				_application.SaveCurrentGame ();
+			});
 		}
 	}
 
@@ -115,14 +149,12 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public string Name {
-			get{ return Blight == null ? "Spawn Blight" : Blight.Name; }
+			get{ return Blight.Name; }
 		}
 
 		public string ImageName {
-			get { return Blight == null ? "plus" : string.Format ("blight_{0}", Blight.Name.ToLower ().Replace (" ", "_")); }
+			get { return string.Format ("blight_{0}", Blight.Name.ToLower ().Replace (" ", "_")); }
 		}
-
-		public bool IsPlaceholder { get { return Blight == null; } }
 	}
 }
 

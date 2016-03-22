@@ -58,13 +58,13 @@ namespace Vineland.Necromancer.UI
 			HeroRows.SingleOrDefault (x => x.Hero.Id == hero.Id).Updated ();
 		}
 
-		//		public int Darkness {
-		//			get { return Application.CurrentGame.Darkness; }
-		//			set {
-		//				Application.CurrentGame.Darkness = value;
-		//				RaisePropertyChanged (() => Darkness);
-		//			}
-		//		}
+				public int Darkness {
+					get { return Application.CurrentGame.Darkness; }
+					set {
+						Application.CurrentGame.Darkness = value;
+						RaisePropertyChanged (() => Darkness);
+					}
+				}
 
 		public RelayCommand NextPhase {
 			get {

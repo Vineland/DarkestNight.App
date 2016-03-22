@@ -109,7 +109,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Infrastructure\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utilities\" />
-    <Folder Include="$(MSBuildThisFileDirectory)images\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
