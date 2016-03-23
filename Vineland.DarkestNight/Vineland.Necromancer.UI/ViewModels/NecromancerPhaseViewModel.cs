@@ -2,6 +2,7 @@
 using Vineland.Necromancer.Core;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
+using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
 {
@@ -30,11 +31,12 @@ namespace Vineland.Necromancer.UI
 			get{ return Application.CurrentGame.Necromancer; }
 		}
 
-		public RelayCommand Detect{
+		public RelayCommand ActivateCommand{
 			get{
 				return new RelayCommand (() => {
 					Application.SaveCurrentGame();
-					Application.Navigation.Push<NecromancerDetectionPage>();
+
+					Application.Navigation.Push<NecromancerActivationPage>();
 				});
 			}
 		}

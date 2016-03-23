@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:CustomCarouselPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Vineland.Necromancer.UI.NecromancerActivationPage" xmlns:ui="clr-namespace:Vineland.Necromancer.UI" ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedResult, Mode=TwoWay}" Title="Activation">
+	<CarouselPage.Resources>
+		<ResourceDictionary>
+			<ui:HeroConverter x:Key="heroConverter">
+			</ui:HeroConverter>
+			<ui:LocationConverter x:Key="locationConverter">
+			</ui:LocationConverter>
+		</ResourceDictionary>
+	</CarouselPage.Resources>
+	<CarouselPage.ToolbarItems>
+		<ToolbarItem Name="Accept" Command="{Binding AcceptCommand}">
+		</ToolbarItem>
+	</CarouselPage.ToolbarItems>
+	<CarouselPage.ItemTemplate>
+		<DataTemplate>
+			<ContentPage>
+				<ScrollView>
+					<StackLayout>
+						<Grid Padding="20">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="2*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Label Text="Roll" />
+							<Label Text="{Binding Result.NecromancerRoll}" HorizontalOptions="End" FontFamily="hobo" Grid.Column="1" />
+							<Label Text="Darkness" Grid.Row="1" />
+							<Label Text="{Binding Result.DarknessIncrease}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="1" Grid.Column="1" />
+							<Label Text="Detected Hero" Grid.Row="2" />
+							<Label Text="{Binding Result.DetectedHero, Converter={StaticResource heroConverter}}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="2" Grid.Column="1" />
+							<Label Text="Location" Grid.Row="3" />
+							<Label Text="{Binding NewLocation, Converter={StaticResource locationConverter}}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="3" Grid.Column="1" />
+							<Label Text="Spawn" Grid.Row="4" />
+						</Grid>
+						<ListView ItemsSource="{ Binding NewBlightLocations }" IsGroupingEnabled="true" GroupDisplayBinding="{ Binding Location.Name }">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</StackLayout>
+				</ScrollView>
+			</ContentPage>
+		</DataTemplate>
+	</CarouselPage.ItemTemplate>
+</ui:CustomCarouselPage>

@@ -19,17 +19,6 @@ namespace Vineland.Necromancer.UI
 		{
 			ActiveHeroesViewModel = activeHeroesViewModel;
 			BlightLocationsViewModel = blightLocationsViewModel;
-
-			MessagingCenter.Subscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
-		}
-
-		public override void Cleanup ()
-		{
-			MessagingCenter.Unsubscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete");
-		}
-
-		public void OnNecromancerPhaseComplete(NecromancerSpawnViewModel sender){
-			
 		}
 
 		public ActiveHeroesViewModel ActiveHeroesViewModel { get; private set; }

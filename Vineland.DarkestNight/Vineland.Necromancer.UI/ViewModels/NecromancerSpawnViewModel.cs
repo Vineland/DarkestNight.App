@@ -12,7 +12,7 @@ namespace Vineland.Necromancer.UI
 	public class NecromancerSpawnViewModel : BaseViewModel
 	{
 		NecromancerService _necromancerService;
-		NecromancerDetectionResult _detectionResult;
+		NecromancerActivationResult _detectionResult;
 		NecromancerSpawnResult _spawnResult;
 
 		public NecromancerSpawnViewModel (NecromancerService necromancerService)
@@ -22,12 +22,12 @@ namespace Vineland.Necromancer.UI
 
 		GameState _pendingGameState;
 
-		public void Initialise (NecromancerDetectionResult detectionResult, GameState pendingGameState)
+		public void Initialise (NecromancerActivationResult detectionResult, GameState pendingGameState)
 		{
 			_pendingGameState = pendingGameState;
 			_detectionResult = detectionResult;
 
-			_spawnResult = _necromancerService.Spawn (_pendingGameState, detectionResult);
+			//_spawnResult = _necromancerService.Spawn (_pendingGameState, detectionResult);
 			var models = _spawnResult.NewBlights
 				.GroupBy (x => x.Item1)
 				.Select (x => new SpawnLocationViewModel (x.Key, 
@@ -38,9 +38,6 @@ namespace Vineland.Necromancer.UI
 			}
 			NewBlightLocations = new ObservableCollection<SpawnLocationViewModel> (models);
 		}
-
-		public string Notes {get;set;}
-		public string SpawnQuestMessage { get; set; }
 
 		public ObservableCollection<SpawnLocationViewModel> NewBlightLocations { get; set; }
 
@@ -80,47 +77,6 @@ namespace Vineland.Necromancer.UI
 						Application.Navigation.PopTo<HeroTurnPage>();
 				});
 			}
-		}
-	}
-
-	public class SpawnLocationViewModel : ObservableCollection<SpawnViewModel>
-	{		
-		public Location Location { get; private set; }
-
-		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights, bool spawnQuest)
-		{
-			Location = location;
-
-			if (blights != null) {
-				foreach (var blight in blights) {
-					this.Add (new SpawnViewModel (blight));
-				}
-			}
-
-			if (spawnQuest)
-				this.Add (new SpawnViewModel (null));
-		}
-	}
-
-	public class SpawnViewModel
-	{		
-		Blight _blight;
-
-		public SpawnViewModel (Blight blight)
-		{
-			_blight = blight;
-		}
-
-		public string Name {
-			get{ return _blight == null ? "Add Quest" : _blight.Name; }
-		}
-
-		public string ImageName {
-			get { return _blight == null ? "plus" : string.Format ("blight_{0}", _blight.Name.ToLower().Replace(" ", "_")); }
-		}
-
-		public bool IsQuest{
-			get{ return _blight == null; }
 		}
 	}
 }

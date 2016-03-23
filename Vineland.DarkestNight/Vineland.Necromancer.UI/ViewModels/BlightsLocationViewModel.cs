@@ -19,16 +19,16 @@ namespace Vineland.Necromancer.UI
 			var models = Application.CurrentGame.Locations.Select (l => new BlightLocationViewModel (l, blightService, Application));
 			LocationSections = new ObservableCollection<BlightLocationViewModel> (models);
 
-			MessagingCenter.Subscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
+			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
 		}
 
 		public override void Cleanup ()
 		{
 			base.OnDisappearing ();
-			MessagingCenter.Unsubscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete");
+			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
 		}
 
-		public void OnNecromancerPhaseComplete(NecromancerSpawnViewModel sender)
+		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
 		{
 			//TODO: only add the new rows
 			var models = Application.CurrentGame.Locations.Select (l => new BlightLocationViewModel (l, _blightService, Application));

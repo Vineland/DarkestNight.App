@@ -6,13 +6,10 @@ xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromance
 x:Class="Vineland.Necromancer.UI.NecromancerPhasePage"
 Title="Necromancer">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Name="Detect" Command="{Binding Detect}">
+		<ToolbarItem Name="Activate" Command="{Binding ActivateCommand}">
 		</ToolbarItem> 
 	</ContentPage.ToolbarItems>
 	<AbsoluteLayout Padding="20,0,20,20">
-
-<!--		<Label Text="NECROMANCER" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0,0,1,48">
-		</Label>-->
 
 		<Image Source="necromancer_large.png"  
 				AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="0.5,12,72,72"/>

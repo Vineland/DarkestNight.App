@@ -103,6 +103,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectHeroViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDisplayAlertService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\CustomNavigationPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerActivationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerActivationResultViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml.cs">
+      <DependentUpon>NecromancerActivationPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -156,6 +161,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SelectHeroPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

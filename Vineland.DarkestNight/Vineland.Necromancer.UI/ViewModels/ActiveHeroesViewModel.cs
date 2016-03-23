@@ -17,19 +17,19 @@ namespace Vineland.Necromancer.UI
 
 			MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
 			MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroUpdated", OnHeroUpdated);
-			MessagingCenter.Subscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
+			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
 		}
 
 		public override void Cleanup ()
 		{
 			base.OnDisappearing ();
-			MessagingCenter.Unsubscribe<NecromancerSpawnViewModel>(this, "NecromancerPhaseComplete");
+			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
 			MessagingCenter.Unsubscribe<HeroViewModel,Hero> (this, "HeroDefeated");
 			MessagingCenter.Unsubscribe<HeroViewModel, Hero> (this, "HeroUpdated");
 		}
 
 
-		public void OnNecromancerPhaseComplete(NecromancerSpawnViewModel sender)
+		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
 		{
 			RaisePropertyChanged (() => Darkness);
 		}
