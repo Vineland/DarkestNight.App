@@ -16,7 +16,7 @@ Title="Detection">
 		</ResourceDictionary>
 	</CarouselPage.Resources>
 	<CarouselPage.ToolbarItems>
-		<ToolbarItem Name="Spawn" Command="{Binding SpawnCommand}">
+		<ToolbarItem Name="Accept" Command="{Binding AcceptCommand}">
 		</ToolbarItem>
 	</CarouselPage.ToolbarItems>
 	<CarouselPage.ItemTemplate>
@@ -24,7 +24,7 @@ Title="Detection">
 			<ContentPage>
 				<Grid Padding="20">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="2*" />
+						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
@@ -37,15 +37,9 @@ Title="Detection">
 						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 					<Label Text="Roll" />
-					<Label Text="{Binding Result.NecromancerRoll}" HorizontalOptions="End" FontFamily="hobo" Grid.Column="1" />
-					<Label Text="Darkness" Grid.Row="1"/>
-					<Label Text="{Binding Result.DarknessIncrease}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="1" Grid.Column="1" />
+					<Label Text="{Binding NecromancerRollDisplay}" HorizontalOptions="End" FontFamily="hobo" Grid.Column="1" />
 					<Label Text="Detected Hero" Grid.Row="2" />
-					<Label Text="{Binding Result.DetectedHero, Converter={StaticResource heroConverter}}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="2" Grid.Column="1" />
-					<Label Text="Location" Grid.Row="3" />
-					<Label Text="{Binding NewLocation, Converter={StaticResource locationConverter}}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="3" Grid.Column="1" />
-					<Label Text="Notes" Grid.Row="4" />
-					<Label Text="{Binding Result.Notes}" Grid.Row="5" Grid.ColumnSpan="2" FontFamily="hobo" />
+					<Label Text="{Binding DetectedHero.Name}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="2" Grid.Column="1" />
 
 					<StackLayout Spacing="10" Grid.Row="6" Grid.ColumnSpan="2">
 						<Button Text="Void Amor" Command="{Binding VoidArmorCommand}" IsVisible="{Binding VoidArmorVisible}" />

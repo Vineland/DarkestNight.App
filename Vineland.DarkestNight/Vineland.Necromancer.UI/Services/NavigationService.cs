@@ -55,7 +55,7 @@ namespace Vineland.Necromancer.UI
 			await _navigation.PopAsync ();
 		}
 
-		public async void Push<T> (object viewModel = null, bool clearBackStack = false) where T : Page
+		public async Task<Page> Push<T> (object viewModel = null, bool clearBackStack = false) where T : Page
 		{
 			if (_navigation == null)
 				throw new Exception ("_navigation is null");
@@ -73,6 +73,8 @@ namespace Vineland.Necromancer.UI
 					foreach (var page in pagesToRemove)
 						_navigation.RemovePage (page);
 				}
+
+				return newPage;
 
 			} catch (Exception ex) {
 				LogHelper.Error(ex);

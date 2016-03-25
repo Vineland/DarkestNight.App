@@ -58,7 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationHeaderCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectListItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerSpawnViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerDetectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml.cs">
       <DependentUpon>NecromancerDetectionPage.xaml</DependentUpon>
@@ -104,7 +103,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDisplayAlertService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\CustomNavigationPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerActivationViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerActivationResultViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml.cs">
       <DependentUpon>NecromancerActivationPage.xaml</DependentUpon>
     </Compile>
