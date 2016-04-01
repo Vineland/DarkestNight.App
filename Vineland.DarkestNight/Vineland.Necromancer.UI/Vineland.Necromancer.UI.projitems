@@ -106,6 +106,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml.cs">
       <DependentUpon>NecromancerActivationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\TamerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

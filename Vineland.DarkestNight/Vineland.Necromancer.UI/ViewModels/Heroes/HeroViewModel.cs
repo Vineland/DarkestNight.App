@@ -24,37 +24,57 @@ namespace Vineland.Necromancer.UI
 			get{ return _hero.Name; }//.ToUpper (); }
 		}
 
-		public void RemoveHero(){
-			var viewModel = new SelectHeroViewModel(Resolver.Resolve<DataService>());
-			viewModel.HeroSelected += OnHeroSelected;
-			Application.Navigation.Push<SelectHeroPage> (viewModel);
-		}
 
-		void OnHeroSelected (object sender, Hero newHero)
-		{
-			(sender as SelectHeroViewModel).HeroSelected -= OnHeroSelected;
-
-			MessagingCenter.Send<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated",
-				new HeroDefeatedArgs () {
-					DefeatedHero = _hero,
-					NewHero = newHero
+		public RelayCommand DefeatedCommand {
+			get {
+				return new RelayCommand (async () => {
+					HeroDefeated();
 				});
-			
-			Application.Navigation.Pop ();
+			}
 		}
 
+		private async void HeroDefeated ()
+		{
+			if (await Application.Navigation.DisplayConfirmation ("Hero Defeated?", null, "Yes", "No")) {
+				var availableHeroes = Resolver.Resolve<DataService> ().GetAllHeroes ().Where (x => !Application.CurrentGame.Heroes.Any (y => y.Id == x.Id)).ToList ();
+				var newHeroName = await Application.Navigation.DisplayActionSheet ("New Hero", "Cancel", null, availableHeroes.Select (x => x.Name).ToArray ());
+				MessagingCenter.Send<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated",
+					new HeroDefeatedArgs () {
+						DefeatedHero = _hero,
+						NewHero = availableHeroes.Single (x => x.Name == newHeroName)
+					});
 
-		public void Search(string option){
+				Application.Navigation.Pop ();
+			}
+		}
+
+		public RelayCommand SearchCommand {
+			get {
+				return new RelayCommand (async () => {
+					Search();
+				});
+			}
+		}
+
+		protected void UseSeeingGlass(){
+			var card = Application.CurrentGame.MapCards.Peek();
+
+			Application.Navigation.Push<MapCardPage>(new MapCardViewModel(card, MapCardViewModel.MapCardContext.SpiritSight));
+
+		}
+		protected async virtual void Search ()
+		{
+			var option = await Application.Navigation.DisplayActionSheet("Number Of Cards To Draw", "Cancel", null, "1", "2", "3", "4");
 			var numberOfCards = 0;
-			if(int.TryParse(option, out numberOfCards))
-				Application.Navigation.Push<SearchPage>(new SearchViewModel(numberOfCards));
+			if (int.TryParse (option, out numberOfCards))
+				Application.Navigation.Push<SearchPage> (new SearchViewModel (numberOfCards));
 		}
 
 		public int Secrecy {
-			get{ 
+			get { 
 				return _hero.Secrecy; 
 			}
-			set{ 
+			set { 
 				if (_hero.Secrecy != value) {
 					_hero.Secrecy = value; 
 					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroUpdated", _hero);
@@ -70,7 +90,7 @@ namespace Vineland.Necromancer.UI
 					if (i == _hero.SecrecyDefault)
 						options.Add (i + " (Default)");
 					else
-						options.Add (i.ToString());
+						options.Add (i.ToString ());
 				}
 
 				return options;
@@ -79,7 +99,7 @@ namespace Vineland.Necromancer.UI
 
 		public int Grace {
 			get{ return _hero.Grace; }
-			set{ 
+			set { 
 				if (_hero.Grace != value) {
 					_hero.Grace = value; 
 					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroUpdated", _hero);
@@ -96,7 +116,7 @@ namespace Vineland.Necromancer.UI
 					if (i == _hero.GraceDefault)
 						options.Add (i + " (Default)");
 					else
-						options.Add (i.ToString());
+						options.Add (i.ToString ());
 				}
 				return options;
 			}
@@ -134,6 +154,18 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		public bool HasSeeingGlass {
+			get { 
+				return _hero.HasSeeingGlass; 
+			}
+			set { 
+				if (value)
+					Application.CurrentGame.Heroes.ForEach (h => h.HasSeeingGlass = false);
+
+				_hero.HasSeeingGlass = value; 
+			}
+		}
+
 		public List<Location> Locations {
 			get { return Application.CurrentGame.Locations; }
 		}
@@ -160,12 +192,15 @@ namespace Vineland.Necromancer.UI
 				return new WizardViewModel (hero as Wizard);
 			else if (hero is Conjurer)
 				return new ConjurerViewModel (hero as Conjurer);
+			else if (hero is Tamer)
+				return new TamerViewModel (hero as Tamer);
 			else
 				return new HeroViewModel (hero);
 		}
 	}
 
-	public class HeroDefeatedArgs{
+	public class HeroDefeatedArgs
+	{
 		public Hero DefeatedHero;
 		public Hero NewHero;
 	}

@@ -33,14 +33,6 @@ namespace Vineland.Necromancer.UI
 				});
 			}
 		}
-//		public RelayCommand DoneCommand {
-//			get {
-//				return new RelayCommand (() => {
-//					Application.SaveCurrentGame ();
-//					Application.Navigation.Pop();
-//				});
-//			}
-//		}
 	}
 }
 

@@ -17,6 +17,11 @@ namespace Vineland.Necromancer.UI
 			get{ return _wizard.RuneOfMisdirectionActive; }
 			set{ _wizard.RuneOfMisdirectionActive = value; }
 		}
+
+		public bool RuneOfClairvoyanceActive{
+			get{ return _wizard.RuneOfClairvoyanceActive; }
+			set{ _wizard.RuneOfClairvoyanceActive = value; }
+		}
 	}
 }
 

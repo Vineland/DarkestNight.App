@@ -22,6 +22,7 @@ namespace Vineland.Necromancer.Core
 		#region Artifacts
 		public bool HasVoidArmor { get; set; }
 		public bool HasShieldOfRadiance { get; set; }
+		public bool HasSeeingGlass { get; set; }
 		#endregion
 
 		public override string ToString ()

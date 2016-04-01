@@ -22,7 +22,7 @@
 { "Id":21, "Name":"Scout", "GraceDefault":4,  "SecrecyDefault":7, "LocationId":0, "Expansion":2 },
 { "$type":"Vineland.Necromancer.Core.Seer, Vineland.Necromancer.Core", "Id":22, "Name":"Seer", "GraceDefault":4,  "SecrecyDefault":6,"LocationId":0, "Expansion":0 },
 {  "$type":"Vineland.Necromancer.Core.Shaman, Vineland.Necromancer.Core", "Id":23, "Name":"Shaman", "GraceDefault":5,  "SecrecyDefault":7, "LocationId":0, "Expansion":1 },
-{ "Id":24, "Name":"Tamer", "GraceDefault":5, "SecrecyDefault":5, "LocationId":0, "Expansion":8 },
+{ "$type":"Vineland.Necromancer.Core.Tamer, Vineland.Necromancer.Core","Id":24, "Name":"Tamer", "GraceDefault":5, "SecrecyDefault":5, "LocationId":0, "Expansion":8 },
 { "Id":25, "Name":"Tinker", "GraceDefault":4,  "SecrecyDefault":6, "LocationId":0, "Expansion":128 },
 { "$type":"Vineland.Necromancer.Core.Valkyrie, Vineland.Necromancer.Core", "Id":26, "Name":"Valkyrie", "GraceDefault":5,  "SecrecyDefault":5, "LocationId":0, "Expansion":4 },
 { "$type":"Vineland.Necromancer.Core.Wayfarer, Vineland.Necromancer.Core", "Id":27, "Name":"Wayfarer", "GraceDefault":5,  "SecrecyDefault":5, "LocationId":0, "Expansion":2 },

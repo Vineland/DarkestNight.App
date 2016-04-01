@@ -42,7 +42,7 @@ namespace Vineland.Necromancer.UI
 		public async void BlightRowSelected (BlightRowViewModel selectedBlightRow)
 		{
 			
-			var action = await Application.Navigation.DisplayActionSheet (string.Empty, "Cancel", string.Empty, "Destroy", "Move");
+			var action = await Application.Navigation.DisplayActionSheet ("Remove Blight", "Cancel", string.Empty, "Destroy", "Move");
 			if (action == "Destroy")
 				DestroyBlight (selectedBlightRow);
 				

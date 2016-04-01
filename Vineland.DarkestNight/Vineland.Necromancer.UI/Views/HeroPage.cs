@@ -184,21 +184,13 @@ namespace Vineland.Necromancer.UI
 
 			var stackLayout = new StackLayout () { Spacing = 10, Orientation = StackOrientation.Horizontal };
 
-			var changeHeroButton = new Button () {
+			var defeatedButton = new Button () {
 				Image = ImageSource.FromFile("death") as FileImageSource,
 				WidthRequest = 48
 			};
-			//changeHeroButton.SetBinding (Button.CommandProperty, new Binding ("RemoveHero"));
-			changeHeroButton.Clicked += async (sender, e) => {
-				var result = await Resolver.Resolve<IDisplayAlertService>().DisplayConfirmation(null, "This hero has been defeated?", "Yes", "No");
-				if(result)
-					heroViewModel.RemoveHero();
-			};
+			defeatedButton.SetBinding (Button.CommandProperty, new Binding ("DefeatedCommand"));
 
-//			absoluteLayout.Children.Add (changeHeroButton,
-//				new Rectangle (0, 1, 48, 48),
-//				AbsoluteLayoutFlags.YProportional);
-			stackLayout.Children.Add (changeHeroButton);
+			stackLayout.Children.Add (defeatedButton);
 
 //			var blightsButton = new Button () {
 //				Text = "Blights",
@@ -211,10 +203,7 @@ namespace Vineland.Necromancer.UI
 				Image = ImageSource.FromFile("search") as FileImageSource,
 					WidthRequest = 48
 			};
-			searchButton.Clicked += async (sender, e) => {
-				var option = await DisplayActionSheet("Number Of Cards To Draw", "Cancel", null, "1", "2", "3", "4");
-				heroViewModel.Search(option);
-			};
+			searchButton.SetBinding (Button.CommandProperty, new Binding ("SearchCommand"));
 //			absoluteLayout.Children.Add (searchButton,
 //				new Rectangle (96, 1, 48, 48),
 //				AbsoluteLayoutFlags.YProportional);

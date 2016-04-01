@@ -6,6 +6,7 @@ namespace Vineland.Necromancer.Core
 	public class Wizard :Hero
 	{
 		public bool RuneOfMisdirectionActive { get; set; }
+		public bool RuneOfClairvoyanceActive {get;set;}
 	}
 }
 

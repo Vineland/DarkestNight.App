@@ -21,6 +21,15 @@ namespace Vineland.Necromancer.Core
 
 		public List<T> DiscardPile { get; set; }
 
+		public T Peek()
+		{
+			CheckDrawPile ();
+
+			var card = DrawPile.First();
+
+			return card;
+		}
+
 		public T Draw ()
 		{
 			CheckDrawPile ();
