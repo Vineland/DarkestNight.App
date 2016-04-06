@@ -51,7 +51,7 @@ namespace Vineland.Necromancer.Core
 
 		public bool WithAnInnerLight
 		{
-			get { return _settingsService.LoadBoolean(WITH_AN_INNER_LIGHT); }
+			get { return _settingsService.LoadBoolean(WITH_AN_INNER_LIGHT, true); }
 			set 
 			{ 
 				_settingsService.SaveBoolean(WITH_AN_INNER_LIGHT, value); 
@@ -62,13 +62,13 @@ namespace Vineland.Necromancer.Core
 
 		public bool OnShiftingWinds
 		{
-			get { return _settingsService.LoadBoolean(ON_SHIFTING_WINDS); }
+			get { return _settingsService.LoadBoolean(ON_SHIFTING_WINDS, true); }
 			set { _settingsService.SaveBoolean(ON_SHIFTING_WINDS, value); }
 		}
 
 		public bool FromTheAbyss
 		{
-			get { return _settingsService.LoadBoolean(FROM_THE_ABYSS); }
+			get { return _settingsService.LoadBoolean(FROM_THE_ABYSS, true); }
 			set 
 			{ 
 				_settingsService.SaveBoolean(FROM_THE_ABYSS, value); 
@@ -79,31 +79,31 @@ namespace Vineland.Necromancer.Core
 
 		public bool InTalesOfOld
 		{
-			get { return _settingsService.LoadBoolean(IN_TALES_OF_OLD); }
+			get { return _settingsService.LoadBoolean(IN_TALES_OF_OLD, true); }
 			set { _settingsService.SaveBoolean(IN_TALES_OF_OLD, value); }
 		}
 
 		public bool NymphPromo
 		{
-			get { return _settingsService.LoadBoolean(NYMPH_PROMO); }
+			get { return _settingsService.LoadBoolean(NYMPH_PROMO, true); }
 			set { _settingsService.SaveBoolean(NYMPH_PROMO, value); }
 		}
 
 		public bool EnchanterPromo
 		{
-			get { return _settingsService.LoadBoolean(ENCHANTER_PROMO); }
+			get { return _settingsService.LoadBoolean(ENCHANTER_PROMO, true); }
 			set { _settingsService.SaveBoolean(ENCHANTER_PROMO, value); }
 		}
 
 		public bool MercenaryPromo
 		{
-			get { return _settingsService.LoadBoolean(MERCENARY_PROMO); }
+			get { return _settingsService.LoadBoolean(MERCENARY_PROMO, true); }
 			set { _settingsService.SaveBoolean(MERCENARY_PROMO, value); }
 		}
 
 		public bool TinkerPromo
 		{
-			get { return _settingsService.LoadBoolean(TINKER_PROMO); }
+			get { return _settingsService.LoadBoolean(TINKER_PROMO, true); }
 			set { _settingsService.SaveBoolean(TINKER_PROMO, value); }
 		}
     }

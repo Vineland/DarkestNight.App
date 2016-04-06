@@ -50,7 +50,7 @@ namespace Vineland.Necromancer.UI
 
 		public bool SkipPage {
 			get {
-				return Results.Count == 1 && !Results.Any (r => r.DetectedHero == null || r.BlindingBlackVisible || r.DecoyVisible || r.ElusiveSpiritVisible || r.VoidArmorVisible);
+				return Results.Count == 1 && !Results.Any (r => r.DetectedHero != null && (r.BlindingBlackVisible || r.DecoyVisible || r.ElusiveSpiritVisible || r.VoidArmorVisible));
 			}
 		}
 
