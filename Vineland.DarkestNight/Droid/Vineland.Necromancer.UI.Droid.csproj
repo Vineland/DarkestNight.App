@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{4B2134F0-435F-42FB-AB5E-3E2B8241B462}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Vineland.Necromancer.UI.Droid</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AssemblyName>Vineland.Necromancer.UI.Droid</AssemblyName>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkSkip>SimpleInjector;Vineland.Necromancer.Core;</AndroidLinkSkip>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Cole\Source\Repos\DarkestNight.App\Vineland.DarkestNight\Droid\vineland.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>v1n3LAND!</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>vinelanddev</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>v1n3LAND!</AndroidSigningKeyPass>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\monoandroid1\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\monoandroid1\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\monoandroid1\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Ioc">
+      <HintPath>..\packages\XLabs.IoC.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Ioc.SimpleInjector">
+      <HintPath>..\packages\XLabs.IoC.SimpleInjector.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.3.1.2\lib\portable-net4+sl4+wp8+win8+wpa81\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Design">
+      <HintPath>..\packages\Xamarin.Android.Support.Design.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.11.4\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="FormsViewGroup">
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.Android">
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\AndroidBootstrapper.cs" />
+    <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\MultiSelectListViewRenderer.cs" />
+    <Compile Include="Renderers\CheckButtonRenderer.cs" />
+    <Compile Include="Renderers\CustomTextCellRenderer.cs" />
+    <Compile Include="Renderers\CustomFontLabelRenderer.cs" />
+    <Compile Include="Renderers\CustomButtonRenderer.cs" />
+    <Compile Include="Renderers\CustomPickerRenderer.cs" />
+    <Compile Include="PagedCarouselPage\CirclePageIndicator.cs" />
+    <Compile Include="PagedCarouselPage\IPageIndicator.cs" />
+    <Compile Include="PagedCarouselPage\ViewPagerIndicatorEventHandlers.cs" />
+    <Compile Include="PagedCarouselPage\PagedCarouselPageRenderer.cs" />
+    <Compile Include="Services\FontManager.cs" />
+    <Compile Include="Renderers\CustomPageRenderer.cs" />
+    <Compile Include="Renderers\CustomImageCellRenderer.cs" />
+    <Compile Include="Services\DisplayAlertService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
+    <None Include="vineland.keystore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\layout\" />
+    <Folder Include="Resources\values\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Services\" />
+    <Folder Include="Renderers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable\playstore_icon.png" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\drawable\default_text_colour.xml" />
+    <AndroidResource Include="Resources\layout\CheckBoxCell.axml" />
+    <AndroidResource Include="Resources\layout\HeroCell.axml" />
+    <AndroidResource Include="Resources\drawable\background.png" />
+    <AndroidResource Include="Resources\drawable\splash.xml" />
+    <AndroidResource Include="Resources\drawable\splashScreen.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\background.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\background.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\background.png" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable\checkbox_background.xml" />
+    <AndroidResource Include="Resources\drawable\checkbox_button.xml" />
+    <AndroidResource Include="Resources\drawable\check_selected.png" />
+    <AndroidResource Include="Resources\drawable\check_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\check_selected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\check_unselected.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\check_selected.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\check_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\check_selected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\check_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\check_selected.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\check_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\check_selected.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\check_unselected.png" />
+    <AndroidResource Include="Resources\drawable\darkness.png" />
+    <AndroidResource Include="Resources\drawable\secrecy.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\darkness.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\secrecy.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\darkness.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\secrecy.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\darkness.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\secrecy.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\darkness.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\secrecy.png" />
+    <AndroidResource Include="Resources\drawable\nymph.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\minus.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\minus.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\day.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\night.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\day.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\minus.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\night.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\day.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\minus.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\night.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable\day.png" />
+    <AndroidResource Include="Resources\drawable\minus.png" />
+    <AndroidResource Include="Resources\drawable\night.png" />
+    <AndroidResource Include="Resources\drawable\plus.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\minus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\plus_disabled.png" />
+    <AndroidResource Include="Resources\values\vpi__attrs.xml" />
+    <AndroidResource Include="Resources\values\vpi__defaults.xml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\necromancer_large.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\background_dark.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\necromancer_large.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\necromancer_large.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\necromancer_large.png" />
+    <AndroidResource Include="Resources\drawable\necromancer_large.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\acolyte.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\alchemist.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\bard.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\channeler.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\conjurer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\crusader.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\druid.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\enchanter.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\exorcist.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\knight.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\mercenary.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\mesmer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\monk.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\nymph.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\paragon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\priest.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\prince.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ranger.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\rogue.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\scholar.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\scout.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\seer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\shaman.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tamer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\tinker.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\wayfarer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\winddancer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\wizard.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\valkyrie.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\acolyte.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\alchemist.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bard.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\channeler.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\conjurer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\crusader.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\druid.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\enchanter.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\exorcist.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\knight.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\mercenary.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\mesmer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\monk.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\nymph.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\paragon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\priest.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\prince.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ranger.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\rogue.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scholar.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scout.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\seer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\shaman.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tamer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tinker.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\valkyrie_large.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\wayfarer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\winddancer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\wizard.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\acolyte.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\alchemist.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\bard.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\channeler.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\conjurer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\crusader.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\druid.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\enchanter.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\exorcist.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\knight.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\mercenary.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\mesmer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\monk.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\nymph.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\paragon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\priest.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\prince.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ranger.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\rogue.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\scholar.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\scout.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\seer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\shaman.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tamer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tinker.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\valkyrie.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\wayfarer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\winddancer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\wizard.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\acolyte.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\alchemist.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\bard.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\channeler.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\conjurer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\crusader.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\druid.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\enchanter.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\exorcist.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\knight.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\mercenary.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\mesmer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\monk.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\nymph.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\paragon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\priest.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\prince.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ranger.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\rogue.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\scholar.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\scout.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\seer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\shaman.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tamer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tinker.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\valkyrie.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\wayfarer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\winddancer.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\wizard.png" />
+    <AndroidResource Include="Resources\drawable\acolyte.png" />
+    <AndroidResource Include="Resources\drawable\alchemist.png" />
+    <AndroidResource Include="Resources\drawable\bard.png" />
+    <AndroidResource Include="Resources\drawable\channeler.png" />
+    <AndroidResource Include="Resources\drawable\conjurer.png" />
+    <AndroidResource Include="Resources\drawable\crusader.png" />
+    <AndroidResource Include="Resources\drawable\druid.png" />
+    <AndroidResource Include="Resources\drawable\enchanter.png" />
+    <AndroidResource Include="Resources\drawable\exorcist.png" />
+    <AndroidResource Include="Resources\drawable\knight.png" />
+    <AndroidResource Include="Resources\drawable\mercenary.png" />
+    <AndroidResource Include="Resources\drawable\mesmer.png" />
+    <AndroidResource Include="Resources\drawable\monk.png" />
+    <AndroidResource Include="Resources\drawable\paragon.png" />
+    <AndroidResource Include="Resources\drawable\priest.png" />
+    <AndroidResource Include="Resources\drawable\prince.png" />
+    <AndroidResource Include="Resources\drawable\ranger.png" />
+    <AndroidResource Include="Resources\drawable\rogue.png" />
+    <AndroidResource Include="Resources\drawable\scholar.png" />
+    <AndroidResource Include="Resources\drawable\scout.png" />
+    <AndroidResource Include="Resources\drawable\seer.png" />
+    <AndroidResource Include="Resources\drawable\shaman.png" />
+    <AndroidResource Include="Resources\drawable\tamer.png" />
+    <AndroidResource Include="Resources\drawable\tinker.png" />
+    <AndroidResource Include="Resources\drawable\valkyrie.png" />
+    <AndroidResource Include="Resources\drawable\wayfarer.png" />
+    <AndroidResource Include="Resources\drawable\winddancer.png" />
+    <AndroidResource Include="Resources\drawable\wizard.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\minus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\plus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\minus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\plus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\minus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\plus_disabled.png" />
+    <AndroidResource Include="Resources\drawable\minus_disabled.png" />
+    <AndroidResource Include="Resources\drawable\plus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\splashScreen.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_confusion.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_corruption.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_curse.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_dark_fog.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_desecration.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_evil_presence.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_lich.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_shades.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_skeletons.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_spies.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_taint.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_unholy_aura.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_vampire.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_zombies.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_shroud.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_crows.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_decay.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_enigma.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_flux_cage.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_gate.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_nexus.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_oblivion.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_omen.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_revenants.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_specters.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_stigma.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_terror.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_void.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_webs.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_wraiths.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\logo_splash.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\background.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\background_framed.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\background_loading.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\loading.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\background_framed.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\background_framed.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\grace.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\grace.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\grace.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_bottled_magic.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_charm.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_cursed_ashes.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_key.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_psion_stone.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_skull_token.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_soothing_lyre.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_tome.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_treasure_chest.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_vanishing_dust.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\item_waystone.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\death.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\night.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj">
+      <Project>{B765980C-5128-488A-AB62-430C0FC76517}</Project>
+      <Name>Vineland.Necromancer.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\hobo.ttf" />
+    <AndroidAsset Include="Assets\baskervillebecker.ttf" />
+  </ItemGroup>
+  <Import Project="..\Vineland.Necromancer.UI\Vineland.Necromancer.UI.projitems" Label="Shared" Condition="Exists('..\Vineland.Necromancer.UI\Vineland.Necromancer.UI.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Insights.1.11.4\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.4\build\MonoAndroid10\Xamarin.Insights.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+</Project>

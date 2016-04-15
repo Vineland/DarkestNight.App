@@ -29,16 +29,19 @@ namespace Vineland.Necromancer.iOS
 		public void SaveString (string settingName, string value)
 		{
 			NSUserDefaults.StandardUserDefaults.SetString (value, settingName);
+			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
 
 		public void SaveBoolean (string settingName, bool value)
 		{
 			NSUserDefaults.StandardUserDefaults.SetBool (value, settingName);
+			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
 
 		public void SaveInt (string settingName, int value)
 		{
 			NSUserDefaults.StandardUserDefaults.SetInt (value, settingName);
+			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
 
 	}
