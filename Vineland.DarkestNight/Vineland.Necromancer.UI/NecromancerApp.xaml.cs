@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XLabs.Ioc;
-using Android.Animation;
 using Vineland.Necromancer.Core;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Vineland.DarkestNight.UI;
 using Vineland.DarkestNight.UI.Services;
-using Android.Views.InputMethods;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Vineland.Necromancer.UI

@@ -9,9 +9,10 @@ x:Class="Vineland.Necromancer.UI.NecromancerApp">
 				<Setter Property="BackgroundColor" Value="#78FFFCCC" />
 				<Setter Property="TextColor" Value="Black" />
 				<Setter Property="FontSize" Value="20" />
+				<Setter Property="FontFamily" Value="baskervillebecker" />
 			</Style>
 			<Style TargetType="Label">
-				<Setter Property="FontFamily" Value="baskerville_becker" />
+				<Setter Property="FontFamily" Value="baskervillebecker" />
 				<Setter Property="FontSize" Value="20" />
 				<Setter Property="TextColor" Value="Black" />
 			</Style>

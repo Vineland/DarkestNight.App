@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using GalaSoft.MvvmLight;
 
 namespace Vineland.Necromancer.Core
 {

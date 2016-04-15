@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
 using System.Dynamic;
 
 namespace Vineland.Necromancer.Core

@@ -2,8 +2,6 @@
 using Xamarin.Forms;
 using Vineland.Necromancer.Core;
 using System.Security.Policy;
-using Java.Net;
-using Dalvik.SystemInterop;
 using GalaSoft.MvvmLight;
 using System.Threading;
 using XLabs.Ioc;

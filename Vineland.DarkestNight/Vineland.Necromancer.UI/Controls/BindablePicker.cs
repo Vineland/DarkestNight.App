@@ -2,9 +2,7 @@
 using Xamarin.Forms;
 using System.Collections;
 using Vineland.DarkestNight.UI.Utilities;
-using Android.Nfc;
 using System.Collections.Generic;
-using Android.Views.InputMethods;
 using System.Linq;
 using System.Runtime.CompilerServices;
 

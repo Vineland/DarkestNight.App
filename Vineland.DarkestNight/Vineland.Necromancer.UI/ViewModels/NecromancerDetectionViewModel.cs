@@ -9,7 +9,6 @@ using XLabs.Ioc;
 using Vineland.Necromancer.Core.Services;
 using System.Security.Cryptography;
 using System.Net;
-using Android.App;
 
 namespace Vineland.Necromancer.UI
 {

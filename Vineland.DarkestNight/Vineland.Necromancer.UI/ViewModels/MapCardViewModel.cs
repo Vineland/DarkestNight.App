@@ -4,7 +4,6 @@ using System.Linq;
 using Vineland.Necromancer.Core;
 using Xamarin.Forms;
 using GalaSoft.MvvmLight.Command;
-using Android.Hardware.Camera2;
 
 namespace Vineland.Necromancer.UI
 {

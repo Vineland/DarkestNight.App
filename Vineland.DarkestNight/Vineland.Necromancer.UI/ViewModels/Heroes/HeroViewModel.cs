@@ -1,12 +1,9 @@
 ﻿using System;
-using Android.Nfc;
 using Vineland.Necromancer.Core;
 using GalaSoft.MvvmLight.Command;
 using System.Linq;
 using System.Collections.Generic;
-using Android.Util;
 using XLabs.Ioc;
-using Android.OS;
 using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI

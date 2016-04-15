@@ -1,9 +1,7 @@
 ﻿using System;
 using Vineland.Necromancer.Core;
 using GalaSoft.MvvmLight.Command;
-using Android.Util;
 using Xamarin.Forms;
-using Java.Lang;
 
 namespace Vineland.Necromancer.UI
 {
