@@ -15,7 +15,7 @@ namespace Vineland.Necromancer.Core
 		{
 			get{
 				if (_blights == null) {
-					_blights = JsonConvert.DeserializeObject<List<Blight>> (ReadEmbeddedResource ("Vineland.Necromancer.Core.blights.json"));;
+					_blights = JsonConvert.DeserializeObject<List<Blight>> (ReadEmbeddedResource ("Vineland.Necromancer.Core.Resources.blights.json"));;
 				}
 				return _blights;
 			}
@@ -25,8 +25,8 @@ namespace Vineland.Necromancer.Core
 		private List<MapCard> MapCards 
 		{
 			get{
-				if (_mapCards == null) {
-					_mapCards = JsonConvert.DeserializeObject<List<MapCard>> (ReadEmbeddedResource ("Vineland.Necromancer.Core.map-cards.json"));;
+				if (_mapCards == null) {															
+					_mapCards = JsonConvert.DeserializeObject<List<MapCard>> (ReadEmbeddedResource ("Vineland.Necromancer.Core.Resources.map-cards.json"));;
 				}
 				return _mapCards;
 			}

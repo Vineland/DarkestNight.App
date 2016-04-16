@@ -22,35 +22,33 @@ namespace Vineland.Necromancer.UI
 		{
 			if (Application.CurrentGame == null && Application.FileService.DoesFileExist (AppConstants.SaveFilePath))
 				Application.CurrentGame = JsonConvert.DeserializeObject<GameState> (Application.FileService.LoadFile (AppConstants.SaveFilePath), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
-
-			RaisePropertyChanged (() => ContinueGameCommand);
 		}
 
-		public RelayCommand ContinueGameCommand {
+		public RelayCommand PlayGameCommand {
 			get { 
 				return new RelayCommand (
-					() => {
-						Application.Navigation.Push<HeroTurnPage> ();
-					},
-					() => {
-						return Application.CurrentGame != null;
-					}); 
-			}
-		}
-
-		public RelayCommand NewGameCommand {
-			get { 
-				return new RelayCommand (
-					() => { 
-						Application.Navigation.Push<NewGamePage> ();
+					async () => {
+						if(Application.CurrentGame == null
+							|| !await Application.Navigation.DisplayConfirmation("Continue the last game?", null, "Yes", "No"))
+							Application.Navigation.Push<NewGamePage>();
+						else
+							Application.Navigation.Push<HeroTurnPage> ();
 					}); 
 			}
 		}
 
 		public RelayCommand SettingsCommand{
 			get{
-				return new RelayCommand (() => {
-					Application.Navigation.Push<SettingsPage>();
+				return new RelayCommand (async () => {
+					await Application.Navigation.Push<SettingsPage>();
+				});
+			}
+		}
+
+		public RelayCommand HelpCommand{
+			get{
+				return new RelayCommand (async () => {
+					//await Application.Navigation.Push<SettingsPage>();
 				});
 			}
 		}

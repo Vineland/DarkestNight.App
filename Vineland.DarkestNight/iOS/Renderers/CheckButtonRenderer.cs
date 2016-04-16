@@ -22,7 +22,7 @@ namespace Vineland.Necromancer.iOS
 				var checkBoxElement = Element as CheckButton;
 
 				var control = new UIButton(UIButtonType.Custom);
-
+				control.Selected = checkBoxElement.IsSelected;
 				control.SetImage (new UIImage ("check_selected.png"), UIControlState.Selected);
 				control.SetImage (new UIImage ("check_unselected.png"), UIControlState.Normal);
 				control.TouchUpInside += Control_TouchUpInside;

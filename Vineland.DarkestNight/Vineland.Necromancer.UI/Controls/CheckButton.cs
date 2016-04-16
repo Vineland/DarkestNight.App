@@ -15,6 +15,9 @@ namespace Vineland.Necromancer.UI
 
 		public CheckButton ()
 		{
+			Device.OnPlatform (iOS: () => {
+				HorizontalOptions = LayoutOptions.FillAndExpand;
+			});
 		}
 	}
 }

@@ -167,5 +167,9 @@
     </BundleResource>
     <BundleResource Include="Resources\check_selected.png" />
     <BundleResource Include="Resources\check_unselected.png" />
+    <BundleResource Include="Resources\minus_disabled.png" />
+    <BundleResource Include="Resources\minus.png" />
+    <BundleResource Include="Resources\plus_disabled.png" />
+    <BundleResource Include="Resources\plus.png" />
   </ItemGroup>
 </Project>

@@ -42,7 +42,7 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Fonts/baskerville_becker.ttf</string>
+		<string>Fonts/baskervillebecker.ttf</string>
 		<string>Fonts/hobo.ttf</string>
 	</array>
 </dict>

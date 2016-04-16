@@ -32,7 +32,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameState.cs" />
-    <Compile Include="GameStateFactory.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Helpers\ListExtensions.cs" />
     <Compile Include="Model\Blight.cs" />
@@ -55,21 +54,24 @@
     <Compile Include="Model\Heroes\Wizard.cs" />
     <Compile Include="Services\BlightService.cs" />
     <Compile Include="Services\D6GeneratorService.cs" />
-    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\NecromancerService.cs" />
+    <Compile Include="Services\DataService.cs" />
+    <Compile Include="GameStateFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\blights.json" />
-    <None Include="Resources\heroes.json" />
-    <None Include="Resources\locations.json" />
-    <None Include="Resources\map-cards.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\locations.json" />
+    <EmbeddedResource Include="Resources\map-cards.json" />
+    <EmbeddedResource Include="Resources\blights.json" />
+    <EmbeddedResource Include="Resources\heroes.json" />
   </ItemGroup>
 </Project>
