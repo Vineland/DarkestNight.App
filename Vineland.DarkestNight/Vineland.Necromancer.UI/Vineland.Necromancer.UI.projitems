@@ -73,7 +73,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml.cs">
       <DependentUpon>ActiveHeroesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToImageSourceConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HeroTurnPage.xaml.cs">
       <DependentUpon>HeroTurnPage.xaml</DependentUpon>
     </Compile>
@@ -108,6 +107,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\TamerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsSourceStackLayout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Cells\LocationBlightsCell.xaml.cs">
+      <DependentUpon>LocationBlightsCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Cells\HeroCell.xaml.cs">
+      <DependentUpon>HeroCell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -119,6 +124,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Partials\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Cells\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
@@ -164,6 +170,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Cells\LocationBlightsCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Cells\HeroCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

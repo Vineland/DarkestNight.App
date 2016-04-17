@@ -3,7 +3,8 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.ActiveHeroesPage" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
-Title="Heroes">
+Title="Heroes"
+BackgroundImage="background">
 	<StackLayout>
 		<Image Source="darkness" HorizontalOptions="Center" />
 		<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center"/>

@@ -3,14 +3,15 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.BlightLocationsPage" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
-Title="Blights">
+Title="Blights"
+BackgroundImage="background">
 	<ListView x:Name="ListView" ItemsSource="{ Binding LocationSections }" IsGroupingEnabled="true">
 		<ListView.GroupHeaderTemplate>
 			<DataTemplate>
 				<ViewCell>
-					<AbsoluteLayout Padding="10">
+					<AbsoluteLayout Padding="20">
 						<Label Text="{Binding Location.Name}" VerticalTextAlignment="Center" />
-						<ui:ImageButton Source="plus" DisabledSource="plus_disabled" 
+						<ui:ImageButton Source="plus" DisabledSource="plus_disabled"
 						AbsoluteLayout.LayoutFlags="XProportional" 
 						AbsoluteLayout.LayoutBounds="1,0,32,32">
 							<ui:ImageButton.GestureRecognizers>

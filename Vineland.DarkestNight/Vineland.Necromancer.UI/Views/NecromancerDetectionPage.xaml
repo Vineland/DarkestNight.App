@@ -6,7 +6,8 @@ x:Class="Vineland.Necromancer.UI.NecromancerDetectionPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 ItemsSource="{Binding Results}" 
 SelectedItem="{Binding SelectedResult, Mode=TwoWay}"
-Title="Detection">
+Title="Detection"
+BackgroundImage="background_framed">
 	<CarouselPage.Resources>
 		<ResourceDictionary>
 			<ui:HeroConverter x:Key="heroConverter">
@@ -21,7 +22,8 @@ Title="Detection">
 	</CarouselPage.ToolbarItems>
 	<CarouselPage.ItemTemplate>
 		<DataTemplate>
-			<ContentPage>
+			<ContentPage
+BackgroundImage="background_framed">
 				<Grid Padding="20">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*" />

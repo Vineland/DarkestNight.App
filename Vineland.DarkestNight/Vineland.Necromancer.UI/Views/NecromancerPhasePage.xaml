@@ -4,7 +4,8 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core" 
 x:Class="Vineland.Necromancer.UI.NecromancerPhasePage"
-Title="Necromancer">
+Title="Necromancer"
+BackgroundImage="background_framed">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Name="Activate" Command="{Binding ActivateCommand}">
 		</ToolbarItem> 

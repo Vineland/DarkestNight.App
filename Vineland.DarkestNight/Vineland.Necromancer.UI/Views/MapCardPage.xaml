@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-x:Class="Vineland.Necromancer.UI.MapCardPage">
+x:Class="Vineland.Necromancer.UI.MapCardPage"
+BackgroundImage="background_framed">
 	<ListView ItemsSource="{Binding Rows}" RowHeight="64">
 		<ListView.ItemTemplate>
 			<DataTemplate>

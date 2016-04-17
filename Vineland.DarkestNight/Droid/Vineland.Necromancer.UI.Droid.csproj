@@ -27,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -38,11 +39,31 @@
     <AndroidLinkSkip>SimpleInjector;Vineland.Necromancer.Core;</AndroidLinkSkip>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\Cole\Source\Repos\DarkestNight.App\Vineland.DarkestNight\Droid\vineland.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>/Users/macuser/Vineland/DarkestNight.App.git/Vineland.DarkestNight/Droid/vineland.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>v1n3LAND!</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>vinelanddev</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>v1n3LAND!</AndroidSigningKeyPass>
     <AndroidLinkMode>Full</AndroidLinkMode>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Test</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkSkip>SimpleInjector;Vineland.Necromancer.Core;</AndroidLinkSkip>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Users/macuser/Vineland/DarkestNight.App.git/Vineland.DarkestNight/Droid/vineland.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>v1n3LAND!</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>vinelanddev</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>v1n3LAND!</AndroidSigningKeyPass>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|iPhone' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Test</OutputPath>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,9 +88,6 @@
     <Reference Include="XLabs.Ioc.SimpleInjector">
       <HintPath>..\packages\XLabs.IoC.SimpleInjector.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.SimpleInjector.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector">
-      <HintPath>..\packages\SimpleInjector.3.1.2\lib\portable-net4+sl4+wp8+win8+wpa81\SimpleInjector.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -86,9 +104,6 @@
       <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android.Export" />
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.11.4\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
-    </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
@@ -106,6 +121,12 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.3.1.3\lib\portable-net4+sl4+wp8+win8+wpa81\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.12.3\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -436,6 +457,6 @@
   </ItemGroup>
   <Import Project="..\Vineland.Necromancer.UI\Vineland.Necromancer.UI.projitems" Label="Shared" Condition="Exists('..\Vineland.Necromancer.UI\Vineland.Necromancer.UI.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Insights.1.11.4\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.4\build\MonoAndroid10\Xamarin.Insights.targets')" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Insights.1.12.3\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\MonoAndroid10\Xamarin.Insights.targets')" />
 </Project>

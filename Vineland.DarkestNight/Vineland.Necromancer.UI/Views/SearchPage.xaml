@@ -4,7 +4,8 @@ xmlns="http://xamarin.com/schemas/2014/forms"
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.SearchPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-ItemsSource="{Binding MapCards}">
+ItemsSource="{Binding MapCards}"
+BackgroundImage="background_framed">
 	<CarouselPage.ToolbarItems>
 		<ToolbarItem Name="Discard" Command="{Binding DiscardCommand}">
 		</ToolbarItem>

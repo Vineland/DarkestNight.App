@@ -109,7 +109,7 @@ namespace Vineland.Necromancer.UI
 					var action = await _application.Navigation.DisplayActionSheet (
 						"New Blight", 
 						"Cancel", 
-						string.Empty, 
+						null, 
 						"Spawn", 
 						"Select");
 					switch (action) 

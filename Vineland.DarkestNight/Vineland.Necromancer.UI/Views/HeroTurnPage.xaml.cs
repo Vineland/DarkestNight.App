@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class HeroTurnPage : CustomCarouselPage
+	public partial class HeroTurnPage : TabbedPage
 	{
 		public HeroTurnPage ()
 		{ 
