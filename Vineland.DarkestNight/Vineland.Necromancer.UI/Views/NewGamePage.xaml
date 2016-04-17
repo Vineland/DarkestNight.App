@@ -4,6 +4,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core"
 x:Class="Vineland.Necromancer.UI.NewGamePage"
+BackgroundImage="background_framed"
 Title="New Game">
 <ContentPage.ToolbarItems>
       <ToolbarItem Name="Select Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
@@ -32,6 +33,7 @@ Title="New Game">
 
 	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Column="0" Grid.Row="2" IsVisible="{Binding Settings.WithAnInnerLight}"/>
 	<ui:CheckButton IsSelected="{Binding Settings.PallOfSuffering}" Grid.Column="1" Grid.Row="2" IsVisible="{Binding Settings.WithAnInnerLight}" HorizontalOptions="End"/>
+
 
 </Grid>
 </ContentPage>

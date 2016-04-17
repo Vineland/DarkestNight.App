@@ -18,18 +18,49 @@ namespace Vineland.Necromancer.UI
 		{
 			SelectedHeroes = new ObservableCollection<Hero> ();
 			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
-			Heroes = dataService.GetAllHeroes();
+			AvailableHeroes = new ObservableCollection<Hero>(dataService.GetAllHeroes());
 		}
  
-		public List<Hero> Heroes { get; private set; }
-
 		public ObservableCollection<Hero> SelectedHeroes { get; set; }
+
+		public ObservableCollection<Hero> AvailableHeroes { get; set; }
+
+		public void SelectHero(Hero hero){
+			if (SelectedHeroes.Count == 4)
+				return;
+			
+			if (AvailableHeroes.Contains (hero))
+				AvailableHeroes.Remove (hero);
+			if (!SelectedHeroes.Contains (hero))
+				SelectedHeroes.Add (hero);
+		}
+
+
+		public RelayCommand<Hero> DeselectHeroCommand{
+			get{
+				return new RelayCommand<Hero> (async (hero) => {
+
+					if (SelectedHeroes.Contains (hero))
+						SelectedHeroes.Remove (hero);
+					
+					if (!AvailableHeroes.Contains (hero)){
+						for(int i= 0; i < AvailableHeroes.Count; i++){
+							if(AvailableHeroes[i].Name.CompareTo(hero.Name) == 1){
+								AvailableHeroes.Insert (i,hero);
+								break;
+							}
+						}
+					}
+				});
+			}
+		}
 
 		public RelayCommand StartGame
 		{
 			get {
 				return new RelayCommand (
-					() => {
+					async () => {
+						
 						Application.CurrentGame.Heroes = SelectedHeroes.ToList();
 						Application.CurrentGame.Heroes.ForEach(h=>
 							{ 
@@ -37,7 +68,7 @@ namespace Vineland.Necromancer.UI
 								h.Grace = h.GraceDefault;
 							});
 						Application.SaveCurrentGame ();
-						Application.Navigation.Push<HeroTurnPage>(clearBackStack: true);
+						await Application.Navigation.Push<HeroTurnPage>(clearBackStack: true);
 					},
 					() => {
 						return SelectedHeroes.Count() == 4;

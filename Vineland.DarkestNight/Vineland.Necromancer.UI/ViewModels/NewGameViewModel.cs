@@ -9,6 +9,8 @@ using GalaSoft.MvvmLight;
 using Vineland.Necromancer.UI;
 using GalaSoft.MvvmLight.Command;
 using Vineland.DarkestNight.UI;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Vineland.Necromancer.UI
 {
@@ -26,6 +28,8 @@ namespace Vineland.Necromancer.UI
         public DarknessCardsMode[] DarknessCardsModeOptions { get; private set; }
 
 		public Settings Settings { get; private set; }
+
+
 
 		public RelayCommand ChooseHeroes{
 			get{

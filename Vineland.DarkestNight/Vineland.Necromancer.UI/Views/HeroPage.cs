@@ -40,7 +40,7 @@ namespace Vineland.Necromancer.UI
 				Source = ImageSource.FromFile (heroViewModel.Name.Replace (" ", string.Empty).ToLower ()),
 				HorizontalOptions = LayoutOptions.Center
 			};
-			absoluteLayout.Children.Add (image, new Rectangle (0.5, 12, 72, 72), AbsoluteLayoutFlags.XProportional);
+			absoluteLayout.Children.Add (image, new Rectangle (0.5, 12, 60, 60), AbsoluteLayoutFlags.XProportional);
 
 			var grid = new Grid () {
 				ColumnDefinitions = new ColumnDefinitionCollection(){

@@ -107,6 +107,7 @@
       <DependentUpon>NecromancerActivationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\TamerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsSourceStackLayout.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

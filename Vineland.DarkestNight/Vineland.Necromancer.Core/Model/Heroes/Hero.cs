@@ -28,5 +28,9 @@ namespace Vineland.Necromancer.Core
 		{
 			return Name;
 		}
+
+		public string ImageName{
+			get { return Name.Replace (" ", "").ToLower (); }
+		}
     }
 }

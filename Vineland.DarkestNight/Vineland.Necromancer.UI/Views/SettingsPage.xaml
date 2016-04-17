@@ -3,6 +3,7 @@
  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   x:Class="Vineland.Necromancer.UI.SettingsPage"
    xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+   BackgroundImage="background_framed"
    Title="Settings">
 	<Grid RowSpacing="10" Padding="20">
 		<Grid.ColumnDefinitions>

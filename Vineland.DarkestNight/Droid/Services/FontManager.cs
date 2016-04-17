@@ -9,7 +9,7 @@ namespace Vineland.Necromancer.UI.Droid
 {
 	public static class FontManager
 	{
-		public static string DefaultFontName = "baskerville_becker";
+		public static string DefaultFontName = "baskervillebecker";
 
 		private static Dictionary<string, Typeface> _fonts = new Dictionary<string, Typeface> ();
 

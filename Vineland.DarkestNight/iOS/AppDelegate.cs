@@ -29,13 +29,13 @@ namespace Vineland.Necromancer.iOS
 				LogHelper.Info("Loading  NecromancerApp");
 				LoadApplication (new NecromancerApp ());
 
-				foreach (NSString family in UIFont.FamilyNames)
-				{
-					foreach (NSString font in UIFont.FontNamesForFamilyName(family))
-					{
-						Console.WriteLine(@"{0}", font);
-					}
-				}
+//				foreach (NSString family in UIFont.FamilyNames)
+//				{
+//					foreach (NSString font in UIFont.FontNamesForFamilyName(family))
+//					{
+//						Console.WriteLine(@"{0}", font);
+//					}
+//				}
 				return base.FinishedLaunching (app, options);
 			}
 			catch (Exception ex)

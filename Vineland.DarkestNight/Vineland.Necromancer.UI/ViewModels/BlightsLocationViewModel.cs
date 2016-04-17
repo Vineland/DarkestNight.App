@@ -42,12 +42,12 @@ namespace Vineland.Necromancer.UI
 		public async void BlightRowSelected (BlightRowViewModel selectedBlightRow)
 		{
 			
-			var action = await Application.Navigation.DisplayActionSheet ("Remove Blight", "Cancel", string.Empty, "Destroy", "Move");
+			var action = await Application.Navigation.DisplayActionSheet ("Remove Blight", "Cancel", null, "Destroy", "Move");
 			if (action == "Destroy")
 				DestroyBlight (selectedBlightRow);
 				
 			if (action == "Move") {
-				var newLocationName = await Application.Navigation.DisplayActionSheet ("New Location", "Cancel", string.Empty, Application.CurrentGame.Locations.Select (x => x.Name).ToArray ());
+				var newLocationName = await Application.Navigation.DisplayActionSheet ("New Location", "Cancel", null, Application.CurrentGame.Locations.Select (x => x.Name).ToArray ());
 				if (newLocationName != "Cancel") {
 					MoveBlight (selectedBlightRow, newLocationName);
 				}
@@ -148,7 +148,7 @@ namespace Vineland.Necromancer.UI
 
 			var blight = _application.CurrentGame.BlightPool.FirstOrDefault(x=>x.Name == option);
 			this.Add (new BlightRowViewModel (blight));
-			Task.Run (() => {
+			await Task.Run (() => {
 				_application.CurrentGame.BlightPool.Remove(blight);
 				Location.Blights.Add(blight);
 				_application.SaveCurrentGame ();

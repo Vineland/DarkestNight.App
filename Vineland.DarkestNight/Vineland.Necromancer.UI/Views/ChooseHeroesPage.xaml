@@ -9,9 +9,29 @@ Title="Select Heroes">
 <ContentPage.ToolbarItems>
 	<ToolbarItem Name="Start Game" Command="{Binding StartGame}"></ToolbarItem>
 </ContentPage.ToolbarItems>
-<ui:MultiSelectListView 
-	x:TypeArguments="core:Hero"
-	ItemsSource="{Binding Heroes}" 
-	SelectedItems="{Binding SelectedHeroes}">
-	</ui:MultiSelectListView>
+<StackLayout>
+<Label Text="Selected Heroes" HorizontalOptions="CenterAndExpand"/>
+<ui:ItemsSourceStackLayout
+x:Name="SelectedHeroesLayout"
+Orientation="Horizontal" 
+ItemsSource="{Binding SelectedHeroes}"
+ItemSelected="{Binding DeselectHeroCommand}"
+HorizontalOptions="CenterAndExpand">
+	<ui:ItemsSourceStackLayout.ItemTemplate>
+			<DataTemplate>
+				<Image Source="{Binding ImageName}" HeightRequest="60" WidthRequest="60"/>
+			</DataTemplate>
+	</ui:ItemsSourceStackLayout.ItemTemplate>
+</ui:ItemsSourceStackLayout>
+<Label Text="Available Heroes" HorizontalOptions="CenterAndExpand" />
+<ListView 
+x:Name="AvailableHeroesListView"
+	ItemsSource="{Binding AvailableHeroes}">
+	<ListView.ItemTemplate>
+			<DataTemplate>
+				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />
+			</DataTemplate>
+	</ListView.ItemTemplate>
+	</ListView>
+	</StackLayout>
 </ContentPage>

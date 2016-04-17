@@ -7,18 +7,18 @@ Title="Heroes">
 	<StackLayout>
 		<Image Source="darkness" HorizontalOptions="Center" />
 		<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center"/>
-		<ListView x:Name="ListView" ItemsSource="{Binding HeroRows}" SelectedItem="{Binding SelectedRow}" RowHeight="96">
+		<ListView x:Name="ListView" ItemsSource="{Binding HeroRows}" SelectedItem="{Binding SelectedRow}" RowHeight="84">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
 						<AbsoluteLayout>
-							<Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="12,12,72,72" />
-							<Label Text="{Binding Name}" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="96,0, 1, 32" />
-							<Image Source="grace" AbsoluteLayout.LayoutBounds="96,32, 32, 32" />
-							<Label Text="{Binding Grace}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="136, 32, 32, 32" />
-							<Image Source="secrecy" AbsoluteLayout.LayoutBounds="168,32, 32, 32" />
-							<Label Text="{Binding Secrecy}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="200,32, 32, 32" />
-							<Label Text="{Binding Location}" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="96,64, 1, 32" />
+							<Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="12,12,60,60" />
+							<Label Text="{Binding Name}" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="84,0, 1, 32" />
+							<Image Source="grace" AbsoluteLayout.LayoutBounds="84,32, 32, 32" />
+							<Label Text="{Binding Grace}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="124, 32, 32, 32" />
+							<Image Source="secrecy" AbsoluteLayout.LayoutBounds="156,32, 32, 32" />
+							<Label Text="{Binding Secrecy}" FontFamily="hobo" AbsoluteLayout.LayoutBounds="188,32, 32, 32" />
+							<Label Text="{Binding Location}" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="84,64, 1, 32" />
 						</AbsoluteLayout>
 					</ViewCell>
 				</DataTemplate>
