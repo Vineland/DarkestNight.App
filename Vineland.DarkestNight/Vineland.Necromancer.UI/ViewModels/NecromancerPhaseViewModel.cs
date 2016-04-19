@@ -15,7 +15,7 @@ namespace Vineland.Necromancer.UI
 		public Settings Settings { get; private set; }
 
 		public bool ShowDarknessCardOptions {
-			get { return Application.CurrentGame.Mode != DarknessCardsMode.None; }
+			get { return true; }//Application.CurrentGame.Mode != DarknessCardsMode.None; }
 		}
 
 		public int Darkness {

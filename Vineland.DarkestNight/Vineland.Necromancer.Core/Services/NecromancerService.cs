@@ -175,7 +175,7 @@ namespace Vineland.Necromancer.Core
 			}
 
 			//darkness card effects
-			if (gameState.Mode != DarknessCardsMode.None) {
+			//if (gameState.Mode != DarknessCardsMode.None) {
 				if (gameState.Necromancer.FocusedRituals
 					&& !gameState.Heroes.Any (x => x.LocationId == newLocation.Id))
 					result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
@@ -200,7 +200,7 @@ namespace Vineland.Necromancer.Core
 				if (gameState.Necromancer.Overwhelm && initialBlightCount < 4 && newLocation.BlightCount >= 4)
 					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
 
-			}
+			//}
 
 			//darkness tipping over 30
 			if (gameState.Darkness > 30) {

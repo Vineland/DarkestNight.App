@@ -128,6 +128,58 @@ namespace Vineland.Necromancer.Core
 			return Locations;
 		}
 
+		public List<DifficultyLevelSettings> GetDifficultyLevelSettings(){
+			var difficultyLevelSettings = new List<DifficultyLevelSettings> ();
+			difficultyLevelSettings.Add (new DifficultyLevelSettings () {
+				DifficultyLevel = DifficultyLevel.Page,
+				StartingBlights = 0,
+				StartingDarkness = 0,
+				Notes= string.Format("+2 to time limits{0}Start with 1 spark each{0}Start with 1 blight in the Ruins", Environment.NewLine)
+			});
+			difficultyLevelSettings.Add (new DifficultyLevelSettings () {
+				DifficultyLevel = DifficultyLevel.Squire,
+				StartingBlights = 1,
+				StartingDarkness = 0,
+				Notes= string.Format("+1 to time limits{0}Start with 1 spark each", Environment.NewLine)
+			});
+			difficultyLevelSettings.Add (new DifficultyLevelSettings () {
+				DifficultyLevel = DifficultyLevel.Adventurer,
+				StartingBlights = 1,
+				StartingDarkness = 0
+			});
+			difficultyLevelSettings.Add (new DifficultyLevelSettings () {
+				DifficultyLevel = DifficultyLevel.Champion,
+				StartingBlights = 1,
+				StartingDarkness = 5,
+				PallOfSuffering = true,
+				Notes = "Start with 1 quest in the Village"
+			});
+			difficultyLevelSettings.Add (new DifficultyLevelSettings () {
+				DifficultyLevel = DifficultyLevel.Heroic,
+				StartingBlights = 2,
+				StartingDarkness = 0,
+				PallOfSuffering = true,
+				Notes = "Start with 1 quest in the Village"
+			});
+			difficultyLevelSettings.Add (new DifficultyLevelSettings () {
+				DifficultyLevel = DifficultyLevel.Legendary,
+				StartingBlights = 1,
+				StartingDarkness = 5,
+				PallOfSuffering = true,
+				SpawnExtraQuests = true,
+				Notes = "Start with 2 quests in random locations"
+			});
+
+			difficultyLevelSettings.Add (new DifficultyLevelSettings () {
+				DifficultyLevel = DifficultyLevel.Custom,
+				StartingBlights = _settings.StartingBlights,
+				StartingDarkness = _settings.StartingDarkness,
+				PallOfSuffering = _settings.PallOfSuffering
+			});
+
+			return difficultyLevelSettings;
+		}
+
 		private string ReadEmbeddedResource (string resourceId)
 		{
 			var assembly = typeof(DataService).GetTypeInfo ().Assembly;

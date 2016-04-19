@@ -11,19 +11,32 @@ namespace Vineland.Necromancer.Core
 		{
 		}
 
-		public void SpawnStartingBlights (GameState gameState)
+		public void SpawnStartingBlights (DifficultyLevelSettings difficultyLevelSettings, GameState gameState)
 		{
-			var mapCard = gameState.MapCards.Draw ();
-			foreach (var row in mapCard.Rows) {
-				if (row.LocationId == (int)LocationIds.Monastery)
-					continue;
-				
-				var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == row.BlightName);
-				gameState.Locations.Single (l => l.Id == row.LocationId).Blights.Add (blight);
+			if (difficultyLevelSettings.DifficultyLevel == DifficultyLevel.Page) 
+			{
+				var mapCard = gameState.MapCards.Draw ();
+				var blightName = mapCard.Rows.Single (x => x.LocationId == (int)LocationIds.Ruins).BlightName;
+				var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
+				gameState.Locations.Single (l => l.Id == (int)LocationIds.Ruins).Blights.Add (blight);
 				gameState.BlightPool.Remove (blight);
-			}
 
-			gameState.MapCards.Discard (mapCard);
+			} else {
+				for (int i = 0; i < difficultyLevelSettings.StartingBlights; i++) {
+					var mapCard = gameState.MapCards.Draw ();
+
+					foreach (var row in mapCard.Rows) {
+						if (row.LocationId == (int)LocationIds.Monastery)
+							continue;
+				
+						var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == row.BlightName);
+						gameState.Locations.Single (l => l.Id == row.LocationId).Blights.Add (blight);
+						gameState.BlightPool.Remove (blight);
+					}
+
+					gameState.MapCards.Discard (mapCard);
+				}
+			}
 		}
 
 		/// <summary>

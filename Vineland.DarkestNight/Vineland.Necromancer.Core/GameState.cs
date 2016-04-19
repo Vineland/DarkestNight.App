@@ -29,11 +29,13 @@ namespace Vineland.Necromancer.Core
 
 		public bool PallOfSuffering { get; set; }
 
-		public DarknessCardsMode Mode { get; set; }
+		public bool SpawnExtraQuests { get; set; }
+		//public DarknessCardsMode Mode { get; set; }
 
 		public bool DarknessTrackEffectsActive {
 			get {
-				return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
+				return true;
+				//return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
 			}
 		}
 

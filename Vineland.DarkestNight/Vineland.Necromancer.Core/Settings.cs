@@ -7,9 +7,8 @@ namespace Vineland.Necromancer.Core
     public class Settings
     {
 		private const string EXPANSIONS = "Expansions";
-        private const string DARKNESS_CARDS_MODE = "DarknessCardsMode";
-        private const string PALL_OF_SUFFERING = "PallOfSuffering";
-        private const string STARTING_DARKNESS = "StartingDarkness";
+
+
 		private const string WITH_AN_INNER_LIGHT = "WithAnInnerLight";
 		private const string ON_SHIFTING_WINDS = "OnShiftingWinds";
 		private const string FROM_THE_ABYSS = "FromTheAbyss";
@@ -26,6 +25,14 @@ namespace Vineland.Necromancer.Core
             _settingsService = settingsService;
         }
 
+
+		#region Custom Difficulty Settings
+		private const string DARKNESS_CARDS_MODE = "DarknessCardsMode";
+		private const string PALL_OF_SUFFERING = "PallOfSuffering";
+		private const string SPAWN_EXTRA_QUESTS = "SpawnExtraQuests";
+		private const string STARTING_DARKNESS = "StartingDarkness";
+		private const string STARTING_BLIGHTS_PER_LOCATION = "StartingBlightsPerLocation";
+
 		public int StartingDarkness
 		{
 			get { return _settingsService.LoadInt(STARTING_DARKNESS); }
@@ -37,13 +44,22 @@ namespace Vineland.Necromancer.Core
             get { return _settingsService.LoadBoolean(PALL_OF_SUFFERING); }
             set { _settingsService.SaveBoolean(PALL_OF_SUFFERING, value); }
         }
-
+		public bool SpawnExtraQuests{
+			get { return _settingsService.LoadBoolean(SPAWN_EXTRA_QUESTS); }
+			set { _settingsService.SaveBoolean(SPAWN_EXTRA_QUESTS, value); }
+		}
         public DarknessCardsMode DarknessCardsMode
         {
             get { return (DarknessCardsMode)_settingsService.LoadInt(DARKNESS_CARDS_MODE); }
             set { _settingsService.SaveInt(DARKNESS_CARDS_MODE, (int)value); }
         }
+		public int StartingBlights
+		{
+			get { return _settingsService.LoadInt(STARTING_BLIGHTS_PER_LOCATION); }
+			set { _settingsService.SaveInt(STARTING_BLIGHTS_PER_LOCATION, value); }
+		}
 
+		#endregion
 		public int Expansions{
 			get { return _settingsService.LoadInt (EXPANSIONS); }
 			set{ _settingsService.SaveInt (EXPANSIONS, value); }

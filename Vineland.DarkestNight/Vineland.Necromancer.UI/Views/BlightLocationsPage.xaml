@@ -9,7 +9,7 @@ BackgroundImage="background">
 		<ListView.GroupHeaderTemplate>
 			<DataTemplate>
 				<ViewCell>
-					<AbsoluteLayout Padding="20">
+					<AbsoluteLayout>
 						<Label Text="{Binding Location.Name}" VerticalTextAlignment="Center" />
 						<ui:ImageButton Source="plus" DisabledSource="plus_disabled"
 						AbsoluteLayout.LayoutFlags="XProportional" 
