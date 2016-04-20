@@ -25,6 +25,19 @@ namespace Vineland.Necromancer.Core
             _settingsService = settingsService;
         }
 
+		private const string NUMBER_OF_PLAYERS = "NumberOfPlayers";
+		private const string DIFFICULTY_LEVEL = "DifficultyLevel";
+
+		public int NumberOfPlayers
+		{
+			get { return _settingsService.LoadInt(NUMBER_OF_PLAYERS, 4); }
+			set { _settingsService.SaveInt(NUMBER_OF_PLAYERS, value); }
+		}
+		public DifficultyLevel DifficultyLevel
+		{
+			get { return (DifficultyLevel)_settingsService.LoadInt(DIFFICULTY_LEVEL, (int)DifficultyLevel.Adventurer); }
+			set { _settingsService.SaveInt(DIFFICULTY_LEVEL, (int)value); }
+		}
 
 		#region Custom Difficulty Settings
 		private const string DARKNESS_CARDS_MODE = "DarknessCardsMode";

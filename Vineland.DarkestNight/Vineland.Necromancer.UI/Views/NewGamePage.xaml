@@ -9,7 +9,7 @@ Title="New Game">
 <ContentPage.ToolbarItems>
       <ToolbarItem Name="Select Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
 </ContentPage.ToolbarItems>
-<Grid RowSpacing="20" Padding="20">
+<Grid RowSpacing="10" Padding="20">
 
 
     <Grid.ColumnDefinitions>
@@ -46,10 +46,10 @@ Title="New Game">
 	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Row="4"/>
 	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding CanEdit}" />
 
-	<Label Text="Spawn Extra Quests" VerticalOptions="Center" Grid.Row="5"/>
+	<Label Text="Extra Quests" VerticalOptions="Center" Grid.Row="5"/>
 	<ui:CheckButton IsSelected="{Binding SpawnExtraQuests}" Grid.Column="1" Grid.Row="5" IsEnabled="{Binding CanEdit}" />
 
-	<Label Text="Notes" VerticalOptions="Center" Grid.Row="6"/>
+	<Label Text="Notes" VerticalOptions="Center" Grid.Row="6" IsVisible="{Binding ShowNotes}"/>
 	<Label Text="{Binding Notes}" Grid.Row="7" Grid.ColumnSpan="2"/>
 </Grid>
 </ContentPage>

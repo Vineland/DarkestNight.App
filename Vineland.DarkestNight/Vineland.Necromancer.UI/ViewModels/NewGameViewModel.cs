@@ -27,23 +27,24 @@ namespace Vineland.Necromancer.UI
 			_allDifficultyLevelSettings = dataService.GetDifficultyLevelSettings ();
 			DifficultyLevels = (DifficultyLevel[])Enum.GetValues (typeof(DifficultyLevel));
 
-			NumberOfPlayers = 4;
-			DifficultyLevel = DifficultyLevel.Adventurer;
+			NumberOfPlayers = _settings.NumberOfPlayers;
+			DifficultyLevel = _settings.DifficultyLevel;
         }
 
-		public int NumberOfPlayers { get; set; }
+		public int NumberOfPlayers 
+		{ 
+			get { return _settings.NumberOfPlayers; }
+			set { _settings.NumberOfPlayers = value; }
+		}
 
 		public DifficultyLevel[] DifficultyLevels { get; private set; }
 
-		DifficultyLevel _difficultyLevel;
 		public DifficultyLevel DifficultyLevel 
 		{ 
-			get { return _difficultyLevel; }
+			get { return _settings.DifficultyLevel; }
 			set{
-				if (_difficultyLevel != value) {
-					_difficultyLevel = value;
-					DifficultyChanged(value);
-				}
+				_settings.DifficultyLevel = value;
+				DifficultyChanged (value);
 			}
 		}
 
@@ -51,23 +52,40 @@ namespace Vineland.Necromancer.UI
 
 		public int StartingDarkness {
 			get{ return _difficultyLevelSettings.StartingDarkness; }
-			set{ _difficultyLevelSettings.StartingDarkness= value; }
+			set{ 
+				_difficultyLevelSettings.StartingDarkness= value; 
+				if (DifficultyLevel == DifficultyLevel.Custom)
+					_settings.StartingDarkness = value;
+			}
 		}
+
 		public int StartingBlights{
 			get{ return _difficultyLevelSettings.StartingBlights; }
-			set{ _difficultyLevelSettings.StartingBlights= value; }
+			set{ _difficultyLevelSettings.StartingBlights= value; 
+				if (DifficultyLevel == DifficultyLevel.Custom)
+					_settings.StartingBlights = value;}
 		}
+
 		public bool PallOfSuffering {
 			get{ return _difficultyLevelSettings.PallOfSuffering; }
-			set{ _difficultyLevelSettings.PallOfSuffering= value; }
+			set{ _difficultyLevelSettings.PallOfSuffering= value; 
+				if (DifficultyLevel == DifficultyLevel.Custom)
+					_settings.PallOfSuffering = value;}
 		}
+
 		public bool SpawnExtraQuests {
 			get{ return _difficultyLevelSettings.SpawnExtraQuests; }
-			set{ _difficultyLevelSettings.SpawnExtraQuests= value; }
+			set{ _difficultyLevelSettings.SpawnExtraQuests= value; 
+				if (DifficultyLevel == DifficultyLevel.Custom)
+					_settings.SpawnExtraQuests = value;}
 			}
 			public string Notes {
 			get{ return _difficultyLevelSettings.Notes; }
 			}
+
+		public bool ShowNotes{
+			get { return !string.IsNullOrEmpty (Notes); }
+		}
 
 		public bool CanEdit{
 			get { return DifficultyLevel == DifficultyLevel.Custom; }
@@ -80,23 +98,17 @@ namespace Vineland.Necromancer.UI
 			RaisePropertyChanged (() => PallOfSuffering);
 			RaisePropertyChanged (() => SpawnExtraQuests);
 			RaisePropertyChanged (() => Notes);
+			RaisePropertyChanged (() => ShowNotes);
 			RaisePropertyChanged (() => CanEdit);
-		}
-
-		protected void UpdateCustomDifficultyLevelSettings(){
-			_settings.StartingDarkness = StartingDarkness;
-			_settings.StartingBlights = StartingBlights;
-			_settings.PallOfSuffering = PallOfSuffering;
-			_settings.SpawnExtraQuests = SpawnExtraQuests;
 		}
 
 		public RelayCommand ChooseHeroes{
 			get{
 				return new RelayCommand (async () => {
+					
 					Application.CurrentGame = _factory.CreateGameState(_difficultyLevelSettings);
-					await Application.Navigation.Push<ChooseHeroesPage>();
-					if(_difficultyLevelSettings.DifficultyLevel == DifficultyLevel.Custom)
-						UpdateCustomDifficultyLevelSettings();
+					var page = await Application.Navigation.Push<ChooseHeroesPage>();
+					(page.BindingContext as ChooseHeroesViewModel).Initialise(NumberOfPlayers);
 				});
 			}
 		}

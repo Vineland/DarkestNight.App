@@ -14,12 +14,12 @@ Title="Select Heroes">
 <ui:ItemsSourceStackLayout
 x:Name="SelectedHeroesLayout"
 Orientation="Horizontal" 
-ItemsSource="{Binding SelectedHeroes}"
+ItemsSource="{Binding HeroSlots}"
 ItemSelected="{Binding DeselectHeroCommand}"
 HorizontalOptions="CenterAndExpand">
 	<ui:ItemsSourceStackLayout.ItemTemplate>
 			<DataTemplate>
-				<Image Source="{Binding ImageName}" HeightRequest="60" WidthRequest="60"/>
+				<Image Source="{Binding Image}" HeightRequest="60" WidthRequest="60"/>
 			</DataTemplate>
 	</ui:ItemsSourceStackLayout.ItemTemplate>
 </ui:ItemsSourceStackLayout>

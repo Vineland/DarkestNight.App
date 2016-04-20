@@ -23,7 +23,11 @@ namespace Vineland.Necromancer.UI
 				}
 			);
 
-		public static BindableProperty ItemSelectedProperty = BindableProperty.Create("ItemSelected", typeof(ICommand), typeof(ItemsSourceStackLayout), null);
+		public static BindableProperty ItemSelectedProperty = BindableProperty.Create("ItemSelected", typeof(ICommand), typeof(ItemsSourceStackLayout)
+			, null,
+			propertyChanged: (bindable, oldValue, newValue) => {
+				((ItemsSourceStackLayout)bindable).SetTapGestureRecognizers();
+			});
 
 		public IList ItemsSource {
 			get {
@@ -59,8 +63,10 @@ namespace Vineland.Necromancer.UI
 				var bindableObject = view as BindableObject;
 				if (bindableObject != null)
 					bindableObject.BindingContext = item;
+					
 				this.Children.Add (view);
 			}
+			SetTapGestureRecognizers ();
 		}
 
 	 	void ItemsSource_CollectionChanged (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -72,13 +78,23 @@ namespace Vineland.Necromancer.UI
 				var bindableObject = view as BindableObject;
 				if (bindableObject != null)
 					bindableObject.BindingContext = item;
-				view.GestureRecognizers.Add (new TapGestureRecognizer () {
-					Command = ItemSelected,
-					CommandParameter = item
-				});
 				this.Children.Add (view);
 			}
+
+			SetTapGestureRecognizers ();
 	 	}
+
+		void SetTapGestureRecognizers(){
+			foreach (var view in this.Children) {
+				if (ItemSelected == null)
+					view.GestureRecognizers.Clear ();
+				else
+					view.GestureRecognizers.Add (new TapGestureRecognizer () {
+						Command = ItemSelected,
+							CommandParameter =  view.BindingContext
+					});
+			}
+		}
 	}
 }
 

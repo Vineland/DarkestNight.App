@@ -30,12 +30,12 @@ namespace Vineland.Necromancer.UI
 
 				if (@value == ctrl.Minimum && ctrl.DecrementImage.Source != MinusDisabled)
 					ctrl.DecrementImage.Source = MinusDisabled;
-				else if (ctrl.DecrementImage.Source != Minus)
+					else if (ctrl.DecrementImage.Source != Minus && ctrl.IsEnabled)
 					ctrl.DecrementImage.Source = Minus;
 
 				if (@value == ctrl.Maximum && ctrl.IncrementImage.Source != PlusDisabled)
 					ctrl.IncrementImage.Source = PlusDisabled;
-				else if (ctrl.IncrementImage.Source != Plus)
+					else if (ctrl.IncrementImage.Source != Plus && ctrl.IsEnabled)
 					ctrl.IncrementImage.Source = Plus;
 			});
 
@@ -56,7 +56,7 @@ namespace Vineland.Necromancer.UI
 		public CustomStepper ()
 		{
 			Maximum = int.MaxValue;
-
+			this.PropertyChanged += CustomStepper_PropertyChanged;
 			//var layout = new RelativeLayout ();// { Orientation = StackOrientation.Horizontal, Spacing = 10 };
 			var layout = new AbsoluteLayout ();
 
@@ -89,6 +89,25 @@ namespace Vineland.Necromancer.UI
 			layout.Children.Add (ValueLabel, new Rectangle (32, 0, 32, 32));
 			layout.Children.Add (IncrementImage, new Rectangle (64, 0, 32, 32));
 			Content = layout;
+		}
+
+		void CustomStepper_PropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == "IsEnabled") {
+				IncrementImage.IsEnabled = IsEnabled;
+				DecrementImage.IsEnabled = IsEnabled;
+
+				if (!IsEnabled) {
+					IncrementImage.Source = PlusDisabled;
+					DecrementImage.Source = MinusDisabled;
+				} else {
+					if(Value < Maximum)
+						IncrementImage.Source = Plus;
+
+					if(Value > Minimum)
+						DecrementImage.Source = Minus;
+				}
+			}
 		}
 	}
 }

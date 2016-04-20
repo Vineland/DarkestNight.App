@@ -9,40 +9,55 @@ using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using Vineland.DarkestNight.UI;
 using Vineland.Necromancer.Core;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
 	public class ChooseHeroesViewModel : BaseViewModel
-    {
+	{
+		DataService _dataService;
+
 		public ChooseHeroesViewModel(DataService dataService)
 		{
-			SelectedHeroes = new ObservableCollection<Hero> ();
-			SelectedHeroes.CollectionChanged += (sender, e) => { RaisePropertyChanged(()=> StartGame);};
-			AvailableHeroes = new ObservableCollection<Hero>(dataService.GetAllHeroes());
+			_dataService = dataService;
+
+			HeroSlots = new ObservableCollection<HeroSlotViewModel> ();
+			AvailableHeroes = new ObservableCollection<Hero> ();
+		}
+
+		public void Initialise(int numberOfPlayers){
+			HeroSlots.Clear ();
+			for (int i = 0; i < numberOfPlayers; i++) {
+				HeroSlots.Add (new HeroSlotViewModel ());
+			}
+			foreach (var hero in _dataService.GetAllHeroes())
+				AvailableHeroes.Add (hero);
 		}
  
-		public ObservableCollection<Hero> SelectedHeroes { get; set; }
+		public ObservableCollection<HeroSlotViewModel> HeroSlots { get; set; }
 
 		public ObservableCollection<Hero> AvailableHeroes { get; set; }
 
 		public void SelectHero(Hero hero){
-			if (SelectedHeroes.Count == 4)
+			if (!HeroSlots.Any(x=> x.Hero == null))
 				return;
 			
 			if (AvailableHeroes.Contains (hero))
 				AvailableHeroes.Remove (hero);
-			if (!SelectedHeroes.Contains (hero))
-				SelectedHeroes.Add (hero);
+			if (!HeroSlots.Any (x=> x.Hero == hero))
+				HeroSlots.First(x=> x.Hero == null).SetHero(hero);
+
+			RaisePropertyChanged (() => StartGame);
 		}
 
 
-		public RelayCommand<Hero> DeselectHeroCommand{
+		public RelayCommand<HeroSlotViewModel> DeselectHeroCommand{
 			get{
-				return new RelayCommand<Hero> (async (hero) => {
+				return new RelayCommand<HeroSlotViewModel> ((heroSlot) => {
+					var hero = heroSlot.Hero;
 
-					if (SelectedHeroes.Contains (hero))
-						SelectedHeroes.Remove (hero);
-					
+					heroSlot.SetHero(null);
+
 					if (!AvailableHeroes.Contains (hero)){
 						for(int i= 0; i < AvailableHeroes.Count; i++){
 							if(AvailableHeroes[i].Name.CompareTo(hero.Name) == 1){
@@ -51,7 +66,11 @@ namespace Vineland.Necromancer.UI
 							}
 						}
 					}
-				});
+
+				},
+					(heroSlot)=>{
+						return heroSlot.Hero != null;
+					});
 			}
 		}
 
@@ -61,7 +80,7 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand (
 					async () => {
 						
-						Application.CurrentGame.Heroes = SelectedHeroes.ToList();
+						Application.CurrentGame.Heroes = HeroSlots.Select(x=>x.Hero).ToList();
 						Application.CurrentGame.Heroes.ForEach(h=>
 							{ 
 								h.Secrecy = h.SecrecyDefault;
@@ -71,7 +90,7 @@ namespace Vineland.Necromancer.UI
 						await Application.Navigation.Push<HeroTurnPage>(clearBackStack: true);
 					},
 					() => {
-						return SelectedHeroes.Count() == 4;
+						return !HeroSlots.Any(x=>x.Hero == null);
 					}
 				);
 			}
@@ -81,8 +100,26 @@ namespace Vineland.Necromancer.UI
 		{
 			//if all heroes where not selected we must be going back to the home screen
 			//ensure the the current game is null otherwise you'll be able to 'continue' this game
-			if (SelectedHeroes.Count != 4)
+			if (HeroSlots.Any(x=>x== null))
 				Application.CurrentGame = null;
 		}
     }
+
+	public class HeroSlotViewModel:BaseViewModel
+	{
+		public Hero Hero {get;private set;}
+		public ImageSource Image{
+			get{
+				if (Hero != null)
+					return ImageSourceUtil.GetHeroImage (Hero.Name);
+
+				return FileImageSource.FromFile ("hero_slot");
+			}
+		}
+
+		public void SetHero(Hero hero){
+			Hero = hero;
+			RaisePropertyChanged (() => Image);
+		}
+	}
 }

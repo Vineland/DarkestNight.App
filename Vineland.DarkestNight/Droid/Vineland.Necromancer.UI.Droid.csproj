@@ -27,7 +27,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -44,7 +43,6 @@
     <AndroidSigningKeyAlias>vinelanddev</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>v1n3LAND!</AndroidSigningKeyPass>
     <AndroidLinkMode>Full</AndroidLinkMode>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|AnyCPU' ">
     <Optimize>false</Optimize>
@@ -444,6 +442,9 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\death.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\night.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\search.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_slot.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\hero_slot.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\hero_slot.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj">
