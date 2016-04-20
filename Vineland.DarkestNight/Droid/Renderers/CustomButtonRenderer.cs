@@ -14,6 +14,7 @@ namespace Vineland.Necromancer.UI.Droid
 		protected override void OnElementChanged (ElementChangedEventArgs<Xamarin.Forms.Button> e)
 		{
 			base.OnElementChanged (e);
+
 			if (e.OldElement == null) {
 				var button = (Android.Widget.Button)Control;
 				button.Typeface = FontManager.GetFont (e.NewElement.FontFamily);

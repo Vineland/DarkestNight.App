@@ -40,9 +40,10 @@ namespace Vineland.Necromancer.UI.Droid
 
 		protected override void OnElementPropertyChanged (object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-
 			if (e.PropertyName == "IsSelected")
 				(Control as Android.Widget.CheckBox).Checked = (Element as CheckButton).IsSelected;
+			if (e.PropertyName == "IsEnabled")
+				(Control as Android.Widget.CheckBox).Enabled = (Element as CheckButton).IsEnabled;
 		}
 
 		void Control_CheckedChange (object sender, Android.Widget.CompoundButton.CheckedChangeEventArgs e)

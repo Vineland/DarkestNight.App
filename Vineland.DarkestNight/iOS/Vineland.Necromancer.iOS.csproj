@@ -278,5 +278,7 @@
     <BundleResource Include="Resources\check_unselected%402x.png" />
     <BundleResource Include="Resources\darkness%402x.png" />
     <BundleResource Include="Resources\acolyte%402x.png" />
+    <BundleResource Include="Resources\hero_slot.png" />
+    <BundleResource Include="Resources\hero_slot%402x.png" />
   </ItemGroup>
 </Project>
