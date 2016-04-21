@@ -9,7 +9,7 @@ Title="New Game">
 <ContentPage.ToolbarItems>
       <ToolbarItem Name="Select Heroes" Command="{Binding ChooseHeroes}"></ToolbarItem>
 </ContentPage.ToolbarItems>
-<Grid RowSpacing="10" Padding="20">
+<Grid RowSpacing="16" Padding="20">
 
 
     <Grid.ColumnDefinitions>
@@ -19,37 +19,32 @@ Title="New Game">
     </Grid.ColumnDefinitions>
 
 <Grid.RowDefinitions>
-<RowDefinition Height="Auto" />
-<RowDefinition Height="Auto" />
-<RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-
+	<RowDefinition Height="Auto" />
+	<RowDefinition Height="Auto" />
+	<RowDefinition Height="Auto" />
+	<RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
 
     </Grid.RowDefinitions>
 
     <Label Text="Number Of Players" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
-	<ui:CustomStepper Value="{Binding NumberOfPlayers}" Maximum="4" Minimum="2" Grid.Column="1" Grid.Row="0" />	
+	<ui:CustomStepper Value="{Binding NumberOfPlayers}" Maximum="4" Minimum="2" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>	
 
-	<Label Text="Difficulty" Grid.Row="1" VerticalOptions="Center" IsVisible="{Binding Settings.FromTheAbyss}"/>
-	<ui:BindablePicker x:TypeArguments="core:DifficultyLevel"  ItemsSource="{Binding DifficultyLevels}" SelectedItem="{Binding DifficultyLevel}" Grid.Column="1" Grid.Row="1" />	
+	<Label Text="Difficulty" Grid.Row="1" VerticalOptions="Center" />
+	<ui:BindablePicker x:TypeArguments="core:DifficultyLevel"  ItemsSource="{Binding DifficultyLevels}" SelectedItem="{Binding DifficultyLevel}" Grid.Column="1" Grid.Row="1"  HorizontalOptions="End"/>	
 
-    <Label Text="Starting Darkness" Grid.Row="2" VerticalOptions="Center"/>
-	<ui:CustomStepper Value="{Binding StartingDarkness}" Maximum="10" Grid.Column="1" Grid.Row="2" IsEnabled="{Binding CanEdit}" />	
+    <Label Text="Starting Darkness" Grid.Row="2" VerticalOptions="Center" />
+	<ui:CustomStepper Value="{Binding StartingDarkness}" Maximum="10" Grid.Column="1" Grid.Row="2" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>	
 
-	<Label Text="Starting Blights" Grid.Row="3" VerticalOptions="Center"/>
-	<ui:CustomStepper Value="{Binding StartingBlights}" Maximum="4" Grid.Column="1" Grid.Row="3" IsEnabled="{Binding CanEdit}" />	
+	<Label Text="Starting Blights" Grid.Row="3" VerticalOptions="Center" />
+	<ui:CustomStepper Value="{Binding StartingBlights}" Maximum="4" Grid.Column="1" Grid.Row="3" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>	
 
-	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Row="4"/>
-	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding CanEdit}" />
+	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Row="4" />
+	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>
 
-	<Label Text="Extra Quests" VerticalOptions="Center" Grid.Row="5"/>
-	<ui:CheckButton IsSelected="{Binding SpawnExtraQuests}" Grid.Column="1" Grid.Row="5" IsEnabled="{Binding CanEdit}" />
+	<Label Text="Extra Quests" VerticalOptions="Center" Grid.Row="5" />
+	<ui:CheckButton IsSelected="{Binding SpawnExtraQuests}" Grid.Column="1" Grid.Row="5" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>
 
-	<Label Text="Notes" VerticalOptions="Center" Grid.Row="6" IsVisible="{Binding ShowNotes}"/>
-	<Label Text="{Binding Notes}" Grid.Row="7" Grid.ColumnSpan="2"/>
 </Grid>
 </ContentPage>

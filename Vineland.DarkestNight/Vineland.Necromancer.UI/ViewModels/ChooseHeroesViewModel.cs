@@ -23,17 +23,19 @@ namespace Vineland.Necromancer.UI
 
 			HeroSlots = new ObservableCollection<HeroSlotViewModel> ();
 			AvailableHeroes = new ObservableCollection<Hero> ();
+			IsLoading = true;
 		}
 
-		public void Initialise(int numberOfPlayers){
-			HeroSlots.Clear ();
-			for (int i = 0; i < numberOfPlayers; i++) {
+		public void Initialise(){
+			
+			for (int i = 0; i < Application.CurrentGame.NumberOfPlayers; i++) {
 				HeroSlots.Add (new HeroSlotViewModel ());
 			}
 			foreach (var hero in _dataService.GetAllHeroes())
 				AvailableHeroes.Add (hero);
+			IsLoading = false;
 		}
- 
+
 		public ObservableCollection<HeroSlotViewModel> HeroSlots { get; set; }
 
 		public ObservableCollection<Hero> AvailableHeroes { get; set; }

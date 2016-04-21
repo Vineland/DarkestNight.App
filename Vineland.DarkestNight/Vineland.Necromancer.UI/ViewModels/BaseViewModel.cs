@@ -18,6 +18,17 @@ namespace Vineland.Necromancer.UI
 			get { return (Xamarin.Forms.Application.Current as NecromancerApp); }
 		}
 
+		bool _isLoading;
+		public bool IsLoading{
+			get{ return _isLoading; }
+			set{
+				if (_isLoading != value) {
+					_isLoading = value;
+					RaisePropertyChanged (() => IsLoading);
+				}
+			}
+		}
+
 		public virtual void OnAppearing() { }
 
 		public virtual void OnDisappearing() { }

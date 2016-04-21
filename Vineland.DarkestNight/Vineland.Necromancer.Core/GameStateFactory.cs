@@ -16,10 +16,11 @@ namespace Vineland.Necromancer.Core
 			_blightService = blightService;
 		}
 
-		public GameState CreateGameState (DifficultyLevelSettings difficultyLevelSettings)
+		public GameState CreateGameState (int numberOfPlayers, DifficultyLevelSettings difficultyLevelSettings)
 		{
 			var gameState = new GameState ();
 
+			gameState.NumberOfPlayers = numberOfPlayers;
 			gameState.Darkness = difficultyLevelSettings.StartingDarkness;
 			gameState.PallOfSuffering = difficultyLevelSettings.PallOfSuffering;
 			gameState.SpawnExtraQuests = difficultyLevelSettings.SpawnExtraQuests;
