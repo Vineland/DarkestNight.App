@@ -17,13 +17,8 @@ namespace Vineland.Necromancer.UI
 		{
 			_necromancerService = necromancerService;
 			NewBlightLocations = new ObservableCollection<SpawnLocationViewModel> ();
+			//IsLoading = true;
 		}
-
-		//		public void Initialise()
-		//		{
-		//			_pendingGameState = Application.CurrentGame.Clone ();
-		//			SetResult(_necromancerService.Activate());
-		//		}
 
 		public void Initialise (Hero detectedHero, int necromancerRoll, int [] heroesToIgnore = null)
 		{
@@ -44,11 +39,11 @@ namespace Vineland.Necromancer.UI
 			var models = _result.NewBlights
 				.GroupBy (x => x.Item1)
 				.Select (x => new SpawnLocationViewModel (x.Key, 
-				             x.Select (y => y.Item2), false)).ToList ();
-			if (_result.SpawnQuest) {
-
+				             x.Select (y => y.Item2), 0)).ToList ();
+			if (_result.SpawnQuest) 
+			{
 				var questLocation = _pendingGameState.Locations.Single (l => l.Id == _result.OldLocationId);
-				models.Add (new SpawnLocationViewModel (questLocation, null, true));
+				models.Add (new SpawnLocationViewModel (questLocation, null, 1));
 			}
 			NewBlightLocations.Clear ();
 			models.ForEach (x => NewBlightLocations.Add (x));
@@ -132,44 +127,56 @@ namespace Vineland.Necromancer.UI
 		}
 	}
 
-	public class SpawnLocationViewModel : ObservableCollection<SpawnViewModel>
+	public class SpawnLocationViewModel : ObservableCollection<ISpawnViewModel>
 	{
 		public Location Location { get; private set; }
 
-		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights, bool spawnQuest)
+		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights, int questsToSpawn)
 		{
 			Location = location;
 
 			if (blights != null) {
 				foreach (var blight in blights) {
-					this.Add (new SpawnViewModel (blight));
+					this.Add (new BlightSpawnViewModel (blight));
 				}
 			}
 
-			if (spawnQuest)
-				this.Add (new SpawnViewModel (null));
+			for(int i=0; i < questsToSpawn; i++)
+				this.Add (new QuestSpawnViewModel());
 		}
 	}
 
-	public class SpawnViewModel
+	public interface ISpawnViewModel
+	{
+		string Name {get;}
+		ImageSource Image {get;}
+	}
+
+	public class BlightSpawnViewModel :ISpawnViewModel
 	{
 		Blight _blight;
 
-		public SpawnViewModel (Blight blight)
+		public BlightSpawnViewModel (Blight blight)
 		{
 			_blight = blight;
 		}
 
 		public string Name {
-			get{ return _blight == null ? "Add Quest" : _blight.Name; }
+			get{ return _blight.Name; }
 		}
 
-		public string ImageName {
-			get { return _blight == null ? "plus" : string.Format ("blight_{0}", _blight.Name.ToLower ().Replace (" ", "_")); }
+		public ImageSource Image {
+			get { return ImageSourceUtil.GetBlightImage(_blight.Name); }
+		}
+	}
+
+	public class QuestSpawnViewModel: ISpawnViewModel{
+		public string Name {
+			get{ return "Add Quest";}
 		}
 
-		public bool IsQuest {
-			get{ return _blight == null; }
+		public ImageSource Image {
+			get { return FileImageSource.FromFile("plus"); }
 		}
 	}
 }

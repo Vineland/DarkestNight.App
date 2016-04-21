@@ -29,6 +29,8 @@ namespace Vineland.Necromancer.Core
 
 		public int NumberOfPlayers {get;set;}
 
+		public DifficultyLevel DifficultyLevel {get;set;}
+
 		public bool PallOfSuffering { get; set; }
 
 		public bool SpawnExtraQuests { get; set; }

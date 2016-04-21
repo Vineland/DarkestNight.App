@@ -52,11 +52,11 @@ namespace Vineland.Necromancer.Core
 	{
 		Monastery = 0,
 		Mountains = 1,
-		Castle = 2,
-		Village = 3,
-		Swamp = 4,
-		Ruins = 5,
-		Forest = 6
+		Ruins = 2,
+		Forest = 3,
+		Castle = 4,
+		Swamp = 5,
+		Village = 6
 	}
 
 

@@ -7,7 +7,7 @@ xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromance
 BackgroundImage="background"
 Title="Select Heroes">
 <ContentPage.ToolbarItems>
-	<ToolbarItem Name="Start Game" Command="{Binding StartGame}"></ToolbarItem>
+	<ToolbarItem Name="Setup" Command="{Binding StartGame}"></ToolbarItem>
 </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>

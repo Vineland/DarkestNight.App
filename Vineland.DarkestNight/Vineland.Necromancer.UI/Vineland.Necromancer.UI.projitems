@@ -113,6 +113,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Cells\HeroCell.xaml.cs">
       <DependentUpon>HeroCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GameSetupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\GameSetupPage.xaml.cs">
+      <DependentUpon>GameSetupPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -176,6 +180,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Cells\HeroCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GameSetupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

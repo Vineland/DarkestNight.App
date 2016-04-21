@@ -35,7 +35,7 @@ BackgroundImage="background_framed">
 			<ListView ItemsSource="{ Binding NewBlightLocations }" IsGroupingEnabled="true" GroupDisplayBinding="{ Binding Location.Name }">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />
+						<ImageCell ImageSource="{Binding Image}" Text="{Binding Name}" />
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>

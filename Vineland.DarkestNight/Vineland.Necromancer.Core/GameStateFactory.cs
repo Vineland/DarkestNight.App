@@ -21,6 +21,7 @@ namespace Vineland.Necromancer.Core
 			var gameState = new GameState ();
 
 			gameState.NumberOfPlayers = numberOfPlayers;
+			gameState.DifficultyLevel = difficultyLevelSettings.DifficultyLevel;
 			gameState.Darkness = difficultyLevelSettings.StartingDarkness;
 			gameState.PallOfSuffering = difficultyLevelSettings.PallOfSuffering;
 			gameState.SpawnExtraQuests = difficultyLevelSettings.SpawnExtraQuests;
