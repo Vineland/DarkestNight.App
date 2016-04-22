@@ -25,8 +25,9 @@ namespace Vineland.Necromancer.iOS
 				control.Selected = checkBoxElement.IsSelected;
 				control.SetImage (new UIImage ("check_selected.png"), UIControlState.Selected);
 				control.SetImage (new UIImage ("check_unselected.png"), UIControlState.Normal);
+				control.SetImage (new UIImage ("check_selected.png"), UIControlState.Selected | UIControlState.Disabled);
+				control.SetImage (new UIImage ("check_unselected.png"), UIControlState.Normal | UIControlState.Disabled);
 				control.TouchUpInside += Control_TouchUpInside;
-
 
 				this.SetNativeControl (control);
 
@@ -40,13 +41,18 @@ namespace Vineland.Necromancer.iOS
 		{
 			if (e.PropertyName == "IsSelected")
 				(Control as UIButton).Selected = (Element as CheckButton).IsSelected;
+
 			if (e.PropertyName == "IsEnabled")
 				(Control as UIButton).Enabled = (Element as CheckButton).IsEnabled;
+
 		}
 
 		void Control_TouchUpInside (object sender, EventArgs e)
 		{
 			var button = sender as UIButton;
+			if (!button.Enabled)
+				return;
+			
 			button.Selected = !button.Selected;
 			(Element as CheckButton).IsSelected = button.Selected;
 		}
