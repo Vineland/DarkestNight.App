@@ -13,6 +13,9 @@ namespace Vineland.Necromancer.Core
 
 		public void SpawnStartingBlights (DifficultyLevelSettings difficultyLevelSettings, GameState gameState)
 		{
+			foreach (var location in gameState.Locations)
+				location.Blights.Clear ();
+			
 			if (difficultyLevelSettings.DifficultyLevel == DifficultyLevel.Page) 
 			{
 				var mapCard = gameState.MapCards.Draw ();

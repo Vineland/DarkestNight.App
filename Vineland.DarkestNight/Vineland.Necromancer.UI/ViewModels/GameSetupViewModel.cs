@@ -14,19 +14,19 @@ namespace Vineland.Necromancer.UI
 		public GameSetupViewModel (D6GeneratorService d6Generator)
 		{
 			_d6Generator = d6Generator;
-			SpawnLocations = new ObservableCollection<SpawnLocationViewModel> ();
+			Locations = new ObservableCollection<SpawnLocationViewModel> ();
 			Initialise ();
 		}
 
 		public void Initialise()
 		{
 			foreach (var location in Application.CurrentGame.Locations)
-				SpawnLocations.Add(new SpawnLocationViewModel(location, location.Blights, 0));
+				Locations.Add(new SpawnLocationViewModel(location, location.Blights, 0));
 
 			switch (Application.CurrentGame.DifficultyLevel) {
 			case DifficultyLevel.Champion:
 			case DifficultyLevel.Heroic:
-				SpawnLocations.Single (x => x.Location.Id == (int)LocationIds.Village).Add (new QuestSpawnViewModel());
+				Locations.Single (x => x.Location.Id == (int)LocationIds.Village).Spawns.Add (new QuestSpawnViewModel());
 				break;
 			case DifficultyLevel.Legendary:
 				SpawnRandomQuest ();
@@ -37,11 +37,11 @@ namespace Vineland.Necromancer.UI
 
 		public void SpawnRandomQuest(){
 			var locationId = _d6Generator.RollDemBones ();
-			var location = SpawnLocations.Single (x => x.Location.Id == locationId);
-			location.Add (new QuestSpawnViewModel ());
+			var location = Locations.Single (x => x.Location.Id == locationId);
+			location.Spawns.Add (new QuestSpawnViewModel ());
 		}
 
-		public ObservableCollection<SpawnLocationViewModel> SpawnLocations { get; set; }
+		public ObservableCollection<SpawnLocationViewModel> Locations { get; set; }
 
 		public RelayCommand StartGame
 		{

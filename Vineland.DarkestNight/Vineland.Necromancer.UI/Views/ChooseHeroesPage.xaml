@@ -33,7 +33,7 @@ HorizontalOptions="CenterAndExpand">
 <Label Text="Available Heroes" HorizontalOptions="CenterAndExpand" />
 <ListView 
 x:Name="AvailableHeroesListView"
-	ItemsSource="{Binding AvailableHeroes}">
+	ItemsSource="{Binding AvailableHeroes}" RowHeight="60">
 	<ListView.ItemTemplate>
 			<DataTemplate>
 				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />

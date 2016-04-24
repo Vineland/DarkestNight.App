@@ -92,7 +92,7 @@ namespace Vineland.Necromancer.UI
 						await Application.Navigation.Push<GameSetupPage>();
 					},
 					() => {
-						return !HeroSlots.Any(x=>x.Hero == null);
+						return HeroSlots.Any() && !HeroSlots.Any(x=>x.Hero == null);
 					}
 				);
 			}

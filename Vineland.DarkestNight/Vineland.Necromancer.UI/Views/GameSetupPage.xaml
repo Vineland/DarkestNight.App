@@ -2,15 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.GameSetupPage"
+xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 Title="Setup"
 BackgroundImage="background">
 <ContentPage.ToolbarItems>
 	<ToolbarItem Name="Start Game" Command="{Binding StartGame}"></ToolbarItem>
 </ContentPage.ToolbarItems>
-	<ListView ItemsSource="{ Binding SpawnLocations }" IsGroupingEnabled="true" GroupDisplayBinding="{ Binding Location.Name }">
+<ListView x:Name="ListView" ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
-				<ImageCell ImageSource="{Binding Image}" Text="{Binding Name}" />
+			<ViewCell>
+			<StackLayout 
+		Padding="16, 8,16,16">
+				<Label Text="{Binding Location.Name}" VerticalTextAlignment="Center" />
+					<ui:ItemsSourceStackLayout
+		Orientation="Horizontal" 
+		ItemsSource="{Binding Spawns}">
+			<ui:ItemsSourceStackLayout.ItemTemplate>
+					<DataTemplate>
+						<Image Source="{Binding Image}" HeightRequest="60" WidthRequest="60"/>
+					</DataTemplate>
+			</ui:ItemsSourceStackLayout.ItemTemplate>
+		</ui:ItemsSourceStackLayout>
+		</StackLayout>
+</ViewCell>
+<!--				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />-->
 			</DataTemplate>
 		</ListView.ItemTemplate>
 	</ListView>

@@ -18,7 +18,7 @@ namespace Vineland.Necromancer.iOS
 			if (contentPage.BackgroundImage != null) {
 				UIImage i = UIImage.FromFile (contentPage.BackgroundImage);
 				i = i.Scale (this.View.Frame.Size);
-
+				//this.NavigationController.NavigationBar.Translucent = true;
 				this.View.BackgroundColor = UIColor.FromPatternImage (i);
 			}
 

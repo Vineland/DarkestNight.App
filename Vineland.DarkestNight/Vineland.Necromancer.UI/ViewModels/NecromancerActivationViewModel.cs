@@ -16,7 +16,7 @@ namespace Vineland.Necromancer.UI
 		public NecromancerActivationViewModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
-			NewBlightLocations = new ObservableCollection<SpawnLocationViewModel> ();
+			Locations = new ObservableCollection<SpawnLocationViewModel> ();
 			//IsLoading = true;
 		}
 
@@ -45,8 +45,8 @@ namespace Vineland.Necromancer.UI
 				var questLocation = _pendingGameState.Locations.Single (l => l.Id == _result.OldLocationId);
 				models.Add (new SpawnLocationViewModel (questLocation, null, 1));
 			}
-			NewBlightLocations.Clear ();
-			models.ForEach (x => NewBlightLocations.Add (x));
+			Locations.Clear ();
+			models.ForEach (x => Locations.Add (x));
 
 		}
 
@@ -87,7 +87,7 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public ObservableCollection<SpawnLocationViewModel> NewBlightLocations { get; set; }
+		public ObservableCollection<SpawnLocationViewModel> Locations { get; set; }
 
 		public RelayCommand AcceptCommand {
 			get {
@@ -127,23 +127,26 @@ namespace Vineland.Necromancer.UI
 		}
 	}
 
-	public class SpawnLocationViewModel : ObservableCollection<ISpawnViewModel>
+	public class SpawnLocationViewModel
 	{
 		public Location Location { get; private set; }
 
 		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights, int questsToSpawn)
 		{
 			Location = location;
+			Spawns = new ObservableCollection<ISpawnViewModel> ();
 
 			if (blights != null) {
 				foreach (var blight in blights) {
-					this.Add (new BlightSpawnViewModel (blight));
+					Spawns.Add (new BlightSpawnViewModel (blight));
 				}
 			}
 
 			for(int i=0; i < questsToSpawn; i++)
-				this.Add (new QuestSpawnViewModel());
+				Spawns.Add (new QuestSpawnViewModel());
 		}
+
+		public ObservableCollection<ISpawnViewModel> Spawns {get;set;}
 	}
 
 	public interface ISpawnViewModel

@@ -9,6 +9,9 @@ namespace Vineland.Necromancer.UI
 			: base(content)
 		{
 			Init();
+
+			BarBackgroundColor = Color.FromHex("#BC63402D");
+			BarTextColor = Color.White;
 		}
 
 		private void Init()

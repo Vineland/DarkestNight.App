@@ -159,6 +159,8 @@
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Renderers\CheckButtonRenderer.cs" />
     <Compile Include="Renderers\CustomPageRenderer.cs" />
+    <Compile Include="Renderers\CustomListViewRenderer.cs" />
+    <Compile Include="Renderers\CustomImageCellRenderer.cs" />
   </ItemGroup>
   <Import Project="..\Vineland.Necromancer.UI\Vineland.Necromancer.UI.projitems" Label="Shared" Condition="Exists('..\Vineland.Necromancer.UI\Vineland.Necromancer.UI.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -271,7 +273,6 @@
     <BundleResource Include="Resources\tinker.png" />
     <BundleResource Include="Resources\valkyrie.png" />
     <BundleResource Include="Resources\wayfarer.png" />
-    <BundleResource Include="Resources\winddancer.png" />
     <BundleResource Include="Resources\wizard.png" />
     <BundleResource Include="Resources\acolyte.png" />
     <BundleResource Include="Resources\check_selected%402x.png" />
@@ -280,5 +281,6 @@
     <BundleResource Include="Resources\acolyte%402x.png" />
     <BundleResource Include="Resources\hero_slot.png" />
     <BundleResource Include="Resources\hero_slot%402x.png" />
+    <BundleResource Include="Resources\wind_dancer.png" />
   </ItemGroup>
 </Project>

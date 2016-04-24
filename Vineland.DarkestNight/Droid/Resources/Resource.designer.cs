@@ -2184,8 +2184,8 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0200ac
 			public const int night = 2130837676;
 			
-			// aapt resource value: 0x7f0200c5
-			public const int notification_template_icon_bg = 2130837701;
+			// aapt resource value: 0x7f0200c6
+			public const int notification_template_icon_bg = 2130837702;
 			
 			// aapt resource value: 0x7f0200ad
 			public const int nymph = 2130837677;
@@ -2254,10 +2254,13 @@ namespace Vineland.Necromancer.UI.Droid
 			public const int wayfarer = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int winddancer = 2130837699;
+			public const int wind_dancer = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int wizard = 2130837700;
+			public const int winddancer = 2130837700;
+			
+			// aapt resource value: 0x7f0200c5
+			public const int wizard = 2130837701;
 			
 			static Drawable()
 			{

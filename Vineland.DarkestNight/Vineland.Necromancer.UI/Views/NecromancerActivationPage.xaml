@@ -32,12 +32,27 @@ BackgroundImage="background_framed">
 				<Label Text="Darkness" Grid.Row="3" />
 				<Label Text="{Binding DarknessDisplay}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="3" Grid.Column="1" />
 			</Grid>
-			<ListView ItemsSource="{ Binding NewBlightLocations }" IsGroupingEnabled="true" GroupDisplayBinding="{ Binding Location.Name }">
-				<ListView.ItemTemplate>
+			<ListView x:Name="ListView" ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
+		<ListView.ItemTemplate>
+			<DataTemplate>
+			<ViewCell>
+			<StackLayout 
+		Padding="16, 8,16,16">
+				<Label Text="{Binding Location.Name}" VerticalTextAlignment="Center" />
+					<ui:ItemsSourceStackLayout
+		Orientation="Horizontal" 
+		ItemsSource="{Binding Spawns}">
+			<ui:ItemsSourceStackLayout.ItemTemplate>
 					<DataTemplate>
-						<ImageCell ImageSource="{Binding Image}" Text="{Binding Name}" />
+						<Image Source="{Binding Image}" HeightRequest="60" WidthRequest="60"/>
 					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
+			</ui:ItemsSourceStackLayout.ItemTemplate>
+		</ui:ItemsSourceStackLayout>
+		</StackLayout>
+</ViewCell>
+<!--				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />-->
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
 		</StackLayout>
 </ContentPage>

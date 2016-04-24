@@ -261,7 +261,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\tamer.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\tinker.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\wayfarer.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\winddancer.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\wizard.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\valkyrie.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\acolyte.png" />
@@ -445,6 +444,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\hero_slot.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\hero_slot.png" />
     <AndroidResource Include="Resources\drawable-hdpi\hero_slot.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\wind_dancer.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj">
