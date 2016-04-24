@@ -282,5 +282,6 @@
     <BundleResource Include="Resources\hero_slot.png" />
     <BundleResource Include="Resources\hero_slot%402x.png" />
     <BundleResource Include="Resources\wind_dancer.png" />
+    <BundleResource Include="Resources\quest.png" />
   </ItemGroup>
 </Project>

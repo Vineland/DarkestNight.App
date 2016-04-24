@@ -39,11 +39,16 @@ namespace Vineland.Necromancer.UI
 			var models = _result.NewBlights
 				.GroupBy (x => x.Item1)
 				.Select (x => new SpawnLocationViewModel (x.Key, 
-				             x.Select (y => y.Item2), 0)).ToList ();
+				             x.Select (y => y.Item2))).ToList ();
 			if (_result.SpawnQuest) 
 			{
 				var questLocation = _pendingGameState.Locations.Single (l => l.Id == _result.OldLocationId);
-				models.Add (new SpawnLocationViewModel (questLocation, null, 1));
+				var model = models.FirstOrDefault (x => x.Location.Id == _result.OldLocationId);
+				if (model == null) {
+					model = new SpawnLocationViewModel (questLocation, null);
+					models.Add(model);
+				}
+				model.Spawns.Add (new QuestSpawnViewModel ());
 			}
 			Locations.Clear ();
 			models.ForEach (x => Locations.Add (x));
@@ -131,7 +136,7 @@ namespace Vineland.Necromancer.UI
 	{
 		public Location Location { get; private set; }
 
-		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights, int questsToSpawn)
+		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights)
 		{
 			Location = location;
 			Spawns = new ObservableCollection<ISpawnViewModel> ();
@@ -141,9 +146,6 @@ namespace Vineland.Necromancer.UI
 					Spawns.Add (new BlightSpawnViewModel (blight));
 				}
 			}
-
-			for(int i=0; i < questsToSpawn; i++)
-				Spawns.Add (new QuestSpawnViewModel());
 		}
 
 		public ObservableCollection<ISpawnViewModel> Spawns {get;set;}

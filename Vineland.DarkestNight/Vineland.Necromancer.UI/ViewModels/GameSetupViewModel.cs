@@ -21,7 +21,7 @@ namespace Vineland.Necromancer.UI
 		public void Initialise()
 		{
 			foreach (var location in Application.CurrentGame.Locations)
-				Locations.Add(new SpawnLocationViewModel(location, location.Blights, 0));
+				Locations.Add(new SpawnLocationViewModel(location, location.Blights));
 
 			switch (Application.CurrentGame.DifficultyLevel) {
 			case DifficultyLevel.Champion:
