@@ -26,16 +26,6 @@ namespace Vineland.Necromancer.UI
 				Padding = new Thickness (20, 0, 20, 40)
 			};
 
-//			var nameLabel = new Label () {
-//
-//				FontSize = Device.GetNamedSize (NamedSize.Large, typeof(Label)),
-//				VerticalTextAlignment = TextAlignment.Center,
-//				HorizontalTextAlignment = TextAlignment.Center,
-//				Text = heroViewModel.Name,
-//			};
-//
-//			absoluteLayout.Children.Add (nameLabel, new Rectangle (0, 0, 1, 48), AbsoluteLayoutFlags.WidthProportional);
-
 			var image = new Image () {
 				Source = ImageSource.FromFile (heroViewModel.Name.Replace (" ", string.Empty).ToLower ()),
 				HorizontalOptions = LayoutOptions.Center
@@ -180,15 +170,20 @@ namespace Vineland.Necromancer.UI
 				new Rectangle(1, 216 + offset, 32,32),
 				AbsoluteLayoutFlags.XProportional);
 
-			var stackLayout = new StackLayout () { Spacing = 10, Orientation = StackOrientation.Horizontal };
 
-			var defeatedButton = new Button () {
-				Image = ImageSource.FromFile("death") as FileImageSource,
-				WidthRequest = 48
-			};
-			defeatedButton.SetBinding (Button.CommandProperty, new Binding ("DefeatedCommand"));
+			var defeatedButton = new ToolbarItem () { Text = "Defeated" };
+			defeatedButton.SetBinding<HeroViewModel> (ToolbarItem.CommandProperty, vm => vm.DefeatedCommand);
+			ToolbarItems.Add (defeatedButton);
 
-			stackLayout.Children.Add (defeatedButton);
+//			var stackLayout = new StackLayout () { Spacing = 10, Orientation = StackOrientation.Horizontal };
+//
+//			var defeatedButton = new Button () {
+//				Image = ImageSource.FromFile("death") as FileImageSource,
+//				WidthRequest = 48
+//			};
+//			defeatedButton.SetBinding (Button.CommandProperty, new Binding ("DefeatedCommand"));
+//
+//			stackLayout.Children.Add (defeatedButton);
 
 //			var blightsButton = new Button () {
 //				Text = "Blights",
@@ -197,23 +192,23 @@ namespace Vineland.Necromancer.UI
 //			blightsButton.SetBinding (Button.CommandProperty, new Binding ("Blights", source: this.GetParentPage ().BindingContext));
 //			stackLayout.Children.Add (blightsButton);
 //
-			var searchButton = new Button () {
-				Image = ImageSource.FromFile("search") as FileImageSource,
-					WidthRequest = 48
-			};
-			searchButton.SetBinding (Button.CommandProperty, new Binding ("SearchCommand"));
+//			var searchButton = new Button () {
+//				Image = ImageSource.FromFile("search") as FileImageSource,
+//					WidthRequest = 48
+//			};
+//			searchButton.SetBinding (Button.CommandProperty, new Binding ("SearchCommand"));
 //			absoluteLayout.Children.Add (searchButton,
 //				new Rectangle (96, 1, 48, 48),
 //				AbsoluteLayoutFlags.YProportional);
-			stackLayout.Children.Add (searchButton);
+//			stackLayout.Children.Add (searchButton);
 
 //			var darknessStepper = new CustomStepper ();
 //			darknessStepper.SetBinding (CustomStepper.ValueProperty, new Binding ("Darkness", source: this.GetParentPage ().BindingContext));
 //			stackLayout.Children.Add (darknessStepper);
 
-			absoluteLayout.Children.Add (stackLayout,
-				new Rectangle (0.5, 1, 106, 48),
-				AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.YProportional);
+//			absoluteLayout.Children.Add (stackLayout,
+//				new Rectangle (0.5, 1, 106, 48),
+//				AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.YProportional);
 
 
 			Content = absoluteLayout;
