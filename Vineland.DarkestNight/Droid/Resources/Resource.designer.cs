@@ -2184,8 +2184,8 @@ namespace Vineland.Necromancer.UI.Droid
 			// aapt resource value: 0x7f0200ac
 			public const int night = 2130837676;
 			
-			// aapt resource value: 0x7f0200c6
-			public const int notification_template_icon_bg = 2130837702;
+			// aapt resource value: 0x7f0200c7
+			public const int notification_template_icon_bg = 2130837703;
 			
 			// aapt resource value: 0x7f0200ad
 			public const int nymph = 2130837677;
@@ -2209,58 +2209,61 @@ namespace Vineland.Necromancer.UI.Droid
 			public const int prince = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int ranger = 2130837684;
+			public const int quest = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int rogue = 2130837685;
+			public const int ranger = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int scholar = 2130837686;
+			public const int rogue = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int scout = 2130837687;
+			public const int scholar = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int search = 2130837688;
+			public const int scout = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int secrecy = 2130837689;
+			public const int search = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int seer = 2130837690;
+			public const int secrecy = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int shaman = 2130837691;
+			public const int seer = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int splash = 2130837692;
+			public const int shaman = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int splashscreen = 2130837693;
+			public const int splash = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int tamer = 2130837694;
+			public const int splashscreen = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int tinker = 2130837695;
+			public const int tamer = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int valkyrie = 2130837696;
+			public const int tinker = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int valkyrie_large = 2130837697;
+			public const int valkyrie = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int wayfarer = 2130837698;
+			public const int valkyrie_large = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int wind_dancer = 2130837699;
+			public const int wayfarer = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int winddancer = 2130837700;
+			public const int wind_dancer = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int wizard = 2130837701;
+			public const int winddancer = 2130837701;
+			
+			// aapt resource value: 0x7f0200c6
+			public const int wizard = 2130837702;
 			
 			static Drawable()
 			{

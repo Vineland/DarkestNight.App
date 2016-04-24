@@ -179,7 +179,7 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public ImageSource Image {
-			get { return FileImageSource.FromFile("plus"); }
+			get { return FileImageSource.FromFile("quest"); }
 		}
 	}
 }
