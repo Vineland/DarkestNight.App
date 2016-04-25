@@ -63,7 +63,7 @@ namespace Vineland.Necromancer.UI
 			DecrementImage = new Image () { Source = Minus };
 			ValueLabel = new Label () {
 				FontFamily = "hobo",
-				VerticalOptions = LayoutOptions.Center,
+				VerticalTextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center
 			};
 			IncrementImage = new Image () { Source = Plus };

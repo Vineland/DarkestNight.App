@@ -106,10 +106,10 @@ namespace Vineland.Necromancer.UI
 			} else if (heroViewModel is ConjurerViewModel) {
 				optionLabel = "Invisible Barrier";
 				property = "InvisibleBarrierLocation";
-			} else if (heroViewModel is ShamanViewModel){
-				optionLabel = "Spirit Sight";
-				property = "SpiritSightCommand";
-			}
+			}// else if (heroViewModel is ShamanViewModel){
+			//	optionLabel = "Spirit Sight";
+			//	property = "SpiritSightCommand";
+			//}
 
 			if (!string.IsNullOrEmpty (property)) {
 				offset = 40;
@@ -131,14 +131,14 @@ namespace Vineland.Necromancer.UI
 					absoluteLayout.Children.Add (spinner, 
 						new Rectangle (1, 176, 0.4, 32),
 						AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
-				} else if (property == "SpiritSightCommand") {
-					offset = 56;
-					var button = new Button ();
-					button.SetBinding (Button.TextProperty, new Binding ("SpiritSightButtonLabel"));
-					button.SetBinding (Button.CommandProperty, new Binding (property));
-					absoluteLayout.Children.Add (button, 
-						new Rectangle (1, 176, 0.4, 48),
-						AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
+//				} else if (property == "SpiritSightCommand") {
+//					offset = 56;
+//					var button = new Button ();
+//					button.SetBinding (Button.TextProperty, new Binding ("SpiritSightButtonLabel"));
+//					button.SetBinding (Button.CommandProperty, new Binding (property));
+//					absoluteLayout.Children.Add (button, 
+//						new Rectangle (1, 176, 0.4, 48),
+//						AbsoluteLayoutFlags.XProportional | AbsoluteLayoutFlags.WidthProportional);
 				}
 				else 
 				{

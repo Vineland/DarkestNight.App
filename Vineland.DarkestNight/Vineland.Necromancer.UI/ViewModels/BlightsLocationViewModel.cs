@@ -16,8 +16,8 @@ namespace Vineland.Necromancer.UI
 		public BlightLocationsViewModel (BlightService blightService)
 		{
 			BlightService = blightService;
-			var models = Application.CurrentGame.Locations.Select (l => new LocationViewModel (this, l));
-			LocationSections = new ObservableCollection<LocationViewModel> (models);
+			//var models = Application.CurrentGame.Locations.Select (l => new LocationViewModel (this, l));
+			//LocationSections = new ObservableCollection<LocationViewModel> (models);
 
 			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
 		}
@@ -31,23 +31,23 @@ namespace Vineland.Necromancer.UI
 		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
 		{
 			//TODO: only add the new rows
-			var models = Application.CurrentGame.Locations.Select (l => new LocationViewModel (this, l));
-			LocationSections.Clear ();
-			foreach(var model in models)
-				LocationSections.Add(model);
+			//var models = Application.CurrentGame.Locations.Select (l => new LocationViewModel (this, l));
+			//LocationSections.Clear ();
+			//foreach(var model in models)
+			//	LocationSections.Add(model);
 		}
 
-		public ObservableCollection<LocationViewModel> LocationSections { get; set; }
+		public ObservableCollection<LocationXViewModel> LocationSections { get; set; }
 	}
 
-	public class LocationViewModel : BaseViewModel
+	public class LocationXViewModel : BaseViewModel
 	{
 		public Location Location { get; private set; }
 
-		BlightLocationsViewModel _parent;
+		HeroTurnViewModel _parent;
 
-		public LocationViewModel (
-			BlightLocationsViewModel parent,
+		public LocationXViewModel (
+			HeroTurnViewModel parent,
 			Location location)
 		{
 			Location = location;
@@ -133,7 +133,7 @@ namespace Vineland.Necromancer.UI
 				return;
 
 			RemoveBlightViewModel (blightToMove);
-			var newLocationSection = _parent.LocationSections.Single (l => l.Location.Name == newLocation);
+			var newLocationSection = _parent.Rows.Single (l => l is LocationXViewModel && (l as LocationXViewModel).Location.Name == newLocation) as LocationViewModel;
 			newLocationSection.AddBlightViewModel (blightToMove);
 
 			Task.Run (() => {
@@ -197,29 +197,6 @@ namespace Vineland.Necromancer.UI
 			await Task.Run (() => {
 				Application.SaveCurrentGame ();
 			});
-		}
-	}
-
-	public class BlightViewModel : BaseViewModel
-	{
-		public Blight Blight{ get ; private set; }
-
-		public BlightViewModel (Blight blight)
-		{
-			Blight = blight;
-		}
-
-		public bool IsPlaceHolder{
-			get { return Blight == null; }
-		}
-
-		public ImageSource Image {
-			get { 
-				if (IsPlaceHolder)
-					return ImageSource.FromFile ("plus");
-				
-				return ImageSourceUtil.GetBlightImage (Blight.Name); 
-			}
 		}
 	}
 }

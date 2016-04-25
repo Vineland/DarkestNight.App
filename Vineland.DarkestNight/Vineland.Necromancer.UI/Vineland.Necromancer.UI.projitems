@@ -40,8 +40,6 @@
       <DependentUpon>SelectHeroPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\LogHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\BasePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NecromancerApp.xaml.cs">
       <DependentUpon>NecromancerApp.xaml</DependentUpon>
@@ -50,13 +48,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCarouselPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BlightsLocationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationHeaderCell.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectListItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerDetectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml.cs">
@@ -117,6 +112,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\GameSetupPage.xaml.cs">
       <DependentUpon>GameSetupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\HeroConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\LocationConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\NotBooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TemplateSelectors\HeroPhaseDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\HeroSummaryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\BlightViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\QuestViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Cells\LocationHeaderCell.xaml.cs">
+      <DependentUpon>LocationHeaderCell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -125,10 +130,12 @@
     <Folder Include="$(MSBuildThisFileDirectory)Utilities\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Partials\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Cells\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Converters\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\TemplateSelectors\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Partial\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
@@ -183,6 +190,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GameSetupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Cells\LocationHeaderCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

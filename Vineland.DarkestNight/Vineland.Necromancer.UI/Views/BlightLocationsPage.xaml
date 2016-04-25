@@ -6,22 +6,6 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 Title="Blights"
 BackgroundImage="background">
 	<ListView x:Name="ListView" ItemsSource="{ Binding LocationSections }" HasUnevenRows="true" >
-<!--		<ListView.GroupHeaderTemplate>
-			<DataTemplate>
-				<ViewCell>
-					<AbsoluteLayout BackgroundColor="Transparent">
-						<Label Text="{Binding Location.Name}" VerticalTextAlignment="Center" />
-						<ui:ImageButton Source="plus" DisabledSource="plus_disabled"
-						AbsoluteLayout.LayoutFlags="XProportional" 
-						AbsoluteLayout.LayoutBounds="1,0,32,32">
-							<ui:ImageButton.GestureRecognizers>
-								<TapGestureRecognizer Command="{Binding AddBlightCommand}" />
-							</ui:ImageButton.GestureRecognizers>
-						</ui:ImageButton>
-					</AbsoluteLayout>
-				</ViewCell>
-			</DataTemplate>
-		</ListView.GroupHeaderTemplate>-->
 		<ListView.ItemTemplate>
 			<DataTemplate>
 			<ViewCell>

@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Vineland.DarkestNight.UI;
 using Vineland.Necromancer.Core;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace Vineland.Necromancer.UI
 {
@@ -33,6 +34,7 @@ namespace Vineland.Necromancer.UI
 			}
 			foreach (var hero in _dataService.GetAllHeroes())
 				AvailableHeroes.Add (hero);
+
 			IsLoading = false;
 		}
 

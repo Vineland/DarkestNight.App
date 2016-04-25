@@ -1,12 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 x:Class="Vineland.Necromancer.UI.HeroTurnPage"
  BackgroundImage="background">
-	<TabbedPage.ToolbarItems>
+	<ContentPage.ToolbarItems>
 		<ToolbarItem Name="Necromancer" Command="{Binding NextPhase}"></ToolbarItem>
-	</TabbedPage.ToolbarItems>
-		<ui:ActiveHeroesPage Title="Heroes" BindingContext="{Binding ActiveHeroesViewModel}" />
-		<ui:BlightLocationsPage Title="Blights" BindingContext="{Binding BlightLocationsViewModel}" />
-</TabbedPage>
+	</ContentPage.ToolbarItems>
+	<ContentPage.Resources>
+	<ResourceDictionary>
+      <ui:HeroPhaseDataTemplateSelector x:Key="HeroPhaseDataTemplateSelector"></ui:HeroPhaseDataTemplateSelector>
+    </ResourceDictionary>
+    </ContentPage.Resources>
+	<StackLayout Padding="0,8,0,0">
+			<Image Source="darkness" HorizontalOptions="Center" />
+			<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center"/>
+			
+			<ListView x:Name="ListView" ItemsSource="{ Binding Locations }"
+			ItemTemplate="{StaticResource HeroPhaseDataTemplateSelector}"
+			IsGroupingEnabled="true"
+			HasUnevenRows="true" >
+			<ListView.GroupHeaderTemplate>
+			<DataTemplate>
+				<ui:LocationHeaderCell />
+			</DataTemplate>
+			</ListView.GroupHeaderTemplate>
+		</ListView>
+	</StackLayout>
+</ContentPage>

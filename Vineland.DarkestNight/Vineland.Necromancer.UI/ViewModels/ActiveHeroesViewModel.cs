@@ -13,7 +13,7 @@ namespace Vineland.Necromancer.UI
 
 		public ActiveHeroesViewModel ()
 		{			
-			HeroRows = new ObservableCollection<HeroRowModel> (Application.CurrentGame.Heroes.Select (x => new HeroRowModel (x)).ToList());
+			HeroRows = new ObservableCollection<HeroSummaryViewModel> (Application.CurrentGame.Heroes.Select (x => new HeroSummaryViewModel (x)).ToList());
 
 			MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
 			MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroUpdated", OnHeroUpdated);
@@ -31,12 +31,12 @@ namespace Vineland.Necromancer.UI
 
 		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
 		{
-			RaisePropertyChanged (() => Darkness);
+			//RaisePropertyChanged (() => Darkness);
 		}
 
-		public ObservableCollection<HeroRowModel> HeroRows { get; private set; }
+		public ObservableCollection<HeroSummaryViewModel> HeroRows { get; private set; }
 
-		public HeroRowModel SelectedRow { 
+		public HeroSummaryViewModel SelectedRow { 
 			get { return null; }
 			set{
 				if(value != null)
@@ -53,7 +53,7 @@ namespace Vineland.Necromancer.UI
 			args.NewHero.Grace = args.NewHero.GraceDefault;
 			args.NewHero.Secrecy = args.NewHero.SecrecyDefault;
 
-			HeroRows.Add (new HeroRowModel (args.NewHero));
+			HeroRows.Add (new HeroSummaryViewModel (args.NewHero));
 
 			Task.Run (() => {
 				Application.CurrentGame.Heroes = HeroRows.Select(x=> x.Hero).ToList ();
@@ -63,57 +63,6 @@ namespace Vineland.Necromancer.UI
 
 		private void OnHeroUpdated(HeroViewModel sender, Hero hero){
 			HeroRows.SingleOrDefault (x => x.Hero.Id == hero.Id).Updated ();
-		}
-
-				public int Darkness {
-					get { return Application.CurrentGame.Darkness; }
-					set {
-						Application.CurrentGame.Darkness = value;
-						RaisePropertyChanged (() => Darkness);
-					}
-				}
-
-		public RelayCommand NextPhase {
-			get {
-				return new RelayCommand (() => {
-					Application.SaveCurrentGame ();
-					Application.Navigation.Push<NecromancerPhasePage> ();
-				});
-			}
-		}
-	}
-
-	public class HeroRowModel: BaseViewModel
-	{
-		public Hero Hero;
-
-		public HeroRowModel (Hero hero)
-		{
-			Hero = hero;
-		}
-
-		public ImageSource Image {
-			get { return ImageSource.FromFile (Hero.Name.Replace (" ", string.Empty).ToLower ()); }
-		}
-
-		public string Name { get { return Hero.Name.ToUpper (); } }
-
-		public string Location { 
-			get { 
-				var location = Application.CurrentGame.Locations.Single (l => l.Id == Hero.LocationId);
-				return location.Name;
-			}
-		}
-
-		public int Secrecy { get { return Hero.Secrecy; } }
-
-		public int Grace { get { return Hero.Grace; } }
-
-		public void Updated()
-		{
-			RaisePropertyChanged (() => Secrecy);
-			RaisePropertyChanged (() => Grace);
-			RaisePropertyChanged (() => Location);
 		}
 	}
 }

@@ -26,7 +26,7 @@ namespace Vineland.Necromancer.UI
 			switch (Application.CurrentGame.DifficultyLevel) {
 			case DifficultyLevel.Champion:
 			case DifficultyLevel.Heroic:
-				Locations.Single (x => x.Location.Id == (int)LocationIds.Village).Spawns.Add (new QuestSpawnViewModel());
+				Locations.Single (x => x.Location.Id == (int)LocationIds.Village).Spawns.Add (new QuestViewModel());
 				break;
 			case DifficultyLevel.Legendary:
 				SpawnRandomQuest ();
@@ -38,7 +38,7 @@ namespace Vineland.Necromancer.UI
 		public void SpawnRandomQuest(){
 			var locationId = _d6Generator.RollDemBones ();
 			var location = Locations.Single (x => x.Location.Id == locationId);
-			location.Spawns.Add (new QuestSpawnViewModel ());
+			location.Spawns.Add (new QuestViewModel ());
 		}
 
 		public ObservableCollection<SpawnLocationViewModel> Locations { get; set; }
