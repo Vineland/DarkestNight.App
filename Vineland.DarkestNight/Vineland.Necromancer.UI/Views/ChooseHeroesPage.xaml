@@ -17,7 +17,7 @@ Title="Select Heroes">
     </ContentPage.Resources>
 <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
 <StackLayout IsVisible="{Binding IsLoading, Converter={StaticResource not}" >
-<Label Text="Selected Heroes" HorizontalOptions="CenterAndExpand"/>
+<ui:Header Text="Selected Heroes" />
 <ui:ItemsSourceStackLayout
 x:Name="SelectedHeroesLayout"
 Orientation="Horizontal" 
@@ -30,7 +30,7 @@ HorizontalOptions="CenterAndExpand">
 			</DataTemplate>
 	</ui:ItemsSourceStackLayout.ItemTemplate>
 </ui:ItemsSourceStackLayout>
-<Label Text="Available Heroes" HorizontalOptions="CenterAndExpand" />
+<ui:Header Text="Available Heroes" />
 <ListView 
 x:Name="AvailableHeroesListView"
 	ItemsSource="{Binding AvailableHeroes}" RowHeight="60">

@@ -143,7 +143,7 @@ namespace Vineland.Necromancer.UI
 		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights)
 		{
 			Location = location;
-			Spawns = new ObservableCollection<BaseViewModel> ();
+			Spawns = new ObservableCollection<ISpawnViewModel> ();
 
 			if (blights != null) {
 				foreach (var blight in blights) {
@@ -152,7 +152,7 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public ObservableCollection<BaseViewModel> Spawns {get;set;}
+		public ObservableCollection<ISpawnViewModel> Spawns {get;set;}
 	}
 }
 

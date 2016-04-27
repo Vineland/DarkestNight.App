@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class BlightViewModel :BaseViewModel
+	public class BlightViewModel :ISpawnViewModel
 	{
 		public Blight Blight{ get ; private set; }
 

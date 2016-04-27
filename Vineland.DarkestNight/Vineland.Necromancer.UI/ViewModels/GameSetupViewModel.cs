@@ -14,14 +14,14 @@ namespace Vineland.Necromancer.UI
 		public GameSetupViewModel (D6GeneratorService d6Generator)
 		{
 			_d6Generator = d6Generator;
-			Locations = new ObservableCollection<SpawnLocationViewModel> ();
+			Locations = new ObservableCollection<LocationViewModel> ();
 			Initialise ();
 		}
 
 		public void Initialise()
 		{
-			foreach (var location in Application.CurrentGame.Locations)
-				Locations.Add(new SpawnLocationViewModel(location, location.Blights));
+			foreach (var location in Application.CurrentGame.Locations.Where(x=>x.Blights.Any()))
+				Locations.Add(new LocationViewModel(location));
 
 			switch (Application.CurrentGame.DifficultyLevel) {
 			case DifficultyLevel.Champion:
@@ -41,7 +41,7 @@ namespace Vineland.Necromancer.UI
 			location.Spawns.Add (new QuestViewModel ());
 		}
 
-		public ObservableCollection<SpawnLocationViewModel> Locations { get; set; }
+		public ObservableCollection<LocationViewModel> Locations { get; set; }
 
 		public RelayCommand StartGame
 		{

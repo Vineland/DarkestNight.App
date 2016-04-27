@@ -20,7 +20,7 @@ namespace Vineland.Necromancer.UI
 			if (item is HeroSummaryViewModel)
 				return _heroTemplate;
 
-			if (item is Vineland.Necromancer.UI.HeroTurnViewModel.LocationBlightsViewModel)
+			if (item is LocationViewModel)
 				return _blightsTemplate;
 
 			return new DataTemplate();

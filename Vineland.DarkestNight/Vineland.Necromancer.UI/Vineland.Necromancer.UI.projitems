@@ -64,7 +64,6 @@
       <DependentUpon>NecromancerSpawnPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\HeroSelectedArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ActiveHeroesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml.cs">
       <DependentUpon>ActiveHeroesPage.xaml</DependentUpon>
     </Compile>
@@ -83,7 +82,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ParagonViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\RangerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\SeerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\AcolyteOptionsView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapCardViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapCardPage.xaml.cs">
@@ -119,9 +117,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\HeroSummaryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\BlightViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\QuestViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Cells\LocationHeaderCell.xaml.cs">
-      <DependentUpon>LocationHeaderCell.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\LocationHeaderCell.xaml.cs">
+      <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\ISpawnViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\LocationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Header.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -192,7 +193,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GameSetupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Cells\LocationHeaderCell.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partials\HeaderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

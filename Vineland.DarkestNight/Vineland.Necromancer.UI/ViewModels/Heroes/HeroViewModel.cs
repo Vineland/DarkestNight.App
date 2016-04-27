@@ -124,7 +124,7 @@ namespace Vineland.Necromancer.UI
 			set {
 				if (_hero.LocationId != value.Id) {
 					_hero.LocationId = value.Id;
-					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroUpdated", _hero);
+					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroMoved", _hero);
 				}
 			}
 		}

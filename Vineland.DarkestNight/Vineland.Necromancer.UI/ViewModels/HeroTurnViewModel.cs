@@ -20,23 +20,27 @@ namespace Vineland.Necromancer.UI
 
 		public HeroTurnViewModel (BlightService blightService)
 		{
-			Locations = new ObservableCollection<LocationViewModel> ();
+			Rows = new ObservableCollection<BaseViewModel> ();
 			_blightService = blightService;
 
 			MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
 			MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroUpdated", OnHeroUpdated);
+			MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroMoved", OnHeroMoved);
 			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
-			MessagingCenter.Subscribe<LocationBlightsViewModel, DestroyBlightArgs> (this, "DestroyBlight", DestroyBlight);
-			MessagingCenter.Subscribe<LocationBlightsViewModel, Location> (this, "SpawnBlight", SpawnBlight);
-			MessagingCenter.Subscribe<LocationBlightsViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
-			MessagingCenter.Subscribe<LocationBlightsViewModel, Location> (this, "SelectBlight", SelectBlight);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "DestroyBlight", DestroyBlight);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight", SpawnBlight);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SelectBlight", SelectBlight);
 			Initialise ();
 		}
 
 		public void Initialise(){
-			var models = Application.CurrentGame.Locations.Select (l => new LocationViewModel (l, Application.CurrentGame.Heroes.Where(h=>h.LocationId == l.Id).ToList()));
-			foreach (var model in models)
-				Locations.Add (model);
+			foreach (var location in Application.CurrentGame.Locations) 
+			{
+				Rows.Add (new HeroPhaseLocationViewModel (location));
+				foreach (var hero in Application.CurrentGame.Heroes.Where(x=>x.LocationId == location.Id))
+					Rows.Add (new HeroSummaryViewModel (hero));
+			}
 		}
 
 		public override void Cleanup ()
@@ -45,10 +49,11 @@ namespace Vineland.Necromancer.UI
 			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
 			MessagingCenter.Unsubscribe<HeroViewModel,Hero> (this, "HeroDefeated");
 			MessagingCenter.Unsubscribe<HeroViewModel, Hero> (this, "HeroUpdated");
-			MessagingCenter.Unsubscribe<LocationBlightsViewModel, DestroyBlightArgs> (this, "DestroyBlight");
-			MessagingCenter.Unsubscribe<LocationBlightsViewModel, Location> (this, "SpawnBlight");
-			MessagingCenter.Unsubscribe<LocationBlightsViewModel, MoveBlightArgs> (this, "MoveBlight");
-			MessagingCenter.Unsubscribe<LocationBlightsViewModel, Location> (this, "SelectBlight");
+			MessagingCenter.Unsubscribe<HeroViewModel, Hero> (this, "HeroMoved");
+			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "DestroyBlight");
+			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight");
+			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, MoveBlightArgs> (this, "MoveBlight");
+			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "SelectBlight");
 		}
 
 
@@ -61,16 +66,23 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public ObservableCollection<LocationViewModel> Locations { get; private set; }
+		public ObservableCollection<BaseViewModel> Rows { get; private set; }
+
+		private List<HeroPhaseLocationViewModel> LocationRows {
+			get{ return Rows.Where (x => x is HeroPhaseLocationViewModel).Select(x=> x as HeroPhaseLocationViewModel).ToList(); }
+		}
+
+		private List<HeroSummaryViewModel> HeroRows {
+			get{ return Rows.Where (x => x is HeroSummaryViewModel).Select(x=> x as HeroSummaryViewModel).ToList(); }
+		}
 
 		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
 		{
+			var locationRows = LocationRows;
 			foreach (var spawnLocation in sender.Locations) {
-				var location = Locations.Single (l => l.Location.Id == spawnLocation.Location.Id);
-				foreach (var spawn in spawnLocation.Spawns) {
-					if (spawn is BlightViewModel)
-						(location.Single (x => x is LocationBlightsViewModel) as LocationBlightsViewModel).AddBlightViewModel (spawn as BlightViewModel);
-				}
+				var locationRow = locationRows.Single (l => l.Location.Id == spawnLocation.Location.Id);
+				foreach (var spawn in spawnLocation.Spawns.Where(x=> x is BlightViewModel))
+					locationRow.AddBlightViewModel (spawn as BlightViewModel);
 			}
 			
 			RaisePropertyChanged (() => Darkness);
@@ -83,54 +95,52 @@ namespace Vineland.Necromancer.UI
 
 		private void OnHeroDefeated (HeroViewModel sender, HeroDefeatedArgs args)
 		{
-			foreach (var location in Locations) {
-				var model = location.FirstOrDefault(x => x is HeroSummaryViewModel && (x as HeroSummaryViewModel).Hero.Id == args.DefeatedHero.Id);
-				if (model != null)
-					location.Remove (model);
-			}
+			var model = HeroRows.FirstOrDefault (x => x.Hero.Id == args.DefeatedHero.Id);
+			if (model != null)
+				Rows.Remove (model);
 
 			args.NewHero.Grace = args.NewHero.GraceDefault;
 			args.NewHero.Secrecy = args.NewHero.SecrecyDefault;
 
-			//first is monastery
-			Locations.First().Add (new HeroSummaryViewModel (args.NewHero));
+			//first (index 0) is the monastery
+			Rows.Insert(1, new HeroSummaryViewModel (args.NewHero));
 
 			Task.Run (() => {
-				Application.CurrentGame.Heroes.Remove(args.DefeatedHero);
-				Application.CurrentGame.Heroes.Add(args.NewHero);
+				Application.CurrentGame.Heroes.Remove (args.DefeatedHero);
+				Application.CurrentGame.Heroes.Add (args.NewHero);
 				Application.SaveCurrentGame ();
 			});
 		}
 
 		private void OnHeroUpdated(HeroViewModel sender, Hero hero){
-			foreach (var location in Locations) {
-				var model = location.FirstOrDefault(x => x is HeroSummaryViewModel && (x as HeroSummaryViewModel).Hero.Id == hero.Id) as HeroSummaryViewModel;
-				if (model != null) {
-					model.Updated ();
-					if (model.Location != location.Location.Name) {
-						location.Remove (model);
-						Locations.Single (x => x.Location.Name == model.Location).Add (model);
-					}
-				}
-			}
+			var heroRow = HeroRows.Single (x => x.Hero.Id == hero.Id);
+			heroRow.Updated ();
+		}
+
+		private void OnHeroMoved(HeroViewModel sender, Hero hero){
+			var heroRow = HeroRows.Single (x => x.Hero.Id == hero.Id);
+			//yipes!
+			Rows.Remove(heroRow);
+			var indexOfLocation = Rows.IndexOf (LocationRows.Single (l => l.Location.Id == hero.LocationId));
+			Rows.Insert (indexOfLocation + 1, heroRow);
 		}
 		#endregion
 
 		#region Blight Functions
-		public void DestroyBlight(LocationBlightsViewModel sender, DestroyBlightArgs args){
+		public void DestroyBlight(HeroPhaseLocationViewModel sender, BlightViewModel blightViewModel){
 
-			sender.RemoveBlightViewModel (args.BlightViewModel);
+			sender.RemoveBlightViewModel (blightViewModel);
 
 			Task.Run (() => {				
-				_blightService.DestroyBlight (args.Location, args.BlightViewModel.Blight, Application.CurrentGame);
+				_blightService.DestroyBlight (sender.Location, blightViewModel.Blight, Application.CurrentGame);
 				Application.SaveCurrentGame ();
 			});
 		}
 
 
-		public void SpawnBlight (LocationBlightsViewModel sender, Location location)
+		public void SpawnBlight (HeroPhaseLocationViewModel sender)
 		{
-			var blight = _blightService.SpawnBlight (location, Application.CurrentGame).Item2;
+			var blight = _blightService.SpawnBlight (sender.Location, Application.CurrentGame).Item2;
 
 			sender.AddBlightViewModel(new BlightViewModel (blight));
 
@@ -141,20 +151,20 @@ namespace Vineland.Necromancer.UI
 
 
 
-		public void MoveBlight (LocationBlightsViewModel sender, MoveBlightArgs args)
+		public void MoveBlight (HeroPhaseLocationViewModel sender, MoveBlightArgs args)
 		{
 			sender.RemoveBlightViewModel (args.BlightViewModel);
-			var newLocationSection = Locations.Single (l => l.Location.Name == args.NewLocationName);
-			(newLocationSection.First(x => x is LocationBlightsViewModel) as LocationBlightsViewModel).AddBlightViewModel (args.BlightViewModel);
+			var newLocationSection = LocationRows.Single (l => l.Location.Name == args.NewLocationName);
+			newLocationSection.AddBlightViewModel (args.BlightViewModel);
 			
 			Task.Run (() => {
-				args.CurrentLocation.Blights.Remove (args.BlightViewModel.Blight);
+				sender.Location.Blights.Remove (args.BlightViewModel.Blight);
 				newLocationSection.Location.Blights.Add (args.BlightViewModel.Blight);
 				Application.SaveCurrentGame ();
 			});
 		}
 
-		public async void SelectBlight(LocationBlightsViewModel sender, Location location){
+		public async void SelectBlight(HeroPhaseLocationViewModel sender){
 			var blightOptions = Application.CurrentGame.BlightPool.Select (x => x.Name).Distinct ();
 			var option = await Application.Navigation.DisplayActionSheet ("Select Blight", "Cancel", null, blightOptions.ToArray ());
 			if (option == "Cancel")
@@ -163,7 +173,7 @@ namespace Vineland.Necromancer.UI
 			var blight = Application.CurrentGame.BlightPool.FirstOrDefault(x=>x.Name == option);
 
 			Application.CurrentGame.BlightPool.Remove(blight);
-			location.Blights.Add(blight);
+			sender.Location.Blights.Add(blight);
 
 			sender.AddBlightViewModel(new BlightViewModel (blight));
 
@@ -181,77 +191,58 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public class LocationViewModel : ObservableCollection<BaseViewModel>
+		public class HeroPhaseLocationViewModel : LocationViewModel
 		{
-			public Location Location { get; private set; }
 
-			public LocationViewModel (Location location, List<Hero> heroes)
+			public HeroPhaseLocationViewModel (Location location)
+				:base(location)
 			{
-				Location = location;
-				Add(new LocationBlightsViewModel(location));
-				foreach(var hero in heroes)
-					Add(new HeroSummaryViewModel(hero));
+				Spawns.Add(new BlightViewModel(null));
 			}
-		}
-
-		public class LocationBlightsViewModel :BaseViewModel
-		{
-			Location _location;
-
-			public LocationBlightsViewModel (Location location)
-			{
-				_location = location;
-				Blights = new ObservableCollection<BlightViewModel> ();
-				Blights.Add (new BlightViewModel (null));
-				foreach (var blight in location.Blights)
-					AddBlightViewModel (new BlightViewModel (blight));
-			}
-
-			public ObservableCollection<BlightViewModel> Blights { get; private set; }
 
 			public void AddBlightViewModel(BlightViewModel viewModel){
-				if  (Blights.Any() && Blights.Last().IsPlaceHolder)
-					Blights.Insert (Blights.Count - 1, viewModel);
+				var blights = Spawns.Where (x => x is BlightViewModel).Select(x=>x as BlightViewModel).ToList();
+				if  (blights.Any() && blights.Last().IsPlaceHolder)
+					Spawns.Insert (Spawns.Count - 1, viewModel);
 				else
-					Blights.Add(viewModel);
+					Spawns.Add(viewModel);
 
-				if (Blights.Where (x => !x.IsPlaceHolder).Sum (x => x.Blight.Weight) >= 4
-					&& Blights.Last().IsPlaceHolder)
-					Blights.RemoveAt (Blights.Count - 1);
+				if (blights.Where (x => !x.IsPlaceHolder).Sum (x => x.Blight.Weight) >= 4
+					&& blights.Last().IsPlaceHolder)
+					Spawns.RemoveAt (Spawns.Count - 1);
 			}
 
 			public void RemoveBlightViewModel(BlightViewModel viewModel){
-				if (!Blights.Contains (viewModel))
+				if (!Spawns.Contains (viewModel))
 					return;
 
-				Blights.Remove (viewModel);
+				Spawns.Remove (viewModel);
 
-				if (Blights.Where (x => !x.IsPlaceHolder).Sum (x => x.Blight.Weight) < 4
-					&& !Blights.Last().IsPlaceHolder)
-					Blights.Add (new BlightViewModel (null));
+				var blights = Spawns.Where (x => x is BlightViewModel).Select(x=>x as BlightViewModel).ToList();
+
+				if (blights.Where (x => !x.IsPlaceHolder).Sum (x => x.Blight.Weight) < 4
+					&& !blights.Last().IsPlaceHolder)
+					Spawns.Add (new BlightViewModel (null));
 			}
 
-			public RelayCommand<BlightViewModel> BlightSelectedCommand{
+			public override RelayCommand<BlightViewModel> BlightSelectedCommand{
 				get{
 					return new RelayCommand<BlightViewModel> (async (blightViewModel) => {
 						if (!blightViewModel.IsPlaceHolder) {
 							var action = await Application.Navigation.DisplayActionSheet ("Remove Blight", "Cancel", null, "Destroy", "Move");
 							if (action == "Destroy")
-								MessagingCenter.Send<LocationBlightsViewModel, DestroyBlightArgs>(this, 
+								MessagingCenter.Send<HeroPhaseLocationViewModel, BlightViewModel>(this, 
 									"DestroyBlight",
-									new DestroyBlightArgs(){
-										BlightViewModel = blightViewModel,
-										Location = _location
-									});
+									blightViewModel
+								);
 
 							if (action == "Move") {
 								var newLocationName = await Application.Navigation.DisplayActionSheet ("New Location", "Cancel", null, Application.CurrentGame.Locations.Select (x => x.Name).ToArray ());
 								if (newLocationName != "Cancel"
-									&& newLocationName != _location.Name) {
-									MessagingCenter.Send<LocationBlightsViewModel, MoveBlightArgs>(this, "MoveBlight",
+									&& newLocationName != Location.Name) {
+									MessagingCenter.Send<HeroPhaseLocationViewModel, MoveBlightArgs>(this, "MoveBlight",
 										new MoveBlightArgs(){
 											BlightViewModel = blightViewModel,
-											CurrentLocation = _location,
 											NewLocationName = newLocationName
 										});
 								}
@@ -265,10 +256,10 @@ namespace Vineland.Necromancer.UI
 								"Select");
 							switch (action) {
 							case "Spawn":
-								MessagingCenter.Send<LocationBlightsViewModel, Location>(this, "SpawnBlight", _location);
+								MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SpawnBlight");
 								break;
 							case "Select":
-								MessagingCenter.Send<LocationBlightsViewModel, Location>(this, "SelectBlight", _location);
+								MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SelectBlight");
 								break;						
 							}
 						}
@@ -280,14 +271,8 @@ namespace Vineland.Necromancer.UI
 		} 
 	}
 
-				public class DestroyBlightArgs{
-					public BlightViewModel BlightViewModel;
-					public Location Location;
-				}
-
 	public class MoveBlightArgs{
 		public BlightViewModel BlightViewModel;
-		public Location CurrentLocation;
 		public string NewLocationName;
 	}
 }

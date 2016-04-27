@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+x:Class="Vineland.Necromancer.UI.LocationHeaderCell"
+Padding="16, 8" BackgroundColor="#BC63402D">
+	<Label Text="{Binding Name}" VerticalTextAlignment="Center" TextColor="White" />
+</ContentView>

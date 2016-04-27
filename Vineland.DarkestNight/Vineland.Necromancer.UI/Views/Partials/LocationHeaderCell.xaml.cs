@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class LocationHeaderCell : ViewCell
+	public partial class LocationHeaderCell : ContentView
 	{
 		public LocationHeaderCell ()
 		{

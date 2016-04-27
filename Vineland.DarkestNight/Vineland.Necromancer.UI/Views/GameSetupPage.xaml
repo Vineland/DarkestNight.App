@@ -11,22 +11,7 @@ BackgroundImage="background">
 <ListView x:Name="ListView" ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
-			<ViewCell>
-			<StackLayout 
-		Padding="16, 8,16,16">
-				<Label Text="{Binding Location.Name}" VerticalTextAlignment="Center" />
-					<ui:ItemsSourceStackLayout
-		Orientation="Horizontal" 
-		ItemsSource="{Binding Spawns}">
-			<ui:ItemsSourceStackLayout.ItemTemplate>
-					<DataTemplate>
-						<Image Source="{Binding Image}" HeightRequest="60" WidthRequest="60"/>
-					</DataTemplate>
-			</ui:ItemsSourceStackLayout.ItemTemplate>
-		</ui:ItemsSourceStackLayout>
-		</StackLayout>
-</ViewCell>
-<!--				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />-->
+				<ui:LocationBlightsCell />
 			</DataTemplate>
 		</ListView.ItemTemplate>
 	</ListView>

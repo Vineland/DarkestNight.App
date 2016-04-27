@@ -16,15 +16,9 @@ x:Class="Vineland.Necromancer.UI.HeroTurnPage"
 			<Image Source="darkness" HorizontalOptions="Center" />
 			<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center"/>
 			
-			<ListView x:Name="ListView" ItemsSource="{ Binding Locations }"
+			<ListView x:Name="ListView" ItemsSource="{ Binding Rows }"
 			ItemTemplate="{StaticResource HeroPhaseDataTemplateSelector}"
-			IsGroupingEnabled="true"
 			HasUnevenRows="true" >
-			<ListView.GroupHeaderTemplate>
-			<DataTemplate>
-				<ui:LocationHeaderCell />
-			</DataTemplate>
-			</ListView.GroupHeaderTemplate>
 		</ListView>
 	</StackLayout>
 </ContentPage>

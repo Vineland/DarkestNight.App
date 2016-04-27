@@ -4,10 +4,11 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
 	<StackLayout>
+	<ui:Header Text="{Binding Location.Name}" />
 		<ui:ItemsSourceStackLayout
 			Orientation="Horizontal" 
 			Padding="16,8"
-	ItemsSource="{Binding Blights}"
+	ItemsSource="{Binding Spawns}"
 	ItemSelected="{Binding BlightSelectedCommand}">
 		<ui:ItemsSourceStackLayout.ItemTemplate>
 				<DataTemplate>
