@@ -60,9 +60,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml.cs">
       <DependentUpon>BlightLocationsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerSpawnPage.xaml.cs">
-      <DependentUpon>NecromancerSpawnPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\HeroSelectedArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml.cs">
       <DependentUpon>ActiveHeroesPage.xaml</DependentUpon>
@@ -161,9 +158,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerSpawnPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml">

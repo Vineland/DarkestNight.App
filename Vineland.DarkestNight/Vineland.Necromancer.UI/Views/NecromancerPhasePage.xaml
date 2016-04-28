@@ -10,51 +10,49 @@ BackgroundImage="background_framed">
 		<ToolbarItem Name="Activate" Command="{Binding ActivateCommand}">
 		</ToolbarItem> 
 	</ContentPage.ToolbarItems>
-	<AbsoluteLayout Padding="20,0,20,20">
+	<AbsoluteLayout>
 
 		<Image Source="necromancer_large.png"  
 				AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="0.5,12,72,72"/>
 
 		<Label Text="Location" VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 96, 0.6, 32"/>
+		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 96, 0.6, 32"/>
 		<ui:BindablePicker x:TypeArguments="core:Location" 
 		ItemsSource="{Binding AllLocations}" 
 		SelectedIndex="{Binding Necromancer.LocationId}" 
 		AbsoluteLayout.LayoutFlags="WidthProportional, XProportional" AbsoluteLayout.LayoutBounds="1, 96, 0.4, 32"/>
 
+		<ui:Header Text="Powers" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 136, 1, 40" />
+
 		<Label Text="Focused Rituals" IsVisible="{Binding ShowDarknessCardOptions}" VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 136, 0.6, 32"/>
+		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 184, 0.6, 32"/>
 		<ui:CheckButton IsSelected="{Binding Necromancer.FocusedRituals}" IsVisible="{Binding ShowDarknessCardOptions}" 
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 136, 32, 32"/>
+		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 184, 48, 32"/>
 
 		<Label Text="Encroaching Shadows" IsVisible="{Binding ShowDarknessCardOptions}"  VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 176, 0.8, 32"
+		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 224, 0.8, 32"
 		/>
 		<ui:CheckButton IsSelected="{Binding Necromancer.EncroachingShadows}" IsVisible="{Binding ShowDarknessCardOptions}" 
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 176, 32, 32"/>
+		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 224, 48, 32"/>
 
 		<Label Text="Dying Land" IsVisible="{Binding ShowDarknessCardOptions}"  VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 216, 0.6, 32"
+		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 264, 0.6, 32"
 		/>
 		<ui:CheckButton IsSelected="{Binding Necromancer.DyingLand}" IsVisible="{Binding ShowDarknessCardOptions}"
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 216, 32, 32"/>
+		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 264, 48, 32"/>
 
 		<Label Text="Overwhelm" IsVisible="{Binding ShowDarknessCardOptions}" VerticalTextAlignment="Center"  
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 256, 0.6, 32"
+		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 304, 0.6, 32"
 		/>
 		<ui:CheckButton IsSelected="{Binding Necromancer.Overwhelm}" IsVisible="{Binding ShowDarknessCardOptions}" 
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 256, 32, 32"/>
+		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 304, 48, 32"/>
 
 		<Label Text="Creeping Shadows" IsVisible="{Binding ShowDarknessCardOptions}"  VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 296, 0.6, 32"
+		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 344, 0.6, 32"
 		/>
 		<ui:CheckButton IsSelected="{Binding Necromancer.CreepingShadows}" IsVisible="{Binding ShowDarknessCardOptions}"
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 296, 32, 32"/>
+		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 344, 48, 32"/>
 
-		<StackLayout Spacing="10" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5, 1, 96, 90" >
-		<Image Source="darkness.png"/>
-		<ui:CustomStepper Value="{Binding Darkness}" />
-		</StackLayout>
 
 	</AbsoluteLayout>
 </ContentPage>

@@ -21,6 +21,7 @@ namespace Vineland.Necromancer.UI
 				return;
 
 			Title = heroViewModel.Name;
+			BackgroundImage = "background_framed";
 			
 			var absoluteLayout = new AbsoluteLayout {
 				Padding = new Thickness (20, 0, 20, 40)
