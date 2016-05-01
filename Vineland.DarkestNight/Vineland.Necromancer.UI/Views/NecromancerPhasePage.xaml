@@ -19,7 +19,7 @@ BackgroundImage="background_framed">
 		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 96, 0.6, 32"/>
 		<ui:BindablePicker x:TypeArguments="core:Location" 
 		ItemsSource="{Binding AllLocations}" 
-		SelectedIndex="{Binding Necromancer.LocationId}" 
+		SelectedItem="{Binding Location}" 
 		AbsoluteLayout.LayoutFlags="WidthProportional, XProportional" AbsoluteLayout.LayoutBounds="1, 96, 0.4, 32"/>
 
 		<ui:Header Text="Powers" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 136, 1, 40" />

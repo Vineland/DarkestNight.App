@@ -127,26 +127,27 @@ namespace Vineland.Necromancer.UI
 		#endregion
 
 		#region Blight Functions
-		public void DestroyBlight(HeroPhaseLocationViewModel sender, BlightViewModel blightViewModel){
-
-			sender.RemoveBlightViewModel (blightViewModel);
-
-			Task.Run (() => {				
+		public async void DestroyBlight(HeroPhaseLocationViewModel sender, BlightViewModel blightViewModel){
+			await Task.Run (() => {				
 				_blightService.DestroyBlight (sender.Location, blightViewModel.Blight, Application.CurrentGame);
 				Application.SaveCurrentGame ();
 			});
+
+			sender.RemoveBlightViewModel (blightViewModel);
 		}
 
 
-		public void SpawnBlight (HeroPhaseLocationViewModel sender)
+		public async void SpawnBlight (HeroPhaseLocationViewModel sender)
 		{
-			var blight = _blightService.SpawnBlight (sender.Location, Application.CurrentGame).Item2;
+			Blight blight = null;
 
-			sender.AddBlightViewModel(new BlightViewModel (blight));
+			await Task.Run (() => {
 
-			Task.Run (() => {
+				blight = _blightService.SpawnBlight (sender.Location, Application.CurrentGame).Item2;
 				Application.SaveCurrentGame ();
 			});
+
+			sender.AddBlightViewModel(new BlightViewModel (blight));
 		}
 
 
@@ -207,7 +208,7 @@ namespace Vineland.Necromancer.UI
 				else
 					Spawns.Add(viewModel);
 
-				if (blights.Where (x => !x.IsPlaceHolder).Sum (x => x.Blight.Weight) >= 4
+				if (Location.Blights.Sum(x=>x.Weight) >= 4
 					&& blights.Last().IsPlaceHolder)
 					Spawns.RemoveAt (Spawns.Count - 1);
 			}
@@ -220,7 +221,7 @@ namespace Vineland.Necromancer.UI
 
 				var blights = Spawns.Where (x => x is BlightViewModel).Select(x=>x as BlightViewModel).ToList();
 
-				if (blights.Where (x => !x.IsPlaceHolder).Sum (x => x.Blight.Weight) < 4
+				if (Location.Blights.Sum (x => x.Weight) < 4
 					&& !blights.Last().IsPlaceHolder)
 					Spawns.Add (new BlightViewModel (null));
 			}

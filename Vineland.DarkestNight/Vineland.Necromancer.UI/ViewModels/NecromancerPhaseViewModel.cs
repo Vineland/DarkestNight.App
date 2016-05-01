@@ -2,6 +2,7 @@
 using Vineland.Necromancer.Core;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
+using System.Linq;
 using XLabs.Ioc;
 
 namespace Vineland.Necromancer.UI
@@ -25,6 +26,11 @@ namespace Vineland.Necromancer.UI
 
 		public List<Location> AllLocations {
 			get { return Application.CurrentGame.Locations; }
+		}
+
+		public Location Location{
+			get{ return AllLocations.Single (l => l.Id == Necromancer.LocationId); }
+			set{ Application.CurrentGame.Necromancer.LocationId = value.Id; }
 		}
 
 		public NecomancerState Necromancer {

@@ -186,11 +186,11 @@ namespace Vineland.Necromancer.Core
 				if (gameState.Necromancer.DyingLand) {
 					if (gameState.DarknessTrackEffectsActive
 						&& gameState.Darkness >= 10
-						&& newLocation.BlightCount == 1)
+					&& initialBlightCount == 1)
 						result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
 					else if ((!gameState.DarknessTrackEffectsActive
 						|| gameState.Darkness < 10)
-						&& newLocation.BlightCount == 0)
+					&& initialBlightCount == 0)
 						result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
 				}
 
