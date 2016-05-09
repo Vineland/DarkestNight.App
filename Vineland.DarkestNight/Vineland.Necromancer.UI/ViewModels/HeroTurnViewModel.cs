@@ -20,12 +20,15 @@ namespace Vineland.Necromancer.UI
 
 		public HeroTurnViewModel (BlightService blightService)
 		{
-			Rows = new ObservableCollection<BaseViewModel> ();
+			Heroes = new ObservableCollection<HeroSummaryViewModel> ();
+			Locations = new ObservableCollection<HeroPhaseLocationViewModel> ();
+			HeroesSeleted = true;
+
 			_blightService = blightService;
 
 			MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
 			MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroUpdated", OnHeroUpdated);
-			MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroMoved", OnHeroMoved);
+			//MessagingCenter.Subscribe<HeroViewModel, Hero> (this, "HeroMoved", OnHeroMoved);
 			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "DestroyBlight", DestroyBlight);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight", SpawnBlight);
@@ -37,9 +40,9 @@ namespace Vineland.Necromancer.UI
 		public void Initialise(){
 			foreach (var location in Application.CurrentGame.Locations) 
 			{
-				Rows.Add (new HeroPhaseLocationViewModel (location));
+				Locations.Add (new HeroPhaseLocationViewModel (location));
 				foreach (var hero in Application.CurrentGame.Heroes.Where(x=>x.LocationId == location.Id))
-					Rows.Add (new HeroSummaryViewModel (hero));
+					Heroes.Add (new HeroSummaryViewModel (hero));
 			}
 		}
 
@@ -49,7 +52,7 @@ namespace Vineland.Necromancer.UI
 			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
 			MessagingCenter.Unsubscribe<HeroViewModel,Hero> (this, "HeroDefeated");
 			MessagingCenter.Unsubscribe<HeroViewModel, Hero> (this, "HeroUpdated");
-			MessagingCenter.Unsubscribe<HeroViewModel, Hero> (this, "HeroMoved");
+			//MessagingCenter.Unsubscribe<HeroViewModel, Hero> (this, "HeroMoved");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "DestroyBlight");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, MoveBlightArgs> (this, "MoveBlight");
@@ -66,21 +69,21 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public ObservableCollection<BaseViewModel> Rows { get; private set; }
-
-		private List<HeroPhaseLocationViewModel> LocationRows {
-			get{ return Rows.Where (x => x is HeroPhaseLocationViewModel).Select(x=> x as HeroPhaseLocationViewModel).ToList(); }
-		}
-
-		private List<HeroSummaryViewModel> HeroRows {
-			get{ return Rows.Where (x => x is HeroSummaryViewModel).Select(x=> x as HeroSummaryViewModel).ToList(); }
-		}
+		public ObservableCollection<HeroSummaryViewModel> Heroes { get; private set; }
+		public ObservableCollection<HeroPhaseLocationViewModel> Locations { get; private set; }
+		public bool HeroesSeleted { get; set; }
+//		private List<HeroPhaseLocationViewModel> LocationRows {
+//			get{ return Rows.Where (x => x is HeroPhaseLocationViewModel).Select(x=> x as HeroPhaseLocationViewModel).ToList(); }
+//		}
+//
+//		private List<HeroSummaryViewModel> HeroRows {
+//			get{ return Rows.Where (x => x is HeroSummaryViewModel).Select(x=> x as HeroSummaryViewModel).ToList(); }
+//		}
 
 		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
 		{
-			var locationRows = LocationRows;
 			foreach (var spawnLocation in sender.Locations) {
-				var locationRow = locationRows.Single (l => l.Location.Id == spawnLocation.Location.Id);
+				var locationRow = Locations.Single (l => l.Location.Id == spawnLocation.Location.Id);
 				foreach (var spawn in spawnLocation.Spawns.Where(x=> x is BlightViewModel))
 					locationRow.AddBlightViewModel (spawn as BlightViewModel);
 			}
@@ -95,15 +98,14 @@ namespace Vineland.Necromancer.UI
 
 		private void OnHeroDefeated (HeroViewModel sender, HeroDefeatedArgs args)
 		{
-			var model = HeroRows.FirstOrDefault (x => x.Hero.Id == args.DefeatedHero.Id);
+			var model = Heroes.FirstOrDefault (x => x.Hero.Id == args.DefeatedHero.Id);
 			if (model != null)
-				Rows.Remove (model);
+				Heroes.Remove (model);
 
 			args.NewHero.Grace = args.NewHero.GraceDefault;
 			args.NewHero.Secrecy = args.NewHero.SecrecyDefault;
 
-			//first (index 0) is the monastery
-			Rows.Insert(1, new HeroSummaryViewModel (args.NewHero));
+			Heroes.Add(new HeroSummaryViewModel (args.NewHero));
 
 			Task.Run (() => {
 				Application.CurrentGame.Heroes.Remove (args.DefeatedHero);
@@ -113,17 +115,17 @@ namespace Vineland.Necromancer.UI
 		}
 
 		private void OnHeroUpdated(HeroViewModel sender, Hero hero){
-			var heroRow = HeroRows.Single (x => x.Hero.Id == hero.Id);
+			var heroRow = Heroes.Single (x => x.Hero.Id == hero.Id);
 			heroRow.Updated ();
 		}
 
-		private void OnHeroMoved(HeroViewModel sender, Hero hero){
-			var heroRow = HeroRows.Single (x => x.Hero.Id == hero.Id);
-			//yipes!
-			Rows.Remove(heroRow);
-			var indexOfLocation = Rows.IndexOf (LocationRows.Single (l => l.Location.Id == hero.LocationId));
-			Rows.Insert (indexOfLocation + 1, heroRow);
-		}
+//		private void OnHeroMoved(HeroViewModel sender, Hero hero){
+//			var heroRow = Heroes.Single (x => x.Hero.Id == hero.Id);
+//			//yipes!
+//			Rows.Remove(heroRow);
+//			var indexOfLocation = Rows.IndexOf (LocationRows.Single (l => l.Location.Id == hero.LocationId));
+//			Rows.Insert (indexOfLocation + 1, heroRow);
+//		}
 		#endregion
 
 		#region Blight Functions
@@ -155,7 +157,7 @@ namespace Vineland.Necromancer.UI
 		public void MoveBlight (HeroPhaseLocationViewModel sender, MoveBlightArgs args)
 		{
 			sender.RemoveBlightViewModel (args.BlightViewModel);
-			var newLocationSection = LocationRows.Single (l => l.Location.Name == args.NewLocationName);
+			var newLocationSection = Locations.Single (l => l.Location.Name == args.NewLocationName);
 			newLocationSection.AddBlightViewModel (args.BlightViewModel);
 			
 			Task.Run (() => {

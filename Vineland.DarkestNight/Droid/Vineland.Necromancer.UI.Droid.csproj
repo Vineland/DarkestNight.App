@@ -133,7 +133,6 @@
     <Compile Include="Infrastructure\AndroidBootstrapper.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderers\MultiSelectListViewRenderer.cs" />
     <Compile Include="Renderers\CheckButtonRenderer.cs" />
     <Compile Include="Renderers\CustomTextCellRenderer.cs" />
     <Compile Include="Renderers\CustomFontLabelRenderer.cs" />
