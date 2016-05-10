@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Util;
+using Vineland.DarkestNight.UI;
 
 [assembly: ExportRenderer (typeof(TextCell), typeof(CustomTextCellRenderer))]
 namespace Vineland.Necromancer.UI.Droid
@@ -26,7 +27,7 @@ namespace Vineland.Necromancer.UI.Droid
 			} else {
 				var label = (view.GetChildAt (1) as LinearLayout).GetChildAt(0) as TextView; //yikes!
 				label.Typeface = FontManager.GetDefaultFont();
-				label.SetTextColor (Android.Graphics.Color.Black);
+				label.SetTextColor (AppConstants.TextColour.ToAndroid());
 				label.SetTextSize (ComplexUnitType.Dip, 20);
 			}
 			

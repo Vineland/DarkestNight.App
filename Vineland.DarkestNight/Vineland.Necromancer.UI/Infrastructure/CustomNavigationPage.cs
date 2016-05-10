@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using Vineland.DarkestNight.UI;
 
 namespace Vineland.Necromancer.UI
 {
@@ -10,8 +11,8 @@ namespace Vineland.Necromancer.UI
 		{
 			Init();
 
-			BarBackgroundColor = Color.FromHex("#BC63402D");
-			BarTextColor = Color.White;
+			BarBackgroundColor = AppConstants.NavBarBackground;
+			BarTextColor = AppConstants.NavBarTextColour;
 		}
 
 		private void Init()

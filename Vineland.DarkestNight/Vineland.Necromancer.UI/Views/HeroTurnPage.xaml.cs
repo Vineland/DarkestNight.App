@@ -13,13 +13,32 @@ namespace Vineland.Necromancer.UI
 		{ 
 			InitializeComponent ();
 			HeroesListView.ItemTapped += ListView_ItemTapped;
-			HeroesToggle.Clicked += Toggle_Clicked;
+			HeroesToggle.Clicked += HeroesToggle_Clicked;
+			LocationsToggle.Clicked += LocationsToggle_Clicked;
 		}
 
-		void Toggle_Clicked (object sender, EventArgs e)
+		void HeroesToggle_Clicked (object sender, EventArgs e)
 		{
-			HeroesListView.IsVisible = !HeroesListView.IsVisible;
-			BlightsListView.IsVisible = !HeroesListView.IsVisible;
+			if (HeroesToggle.IsSelected)
+				return;
+			
+			HeroesToggle.IsSelected = 
+			HeroesListView.IsVisible = true;
+
+			LocationsToggle.IsSelected = 
+				BlightsListView.IsVisible = false;
+		}
+
+		void LocationsToggle_Clicked (object sender, EventArgs e)
+		{
+			if (LocationsToggle.IsSelected)
+				return;
+
+			HeroesToggle.IsSelected = 
+				HeroesListView.IsVisible = false;
+
+			LocationsToggle.IsSelected = 
+				BlightsListView.IsVisible = true;
 		}
 
 		void ListView_ItemTapped (object sender, ItemTappedEventArgs e)

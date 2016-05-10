@@ -119,6 +119,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\ISpawnViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\LocationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Header.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TabButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

@@ -6,18 +6,18 @@ x:Class="Vineland.Necromancer.UI.NecromancerApp">
 	<Application.Resources>
 		<ResourceDictionary>
 			<Style TargetType="Button">
-				<Setter Property="BackgroundColor" Value="#78FFFCCC" />
-				<Setter Property="TextColor" Value="Black" />
+				<Setter Property="BackgroundColor" Value="{x:Static ui:AppConstants.ButtonBackground}" />
+				<Setter Property="TextColor" Value="{x:Static ui:AppConstants.TextColour}" />
 				<Setter Property="FontSize" Value="20" />
 				<Setter Property="FontFamily" Value="baskervillebecker" />
 			</Style>
 			<Style TargetType="Label">
 				<Setter Property="FontFamily" Value="baskervillebecker" />
 				<Setter Property="FontSize" Value="20" />
-				<Setter Property="TextColor" Value="Black" />
+				<Setter Property="TextColor" Value="{x:Static ui:AppConstants.TextColour}" />
 			</Style>
 			<Style TargetType="ListView">
-				<Setter Property="SeparatorColor" Value="#BC63402D"/>
+				<Setter Property="SeparatorColor" Value="{x:Static ui:AppConstants.SeparatorColour}"/>
 				<Setter Property="BackgroundColor" Value="Transparent" />
 <!--				<Setter Property="SeparatorVisibility" Value="None"/>-->
 			</Style>

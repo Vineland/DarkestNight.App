@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Content;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using Vineland.DarkestNight.UI;
 
 [assembly: ExportRenderer (typeof(Picker), typeof(CustomPickerRenderer))]
 namespace Vineland.Necromancer.UI.Droid
@@ -63,7 +64,7 @@ namespace Vineland.Necromancer.UI.Droid
 			var view = (TextView)base.GetDropDownView (position, convertView, parent);
 
 			view.Typeface = FontManager.GetFont("hobo");
-			view.SetBackgroundColor (Android.Graphics.Color.ParseColor("#78FFFCCC"));//(Resource.Color.beige));
+			view.SetBackgroundColor (AppConstants.ButtonBackground.ToAndroid());
 			view.Gravity = GravityFlags.Center;
 			return view;
 
