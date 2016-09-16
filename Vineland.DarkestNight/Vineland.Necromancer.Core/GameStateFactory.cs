@@ -16,16 +16,16 @@ namespace Vineland.Necromancer.Core
 			_blightService = blightService;
 		}
 
-		public GameState CreateGameState (int numberOfPlayers, DifficultyLevelSettings difficultyLevelSettings)
+		public GameState CreateGameState (int numberOfPlayers, int startingDarkness, int startingBlights, bool useQuests, DarknessCardsMode mode)//DifficultyLevelSettings difficultyLevelSettings)
 		{
 			var gameState = new GameState ();
 
 			gameState.NumberOfPlayers = numberOfPlayers;
-			gameState.DifficultyLevel = difficultyLevelSettings.DifficultyLevel;
-			gameState.Darkness = difficultyLevelSettings.StartingDarkness;
-			gameState.PallOfSuffering = difficultyLevelSettings.PallOfSuffering;
-			gameState.SpawnExtraQuests = difficultyLevelSettings.SpawnExtraQuests;
-			//gameState.Mode = settings.DarknessCardsMode;
+			//gameState.DifficultyLevel = difficultyLevelSettings.DifficultyLevel;
+			gameState.Darkness = startingDarkness;
+			gameState.UseQuests = useQuests;
+			//gameState.SpawnExtraQuests = difficultyLevelSettings.SpawnExtraQuests;
+			gameState.Mode = mode;
 
 			gameState.Necromancer.LocationId = (int)LocationIds.Ruins;
 
@@ -36,7 +36,7 @@ namespace Vineland.Necromancer.Core
 
 			gameState.Locations = _dataService.GetLocations();
 
-			_blightService.SpawnStartingBlights (difficultyLevelSettings, gameState);
+			_blightService.SpawnStartingBlights (startingBlights, gameState);
 
 			return gameState;
 		}

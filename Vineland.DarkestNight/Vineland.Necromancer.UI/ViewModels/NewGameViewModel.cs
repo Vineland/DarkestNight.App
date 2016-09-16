@@ -25,88 +25,54 @@ namespace Vineland.Necromancer.UI
 			_settings = settings;
 			_factory = factory;
 			_allDifficultyLevelSettings = dataService.GetDifficultyLevelSettings ();
-			DifficultyLevels = (DifficultyLevel[])Enum.GetValues (typeof(DifficultyLevel));
 
-			NumberOfPlayers = _settings.NumberOfPlayers;
-			DifficultyLevel = _settings.DifficultyLevel;
+			DarknessCardsModes = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
+
         }
-
-		public int NumberOfPlayers 
-		{ 
-			get { return _settings.NumberOfPlayers; }
-			set { _settings.NumberOfPlayers = value; }
-		}
-
-		public DifficultyLevel[] DifficultyLevels { get; private set; }
-
-		public DifficultyLevel DifficultyLevel 
-		{ 
-			get { return _settings.DifficultyLevel; }
-			set{
-				_settings.DifficultyLevel = value;
-				DifficultyChanged (value);
-			}
-		}
 
 		DifficultyLevelSettings _difficultyLevelSettings;
 
 		public int StartingDarkness {
-			get{ return _difficultyLevelSettings.StartingDarkness; }
-			set{ 
-				_difficultyLevelSettings.StartingDarkness= value; 
-				if (DifficultyLevel == DifficultyLevel.Custom)
-					_settings.StartingDarkness = value;
+			get{
+				return _settings.StartingDarkness;
+			}
+			set{
+				_settings.StartingDarkness = value;
 			}
 		}
 
 		public int StartingBlights{
-			get{ return _difficultyLevelSettings.StartingBlights; }
-			set{ _difficultyLevelSettings.StartingBlights= value; 
-				if (DifficultyLevel == DifficultyLevel.Custom)
-					_settings.StartingBlights = value;}
-		}
-
-		public bool PallOfSuffering {
-			get{ return _difficultyLevelSettings.PallOfSuffering; }
-			set{ _difficultyLevelSettings.PallOfSuffering= value; 
-				if (DifficultyLevel == DifficultyLevel.Custom)
-					_settings.PallOfSuffering = value;}
-		}
-
-		public bool SpawnExtraQuests {
-			get{ return _difficultyLevelSettings.SpawnExtraQuests; }
-			set{ _difficultyLevelSettings.SpawnExtraQuests= value; 
-				if (DifficultyLevel == DifficultyLevel.Custom)
-					_settings.SpawnExtraQuests = value;}
+			get{
+				return _settings.StartingBlights;
 			}
-			public string Notes {
-			get{ return _difficultyLevelSettings.Notes; }
+			set{
+				_settings.StartingBlights = value;
 			}
-
-		public bool ShowNotes{
-			get { return !string.IsNullOrEmpty (Notes); }
 		}
 
-		public bool CanEdit{
-			get { return DifficultyLevel == DifficultyLevel.Custom; }
+		public bool UseQuests
+		{
+			get { return _settings.UseQuests; }
+			set
+			{
+				_settings.UseQuests = value;}
 		}
 
-		public void DifficultyChanged(DifficultyLevel difficultyLevel){
-			_difficultyLevelSettings = _allDifficultyLevelSettings.Single (x => x.DifficultyLevel == difficultyLevel);
-			RaisePropertyChanged (() => StartingDarkness);      
-			RaisePropertyChanged (() => StartingBlights);
-			RaisePropertyChanged (() => PallOfSuffering);
-			RaisePropertyChanged (() => SpawnExtraQuests);
-			RaisePropertyChanged (() => Notes);
-			RaisePropertyChanged (() => ShowNotes);
-			RaisePropertyChanged (() => CanEdit);
+		public DarknessCardsMode[] DarknessCardsModes { get; private set;}
+		public DarknessCardsMode DarknessCardsMode
+		{
+			get { return _settings.DarknessCardsMode;}
+			set
+			{
+				_settings.DarknessCardsMode = value;
+			}
 		}
 
 		public RelayCommand ChooseHeroes{
 			get{
 				return new RelayCommand (async () => {
 					
-					Application.CurrentGame = _factory.CreateGameState(NumberOfPlayers, _difficultyLevelSettings);
+					Application.CurrentGame = _factory.CreateGameState(4, StartingDarkness, StartingBlights, UseQuests, DarknessCardsMode);
 					var page = await Application.Navigation.Push<ChooseHeroesPage>();
 					(page.BindingContext as ChooseHeroesViewModel).Initialise();
 				});

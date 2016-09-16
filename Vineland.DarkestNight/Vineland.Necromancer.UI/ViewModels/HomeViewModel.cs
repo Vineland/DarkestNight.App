@@ -30,9 +30,9 @@ namespace Vineland.Necromancer.UI
 					async () => {
 						if(Application.CurrentGame == null
 							|| !await Application.Navigation.DisplayConfirmation("Continue the last game?", null, "Yes", "No"))
-							Application.Navigation.Push<NewGamePage>();
+							await Application.Navigation.Push<NewGamePage>();
 						else
-							Application.Navigation.Push<HeroTurnPage> ();
+							await Application.Navigation.Push<HeroTurnPage>();
 					}); 
 			}
 		}

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
@@ -23,28 +23,20 @@ Title="New Game">
 	<RowDefinition Height="Auto" />
 	<RowDefinition Height="Auto" />
 	<RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
 
     </Grid.RowDefinitions>
 
-    <Label Text="Number Of Players" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
-	<ui:CustomStepper Value="{Binding NumberOfPlayers}" Maximum="4" Minimum="2" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>	
+    <Label Text="Starting Darkness" Grid.Row="0" VerticalOptions="Center" />
+	<ui:CustomStepper Value="{Binding StartingDarkness}" Maximum="10" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>	
 
-	<Label Text="Difficulty" Grid.Row="1" VerticalOptions="Center" />
-	<ui:BindablePicker x:TypeArguments="core:DifficultyLevel"  ItemsSource="{Binding DifficultyLevels}" SelectedItem="{Binding DifficultyLevel}" Grid.Column="1" Grid.Row="1"  HorizontalOptions="End"/>	
+	<Label Text="Starting Blights" Grid.Row="1" VerticalOptions="Center" />
+	<ui:CustomStepper Value="{Binding StartingBlights}" Maximum="4" Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>	
 
-    <Label Text="Starting Darkness" Grid.Row="2" VerticalOptions="Center" />
-	<ui:CustomStepper Value="{Binding StartingDarkness}" Maximum="10" Grid.Column="1" Grid.Row="2" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>	
+	<Label Text="Use Quests" VerticalOptions="Center" Grid.Row="2" />
+	<ui:CheckButton IsSelected="{Binding UseQuests}" Grid.Column="1" Grid.Row="2" HorizontalOptions="End"/>
 
-	<Label Text="Starting Blights" Grid.Row="3" VerticalOptions="Center" />
-	<ui:CustomStepper Value="{Binding StartingBlights}" Maximum="4" Grid.Column="1" Grid.Row="3" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>	
-
-	<Label Text="Pall Of Suffering" VerticalOptions="Center" Grid.Row="4" />
-	<ui:CheckButton IsSelected="{Binding PallOfSuffering}" Grid.Column="1" Grid.Row="4" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>
-
-	<Label Text="Extra Quests" VerticalOptions="Center" Grid.Row="5" />
-	<ui:CheckButton IsSelected="{Binding SpawnExtraQuests}" Grid.Column="1" Grid.Row="5" IsEnabled="{Binding CanEdit}"  HorizontalOptions="End"/>
+	<Label Text="Darkness Cards" Grid.Row="3" VerticalOptions="Center" />
+	<ui:BindablePicker x:TypeArguments="core:DarknessCardsMode"  ItemsSource="{Binding DarknessCardsModes}" SelectedItem="{Binding DarknessCardsMode}" Grid.Column="1" Grid.Row="3"  HorizontalOptions="End"/>	
 
 </Grid>
 </ContentPage>

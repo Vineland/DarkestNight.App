@@ -8,7 +8,7 @@ namespace Vineland.Necromancer.UI
 	{
 		public TabButton ()
 		{
-			BackgroundColor = AppConstants.ButtonBackground;
+			BackgroundColor = Color.Transparent;
 			BorderRadius = 0;
 		}
 
@@ -24,7 +24,7 @@ namespace Vineland.Necromancer.UI
 		{
 			var tabButton = bindable as TabButton;
 
-			tabButton.BackgroundColor = tabButton.IsSelected ? AppConstants.HeaderBackground : AppConstants.ButtonBackground;
+			tabButton.BackgroundColor = tabButton.IsSelected ? AppConstants.HeaderBackground : Color.Transparent;
 			tabButton.TextColor = tabButton.IsSelected ? AppConstants.HeaderTextColour : AppConstants.TextColour;
 		}
 	}

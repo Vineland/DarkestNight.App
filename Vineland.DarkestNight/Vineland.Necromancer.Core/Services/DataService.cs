@@ -67,34 +67,38 @@ namespace Vineland.Necromancer.Core
 
 		public List<Blight> GetBlights ()
 		{
-			var blights = Blights.Where (x => x.Expansion == Expansion.BaseGame).ToList ();
+			//var blights = Blights.Where (x => x.Expansion == Expansion.BaseGame).ToList ();
 
-			if (_settings.OnShiftingWinds)
-				blights.AddRange (Blights.Where (x => x.Expansion == Expansion.OnShiftingWinds));
+			//if (_settings.Expansions == Expansion.OnShiftingWinds)
+			//	blights.AddRange (Blights.Where (x => x.Expansion == Expansion.OnShiftingWinds));
 
-			if (_settings.InTalesOfOld)
-				blights.AddRange (Blights.Where (x => x.Expansion == Expansion.InTalesOfOld));
+			//if (_settings.InTalesOfOld)
+			//	blights.AddRange (Blights.Where (x => x.Expansion == Expansion.InTalesOfOld));
+
+			var blights = Blights.Where(x => _settings.Expansions.HasFlag(x.Expansion));
 
 			return blights.OrderBy (x => x.Name).ToList ();
 		}
 
 		public List<MapCard> GetMapCards ()
 		{
-			var mapCards = MapCards.Where (x => x.Expansion == Expansion.BaseGame).ToList ();
+			//var mapCards = MapCards.Where (x => x.Expansion == Expansion.BaseGame).ToList ();
 
-			if (_settings.OnShiftingWinds)
-				mapCards.AddRange (MapCards.Where (x => x.Expansion == Expansion.OnShiftingWinds));
+			//if (_settings.OnShiftingWinds)
+			//	mapCards.AddRange (MapCards.Where (x => x.Expansion == Expansion.OnShiftingWinds));
 
-			if (_settings.InTalesOfOld)
-				mapCards.AddRange (MapCards.Where (x => x.Expansion == Expansion.InTalesOfOld));
-			
+			//if (_settings.InTalesOfOld)
+			//	mapCards.AddRange (MapCards.Where (x => x.Expansion == Expansion.InTalesOfOld));
+
+			var mapCards = MapCards.Where(x => _settings.Expansions.HasFlag(x.Expansion)).ToList();
+
 			mapCards.Shuffle ();
 
 			return mapCards;
 		}
 
 		public List<Hero> GetAllHeroes(){
-			var heroes = Heroes.Where (x => x.Expansion == Expansion.BaseGame).ToList();
+			/*var heroes = Heroes.Where (x => x.Expansion == Expansion.BaseGame).ToList();
 
 			if (_settings.WithAnInnerLight)
 				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.WithAnInnerLight));
@@ -119,6 +123,8 @@ namespace Vineland.Necromancer.Core
 
 			if (_settings.TinkerPromo)
 				heroes.AddRange (Heroes.Where (x => x.Expansion == Expansion.TinkerPromo));
+*/
+			var heroes = Heroes.Where(x => _settings.Expansions.HasFlag(x.Expansion));
 
 			return heroes.OrderBy(x=> x.Name).ToList();
 		}
@@ -174,7 +180,7 @@ namespace Vineland.Necromancer.Core
 				DifficultyLevel = DifficultyLevel.Custom,
 				StartingBlights = _settings.StartingBlights,
 				StartingDarkness = _settings.StartingDarkness,
-				PallOfSuffering = _settings.PallOfSuffering
+				//PallOfSuffering = _settings.PallOfSuffering
 			});
 
 			return difficultyLevelSettings;

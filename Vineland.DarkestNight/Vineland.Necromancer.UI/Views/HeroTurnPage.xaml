@@ -1,37 +1,23 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" x:Class="Vineland.Necromancer.UI.HeroTurnPage" BackgroundImage="background">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Name="Necromancer" Command="{Binding NextPhase}">
 		</ToolbarItem>
-	</ContentPage.ToolbarItems>
+	</ContentPage.ToolbarItems>	
 	<Grid Padding="0,8,0,0" RowSpacing="0" ColumnSpacing="0">
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Image Source="darkness" HorizontalOptions="Center" Grid.ColumnSpan="2" />
-		<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center" Grid.Row="1" Grid.ColumnSpan="2" />
-		<ui:TabButton x:Name="HeroesToggle" Text="Heroes" Grid.Row="2" IsSelected="true"/>
-		<ui:TabButton x:Name="LocationsToggle" Text="Blights" Grid.Row="2" Grid.Column="1" />
-		<View BackgroundColor="{x:Static ui:AppConstants.HeaderBackground}" Grid.Row="3" Grid.ColumnSpan="2" HeightRequest="3"/>
-		<ListView x:Name="HeroesListView" 
-		ItemsSource="{ Binding Heroes }" Grid.Row="4" Grid.ColumnSpan="2" HasUnevenRows="true">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<ui:HeroCell />
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-		<ListView x:Name="BlightsListView" ItemsSource="{ Binding Locations }" IsVisible="false" Grid.Row="4" Grid.ColumnSpan="2" HasUnevenRows="true">
+		<Image Source="darkness" HorizontalOptions="Center" />
+		<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center" Grid.Row="1" />
+		<ListView x:Name="BlightsListView" ItemsSource="{ Binding BlightsViewModel.Locations }" Grid.Row="2" HasUnevenRows="true">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ui:LocationBlightsCell />

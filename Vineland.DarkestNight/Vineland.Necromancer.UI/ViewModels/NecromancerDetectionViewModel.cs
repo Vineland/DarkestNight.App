@@ -16,28 +16,18 @@ namespace Vineland.Necromancer.UI
 	{
 		NecromancerService _necromancerService;
 
-		#region Notable Heroes
-
-		Seer _seer;
-		Wizard _wizard;
-
-		#endregion
-
 		public NecromancerDetectionViewModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
 
-			_seer = Application.CurrentGame.Heroes.GetHero<Seer> ();
-			_wizard = Application.CurrentGame.Heroes.GetHero<Wizard> ();
-
 			Results = new List<NecromancerDetectionResultViewModel> ();
 
-			if (_seer == null || _seer.ProphecyOfDoomRoll == 0)
+			if (Application.CurrentGame.Heroes.ProphecyOfDoomRoll == 0)
 				Results.Add (new NecromancerDetectionResultViewModel (_necromancerService));
 			else
-				Results.Add (new NecromancerDetectionResultViewModel (_necromancerService, _seer.ProphecyOfDoomRoll));
+				Results.Add (new NecromancerDetectionResultViewModel (_necromancerService, Application.CurrentGame.Heroes.ProphecyOfDoomRoll));
 
-			if (_wizard != null && _wizard.RuneOfMisdirectionActive)
+			if (Application.CurrentGame.Heroes.RuneOfMisdirectionActive)
 				Results.Add (new NecromancerDetectionResultViewModel (_necromancerService));
 
 			SelectedResult = Results.First ();
@@ -67,21 +57,11 @@ namespace Vineland.Necromancer.UI
 	{
 		NecromancerService _necromancerService;
 
-		Acolyte _acolyte;
-		Wayfarer _wayfarer;
-		Valkyrie _valkyrie;
-		Shaman _shaman;
-
 		public NecromancerDetectionResultViewModel (NecromancerService necromancerService, int? roll = null)
 		{
 			_necromancerService = necromancerService;
 			if (!roll.HasValue)
 				roll = new D6GeneratorService ().RollDemBones ();
-
-			_acolyte = Application.CurrentGame.Heroes.GetHero<Acolyte> ();
-			_wayfarer = Application.CurrentGame.Heroes.GetHero <Wayfarer> ();
-			_valkyrie = Application.CurrentGame.Heroes.GetHero <Valkyrie> ();
-			_shaman = Application.CurrentGame.Heroes.GetHero<Shaman> ();
 
 			NecromancerRoll = roll.Value;
 			DetectHero ();
@@ -108,7 +88,8 @@ namespace Vineland.Necromancer.UI
 		public List<int> HeroesToIgnore { get; set; } = new List<int> ();
 
 		public bool VoidArmorVisible {
-			get{ return DetectedHero?.HasVoidArmor ?? false; }
+			get{ return Application.CurrentGame.Heroes.VoidArmorHeroId.HasValue
+				&& Application.CurrentGame.Heroes.VoidArmorHeroId.Value == DetectedHero.Id ; }
 		}
 
 		public RelayCommand VoidArmorCommand {
@@ -125,51 +106,50 @@ namespace Vineland.Necromancer.UI
 
 		public bool BlindingBlackVisible {
 			get {
-				return _acolyte?.BlindingBlackActive ?? false;
+				return Application.CurrentGame.Heroes.BlindingBlackActive;
 			}
 		}
 
 		public RelayCommand BlindingBlackCommand {
 			get {
 				return new RelayCommand (() => {
-					HeroesToIgnore = Application.CurrentGame.Heroes.Select (x => x.Id).ToList ();
-					_acolyte.BlindingBlackActive = false;
+					HeroesToIgnore = Application.CurrentGame.Heroes.Active.Select (x => x.Id).ToList ();
+					//_acolyte.BlindingBlackActive = false;
 					DetectHero ();
 				},
 					() => {
 						return DetectedHero != null
-							&& _acolyte != null
-						&& _acolyte.BlindingBlackActive;
+							&& Application.CurrentGame.Heroes.BlindingBlackActive;
 					});
 			}
 		}
 
 		public bool DecoyVisible {
 			get {
-				return _wayfarer?.DecoyActive ?? false;
+				return Application.CurrentGame.Heroes.DecoyActive;
 			}
 		}
 
 		public RelayCommand DecoyCommand {
 			get {
 				return new RelayCommand (() => {
-					DetectedHero = _wayfarer;
+					DetectedHero = Application.CurrentGame.Heroes.Active.GetHero<Wayfarer>();
 					RaisePropertyChanged (() => DetectedHero);
 					RaisePropertyChanged (() => DecoyCommand);
 					RaisePropertyChanged (() => VoidArmorCommand);
 				},
 					() => {
+						var wayfarer = Application.CurrentGame.Heroes.Active.GetHero<Wayfarer>();
 						return DetectedHero != null
-						&& _wayfarer != null
-						&& _wayfarer.LocationId != (int)LocationIds.Monastery
-						&& _wayfarer.Secrecy >= DetectionRoll;
+							&& wayfarer.LocationId != (int)LocationIds.Monastery
+							&& wayfarer.Secrecy >= DetectionRoll;
 					});
 			}
 		}
 
 		public bool ElusiveSpiritVisible {
 			get {
-				return _valkyrie?.ElusiveSpiritActive ?? false;
+				return Application.CurrentGame.Heroes.ElusiveSpiritActive;
 			}
 		}
 
@@ -194,7 +174,6 @@ namespace Vineland.Necromancer.UI
 			RaisePropertyChanged (() => BlindingBlackCommand);
 			RaisePropertyChanged (() => DecoyCommand);
 			RaisePropertyChanged (() => VoidArmorCommand);
-			//RaisePropertyChanged (() => BlindingBlackCommand);
 		}
 	}
 }

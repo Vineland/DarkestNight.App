@@ -33,7 +33,7 @@ namespace Vineland.Necromancer.UI
 		private async void HeroDefeated ()
 		{
 			if (await Application.Navigation.DisplayConfirmation ("Hero Defeated?", null, "Yes", "No")) {
-				var availableHeroes = Resolver.Resolve<DataService> ().GetAllHeroes ().Where (x => !Application.CurrentGame.Heroes.Any (y => y.Id == x.Id)).ToList ();
+				var availableHeroes = Resolver.Resolve<DataService> ().GetAllHeroes ().Where (x => !Application.CurrentGame.Heroes.Active.Any (y => y.Id == x.Id)).ToList ();
 				var newHeroName = await Application.Navigation.DisplayActionSheet ("New Hero", "Cancel", null, availableHeroes.Select (x => x.Name).ToArray ());
 				MessagingCenter.Send<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated",
 					new HeroDefeatedArgs () {
@@ -126,40 +126,6 @@ namespace Vineland.Necromancer.UI
 					_hero.LocationId = value.Id;
 					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroMoved", _hero);
 				}
-			}
-		}
-
-		public bool HasVoidArmor {
-			get{ return _hero.HasVoidArmor; }
-			set {
-				if (value)
-					Application.CurrentGame.Heroes.ForEach (h => h.HasVoidArmor = false);
-				
-				_hero.HasVoidArmor = value; 
-			}
-		}
-
-		public bool HasShieldOfRadiance {
-			get { 
-				return _hero.HasShieldOfRadiance; 
-			}
-			set { 
-				if (value)
-					Application.CurrentGame.Heroes.ForEach (h => h.HasShieldOfRadiance = false);
-				
-				_hero.HasShieldOfRadiance = value; 
-			}
-		}
-
-		public bool HasSeeingGlass {
-			get { 
-				return _hero.HasSeeingGlass; 
-			}
-			set { 
-				if (value)
-					Application.CurrentGame.Heroes.ForEach (h => h.HasSeeingGlass = false);
-
-				_hero.HasSeeingGlass = value; 
 			}
 		}
 

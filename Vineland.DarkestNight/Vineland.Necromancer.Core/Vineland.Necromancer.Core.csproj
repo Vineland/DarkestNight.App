@@ -69,6 +69,7 @@
     <Compile Include="Services\DataService.cs" />
     <Compile Include="GameStateFactory.cs" />
     <Compile Include="Model\DifficultyLevel.cs" />
+    <Compile Include="Model\Editions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

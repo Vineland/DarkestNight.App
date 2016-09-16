@@ -23,6 +23,7 @@ namespace Vineland.Necromancer.UI
 			foreach (var location in Application.CurrentGame.Locations.Where(x=>x.Blights.Any()))
 				Locations.Add(new LocationViewModel(location));
 
+			/*
 			switch (Application.CurrentGame.DifficultyLevel) {
 			case DifficultyLevel.Champion:
 			case DifficultyLevel.Heroic:
@@ -32,7 +33,7 @@ namespace Vineland.Necromancer.UI
 				SpawnRandomQuest ();
 				SpawnRandomQuest ();
 				break;
-			}
+			}*/
 		}
 
 		public void SpawnRandomQuest(){

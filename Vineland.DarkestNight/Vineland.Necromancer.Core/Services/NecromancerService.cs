@@ -39,7 +39,7 @@ namespace Vineland.Necromancer.Core
 			result.OldLocationId = gameState.Necromancer.LocationId;
 
 			result.DarknessIncrease = 1 + gameState.Locations.SelectMany (x => x.Blights).Count (x => x.Name == "Desecration");
-			if (gameState.Heroes.Any (x => x.HasShieldOfRadiance) && result.NecromancerRoll == 6) {
+			if (gameState.Heroes.ShieldOfRadianceActive && result.NecromancerRoll == 6) {
 				result.DarknessIncrease--;
 				result.Notes += "Shield of Radiance triggered" + Environment.NewLine;
 			}
@@ -74,15 +74,15 @@ namespace Vineland.Necromancer.Core
 		{			
 			var detectionRoll = gameState.GatesActive ? roll + 1 : roll;
 			//first check if any heroes can be detected
-			var exposedHeroes = gameState.Heroes.Where (x => x.LocationId != (int)LocationIds.Monastery && x.Secrecy < detectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
+			var exposedHeroes = gameState.Heroes.Active.Where (x => x.LocationId != (int)LocationIds.Monastery && x.Secrecy < detectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
 
 			//special hero effects
-			var ranger = gameState.Heroes.SingleOrDefault (x => x is Ranger) as Ranger;
-			if (ranger != null && ranger.HermitActive && ranger.LocationId == (int)LocationIds.Swamp)
+			var ranger = gameState.Heroes.Active.SingleOrDefault (x => x is Ranger) as Ranger;
+			if (gameState.Heroes.HermitActive && ranger.LocationId == (int)LocationIds.Swamp)
 				exposedHeroes = exposedHeroes.Where (h => h != ranger);
 
-			var paragon = gameState.Heroes.SingleOrDefault (h => h is Paragon) as Paragon;
-			if (paragon != null && paragon.AuraOfHumilityActive)
+			var paragon = gameState.Heroes.Active.SingleOrDefault (h => h is Paragon) as Paragon;
+			if (gameState.Heroes.AuraOfHumilityActive)
 				exposedHeroes = exposedHeroes.Where (x => x.LocationId != paragon.LocationId);
 
 			if (exposedHeroes.Any ()) {
@@ -136,13 +136,11 @@ namespace Vineland.Necromancer.Core
 			} else
 				newLocation = gameState.Locations.Single (x => x.Id == currentLocation.Pathways [roll - 1]);
 
-			var conjurer = gameState.Heroes.GetHero<Conjurer> ();
-			if (conjurer != null
-			   && conjurer.InvisibleBarrierLocationId.HasValue
-			   && conjurer.InvisibleBarrierLocationId.Value == newLocation.Id) 
+			if (gameState.Heroes.InvisibleBarrierLocationId.HasValue
+				&& gameState.Heroes.InvisibleBarrierLocationId == newLocation.Id) 
 			{
 				newLocation = currentLocation;
-				conjurer.InvisibleBarrierLocationId = null;
+				gameState.Heroes.InvisibleBarrierLocationId = null;
 				//result.Notes += string.Format ("Invisible Barrier deactivated and cancelled the Necromancer's movement. {0}", Environment.NewLine);
 			}
 
@@ -156,7 +154,7 @@ namespace Vineland.Necromancer.Core
 			var result = new NecromancerSpawnResult() { NewBlights = new List<Tuple<Location, Blight>>()};
 
 			//check if a quest needs to be spawned
-			if (gameState.PallOfSuffering && (necromancerRoll == 3 || necromancerRoll == 4))
+			if (gameState.UseQuests && (necromancerRoll == 3 || necromancerRoll == 4))
 				result.SpawnQuest = true;
 
 			var initialBlightCount = newLocation.BlightCount;
@@ -177,7 +175,7 @@ namespace Vineland.Necromancer.Core
 			//darkness card effects
 			//if (gameState.Mode != DarknessCardsMode.None) {
 				if (gameState.Necromancer.FocusedRituals
-					&& !gameState.Heroes.Any (x => x.LocationId == newLocation.Id))
+					&& !gameState.Heroes.Active.Any (x => x.LocationId == newLocation.Id))
 					result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
 
 				if (gameState.Necromancer.CreepingShadows && (necromancerRoll == 5 || necromancerRoll == 6))

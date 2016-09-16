@@ -110,22 +110,11 @@ namespace Vineland.Necromancer.UI
 					Application.CurrentGame.Locations = _pendingGameState.Locations;
 					Application.CurrentGame.BlightPool = _pendingGameState.BlightPool;
 					//prophecy of doom is always reset after the necromancer phase
-					var seer = Application.CurrentGame.Heroes.GetHero<Seer> ();
-					if (seer != null)
-						seer.ProphecyOfDoomRoll = 0;
+					Application.CurrentGame.Heroes.ProphecyOfDoomRoll = 0;
+
 					//the state of these powers may have changed during the necromancer phase
-					var conjurer = _pendingGameState.Heroes.GetHero<Conjurer> ();
-					if (conjurer != null)
-						Application.CurrentGame.Heroes.GetHero<Conjurer> ().InvisibleBarrierLocationId = conjurer.InvisibleBarrierLocationId; 
-
-					var acolyte = _pendingGameState.Heroes.GetHero<Acolyte> ();
-					if (acolyte != null)
-						Application.CurrentGame.Heroes.GetHero<Acolyte> ().BlindingBlackActive = acolyte.BlindingBlackActive; 
-
-					var shaman = _pendingGameState.Heroes.GetHero<Shaman> ();
-					if (shaman != null)
-						Application.CurrentGame.Heroes.GetHero<Shaman> ().SpiritSightMapCard = shaman.SpiritSightMapCard; 
-
+					Application.CurrentGame.Heroes.InvisibleBarrierLocationId = _pendingGameState.Heroes.InvisibleBarrierLocationId; 
+				
 					Application.SaveCurrentGame ();
 
 					MessagingCenter.Send<NecromancerActivationViewModel> (this, "NecromancerPhaseComplete");

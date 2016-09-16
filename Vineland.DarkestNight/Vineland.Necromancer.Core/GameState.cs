@@ -13,6 +13,7 @@ namespace Vineland.Necromancer.Core
 		public GameState ()
 		{
 			Necromancer = new NecomancerState ();
+			Heroes = new HeroesState ();
 		}
 
 		public List<Location> Locations { get; set; }
@@ -21,7 +22,7 @@ namespace Vineland.Necromancer.Core
 
 		public List<Blight> BlightPool { get; set; }
 
-		public List<Hero> Heroes { get; set; }
+		public HeroesState Heroes { get; protected set; }
 
 		public NecomancerState Necromancer { get; protected set; }
 
@@ -29,17 +30,17 @@ namespace Vineland.Necromancer.Core
 
 		public int NumberOfPlayers {get;set;}
 
-		public DifficultyLevel DifficultyLevel {get;set;}
+		//public DifficultyLevel DifficultyLevel {get;set;}
 
-		public bool PallOfSuffering { get; set; }
+		public bool UseQuests { get; set; }
 
-		public bool SpawnExtraQuests { get; set; }
-		//public DarknessCardsMode Mode { get; set; }
+		//public bool SpawnExtraQuests { get; set; }
+		public DarknessCardsMode Mode { get; set; }
 
 		public bool DarknessTrackEffectsActive {
 			get {
-				return true;
-				//return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
+				//return true;
+				return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
 			}
 		}
 
@@ -70,6 +71,26 @@ namespace Vineland.Necromancer.Core
 
 		public bool CreepingShadows { get; set; }
 
+		#endregion
+	}
+
+	public class HeroesState{
+		public List<Hero> Active {get;set;}
+
+		#region Artifacts
+		public int? VoidArmorHeroId { get; set; }
+		public bool ShieldOfRadianceActive { get; set; }
+		public bool BlindingBlackActive {get;set;}
+		public int? InvisibleBarrierLocationId { get; set; }
+		public bool AuraOfHumilityActive {get;set;}
+		public bool HermitActive { get; set; }
+		public int? AncientDefenseLocationId {get;set;}
+		public int ProphecyOfDoomRoll {get;set;}
+		public bool ElusiveSpiritActive {get;set;}
+		public bool DecoyActive { get; set; }
+		public bool RuneOfMisdirectionActive { get; set; }
+		//public bool RuneOfClairvoyanceActive {get;set;}
+		//public bool SeeingGlassActive { get; set; }
 		#endregion
 	}
 

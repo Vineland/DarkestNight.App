@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class HeroCell : ViewCell
+	public partial class HeroCell : ContentView
 	{
 		public HeroCell ()
 		{

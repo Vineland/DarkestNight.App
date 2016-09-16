@@ -84,8 +84,8 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand (
 					async () => {
 						
-						Application.CurrentGame.Heroes = HeroSlots.Select(x=>x.Hero).ToList();
-						Application.CurrentGame.Heroes.ForEach(h=>
+						Application.CurrentGame.Heroes.Active = HeroSlots.Select(x=>x.Hero).ToList();
+						Application.CurrentGame.Heroes.Active.ForEach(h=>
 							{ 
 								h.Secrecy = h.SecrecyDefault;
 								h.Grace = h.GraceDefault;

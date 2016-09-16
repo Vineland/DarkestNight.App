@@ -20,9 +20,9 @@ namespace Vineland.Necromancer.UI
 		#region Colours
 
 		public static Color ButtonBackground = Color.FromHex("#78FFFCCC");
-		public static Color HeaderBackground = Color.FromHex ("#BC63402D");
-		public static Color NavBarBackground = Color.FromHex ("#BC63402D");
-		public static Color SeparatorColour = Color.FromHex("#BC63402D");
+		public static Color HeaderBackground = Color.FromHex ("#AA8b7d6b");
+		public static Color NavBarBackground = Color.FromHex ("#AA8b7d6b");
+		public static Color SeparatorColour = Color.FromHex("#AA8b7d6b");
 		public static Color TextColour = Color.Black;
 		public static Color HeaderTextColour = Color.White;
 		public static Color NavBarTextColour = Color.White;

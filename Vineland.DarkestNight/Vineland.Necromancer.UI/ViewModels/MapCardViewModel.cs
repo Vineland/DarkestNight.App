@@ -60,7 +60,7 @@ namespace Vineland.Necromancer.UI
 					case MapCardContext.SpiritSight:
 						{							
 							Application.CurrentGame.MapCards.Return (MapCard);
-							Application.CurrentGame.Heroes.GetHero<Shaman>().SpiritSightMapCard = null;
+							//Application.CurrentGame.Heroes.GetHero<Shaman>().SpiritSightMapCard = null;
 							Application.SaveCurrentGame();
 							MessagingCenter.Send<MapCardViewModel> (this, "SpiritSightCardReturned");
 							break;
