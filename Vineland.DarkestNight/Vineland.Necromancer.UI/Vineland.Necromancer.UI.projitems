@@ -120,6 +120,7 @@
       <DependentUpon>LocationBlightsCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\HeroesView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

@@ -155,6 +155,7 @@
     <Compile Include="Renderers\CustomPageRenderer.cs" />
     <Compile Include="Renderers\CustomImageCellRenderer.cs" />
     <Compile Include="Services\DisplayAlertService.cs" />
+    <Compile Include="Renderers\CustomImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
