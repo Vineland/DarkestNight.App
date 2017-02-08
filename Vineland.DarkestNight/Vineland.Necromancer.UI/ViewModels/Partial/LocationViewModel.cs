@@ -12,20 +12,14 @@ namespace Vineland.Necromancer.UI
 		public LocationViewModel (Location location)
 		{
 			Location = location;
-			Spawns = new ObservableCollection<ISpawnViewModel> ();
+			Spawns = new ObservableCollection<SpawnModelBase> ();
 			foreach (var blight in location.Blights)
 				Spawns.Add (new BlightViewModel (blight));
 		}
 
-		public ObservableCollection<ISpawnViewModel> Spawns { get; private set; }
+		public ObservableCollection<SpawnModelBase> Spawns { get; private set; }
 
 		public Location Location {get; private set;}
-
-		public virtual RelayCommand<BlightViewModel> BlightSelectedCommand {
-			get {
-				return null;
-			}
-		}
 	}
 }
 

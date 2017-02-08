@@ -107,7 +107,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\LocationHeaderCell.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\ISpawnViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\SpawnModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\LocationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Header.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TabButton.cs" />
@@ -121,6 +121,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\HeroesView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\AddBlightModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DropContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DragDropListView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

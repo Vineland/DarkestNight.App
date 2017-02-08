@@ -3,7 +3,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
-	<StackLayout>
+	<ui:DropContainer>
 	<ui:Header Text="{Binding Location.Name}" />
 		<ui:ItemsSourceStackLayout 
 				Orientation="Horizontal"
@@ -22,9 +22,9 @@ x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
 	ItemsSource="{Binding Spawns}">
 		<ui:ItemsSourceStackLayout.ItemTemplate>
 				<DataTemplate>
-					<ui:CustomImage Source="{Binding Image}" OnLongPress="{Binding DestroyBlightCommand}" OnTap="{Binding MoveBlightCommand}" HeightRequest="48" WidthRequest="48"/>
+					<ui:CustomImage Source="{Binding Image}" OnLongPress="{Binding OnLongPress}" OnTap="{Binding OnTap}" HeightRequest="48" WidthRequest="48"/>
 				</DataTemplate>
 		</ui:ItemsSourceStackLayout.ItemTemplate>
 	</ui:ItemsSourceStackLayout>
-	</StackLayout>
+	</ui:DropContainer>
 </ViewCell>

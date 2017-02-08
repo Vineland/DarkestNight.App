@@ -156,6 +156,8 @@
     <Compile Include="Renderers\CustomImageCellRenderer.cs" />
     <Compile Include="Services\DisplayAlertService.cs" />
     <Compile Include="Renderers\CustomImageRenderer.cs" />
+    <Compile Include="Renderers\DropContainerRenderer.cs" />
+    <Compile Include="Renderers\DragDropListViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

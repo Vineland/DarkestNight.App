@@ -24,8 +24,8 @@ namespace Vineland.Necromancer.UI
 			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
 			MessagingCenter.Subscribe<BlightViewModel> (this, "DestroyBlight", DestroyBlight);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight", SpawnBlight);
-			MessagingCenter.Subscribe<BlightViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
-			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SelectBlight", SelectBlight);
+			MessagingCenter.Subscribe<BlightViewModel> (this, "MoveBlight", MoveBlight);
+			MessagingCenter.Subscribe<AddBlightModel> (this, "AddBlight", AddBlight);
 
 			var locationViewModels = Application.CurrentGame.Locations.Select (l => new HeroPhaseLocationViewModel (l, Application.CurrentGame.Heroes.Active.Where(x=>x.LocationId == l.Id).ToList()));
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> (locationViewModels);
@@ -37,8 +37,8 @@ namespace Vineland.Necromancer.UI
 			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
 			MessagingCenter.Unsubscribe<BlightViewModel> (this, "DestroyBlight");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight");
-			MessagingCenter.Unsubscribe<BlightViewModel, MoveBlightArgs> (this, "MoveBlight");
-			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "SelectBlight");
+			MessagingCenter.Unsubscribe<BlightViewModel> (this, "MoveBlight");
+			MessagingCenter.Unsubscribe<AddBlightModel> (this, "AddBlight");
 		}
 
 		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
@@ -50,63 +50,87 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public void DestroyBlight(BlightViewModel sender){
+		public async void DestroyBlight(BlightViewModel sender){
 
+			if (await Application.Navigation.DisplayConfirmation("Destroy Blight", "Are you sure you wish to remove this blight?", "Yes", "No"))
+			{
 				var locationModel = Locations.First(x => x.Spawns.Contains(sender));
-				_blightService.DestroyBlight (locationModel.Location, sender.Blight, Application.CurrentGame);
-				Application.SaveCurrentGame ();
+				_blightService.DestroyBlight(locationModel.Location, sender.Blight, Application.CurrentGame);
+				Application.SaveCurrentGame();
 
-			locationModel.RemoveBlightViewModel (sender);
+				locationModel.RemoveBlightViewModel(sender);
+			}
 		}
 
+		public async void AddBlight(AddBlightModel sender)
+		{
+			var action = await Application.Navigation.DisplayActionSheet(
+							"New Blight",
+							"Cancel",
+							null,
+							"Spawn",
+							"Select");
+			if (action != "Cancel")
+			{
+				var locationSection = Locations.First(x => x.Spawns.Contains(sender));
+				switch (action)
+				{
+					case "Spawn":
+						SpawnBlight(locationSection);
+						break;
+					case "Select":
+						SelectBlight(locationSection);
+						break;
+				}
+			}
+		}
 
-		public async void SpawnBlight (HeroPhaseLocationViewModel sender)
+		public void SpawnBlight(HeroPhaseLocationViewModel locationSection)
 		{
 			Blight blight = null;
 
-			await Task.Run (() => {
-
-				blight = _blightService.SpawnBlight (sender.Location, Application.CurrentGame).Item2;
-				Application.SaveCurrentGame ();
-			});
-
-			sender.AddBlightViewModel(new BlightViewModel (blight));
-		}
-
-
-
-		public void MoveBlight(BlightViewModel sender, MoveBlightArgs args)
-		{
-			var currentLocationSection = Locations.First(x => x.Spawns.Contains(sender));
-			var newLocationSection = Locations.Single(l => l.Location.Name == args.NewLocationName);
-			if (currentLocationSection == newLocationSection)
-				return;
-
-			//remove from gamestate
-			currentLocationSection.Location.Blights.Remove(args.BlightViewModel.Blight);
-			newLocationSection.Location.Blights.Add(args.BlightViewModel.Blight);
+			blight = _blightService.SpawnBlight(locationSection.Location, Application.CurrentGame).Item2;
 			Application.SaveCurrentGame();
-			//update view
-			currentLocationSection.RemoveBlightViewModel(args.BlightViewModel);
-			newLocationSection.AddBlightViewModel(args.BlightViewModel);
+
+			locationSection.AddBlightViewModel(new BlightViewModel(blight));
 		}
 
-		public async void SelectBlight(HeroPhaseLocationViewModel sender){
-			var blightOptions = Application.CurrentGame.BlightPool.Select (x => x.Name).Distinct ();
-			var option = await Application.Navigation.DisplayActionSheet ("Select Blight", "Cancel", null, blightOptions.ToArray ());
-			if (option == "Cancel")
-				return;
 
-			var blight = Application.CurrentGame.BlightPool.FirstOrDefault(x=>x.Name == option);
 
-			Application.CurrentGame.BlightPool.Remove(blight);
-			sender.Location.Blights.Add(blight);
+		public async void MoveBlight(BlightViewModel sender)
+		{
+			var newLocationName = await Application.Navigation.DisplayActionSheet("New Location", "Cancel", null, Application.CurrentGame.Locations.Select(x => x.Name).ToArray());
+			if (newLocationName != "Cancel")
+			{
+				var currentLocationSection = Locations.First(x => x.Spawns.Contains(sender));
+				var newLocationSection = Locations.Single(l => l.Location.Name == newLocationName);
+				if (currentLocationSection == newLocationSection)
+					return;
 
-			sender.AddBlightViewModel(new BlightViewModel (blight));
+				//remove from gamestate
+				currentLocationSection.Location.Blights.Remove(sender.Blight);
+				newLocationSection.Location.Blights.Add(sender.Blight);
+				Application.SaveCurrentGame();
+				//update view
+				currentLocationSection.RemoveBlightViewModel(sender);
+				newLocationSection.AddBlightViewModel(sender);
+			}
+		}
 
-			await Task.Run (() => {
-				Application.SaveCurrentGame ();
-			});
+		public async void SelectBlight(HeroPhaseLocationViewModel locationSection)
+		{
+			var blightOptions = Application.CurrentGame.BlightPool.Select(x => x.Name).Distinct();
+			var option = await Application.Navigation.DisplayActionSheet("Select Blight", "Cancel", null, blightOptions.ToArray());
+			if (option != "Cancel")
+			{
+				var blight = Application.CurrentGame.BlightPool.FirstOrDefault(x => x.Name == option);
+
+				Application.CurrentGame.BlightPool.Remove(blight);
+				locationSection.Location.Blights.Add(blight);
+
+				locationSection.AddBlightViewModel(new BlightViewModel(blight));
+				Application.SaveCurrentGame();
+			}
 		}
 	}
 
@@ -117,23 +141,18 @@ namespace Vineland.Necromancer.UI
 		public HeroPhaseLocationViewModel(Location location, IEnumerable<Hero> heroes)
 				: base(location)
 		{
-			Spawns.Add(new BlightViewModel(null));
-
 			Heroes = new ObservableCollection<HeroSummaryViewModel>(heroes.Select(x => new HeroSummaryViewModel(x)));
-
+			CheckAddBlightOption();
 		}
 
 		public void AddBlightViewModel(BlightViewModel viewModel)
 		{
-			var blights = Spawns.Where(x => x is BlightViewModel).Select(x => x as BlightViewModel).ToList();
-			if (blights.Any() && blights.Last().IsPlaceHolder)
+			if (Spawns.Any() && Spawns.Last() is AddBlightModel)
 				Spawns.Insert(Spawns.Count - 1, viewModel);
 			else
 				Spawns.Add(viewModel);
 
-			if (Location.Blights.Sum(x => x.Weight) >= 4
-				&& blights.Last().IsPlaceHolder)
-				Spawns.RemoveAt(Spawns.Count - 1);
+			CheckAddBlightOption();
 		}
 
 		public void RemoveBlightViewModel(BlightViewModel viewModel)
@@ -145,66 +164,18 @@ namespace Vineland.Necromancer.UI
 
 			var blights = Spawns.Where(x => x is BlightViewModel).Select(x => x as BlightViewModel).ToList();
 
-			if (Location.Blights.Sum(x => x.Weight) < 4
-				&& !blights.Last().IsPlaceHolder)
-				Spawns.Add(new BlightViewModel(null));
+			CheckAddBlightOption();
 		}
 
-		public override RelayCommand<BlightViewModel> BlightSelectedCommand
+		private void CheckAddBlightOption()
 		{
-			get
-			{
-				return new RelayCommand<BlightViewModel>(async (blightViewModel) =>
-				{
-					if (!blightViewModel.IsPlaceHolder)
-					{
-						var action = await Application.Navigation.DisplayActionSheet("Remove Blight", "Cancel", null, "Destroy", "Move");
-						if (action == "Destroy")
-							MessagingCenter.Send<HeroPhaseLocationViewModel, BlightViewModel>(this,
-								"DestroyBlight",
-								blightViewModel
-							);
-
-						if (action == "Move")
-						{
-							var newLocationName = await Application.Navigation.DisplayActionSheet("New Location", "Cancel", null, Application.CurrentGame.Locations.Select(x => x.Name).ToArray());
-							if (newLocationName != "Cancel"
-								&& newLocationName != Location.Name)
-							{
-								MessagingCenter.Send<HeroPhaseLocationViewModel, MoveBlightArgs>(this, "MoveBlight",
-									new MoveBlightArgs()
-									{
-										BlightViewModel = blightViewModel,
-										NewLocationName = newLocationName
-									});
-							}
-						}
-					}
-					else {
-						var action = await Application.Navigation.DisplayActionSheet(
-							"New Blight",
-							"Cancel",
-							null,
-							"Spawn",
-							"Select");
-						switch (action)
-						{
-							case "Spawn":
-								MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SpawnBlight");
-								break;
-							case "Select":
-								MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SelectBlight");
-								break;
-						}
-					}
-				});
-			}
+			if (Location.Blights.Sum(x => x.Weight) >= 4
+				&& Spawns.Last() is AddBlightModel)
+				Spawns.RemoveAt(Spawns.Count - 1);
+			else if (Location.Blights.Sum(x => x.Weight) < 4
+			         &&  (!Spawns.Any() || !(Spawns.Last() is AddBlightModel)))
+				Spawns.Add(new AddBlightModel());
 		}
-	}
-
-	public class MoveBlightArgs{
-		public BlightViewModel BlightViewModel;
-		public string NewLocationName;
 	}
 }
 

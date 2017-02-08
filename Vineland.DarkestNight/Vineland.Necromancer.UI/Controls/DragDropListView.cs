@@ -1,9 +1,12 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace Vineland.Necromancer.UI
 {
-	public class DragDropScollViewer
+	public class DragDropListView : ListView
 	{
-		public DragDropScollViewer()
+		public DragDropListView()
+			:base(ListViewCachingStrategy.RecycleElement)
 		{
 		}
 	}

@@ -125,6 +125,8 @@ namespace Vineland.Necromancer.UI
 		}
 	}
 
+	//TODO: Bring together with LocationViewModel
+
 	public class SpawnLocationViewModel
 	{
 		public Location Location { get; private set; }
@@ -132,7 +134,7 @@ namespace Vineland.Necromancer.UI
 		public SpawnLocationViewModel (Location location, IEnumerable<Blight> blights)
 		{
 			Location = location;
-			Spawns = new ObservableCollection<ISpawnViewModel> ();
+			Spawns = new ObservableCollection<SpawnModelBase> ();
 
 			if (blights != null) {
 				foreach (var blight in blights) {
@@ -141,7 +143,7 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public ObservableCollection<ISpawnViewModel> Spawns {get;set;}
+		public ObservableCollection<SpawnModelBase> Spawns {get;set;}
 	}
 }
 

@@ -5,49 +5,56 @@ using Vineland.Necromancer.UI.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(LocationBlightsCell), typeof(HeroPhaseLocationCellRenderer))]
+[assembly: ExportRenderer(typeof(DropContainer), typeof(DropContainerRenderer))]
 namespace Vineland.Necromancer.UI.Droid
 {
-	public class HeroPhaseLocationCellRenderer : ViewCellRenderer
+	public class DropContainerRenderer : VisualElementRenderer<StackLayout>
 	{
-		public HeroPhaseLocationCellRenderer()
+		public DropContainerRenderer()
 		{
 			
 		}
-		protected override Android.Views.View GetCellCore(Cell item, Android.Views.View convertView, ViewGroup parent, Android.Content.Context context)
+		protected override void OnElementChanged(ElementChangedEventArgs<StackLayout> e)
 		{
-			var locationCell = (LocationBlightsCell)item;
-			var view = base.GetCellCore(item, convertView, parent, context) as BaseCellView;
-			view.Drag += Handle_Drag;
-			return view;
+			base.OnElementChanged(e);
+
+			if (e.NewElement == null)
+			{
+				this.Drag -= Handle_Drag;
+			}
+
+			if (e.OldElement == null)
+			{
+				this.Drag += Handle_Drag;
+			}
 		}
 
 		void Handle_Drag(object sender, Android.Views.View.DragEventArgs e)
 		{
-			var view = sender as BaseCellView;
+			e.Handled = false;
 			switch (e.Event.Action)
 			{
 				case DragAction.Started:
 					e.Handled = true;
 					break;
 				case DragAction.Entered:
-					view.SetBackgroundColor(Android.Graphics.Color.Red);
+					this.SetBackgroundColor(Android.Graphics.Color.Red);
 					break;
 				case DragAction.Exited:
-					view.SetBackgroundColor(Android.Graphics.Color.Transparent);
+					this.SetBackgroundColor(Android.Graphics.Color.Transparent);
 					break;
 				case DragAction.Drop:
 					
-					e.Handled = true;
+					//e.Handled = true;
 					var data = e.Event.ClipData.GetItemAt(0).Text;
 
-					view.SetBackgroundColor(Android.Graphics.Color.Transparent);
+					this.SetBackgroundColor(Android.Graphics.Color.Transparent);
 
 					break;
 				case DragAction.Ended:
 
-					view.SetBackgroundColor(Android.Graphics.Color.Transparent);
-					e.Handled = true;
+					this.SetBackgroundColor(Android.Graphics.Color.Transparent);
+					//e.Handled = true;
 					break;
 			}
 		}

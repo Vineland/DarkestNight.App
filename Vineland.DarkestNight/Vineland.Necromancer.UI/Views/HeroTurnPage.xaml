@@ -17,12 +17,12 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI" x:Class="Vineland.Necromancer.U
 		</Grid.RowDefinitions>
 		<Image Source="darkness" HorizontalOptions="Center" />
 		<ui:CustomStepper Value="{Binding Darkness}" Maximum="30" Minimum="0" HorizontalOptions="Center" Grid.Row="1" />
-		<ListView x:Name="BlightsListView" CachingStrategy="RecycleElement" ItemsSource="{ Binding BlightsViewModel.Locations }" Grid.Row="2" HasUnevenRows="true">
-			<ListView.ItemTemplate>
+		<ui:DragDropListView x:Name="BlightsListView" ItemsSource="{ Binding BlightsViewModel.Locations }" Grid.Row="2" HasUnevenRows="true">
+			<ui:DragDropListView.ItemTemplate>
 				<DataTemplate>
 					<ui:LocationBlightsCell />
 				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
+			</ui:DragDropListView.ItemTemplate>
+		</ui:DragDropListView>
 	</Grid>
 </ContentPage>

@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class QuestViewModel : ISpawnViewModel
+	public class QuestViewModel : SpawnModelBase
 	{
-		public ImageSource Image {
+		public override ImageSource Image {
 			get { return FileImageSource.FromFile("quest"); }
 		}
 	}
