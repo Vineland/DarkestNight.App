@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
-namespace Vineland.Necromancer.Core
+namespace Vineland.Necromancer.Domain
 {
 	public class Location: IComparable
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Vineland.Necromancer.Core
+namespace Vineland.Necromancer.Domain
 {
 	public class Blight
 	{

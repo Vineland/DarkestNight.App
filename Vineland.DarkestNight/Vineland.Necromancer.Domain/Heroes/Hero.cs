@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Vineland.Necromancer.Core
+namespace Vineland.Necromancer.Domain
 {
 	public class Hero
     {

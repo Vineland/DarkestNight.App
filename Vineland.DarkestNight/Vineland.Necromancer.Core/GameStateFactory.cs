@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.Core
 {
@@ -30,11 +31,11 @@ namespace Vineland.Necromancer.Core
 			gameState.Necromancer.LocationId = (int)LocationIds.Ruins;
 
 			gameState.MapCards = new Deck<MapCard> ();
-			gameState.MapCards.Initialise (_dataService.GetMapCards ());
+			gameState.MapCards.Initialise (_dataService.GetMapCards ().ToList());
 
-			gameState.BlightPool = _dataService.GetBlights ();
+			gameState.BlightPool = _dataService.GetBlights ().ToList();
 
-			gameState.Locations = _dataService.GetLocations();
+			gameState.Locations = _dataService.GetLocations().ToList();
 
 			_blightService.SpawnStartingBlights (startingBlights, gameState);
 

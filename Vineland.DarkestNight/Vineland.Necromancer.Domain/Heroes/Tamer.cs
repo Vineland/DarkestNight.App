@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Vineland.Necromancer.Core
+namespace Vineland.Necromancer.Domain
 {
 	public class Tamer :Hero
 	{

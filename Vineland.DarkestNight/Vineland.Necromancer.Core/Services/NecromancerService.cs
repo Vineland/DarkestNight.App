@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Xml.Linq;
 using System.Threading;
 using Newtonsoft.Json.Serialization;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.Core
 {

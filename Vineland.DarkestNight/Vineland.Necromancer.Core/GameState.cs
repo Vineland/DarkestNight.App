@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Collections.ObjectModel;
-using System.Dynamic;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.Core
 {

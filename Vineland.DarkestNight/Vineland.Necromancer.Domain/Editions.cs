@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Vineland.Necromancer.Core
+namespace Vineland.Necromancer.Domain
 {
 	public enum Editions
 	{

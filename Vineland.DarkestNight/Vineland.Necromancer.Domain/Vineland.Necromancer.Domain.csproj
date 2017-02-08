@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA063A0B-367C-4E61-A02B-623C1AFB6272}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UseMSBuildEngine>true</UseMSBuildEngine>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Vineland.Necromancer.Domain</RootNamespace>
+    <AssemblyName>Vineland.Necromancer.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Heroes\Acolyte.cs" />
+    <Compile Include="Heroes\Conjurer.cs" />
+    <Compile Include="Heroes\Hero.cs" />
+    <Compile Include="Heroes\Paragon.cs" />
+    <Compile Include="Heroes\Ranger.cs" />
+    <Compile Include="Heroes\Scholar.cs" />
+    <Compile Include="Heroes\Seer.cs" />
+    <Compile Include="Heroes\Shaman.cs" />
+    <Compile Include="Heroes\Tamer.cs" />
+    <Compile Include="Heroes\Valkyrie.cs" />
+    <Compile Include="Heroes\Wayfarer.cs" />
+    <Compile Include="Heroes\Wizard.cs" />
+    <Compile Include="Blight.cs" />
+    <Compile Include="Expansion.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="MapCard.cs" />
+    <Compile Include="MapCardRow.cs" />
+    <Compile Include="DifficultyLevel.cs" />
+    <Compile Include="Editions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Heroes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.Core
 {

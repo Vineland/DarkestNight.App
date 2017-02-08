@@ -2,6 +2,7 @@
 using System.Linq;
 using Vineland.Necromancer.Core;
 using Newtonsoft.Json.Schema;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.Core
 {
