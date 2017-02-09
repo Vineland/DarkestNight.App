@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SharedBootstrapper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\EnumUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChooseHeroesViewModel.cs" />
@@ -121,6 +120,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\HeroesView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

@@ -10,7 +10,7 @@ namespace Vineland.Necromancer.Core
 		public GameState ()
 		{
 			Necromancer = new NecomancerState ();
-			Heroes = new HeroesState ();
+			Heroes = new List<Hero> ();
 		}
 
 		public List<Location> Locations { get; set; }
@@ -19,7 +19,7 @@ namespace Vineland.Necromancer.Core
 
 		public List<Blight> BlightPool { get; set; }
 
-		public HeroesState Heroes { get; protected set; }
+		public List<Hero> Heroes { get; protected set; }
 
 		public NecomancerState Necromancer { get; protected set; }
 
@@ -27,24 +27,11 @@ namespace Vineland.Necromancer.Core
 
 		public int NumberOfPlayers {get;set;}
 
-		//public DifficultyLevel DifficultyLevel {get;set;}
-
-		public bool UseQuests { get; set; }
-
-		//public bool SpawnExtraQuests { get; set; }
-		public DarknessCardsMode Mode { get; set; }
-
-		public bool DarknessTrackEffectsActive {
-			get {
-				//return true;
-				return Mode == DarknessCardsMode.None || Mode == DarknessCardsMode.Midnight;
-			}
-		}
+		public DifficultyLevel DifficultyLevel {get;set;}
 
 		public bool GatesActive{
 			get{ return Locations.Any (l => l.Blights.Any (b => b.Name == "Gate")); }
 		}
-
 
 		public GameState Clone(){
 			var json = JsonConvert.SerializeObject (this, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
@@ -54,7 +41,7 @@ namespace Vineland.Necromancer.Core
 
 	public class NecomancerState
 	{
-		public int LocationId { get; set; }
+		public LocationId LocationId { get; set; }
 
 		#region Darkness Cards
 
@@ -71,31 +58,11 @@ namespace Vineland.Necromancer.Core
 		#endregion
 	}
 
-	public class HeroesState{
-		public List<Hero> Active {get;set;}
-
-		#region Artifacts
-		public int? VoidArmorHeroId { get; set; }
-		public bool ShieldOfRadianceActive { get; set; }
-		public bool BlindingBlackActive {get;set;}
-		public int? InvisibleBarrierLocationId { get; set; }
-		public bool AuraOfHumilityActive {get;set;}
-		public bool HermitActive { get; set; }
-		public int? AncientDefenseLocationId {get;set;}
-		public int ProphecyOfDoomRoll {get;set;}
-		public bool ElusiveSpiritActive {get;set;}
-		public bool DecoyActive { get; set; }
-		public bool RuneOfMisdirectionActive { get; set; }
-		//public bool RuneOfClairvoyanceActive {get;set;}
-		//public bool SeeingGlassActive { get; set; }
-		#endregion
-	}
-
-	public enum DarknessCardsMode
-	{
-		None,
-		Standard,
-		Twilight,
-		Midnight
-	}
+	//public enum DarknessCardsMode
+	//{
+	//	None,
+	//	Standard,
+	//	Twilight,
+	//	Midnight
+	//}
 }

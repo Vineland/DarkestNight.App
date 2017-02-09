@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vineland.Necromancer.Core.Services;
-using System.Globalization;
-using System.Xml.Linq;
-using System.Threading;
-using Newtonsoft.Json.Serialization;
 using Vineland.Necromancer.Domain;
+using Vineland.Necromancer.Core.Models;
 
 namespace Vineland.Necromancer.Core
 {
@@ -39,13 +34,14 @@ namespace Vineland.Necromancer.Core
 			result.NecromancerRoll = roll.HasValue ? roll.Value : _d6GeneratorService.RollDemBones ();
 			result.OldLocationId = gameState.Necromancer.LocationId;
 
-			result.DarknessIncrease = 1 + gameState.Locations.SelectMany (x => x.Blights).Count (x => x.Name == "Desecration");
-			if (gameState.Heroes.ShieldOfRadianceActive && result.NecromancerRoll == 6) {
-				result.DarknessIncrease--;
+			result.DarknessAdjustment = 1 + gameState.Locations.SelectMany (x => x.Blights).Count (x => x.Name == "Desecration");
+			if (gameState.Heroes.Any(x=>x.HasShieldOfRadiance) && result.NecromancerRoll == 6) 
+			{
+				result.DarknessAdjustment--;
 				result.Notes += "Shield of Radiance triggered" + Environment.NewLine;
 			}
 
-			gameState.Darkness += result.DarknessIncrease;
+			gameState.Darkness += result.DarknessAdjustment;
 				
 			//detect
 			if (detectedHero == null)
@@ -75,15 +71,15 @@ namespace Vineland.Necromancer.Core
 		{			
 			var detectionRoll = gameState.GatesActive ? roll + 1 : roll;
 			//first check if any heroes can be detected
-			var exposedHeroes = gameState.Heroes.Active.Where (x => x.LocationId != (int)LocationIds.Monastery && x.Secrecy < detectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
+			var exposedHeroes = gameState.Heroes.Where (x => x.LocationId != LocationId.Monastery && x.Secrecy < detectionRoll && (heroesToIgnore == null || !heroesToIgnore.Contains (x.Id)));
 
 			//special hero effects
-			var ranger = gameState.Heroes.Active.SingleOrDefault (x => x is Ranger) as Ranger;
-			if (gameState.Heroes.HermitActive && ranger.LocationId == (int)LocationIds.Swamp)
+			var ranger = gameState.Heroes.SingleOrDefault (x => x is Ranger) as Ranger;
+			if (ranger != null && ranger.HermitActive && ranger.LocationId == LocationId.Swamp)
 				exposedHeroes = exposedHeroes.Where (h => h != ranger);
 
-			var paragon = gameState.Heroes.Active.SingleOrDefault (h => h is Paragon) as Paragon;
-			if (gameState.Heroes.AuraOfHumilityActive)
+			var paragon = gameState.Heroes.SingleOrDefault (h => h is Paragon) as Paragon;
+			if (paragon != null && paragon.AuraOfHumilityActive)
 				exposedHeroes = exposedHeroes.Where (x => x.LocationId != paragon.LocationId);
 
 			if (exposedHeroes.Any ()) {
@@ -137,12 +133,13 @@ namespace Vineland.Necromancer.Core
 			} else
 				newLocation = gameState.Locations.Single (x => x.Id == currentLocation.Pathways [roll - 1]);
 
-			if (gameState.Heroes.InvisibleBarrierLocationId.HasValue
-				&& gameState.Heroes.InvisibleBarrierLocationId == newLocation.Id) 
+			var conjurer = gameState.Heroes.SingleOrDefault(x => x is Conjurer) as Conjurer;
+			if (conjurer != null && conjurer.InvisibleBarrierLocationId.HasValue
+				&& conjurer.InvisibleBarrierLocationId == newLocation.Id) 
 			{
 				newLocation = currentLocation;
-				gameState.Heroes.InvisibleBarrierLocationId = null;
-				//result.Notes += string.Format ("Invisible Barrier deactivated and cancelled the Necromancer's movement. {0}", Environment.NewLine);
+				conjurer.InvisibleBarrierLocationId = null;
+				//result.Notes += string.Format ("Invisible Barrier triggered and cancelled the Necromancer's movement. {0}", Environment.NewLine);
 			}
 
 			gameState.Necromancer.LocationId = newLocation.Id;
@@ -152,61 +149,51 @@ namespace Vineland.Necromancer.Core
 
 		public NecromancerSpawnResult Spawn (GameState gameState, Location newLocation, int necromancerRoll)
 		{
-			var result = new NecromancerSpawnResult() { NewBlights = new List<Tuple<Location, Blight>>()};
+			var result = new NecromancerSpawnResult() { NewBlights = new List<SpawnBlightResult>()};
 
 			//check if a quest needs to be spawned
-			if (gameState.UseQuests && (necromancerRoll == 3 || necromancerRoll == 4))
-				result.SpawnQuest = true;
+			//if (gameState.DifficultyLevel.SpawnExtraQuests && (necromancerRoll == 3 || necromancerRoll == 4))
+			//	result.SpawnQuest = true;
 
 			var initialBlightCount = newLocation.BlightCount;
-			var monastery = gameState.Locations.Single (l => l.Id == (int)LocationIds.Monastery);
 
 			//spawn blight at necromancer's new location
-			result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));		
+			result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));		
 
 			//standard darkness track effects
-			if (gameState.DarknessTrackEffectsActive) {
 				if (gameState.Darkness >= 10 && newLocation.BlightCount == 0)
-					result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
+					result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
 
 				if (gameState.Darkness >= 20 && (necromancerRoll == 1 || necromancerRoll == 2))
-					result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
-			}
+					result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
 
 			//darkness card effects
-			//if (gameState.Mode != DarknessCardsMode.None) {
 				if (gameState.Necromancer.FocusedRituals
-					&& !gameState.Heroes.Active.Any (x => x.LocationId == newLocation.Id))
-					result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
+					&& !gameState.Heroes.Any (x => x.LocationId == newLocation.Id))
+				result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
 
 				if (gameState.Necromancer.CreepingShadows && (necromancerRoll == 5 || necromancerRoll == 6))
-					result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
+				result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
 
+			//TODO: look up what the hell this one does again
 				if (gameState.Necromancer.DyingLand) {
-					if (gameState.DarknessTrackEffectsActive
-						&& gameState.Darkness >= 10
-					&& initialBlightCount == 1)
-						result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
-					else if ((!gameState.DarknessTrackEffectsActive
-						|| gameState.Darkness < 10)
-					&& initialBlightCount == 0)
-						result.NewBlights.Add (_blightService.SpawnBlight (newLocation, gameState));
+					if (gameState.Darkness >= 10 && initialBlightCount == 1)
+						result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
+					else if (gameState.Darkness < 10 && initialBlightCount == 0)
+						result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
 				}
 
 				if (gameState.Necromancer.EncroachingShadows && necromancerRoll == 6)
-					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
+				result.NewBlights.Add (_blightService.SpawnBlight (LocationId.Monastery, gameState));
 
 				if (gameState.Necromancer.Overwhelm && initialBlightCount < 4 && newLocation.BlightCount >= 4)
-					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
+				result.NewBlights.Add (_blightService.SpawnBlight (LocationId.Monastery, gameState));
 
-			//}
-
-			//darkness tipping over 30
 			if (gameState.Darkness > 30) {
 				var overflowCount = gameState.Darkness - 30;
 
 				for (int i = 0; i < overflowCount; i++)
-					result.NewBlights.Add (_blightService.SpawnBlight (monastery, gameState));
+					result.NewBlights.Add (_blightService.SpawnBlight (LocationId.Monastery, gameState));
 
 				gameState.Darkness = 30;
 			}
@@ -215,31 +202,5 @@ namespace Vineland.Necromancer.Core
 		}
 	}
 
-	public class NecromancerActivationResult
-	{
-		public Hero DetectedHero { get; set; }
 
-		public int DarknessIncrease {get;set;}
-
-		public int NecromancerRoll { get; set; }
-
-		public int OldLocationId { get; set; }
-
-		public int NewLocationId { get; set; }
-
-		public List<Tuple<Location, Blight>> NewBlights { get; set; }
-
-		public bool SpawnQuest { get; set; }
-
-		public string Notes{ get; set; }
-	}
-
-	public class NecromancerSpawnResult
-	{
-		public List<Tuple<Location, Blight>> NewBlights { get; set; }
-
-		public bool SpawnQuest { get; set; }
-
-		public string Notes { get; set; }
-	}
 }

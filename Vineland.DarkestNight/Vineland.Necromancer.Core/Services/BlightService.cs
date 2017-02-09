@@ -3,6 +3,7 @@ using System.Linq;
 using Vineland.Necromancer.Core;
 using Newtonsoft.Json.Schema;
 using Vineland.Necromancer.Domain;
+using Vineland.Necromancer.Core.Models;
 
 namespace Vineland.Necromancer.Core
 {
@@ -24,7 +25,7 @@ namespace Vineland.Necromancer.Core
 
 				foreach (var row in mapCard.Rows)
 				{
-					if (row.LocationId == (int)LocationIds.Monastery)
+					if (row.LocationId == LocationId.Monastery)
 						continue;
 
 					var blight = gameState.BlightPool.FirstOrDefault(x => x.Name == row.BlightName);
@@ -40,13 +41,14 @@ namespace Vineland.Necromancer.Core
 		/// Spawns a blight at the specified locaiton. 
 		/// If the location is already at capacity then it spawns a blight at the monastery instead.
 		/// </summary>
-		/// <returns>A typle containting the blight spawned and the locaiton spawned at.</returns>
+		/// <returns>A tuple containting the blight spawned and the location spawned at.</returns>
 		/// <param name="location">Location.</param>
 		/// <param name="gameState">Game state.</param>
-		public Tuple<Location, Blight> SpawnBlight (Location location, GameState gameState)
+		public SpawnBlightResult SpawnBlight (LocationId locationId, GameState gameState)
 		{
+			var location = gameState.Locations.Single(l => l.Id == locationId);
 			if (location.BlightCount >= 4)
-				location = gameState.Locations.Single (l => l.Id == (int)LocationIds.Monastery);
+				location = gameState.Locations.Single (l => l.Id == LocationId.Monastery);
 			
 			var card = gameState.MapCards.Draw ();
 			var blightName = card.Rows.Single (r => r.LocationId == location.Id).BlightName;
@@ -57,9 +59,9 @@ namespace Vineland.Necromancer.Core
 				location.Blights.Add (blight);
 				gameState.BlightPool.Remove (blight);
 			} else //if there are no blights of that type left to spawn try the next card
-				return SpawnBlight (location, gameState);
+				return SpawnBlight (locationId, gameState);
 
-			return new Tuple<Location, Blight>(location, blight);
+			return new SpawnBlightResult() { Location = location, Blight = blight };
 		}
 
 		public void DestroyBlight (Location location, Blight blight, GameState gameState)

@@ -1,10 +1,14 @@
 ﻿using System;
-namespace Vineland.Necromancer.Core
+using System.Collections.Generic;
+
+namespace Vineland.Necromancer.Core.Models
 {
 	public class NecromancerSpawnResult
 	{
-		public NecromancerSpawnResult()
-		{
-		}
+		public List<SpawnBlightResult> NewBlights { get; set; }
+
+		public bool SpawnQuest { get; set; }
+
+		public string Notes { get; set; }
 	}
 }

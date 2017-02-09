@@ -9,11 +9,11 @@ namespace Vineland.Necromancer.Domain
 {
 	public class Location: IComparable
 	{
-		public int Id { get; set; }
+		public LocationId Id { get; set; }
 
 		public string Name { get; set; }
 
-		public int[] Pathways { get; set; }
+		public LocationId[] Pathways { get; set; }
 
 		public List<Blight> Blights { get; set; }
 
@@ -48,7 +48,7 @@ namespace Vineland.Necromancer.Domain
 		}
 	}
 
-	public enum LocationIds
+	public enum LocationId
 	{
 		Monastery = 0,
 		Mountains = 1,

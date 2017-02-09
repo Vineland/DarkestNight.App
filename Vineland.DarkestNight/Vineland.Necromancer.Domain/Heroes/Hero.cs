@@ -15,7 +15,7 @@ namespace Vineland.Necromancer.Domain
 		public int SecrecyDefault { get; set; }
 		public int Grace { get; set; }
 		public int GraceDefault { get; set; }
-        public int LocationId { get; set; }
+		public LocationId LocationId { get; set; }
 		public Expansion Expansion { get; set; }
 
 		#region Artifacts

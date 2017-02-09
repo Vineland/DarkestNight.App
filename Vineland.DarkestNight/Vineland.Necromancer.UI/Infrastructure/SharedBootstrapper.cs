@@ -32,6 +32,7 @@ namespace Vineland.DarkestNight.UI.Infrastructure
 			container.RegisterSingleton<NavigationService>();
 			//singletons because they are dependecies for the above singleton
 			container.RegisterSingleton<PageService>();
+			container.RegisterSingleton<GameStateService>();
 
 			RegisterPlatformSpecificImplementations (container);
 

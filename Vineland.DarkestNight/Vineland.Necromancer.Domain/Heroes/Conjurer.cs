@@ -4,7 +4,7 @@ namespace Vineland.Necromancer.Domain
 {
 	public class Conjurer : Hero
 	{
-		public int? InvisibleBarrierLocationId 
+		public LocationId? InvisibleBarrierLocationId 
 		{
 			get;
 			set;

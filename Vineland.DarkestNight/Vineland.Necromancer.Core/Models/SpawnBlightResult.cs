@@ -1,10 +1,11 @@
 ﻿using System;
-namespace Vineland.Necromancer.Core
+using Vineland.Necromancer.Domain;
+
+namespace Vineland.Necromancer.Core.Models
 {
 	public class SpawnBlightResult
 	{
-		public SpawnBlightResult()
-		{
-		}
+		public Location Location { get; set; }
+		public Blight Blight { get; set; }
 	}
 }

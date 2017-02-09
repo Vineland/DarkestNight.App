@@ -36,7 +36,8 @@
     <EmbeddedResource Include="Resources\blights.json" />
     <EmbeddedResource Include="Resources\heroes.json" />
     <EmbeddedResource Include="Resources\locations.json" />
-    <EmbeddedResource Include="Resources\map-cards.json" />
+    <EmbeddedResource Include="Resources\mapcards.json" />
+    <EmbeddedResource Include="Resources\difficultylevels.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

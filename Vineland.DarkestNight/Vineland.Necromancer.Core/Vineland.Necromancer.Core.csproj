@@ -49,8 +49,12 @@
     <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\NecromancerService.cs" />
     <Compile Include="Services\DataService.cs" />
-    <Compile Include="GameStateFactory.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="Services\GameStateService.cs" />
+    <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Models\NecromancerSpawnResult.cs" />
+    <Compile Include="Models\NecromancerActivationResult.cs" />
+    <Compile Include="Models\SpawnBlightResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -70,5 +74,8 @@
       <Project>{FA063A0B-367C-4E61-A02B-623C1AFB6272}</Project>
       <Name>Vineland.Necromancer.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>
