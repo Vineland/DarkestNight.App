@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
-xmlns:core="clr-namespace:Vineland.Necromancer.Core;assembly=Vineland.Necromancer.Core" 
+xmlns:domain="clr-namespace:Vineland.Necromancer.Domain;assembly=Vineland.Necromancer.Domain" 
 x:Class="Vineland.Necromancer.UI.NecromancerPhasePage"
 Title="Necromancer"
 BackgroundImage="background_framed">

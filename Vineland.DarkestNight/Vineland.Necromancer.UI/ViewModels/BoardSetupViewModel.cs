@@ -4,14 +4,15 @@ using Vineland.Necromancer.Core.Services;
 using Vineland.Necromancer.Core;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
+using Vienland.Necromance.Domain;
 
 namespace Vineland.Necromancer.UI
 {
-	public class GameSetupViewModel: BaseViewModel
+	public class BoardSetupViewModel: BaseViewModel
 	{
 		D6GeneratorService _d6Generator;
 
-		public GameSetupViewModel (D6GeneratorService d6Generator)
+		public BoardSetupViewModel (D6GeneratorService d6Generator)
 		{
 			_d6Generator = d6Generator;
 			Locations = new ObservableCollection<LocationViewModel> ();

@@ -94,9 +94,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\TamerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsSourceStackLayout.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GameSetupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\GameSetupPage.xaml.cs">
-      <DependentUpon>GameSetupPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BoardSetupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BoardSetupPage.xaml.cs">
+      <DependentUpon>BoardSetupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\HeroConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\LocationConverter.cs" />
@@ -177,7 +177,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\GameSetupPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BoardSetupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partials\HeaderView.xaml">

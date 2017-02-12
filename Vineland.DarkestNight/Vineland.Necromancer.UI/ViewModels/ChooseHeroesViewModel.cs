@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Newtonsoft.Json;
-using Vineland.DarkestNight.UI;
 using Vineland.Necromancer.Core;
 using Xamarin.Forms;
-using System.Threading.Tasks;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
 	public class ChooseHeroesViewModel : BaseViewModel
 	{
 		DataService _dataService;
+		GameStateService _gameStateService;
 
-		public ChooseHeroesViewModel(DataService dataService)
+		public ChooseHeroesViewModel(DataService dataService, GameStateService gameStateService)
 		{
 			_dataService = dataService;
+			_gameStateService = gameStateService;
 
 			HeroSlots = new ObservableCollection<HeroSlotViewModel> ();
 			AvailableHeroes = new ObservableCollection<Hero> ();
@@ -82,16 +77,16 @@ namespace Vineland.Necromancer.UI
 		{
 			get {
 				return new RelayCommand (
-					async () => {
-						
-						Application.CurrentGame.Heroes.Active = HeroSlots.Select(x=>x.Hero).ToList();
-						Application.CurrentGame.Heroes.Active.ForEach(h=>
+					 () => {
+						Application.CurrentGame.Heroes.Clear();
+						Application.CurrentGame.Heroes.AddRange(HeroSlots.Select(x=>x.Hero).ToList());
+						Application.CurrentGame.Heroes.ForEach(h=>
 							{ 
 								h.Secrecy = h.SecrecyDefault;
 								h.Grace = h.GraceDefault;
 							});
 						Application.SaveCurrentGame ();
-						await Application.Navigation.Push<GameSetupPage>();
+						Application.Navigation.Push<GameSetupPage>();
 					},
 					() => {
 						return HeroSlots.Any() && !HeroSlots.Any(x=>x.Hero == null);
@@ -104,8 +99,8 @@ namespace Vineland.Necromancer.UI
 		{
 			//if all heroes where not selected we must be going back to the home screen
 			//ensure the the current game is null otherwise you'll be able to 'continue' this game
-			if (HeroSlots.Any(x=>x== null))
-				Application.CurrentGame = null;
+			if (HeroSlots.Any(x => x.Hero == null))
+				_gameStateService.ClearCurrentGame();
 		}
     }
 
@@ -117,7 +112,7 @@ namespace Vineland.Necromancer.UI
 				if (Hero != null)
 					return ImageSourceUtil.GetHeroImage (Hero.Name);
 
-				return FileImageSource.FromFile ("hero_slot");
+				return ImageSource.FromFile ("hero_slot");
 			}
 		}
 

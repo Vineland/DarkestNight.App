@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-using Vineland.Necromancer.Core;
+﻿using Xamarin.Forms;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {

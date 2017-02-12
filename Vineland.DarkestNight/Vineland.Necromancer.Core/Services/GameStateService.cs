@@ -65,5 +65,10 @@ namespace Vineland.Necromancer.Core
 			var gameJson = JsonConvert.SerializeObject(CurrentGame, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 			_fileService.SaveFile(savePath, gameJson);
 		}
+
+		public void ClearCurrentGame()
+		{
+			CurrentGame = null;
+		}
 	}
 }

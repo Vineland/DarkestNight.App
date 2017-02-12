@@ -1,61 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XLabs.Ioc;
 using Vineland.Necromancer.Core;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Vineland.DarkestNight.UI;
-using Vineland.DarkestNight.UI.Services;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace Vineland.Necromancer.UI
 {
 	public partial class NecromancerApp : Application
 	{
-		public FileService FileService { get; private set; }
-
 		public NavigationService Navigation { get; private set; }
+
+		GameStateService _gameStateService;
 
 		public NecromancerApp ()
 		{
 			InitializeComponent ();
 
-			FileService = Resolver.Resolve<FileService> ();
+			_gameStateService = Resolver.Resolve<GameStateService> ();
 			
 			MainPage = new CustomNavigationPage (Resolver.Resolve<PageService> ().CreatePage<HomePage> ());
 
 			Navigation = Resolver.Resolve<NavigationService> ();
 			Navigation.SetNavigation (MainPage.Navigation);
-
 		}
 
-		public GameState CurrentGame { get; set; }
+		public GameState CurrentGame
+		{
+			get
+			{
+				return _gameStateService.CurrentGame;
+			}
+		}
 
-		public async void SaveCurrentGame ()
+		public async Task SaveCurrentGame ()
 		{
 			await Task.Run (() => {
-				var gameJson = JsonConvert.SerializeObject (CurrentGame, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
-				FileService.SaveFile (AppConstants.SaveFilePath, gameJson);
+				_gameStateService.SaveCurrentGame(AppConstants.SaveFilePath);
 			});
 		}
 
 		protected override void OnStart ()
 		{
-			
-			// Handle when your app starts
+			_gameStateService.LoadGame(AppConstants.SaveFilePath);
 		}
 
 		protected override void OnSleep ()
 		{
-			// Handle when your app sleeps
 		}
 
 		protected override void OnResume ()
 		{
-			// Handle when your app resumes
 		}
 	}
 }

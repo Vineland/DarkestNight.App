@@ -493,6 +493,14 @@
       <Project>{B765980C-5128-488A-AB62-430C0FC76517}</Project>
       <Name>Vineland.Necromancer.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Vineland.Necromancer.Domain\Vineland.Necromancer.Domain.csproj">
+      <Project>{FA063A0B-367C-4E61-A02B-623C1AFB6272}</Project>
+      <Name>Vineland.Necromancer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vineland.Necromancer.Repository\Vineland.Necromancer.Repository.csproj">
+      <Project>{1600524B-436B-46AF-9795-F7DD3336C960}</Project>
+      <Name>Vineland.Necromancer.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\hobo.ttf" />

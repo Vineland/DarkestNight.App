@@ -11,68 +11,70 @@ using GalaSoft.MvvmLight.Command;
 using Vineland.DarkestNight.UI;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
 	public class NewGameViewModel :BaseViewModel
 	{
-		GameStateFactory _factory;
-		List<DifficultyLevelSettings> _allDifficultyLevelSettings;
-		Settings _settings;
+		GameStateService _gameStateService;
 
-		public NewGameViewModel(DataService dataService, Settings settings, GameStateFactory factory)
+		public NewGameViewModel(DataService dataService, GameStateService gameStateService)
         {
-			_settings = settings;
-			_factory = factory;
-			_allDifficultyLevelSettings = dataService.GetDifficultyLevelSettings ();
-
-			DarknessCardsModes = (DarknessCardsMode[])Enum.GetValues(typeof(DarknessCardsMode));
-
+			gameStateService = _gameStateService;
+			DifficultyLevels = dataService.GetDifficultyLevelSettings ();
+			SelectedDifficulty = DifficultyLevels.Single(x => x.Id == DifficultyLevelId.Adventurer);
         }
 
-		DifficultyLevelSettings _difficultyLevelSettings;
+		public int NumberOfPlayers { get; set; }
+
+		public IEnumerable<DifficultyLevel> DifficultyLevels { get; private set;}
+
+		DifficultyLevel _selectedDifficulty;
+		public DifficultyLevel SelectedDifficulty
+		{
+			get { return _selectedDifficulty;}
+			set
+			{
+				_selectedDifficulty = value;
+				RaisePropertyChanged(() => StartingDarkness);
+				RaisePropertyChanged(() => StartingBlights);
+				RaisePropertyChanged(() => SpawnExtraQuests);
+			}
+		}
 
 		public int StartingDarkness {
 			get{
-				return _settings.StartingDarkness;
+				return _selectedDifficulty.StartingDarkness;
 			}
 			set{
-				_settings.StartingDarkness = value;
+				_selectedDifficulty.StartingDarkness = value;
 			}
 		}
 
 		public int StartingBlights{
 			get{
-				return _settings.StartingBlights;
+				return _selectedDifficulty.StartingBlights;
 			}
 			set{
-				_settings.StartingBlights = value;
+				_selectedDifficulty.StartingBlights = value;
 			}
 		}
 
-		public bool UseQuests
+		public bool SpawnExtraQuests
 		{
-			get { return _settings.UseQuests; }
+			get { return _selectedDifficulty.SpawnExtraQuests; }
 			set
 			{
-				_settings.UseQuests = value;}
-		}
-
-		public DarknessCardsMode[] DarknessCardsModes { get; private set;}
-		public DarknessCardsMode DarknessCardsMode
-		{
-			get { return _settings.DarknessCardsMode;}
-			set
-			{
-				_settings.DarknessCardsMode = value;
+				_selectedDifficulty.SpawnExtraQuests = value;
 			}
 		}
 
 		public RelayCommand ChooseHeroes{
 			get{
 				return new RelayCommand (async () => {
-					
-					Application.CurrentGame = _factory.CreateGameState(4, StartingDarkness, StartingBlights, UseQuests, DarknessCardsMode);
+
+					_gameStateService.StartNewGame(NumberOfPlayers, SelectedDifficulty);
 					var page = await Application.Navigation.Push<ChooseHeroesPage>();
 					(page.BindingContext as ChooseHeroesViewModel).Initialise();
 				});
