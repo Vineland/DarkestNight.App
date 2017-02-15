@@ -4,7 +4,7 @@ using Vineland.Necromancer.Core.Services;
 using Vineland.Necromancer.Core;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
-using Vienland.Necromance.Domain;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
@@ -39,7 +39,7 @@ namespace Vineland.Necromancer.UI
 
 		public void SpawnRandomQuest(){
 			var locationId = _d6Generator.RollDemBones ();
-			var location = Locations.Single (x => x.Location.Id == locationId);
+			var location = Locations.Single (x => x.Location.Id == (LocationId)locationId);
 			location.Spawns.Add (new QuestViewModel ());
 		}
 

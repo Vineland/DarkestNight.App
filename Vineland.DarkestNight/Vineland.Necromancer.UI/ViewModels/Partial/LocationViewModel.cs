@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using Vineland.Necromancer.Core;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using XLabs.Ioc;
 using Xamarin.Forms;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
@@ -33,7 +34,7 @@ namespace Vineland.Necromancer.UI
 		private async void HeroDefeated ()
 		{
 			if (await Application.Navigation.DisplayConfirmation ("Hero Defeated?", null, "Yes", "No")) {
-				var availableHeroes = Resolver.Resolve<DataService> ().GetAllHeroes ().Where (x => !Application.CurrentGame.Heroes.Active.Any (y => y.Id == x.Id)).ToList ();
+				var availableHeroes = Resolver.Resolve<DataService> ().GetAllHeroes ().Where (x => !Application.CurrentGame.Heroes.Any (y => y.Id == x.Id)).ToList ();
 				var newHeroName = await Application.Navigation.DisplayActionSheet ("New Hero", "Cancel", null, availableHeroes.Select (x => x.Name).ToArray ());
 				MessagingCenter.Send<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated",
 					new HeroDefeatedArgs () {

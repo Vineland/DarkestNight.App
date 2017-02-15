@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using GalaSoft.MvvmLight.Command;
 using System.Threading.Tasks;
+using Vineland.Necromancer.Domain;
+using Vineland.Necromancer.Core.Models;
 
 namespace Vineland.Necromancer.UI
 {
@@ -41,9 +43,9 @@ namespace Vineland.Necromancer.UI
 			RaisePropertyChanged (() => NewLocationDisplay);
 
 			var models = _result.NewBlights
-				.GroupBy (x => x.Item1)
+			                    .GroupBy (x => x.Location)
 				.Select (x => new SpawnLocationViewModel (x.Key, 
-				             x.Select (y => y.Item2))).ToList ();
+				             x.Select (y => y.Blight))).ToList ();
 			if (_result.SpawnQuest) 
 			{
 				var questLocation = _pendingGameState.Locations.Single (l => l.Id == _result.OldLocationId);
@@ -65,7 +67,7 @@ namespace Vineland.Necromancer.UI
 					return string.Empty;
 				
 				var display = _result.NecromancerRoll.ToString ();
-				if (_pendingGameState.Locations.Count (l => l.Blights.Any (b => b.Name == "Gate")) > _result.NewBlights.Count (x => x.Item2.Name == "Gate"))
+				if (_pendingGameState.Locations.Count (l => l.Blights.Any (b => b.Name == "Gate")) > _result.NewBlights.Count (x => x.Blight.Name == "Gate"))
 					display += " (+1 detection)";
 
 				return display;
@@ -76,7 +78,7 @@ namespace Vineland.Necromancer.UI
 			get {
 				if (_result == null)
 					return string.Empty;
-				return string.Format ("{0} +{1}", _pendingGameState.Darkness - _result.DarknessIncrease, _result.DarknessIncrease);
+				return string.Format ("{0} +{1}", _pendingGameState.Darkness - _result.DarknessAdjustment, _result.DarknessAdjustment);
 			}
 		}
 
@@ -110,10 +112,10 @@ namespace Vineland.Necromancer.UI
 					Application.CurrentGame.Locations = _pendingGameState.Locations;
 					Application.CurrentGame.BlightPool = _pendingGameState.BlightPool;
 					//prophecy of doom is always reset after the necromancer phase
-					Application.CurrentGame.Heroes.ProphecyOfDoomRoll = 0;
+					//Application.CurrentGame.Heroes.ProphecyOfDoomRoll = 0;
 
 					//the state of these powers may have changed during the necromancer phase
-					Application.CurrentGame.Heroes.InvisibleBarrierLocationId = _pendingGameState.Heroes.InvisibleBarrierLocationId; 
+					//Application.CurrentGame.Heroes.InvisibleBarrierLocationId = _pendingGameState.Heroes.InvisibleBarrierLocationId; 
 				
 					Application.SaveCurrentGame ();
 

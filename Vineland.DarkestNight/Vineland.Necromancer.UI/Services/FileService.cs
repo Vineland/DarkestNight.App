@@ -5,10 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.DarkestNight.UI.Services
 {
-    public class FileService
+    public class FileService : IFileService
     {
         public FileService()
         {

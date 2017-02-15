@@ -10,7 +10,7 @@ BackgroundImage="background_framed">
 		<ToolbarItem Name="Activate" Command="{Binding ActivateCommand}">
 		</ToolbarItem> 
 	</ContentPage.ToolbarItems>
-	<AbsoluteLayout>
+	<!--<AbsoluteLayout>
 
 		<Image Source="necromancer_large.png"  
 				AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="0.5,12,72,72"/>
@@ -54,5 +54,5 @@ BackgroundImage="background_framed">
 		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 344, 48, 32"/>
 
 
-	</AbsoluteLayout>
+	</AbsoluteLayout>-->
 </ContentPage>

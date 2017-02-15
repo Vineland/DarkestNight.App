@@ -2,6 +2,7 @@
 using Vineland.Necromancer.Core;
 using GalaSoft.MvvmLight.Command;
 using Xamarin.Forms;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {

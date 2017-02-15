@@ -86,7 +86,7 @@ namespace Vineland.Necromancer.UI
 								h.Grace = h.GraceDefault;
 							});
 						Application.SaveCurrentGame ();
-						Application.Navigation.Push<GameSetupPage>();
+						Application.Navigation.Push<BoardSetupPage>();
 					},
 					() => {
 						return HeroSlots.Any() && !HeroSlots.Any(x=>x.Hero == null);

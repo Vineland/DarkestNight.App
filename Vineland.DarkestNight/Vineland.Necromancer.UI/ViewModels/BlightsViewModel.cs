@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
@@ -27,7 +28,7 @@ namespace Vineland.Necromancer.UI
 			MessagingCenter.Subscribe<BlightViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SelectBlight", SelectBlight);
 
-			var locationViewModels = Application.CurrentGame.Locations.Select (l => new HeroPhaseLocationViewModel (l, Application.CurrentGame.Heroes.Active.Where(x=>x.LocationId == l.Id).ToList()));
+			var locationViewModels = Application.CurrentGame.Locations.Select (l => new HeroPhaseLocationViewModel (l, Application.CurrentGame.Heroes.Where(x=>x.LocationId == l.Id).ToList()));
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> (locationViewModels);
 		}
 
@@ -62,15 +63,11 @@ namespace Vineland.Necromancer.UI
 
 		public async void SpawnBlight (HeroPhaseLocationViewModel sender)
 		{
-			Blight blight = null;
-
-			await Task.Run (() => {
-
-				blight = _blightService.SpawnBlight (sender.Location, Application.CurrentGame).Item2;
+			var result = _blightService.SpawnBlight (sender.Location.Id, Application.CurrentGame);
 				Application.SaveCurrentGame ();
-			});
 
-			sender.AddBlightViewModel(new BlightViewModel (blight));
+
+			sender.AddBlightViewModel(new BlightViewModel (result.Blight));
 		}
 
 

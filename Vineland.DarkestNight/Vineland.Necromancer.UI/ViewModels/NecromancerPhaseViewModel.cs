@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Linq;
 using XLabs.Ioc;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {

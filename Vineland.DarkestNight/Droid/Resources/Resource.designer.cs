@@ -26,8 +26,6 @@ namespace Vineland.Necromancer.UI.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::GalaSoft.MvvmLight.Resource.String.ApplicationName = global::Vineland.Necromancer.UI.Droid.Resource.String.ApplicationName;
-			global::GalaSoft.MvvmLight.Resource.String.Hello = global::Vineland.Necromancer.UI.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Vineland.Necromancer.UI.Droid.Resource.Attribute.actionBarSize;
 		}
 		

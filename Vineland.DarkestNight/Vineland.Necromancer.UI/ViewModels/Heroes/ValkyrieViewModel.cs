@@ -1,5 +1,6 @@
 ﻿using System;
 using Vineland.Necromancer.Core;
+using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {

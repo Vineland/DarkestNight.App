@@ -4,7 +4,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 xmlns:domain="clr-namespace:Vineland.Necromancer.Domain;assembly=Vineland.Necromancer.Domain"
 x:Class="Vineland.Necromancer.UI.HeroCell">
-	<AbsoluteLayout HeightRequest="96">
+	<!--<AbsoluteLayout HeightRequest="96">
 		<Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="12,12,72,72" />
 		<Label Text="{Binding Name}" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="96,12, 1, 32" />
 		<Image Source="grace" AbsoluteLayout.LayoutBounds="96,32, 32, 32" />
@@ -12,5 +12,5 @@ x:Class="Vineland.Necromancer.UI.HeroCell">
 		<Image Source="secrecy" AbsoluteLayout.LayoutBounds="180,32, 32, 32" />
 		<ui:BindablePicker x:TypeArguments="x:String" ItemsSource="{Binding SecrecyOptions}" SelectedIndex="{Binding Secrecy}" AbsoluteLayout.LayoutBounds="220, 32, 48, 32"  />
 		<ui:BindablePicker x:TypeArguments="core:Location" ItemsSource="{Binding Locations}" SelectedItem="{Binding Location}" AbsoluteLayout.LayoutBounds="96, 64, 128, 32"  />
-	</AbsoluteLayout>
+	</AbsoluteLayout>-->
 </ContentView>
