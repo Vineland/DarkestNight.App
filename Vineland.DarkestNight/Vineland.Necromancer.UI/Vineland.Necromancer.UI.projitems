@@ -98,9 +98,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\BoardSetupPage.xaml.cs">
       <DependentUpon>BoardSetupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\HeroConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\LocationConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\NotBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\BlightViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\QuestViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\LocationHeaderCell.xaml.cs">
@@ -121,6 +118,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\HeroesView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -131,8 +131,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Partials\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\Converters\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Partial\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">

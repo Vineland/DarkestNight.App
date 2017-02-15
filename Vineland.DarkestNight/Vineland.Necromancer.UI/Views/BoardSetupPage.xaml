@@ -11,6 +11,7 @@ BackgroundImage="background">
 <ListView x:Name="ListView" ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
+				
 				<ui:LocationBlightsCell />
 			</DataTemplate>
 		</ListView.ItemTemplate>
