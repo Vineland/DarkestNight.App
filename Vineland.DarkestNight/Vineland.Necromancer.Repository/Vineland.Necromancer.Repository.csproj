@@ -33,11 +33,11 @@
     <Compile Include="IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\blights.json" />
-    <EmbeddedResource Include="Resources\heroes.json" />
-    <EmbeddedResource Include="Resources\locations.json" />
-    <EmbeddedResource Include="Resources\mapcards.json" />
-    <EmbeddedResource Include="Resources\difficultylevels.json" />
+    <EmbeddedResource Include="Resources\blight.json" />
+    <EmbeddedResource Include="Resources\hero.json" />
+    <EmbeddedResource Include="Resources\location.json" />
+    <EmbeddedResource Include="Resources\mapcard.json" />
+    <EmbeddedResource Include="Resources\difficultylevel.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

@@ -21,7 +21,7 @@ namespace Vineland.Necromancer.UI
 
 		public NewGameViewModel(DataService dataService, GameStateService gameStateService)
         {
-			gameStateService = _gameStateService;
+			_gameStateService = gameStateService;
 			DifficultyLevels = dataService.GetDifficultyLevelSettings ();
 			SelectedDifficulty = DifficultyLevels.Single(x => x.Id == DifficultyLevelId.Adventurer);
         }

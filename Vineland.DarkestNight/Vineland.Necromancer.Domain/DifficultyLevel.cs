@@ -10,6 +10,11 @@ namespace Vineland.Necromancer.Domain
 		public int StartingBlights {get;set;}
 		public bool SpawnExtraQuests {get;set;}
 		public string Notes {get;set;}
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 
 	public enum DifficultyLevelId

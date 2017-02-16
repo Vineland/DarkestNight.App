@@ -18,17 +18,16 @@ Title="New Game">
 
     </Grid.ColumnDefinitions>
 
-<Grid.RowDefinitions>
-	<RowDefinition Height="Auto" />
-	<RowDefinition Height="Auto" />
-	<RowDefinition Height="Auto" />
-	<RowDefinition Height="Auto" />
-	<RowDefinition Height="Auto" />
-
+	<Grid.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 		
 	<Label Text="Number of Players" Grid.Row="0" VerticalOptions="Center" />
-	<ui:CustomStepper Value="{Binding NumberOfPlayers}" Maximum="4" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>	
+	<ui:CustomStepper Value="{Binding NumberOfPlayers}" Minimum="2" Maximum="4" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>	
 
     <Label Text="Difficulty" Grid.Row="1" VerticalOptions="Center" />
 	<ui:BindablePicker x:TypeArguments="domain:DifficultyLevel"  ItemsSource="{Binding DifficultyLevels}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="1" Grid.Row="1"  HorizontalOptions="End"/>	
@@ -41,6 +40,6 @@ Title="New Game">
 
 	<Label Text="Extra Quests" VerticalOptions="Center" Grid.Row="4" />
 	<ui:CheckButton IsSelected="{Binding SpawnExtraQuests}" Grid.Column="1" Grid.Row="4" HorizontalOptions="End"/>
-		
+
 </Grid>
 </ContentPage>
