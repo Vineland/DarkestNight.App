@@ -21,26 +21,9 @@ namespace Vineland.Necromancer.UI
 
 		public void Initialise()
 		{
-			foreach (var location in Application.CurrentGame.Locations.Where(x=>x.Blights.Any()))
+			foreach (var location in Application.CurrentGame.Locations.Where(x => x.Blights.Any()))
 				Locations.Add(new LocationViewModel(location));
 
-			/*
-			switch (Application.CurrentGame.DifficultyLevel) {
-			case DifficultyLevel.Champion:
-			case DifficultyLevel.Heroic:
-				Locations.Single (x => x.Location.Id == (int)LocationIds.Village).Spawns.Add (new QuestViewModel());
-				break;
-			case DifficultyLevel.Legendary:
-				SpawnRandomQuest ();
-				SpawnRandomQuest ();
-				break;
-			}*/
-		}
-
-		public void SpawnRandomQuest(){
-			var locationId = _d6Generator.RollDemBones ();
-			var location = Locations.Single (x => x.Location.Id == (LocationId)locationId);
-			location.Spawns.Add (new QuestViewModel ());
 		}
 
 		public ObservableCollection<LocationViewModel> Locations { get; set; }
@@ -50,6 +33,8 @@ namespace Vineland.Necromancer.UI
 			get {
 				return new RelayCommand (
 					async () => {
+						//currently the app does not track quests past the initial spwan step
+						Application.CurrentGame.Locations.ForEach(l => l.Quests.Clear());
 						await Application.Navigation.Push<HeroTurnPage>(clearBackStack: true);
 					});
 			}

@@ -10,6 +10,7 @@ using XLabs.Ioc.SimpleInjectorContainer;
 using SimpleInjector;
 using System.Runtime.InteropServices;
 using Vineland.Necromancer.Repository;
+using Vineland.Necromancer.Core.Services;
 
 namespace Vineland.DarkestNight.UI.Infrastructure
 {
@@ -33,11 +34,9 @@ namespace Vineland.DarkestNight.UI.Infrastructure
 			container.RegisterSingleton<NavigationService>();
 			//singletons because they are dependecies for the above singleton
 			container.RegisterSingleton<PageService>();
-			container.RegisterSingleton<GameStateService>();
-			container.RegisterSingleton<DataService>();
-			container.RegisterSingleton<BlightService>();
-			container.RegisterSingleton<IRepository, EmbeddedResourceRepository>();
-			container.RegisterSingleton<IFileService, FileService>();
+
+			container.Register<IRepository, EmbeddedResourceRepository>();
+			container.Register<IFileService, FileService>();
 
 			RegisterPlatformSpecificImplementations (container);
 

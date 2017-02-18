@@ -25,18 +25,12 @@ namespace Vineland.Necromancer.UI
 			Navigation.SetNavigation (MainPage.Navigation);
 		}
 
-		public GameState CurrentGame
-		{
-			get
-			{
-				return _gameStateService.CurrentGame;
-			}
-		}
+		public GameState CurrentGame { get; set;}
 
 		public async Task SaveCurrentGame ()
 		{
 			await Task.Run (() => {
-				_gameStateService.SaveCurrentGame(AppConstants.SaveFilePath);
+				_gameStateService.SaveCurrentGame(AppConstants.SaveFilePath, CurrentGame);
 			});
 		}
 

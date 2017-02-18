@@ -1,9 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Vineland.Necromancer.Core;
 
 namespace Vineland.Necromancer.UI
 {
 	public class HomeViewModel : BaseViewModel
 	{
+		GameStateService _gameStateService;
+
 		public HomeViewModel ()
 		{
 		}

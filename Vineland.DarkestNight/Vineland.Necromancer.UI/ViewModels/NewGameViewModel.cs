@@ -75,7 +75,7 @@ namespace Vineland.Necromancer.UI
 			get{
 				return new RelayCommand (async () => {
 
-					_gameStateService.StartNewGame(NumberOfPlayers, SelectedDifficulty);
+					Application.CurrentGame =_gameStateService.StartNewGame(NumberOfPlayers, SelectedDifficulty);
 					var page = await Application.Navigation.Push<ChooseHeroesPage>();
 					(page.BindingContext as ChooseHeroesViewModel).Initialise();
 				});

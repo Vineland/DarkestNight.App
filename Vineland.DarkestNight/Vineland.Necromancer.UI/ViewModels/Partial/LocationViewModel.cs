@@ -16,6 +16,9 @@ namespace Vineland.Necromancer.UI
 			Spawns = new ObservableCollection<ISpawnViewModel> ();
 			foreach (var blight in location.Blights)
 				Spawns.Add (new BlightViewModel (blight));
+
+			foreach (var quest in location.Quests)
+				Spawns.Add(new QuestViewModel());
 		}
 
 		public ObservableCollection<ISpawnViewModel> Spawns { get; private set; }

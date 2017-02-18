@@ -49,6 +49,7 @@
     <Compile Include="MapCardRow.cs" />
     <Compile Include="DifficultyLevel.cs" />
     <Compile Include="Editions.cs" />
+    <Compile Include="Quest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Heroes\" />

@@ -1,8 +1,7 @@
-﻿using System;
-using Vineland.Necromancer.Domain;
+﻿using Vineland.Necromancer.Domain;
 using System.Linq;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
+using Vineland.Necromancer.Core.Services;
 
 namespace Vineland.Necromancer.Core
 {
@@ -13,23 +12,21 @@ namespace Vineland.Necromancer.Core
 	{
 		DataService _dataService;
 		BlightService _blightService;
+		QuestService _questService;
 		IFileService _fileService;
 
 		public GameStateService(DataService dataService,
 								 BlightService blightService,
+		                        QuestService questService,
 		                        IFileService fileService)
 		{
 			_dataService = dataService;
 			_blightService = blightService;
 			_fileService = fileService;
+			_questService = questService;
 		}
 
-		public GameState CurrentGame
-		{
-			get; private set;
-		}
-
-		public void StartNewGame(int numberOfPlayers, DifficultyLevel difficultyLevel)
+		public GameState StartNewGame(int numberOfPlayers, DifficultyLevel difficultyLevel)
 		{
 			var gameState = new GameState();
 
@@ -46,29 +43,25 @@ namespace Vineland.Necromancer.Core
 
 			gameState.Locations = _dataService.GetLocations().ToList();
 
-			if (difficultyLevel.Id == DifficultyLevelId.Page)
-				_blightService.SpawnBlight(LocationId.Ruins, gameState);
-			else
-				_blightService.SpawnStartingBlights(difficultyLevel.StartingBlights, gameState);
+			_blightService.SpawnStartingBlights(gameState);
 
-			CurrentGame = gameState;
+			_questService.SpawnStartingQuests(gameState);
+
+			return gameState;
 		}
 
-		public void LoadGame(string savePath)
+		public GameState LoadGame(string savePath)
 		{
 			if (_fileService.DoesFileExist(savePath))
-				CurrentGame = JsonConvert.DeserializeObject<GameState>(_fileService.LoadFile(savePath), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+				return JsonConvert.DeserializeObject<GameState>(_fileService.LoadFile(savePath), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+
+			return null;
 		}
 
-		public void SaveCurrentGame(string savePath)
+		public void SaveCurrentGame(string savePath, GameState gameState)
 		{
-			var gameJson = JsonConvert.SerializeObject(CurrentGame, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+			var gameJson = JsonConvert.SerializeObject(gameState, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 			_fileService.SaveFile(savePath, gameJson);
-		}
-
-		public void ClearCurrentGame()
-		{
-			CurrentGame = null;
 		}
 	}
 }

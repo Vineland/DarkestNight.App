@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Vineland.Necromancer.Core;
-using Newtonsoft.Json.Schema;
 using Vineland.Necromancer.Domain;
 using Vineland.Necromancer.Core.Models;
 
@@ -13,27 +11,31 @@ namespace Vineland.Necromancer.Core
 		{
 		}
 
-		public void SpawnStartingBlights(int numberOfBlights, GameState gameState)
+		public void SpawnStartingBlights(GameState gameState)
 		{
 			foreach (var location in gameState.Locations)
 				location.Blights.Clear();
 
-
-			for (int i = 0; i < numberOfBlights; i++)
+			if (gameState.DifficultyLevel.Id == DifficultyLevelId.Page)
+				SpawnBlight(LocationId.Ruins, gameState);
+			else 
 			{
-				var mapCard = gameState.MapCards.Draw();
-
-				foreach (var row in mapCard.Rows)
+				for (int i = 0; i < gameState.DifficultyLevel.StartingBlights; i++)
 				{
-					if (row.LocationId == LocationId.Monastery)
-						continue;
+					var mapCard = gameState.MapCards.Draw();
 
-					var blight = gameState.BlightPool.FirstOrDefault(x => x.Name == row.BlightName);
-					gameState.Locations.Single(l => l.Id == row.LocationId).Blights.Add(blight);
-					gameState.BlightPool.Remove(blight);
+					foreach (var row in mapCard.Rows)
+					{
+						if (row.LocationId == LocationId.Monastery)
+							continue;
+
+						var blight = gameState.BlightPool.FirstOrDefault(x => x.Name == row.BlightName);
+						gameState.Locations.Single(l => l.Id == row.LocationId).Blights.Add(blight);
+						gameState.BlightPool.Remove(blight);
+					}
+
+					gameState.MapCards.Discard(mapCard);
 				}
-
-				gameState.MapCards.Discard(mapCard);
 			}
 		}
 

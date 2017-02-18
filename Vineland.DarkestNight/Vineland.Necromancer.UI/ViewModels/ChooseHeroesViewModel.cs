@@ -100,7 +100,7 @@ namespace Vineland.Necromancer.UI
 			//if all heroes where not selected we must be going back to the home screen
 			//ensure the the current game is null otherwise you'll be able to 'continue' this game
 			if (HeroSlots.Any(x => x.Hero == null))
-				_gameStateService.ClearCurrentGame();
+				Application.CurrentGame = null;
 		}
     }
 

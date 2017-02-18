@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 
 namespace Vineland.Necromancer.Domain
 {
@@ -17,9 +14,12 @@ namespace Vineland.Necromancer.Domain
 
 		public List<Blight> Blights { get; set; }
 
+		public List<Quest> Quests { get; set; }
+
 		public Location ()
 		{
 			Blights = new List<Blight> ();
+			Quests = new List<Quest>();
 		}
 
 		public int BlightCount

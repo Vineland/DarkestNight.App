@@ -55,7 +55,7 @@ namespace Vineland.Necromancer.UI
 
 				var locationModel = Locations.First(x => x.Spawns.Contains(sender));
 				_blightService.DestroyBlight (locationModel.Location, sender.Blight, Application.CurrentGame);
-				Application.SaveCurrentGame ();
+			Application.SaveCurrentGame ();
 
 			locationModel.RemoveBlightViewModel (sender);
 		}

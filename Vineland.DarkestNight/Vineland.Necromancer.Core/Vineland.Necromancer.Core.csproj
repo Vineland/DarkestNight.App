@@ -55,6 +55,7 @@
     <Compile Include="Models\NecromancerSpawnResult.cs" />
     <Compile Include="Models\NecromancerActivationResult.cs" />
     <Compile Include="Models\SpawnBlightResult.cs" />
+    <Compile Include="Services\QuestService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
