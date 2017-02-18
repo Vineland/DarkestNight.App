@@ -16,7 +16,6 @@ Title="Select Heroes">
     </ContentPage.Resources>
 <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
 <StackLayout IsVisible="{Binding IsLoading, Converter={StaticResource not}" >
-<ui:Header Text="Selected Heroes" />
 <ui:ItemsSourceStackLayout
 x:Name="SelectedHeroesLayout"
 Orientation="Horizontal" 

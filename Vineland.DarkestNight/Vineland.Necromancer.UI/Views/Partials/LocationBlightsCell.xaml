@@ -5,17 +5,6 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
 	<StackLayout>
 	<ui:Header Text="{Binding Location.Name}" />
-		<ui:ItemsSourceStackLayout 
-				Orientation="Horizontal"
-				Padding="16,8"
-				ItemsSource="{Binding Heroes}"
-				>
-			<ui:ItemsSourceStackLayout.ItemTemplate>
-				<DataTemplate>
-					<Image Source="{Binding Image}" HeightRequest="48" WidthRequest="48"/>
-				</DataTemplate>
-		</ui:ItemsSourceStackLayout.ItemTemplate>
-		</ui:ItemsSourceStackLayout>
 		<ui:ItemsSourceStackLayout x:Name="BlightsListView"
 			Orientation="Horizontal" 
 			Padding="16,8"

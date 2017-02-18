@@ -36,7 +36,7 @@ namespace Vineland.DarkestNight.UI.Infrastructure
 			container.RegisterSingleton<GameStateService>();
 			container.RegisterSingleton<DataService>();
 			container.RegisterSingleton<BlightService>();
-			container.RegisterSingleton<IRepository, GenericRepository>();
+			container.RegisterSingleton<IRepository, EmbeddedResourceRepository>();
 			container.RegisterSingleton<IFileService, FileService>();
 
 			RegisterPlatformSpecificImplementations (container);

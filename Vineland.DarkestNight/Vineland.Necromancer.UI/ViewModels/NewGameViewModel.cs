@@ -24,6 +24,7 @@ namespace Vineland.Necromancer.UI
 			_gameStateService = gameStateService;
 			DifficultyLevels = dataService.GetDifficultyLevelSettings ();
 			SelectedDifficulty = DifficultyLevels.Single(x => x.Id == DifficultyLevelId.Adventurer);
+			NumberOfPlayers = 4;
         }
 
 		public int NumberOfPlayers { get; set; }

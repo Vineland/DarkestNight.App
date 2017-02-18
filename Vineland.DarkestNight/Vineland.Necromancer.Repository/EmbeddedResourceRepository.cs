@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace Vineland.Necromancer.Repository
 {
-	public class GenericRepository :IRepository
+	public class EmbeddedResourceRepository :IRepository
 	{
-		public GenericRepository()
+		public EmbeddedResourceRepository()
 		{
 		}
 
@@ -19,7 +19,7 @@ namespace Vineland.Necromancer.Repository
 
 		private string ReadEmbeddedResource(string resourceId)
 		{
-			var assembly = typeof(GenericRepository).GetTypeInfo().Assembly;
+			var assembly = typeof(EmbeddedResourceRepository).GetTypeInfo().Assembly;
 
 			using (var reader = new System.IO.StreamReader(assembly.GetManifestResourceStream(resourceId)))
 			{

@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GenericRepository.cs" />
+    <Compile Include="EmbeddedResourceRepository.cs" />
     <Compile Include="IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
