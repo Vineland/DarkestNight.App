@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.Domain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Necromancer.Repository", "Vineland.Necromancer.Repository\Vineland.Necromancer.Repository.csproj", "{1600524B-436B-46AF-9795-F7DD3336C960}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vineland.Xamarin.Forms", "Vineland.Mobile.Common\Vineland.Xamarin.Forms.csproj", "{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,22 @@ Global
 		{1600524B-436B-46AF-9795-F7DD3336C960}.Test|Any CPU.Build.0 = Release|Any CPU
 		{1600524B-436B-46AF-9795-F7DD3336C960}.Test|iPhone.ActiveCfg = Release|Any CPU
 		{1600524B-436B-46AF-9795-F7DD3336C960}.Test|iPhone.Build.0 = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Release|iPhone.Build.0 = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Test|Any CPU.Build.0 = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Test|iPhone.ActiveCfg = Release|Any CPU
+		{0EBC4A0A-120F-49D7-9F3E-94982C7A0B90}.Test|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Vineland.DarkestNight.UI.Shared\Vineland.DarkestNight.UI.Shared.projitems*{0339db32-4458-4311-8bb0-c50847c6381e}*SharedItemsImports = 4
