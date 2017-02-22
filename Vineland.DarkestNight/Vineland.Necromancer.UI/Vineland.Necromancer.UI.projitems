@@ -42,7 +42,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)NecromancerApp.xaml.cs">
       <DependentUpon>NecromancerApp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCarouselPage.cs" />
@@ -121,6 +120,23 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroView.xaml.cs">
+      <DependentUpon>HeroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroStateView.xaml.cs">
+      <DependentUpon>HeroStateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroOptionsView.xaml.cs">
+      <DependentUpon>HeroOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroesPage.xaml.cs">
+      <DependentUpon>HeroesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\SeerView.xaml.cs">
+      <DependentUpon>SeerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DifficultyLevelPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationPicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -133,6 +149,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\Partials\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Partial\" />
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Heroes\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
@@ -187,6 +204,21 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partials\LocationBlightsCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroStateView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroOptionsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\SeerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

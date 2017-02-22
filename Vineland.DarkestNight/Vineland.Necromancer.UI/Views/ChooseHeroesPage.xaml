@@ -21,7 +21,8 @@ x:Name="SelectedHeroesLayout"
 Orientation="Horizontal" 
 ItemsSource="{Binding HeroSlots}"
 ItemSelected="{Binding DeselectHeroCommand}"
-HorizontalOptions="CenterAndExpand">
+HorizontalOptions="CenterAndExpand"
+					Padding="0,8,0,0">
 	<ui:ItemsSourceStackLayout.ItemTemplate>
 			<DataTemplate>
 				<Image Source="{Binding Image}" HeightRequest="60" WidthRequest="60"/>
@@ -31,7 +32,7 @@ HorizontalOptions="CenterAndExpand">
 <ui:Header Text="Available Heroes" />
 <ListView 
 x:Name="AvailableHeroesListView"
-	ItemsSource="{Binding AvailableHeroes}" RowHeight="60">
+	ItemsSource="{Binding AvailableHeroes}" RowHeight="72">
 	<ListView.ItemTemplate>
 			<DataTemplate>
 				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />

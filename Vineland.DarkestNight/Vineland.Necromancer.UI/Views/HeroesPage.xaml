@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+		xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+		x:Class="Vineland.Necromancer.UI.HeroesPage"
+		>
+	<ContentPage.Resources>
+		<ResourceDictionary>
+		<ui:HeroesDataTemplateSelector x:Key="heroesDataTemplateSelector" />
+			</ResourceDictionary>
+	</ContentPage.Resources>
+	<ContentPage.Content>
+	<StackLayout>
+		<cv:CarouselView x:Name="HeroCarousel"  ItemsSource="{Binding Heroes}" ItemTemplate="{StaticResource heroesDataTemplateSelector}" >
+			</cv:CarouselView>
+	</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -109,14 +109,14 @@ namespace Vineland.Necromancer.UI
 
 	public class HeroPhaseLocationViewModel : LocationViewModel
 	{
-		public ObservableCollection<HeroSummaryViewModel> Heroes { get; private set;}
+		//public ObservableCollection<HeroSummaryViewModel> Heroes { get; private set;}
 
 		public HeroPhaseLocationViewModel(Location location, IEnumerable<Hero> heroes)
 				: base(location)
 		{
 			Spawns.Add(new BlightViewModel(null));
 
-			Heroes = new ObservableCollection<HeroSummaryViewModel>(heroes.Select(x => new HeroSummaryViewModel(x)));
+			//Heroes = new ObservableCollection<HeroSummaryViewModel>(heroes.Select(x => new HeroSummaryViewModel(x)));
 
 		}
 

@@ -135,6 +135,18 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Forms.CarouselView">
+      <HintPath>..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\MonoAndroid10\Xamarin.Forms.CarouselView.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Droid">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Platform">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.Platform.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -147,10 +159,6 @@
     <Compile Include="Renderers\CustomFontLabelRenderer.cs" />
     <Compile Include="Renderers\CustomButtonRenderer.cs" />
     <Compile Include="Renderers\CustomPickerRenderer.cs" />
-    <Compile Include="PagedCarouselPage\CirclePageIndicator.cs" />
-    <Compile Include="PagedCarouselPage\IPageIndicator.cs" />
-    <Compile Include="PagedCarouselPage\ViewPagerIndicatorEventHandlers.cs" />
-    <Compile Include="PagedCarouselPage\PagedCarouselPageRenderer.cs" />
     <Compile Include="Services\FontManager.cs" />
     <Compile Include="Renderers\CustomPageRenderer.cs" />
     <Compile Include="Renderers\CustomImageCellRenderer.cs" />

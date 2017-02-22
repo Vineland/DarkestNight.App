@@ -19,7 +19,7 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public string Name {
-			get{ return _hero.Name; }//.ToUpper (); }
+			get{ return _hero.Name; }
 		}
 
 
@@ -46,9 +46,17 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		public ImageSource Image
+		{
+			get
+			{
+				return ImageSourceUtil.GetHeroImage(_hero.Name);
+			}
+		}
+
 		public RelayCommand SearchCommand {
 			get {
-				return new RelayCommand (async () => {
+				return new RelayCommand (() => {
 					Search();
 				});
 			}
@@ -80,21 +88,6 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public List<string> SecrecyOptions {
-			get {
-				
-				var options = new List<string> ();
-				for (int i = 0; i <= 7; i++) {
-					if (i == _hero.SecrecyDefault)
-						options.Add (i + " (Default)");
-					else
-						options.Add (i.ToString ());
-				}
-
-				return options;
-			}
-		}
-
 		public int Grace {
 			get{ return _hero.Grace; }
 			set { 
@@ -102,21 +95,6 @@ namespace Vineland.Necromancer.UI
 					_hero.Grace = value; 
 					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroUpdated", _hero);
 				}
-			}
-		}
-
-
-		public List<string> GraceOptions {
-			get {
-
-				var options = new List<string> ();
-				for (int i = 0; i <= 9; i++) {
-					if (i == _hero.GraceDefault)
-						options.Add (i + " (Default)");
-					else
-						options.Add (i.ToString ());
-				}
-				return options;
 			}
 		}
 

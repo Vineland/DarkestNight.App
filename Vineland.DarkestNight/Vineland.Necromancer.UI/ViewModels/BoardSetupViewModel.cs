@@ -35,7 +35,7 @@ namespace Vineland.Necromancer.UI
 					async () => {
 						//currently the app does not track quests past the initial spwan step
 						Application.CurrentGame.Locations.ForEach(l => l.Quests.Clear());
-						await Application.Navigation.Push<HeroTurnPage>(clearBackStack: true);
+					await Application.Navigation.Push<HeroesPage>(clearBackStack: true);
 					});
 			}
 		}

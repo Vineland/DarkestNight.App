@@ -11,6 +11,7 @@ namespace Vineland.Necromancer.UI
 		public HeroTurnPage ()
 		{ 
 			InitializeComponent ();
+			NavigationPage.SetHasNavigationBar(this, false);
 
 			BlightsListView.ItemTapped += (sender, e) => {
 				BlightsListView.SelectedItem = null;

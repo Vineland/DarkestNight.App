@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-xmlns:domain="clr-namespace:Vineland.Necromancer.Domain;assembly=Vineland.Necromancer.Domain"
 x:Class="Vineland.Necromancer.UI.NewGamePage"
 BackgroundImage="background_framed"
 Title="New Game">
@@ -30,7 +29,7 @@ Title="New Game">
 	<ui:CustomStepper Value="{Binding NumberOfPlayers}" Minimum="2" Maximum="4" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>	
 
     <Label Text="Difficulty" Grid.Row="1" VerticalOptions="Center" />
-	<ui:BindablePicker x:TypeArguments="domain:DifficultyLevel"  ItemsSource="{Binding DifficultyLevels}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="1" Grid.Row="1"  HorizontalOptions="End"/>	
+	<ui:DifficultyLevelPicker ItemsSource="{Binding DifficultyLevels}" SelectedItem="{Binding SelectedDifficulty}" Grid.Column="1" Grid.Row="1"  HorizontalOptions="End"/>	
 
     <Label Text="Starting Darkness" Grid.Row="2" VerticalOptions="Center" />
 	<ui:CustomStepper Value="{Binding StartingDarkness}" Maximum="10" Grid.Column="1" Grid.Row="2" HorizontalOptions="End"/>	

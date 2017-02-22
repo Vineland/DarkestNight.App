@@ -19,7 +19,7 @@ namespace Vineland.Necromancer.Domain
 		public Expansion Expansion { get; set; }
 
 		#region Artifacts
-		public bool HasVoidArmor { get; set; }
+		public bool HasVoidArmour { get; set; }
 		public bool HasShieldOfRadiance { get; set; }
 		public bool HasSeeingGlass { get; set; }
 		#endregion

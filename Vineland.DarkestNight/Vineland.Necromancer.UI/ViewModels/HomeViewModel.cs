@@ -9,6 +9,7 @@ namespace Vineland.Necromancer.UI
 
 		public HomeViewModel ()
 		{
+			
 		}
 
 		public RelayCommand PlayGameCommand {
@@ -19,7 +20,7 @@ namespace Vineland.Necromancer.UI
 							|| !await Application.Navigation.DisplayConfirmation("Continue the last game?", null, "Yes", "No"))
 							await Application.Navigation.Push<NewGamePage>();
 						else
-							await Application.Navigation.Push<HeroTurnPage>();
+						await Application.Navigation.Push<HeroesPage>();
 					}); 
 			}
 		}

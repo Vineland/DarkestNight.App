@@ -12,6 +12,7 @@ namespace Vineland.Necromancer.UI
 		public HomePage ()
 		{
 			InitializeComponent ();
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 
 		protected override void OnAppearing ()

@@ -14,7 +14,10 @@ namespace Vineland.Necromancer.Repository
 		public IEnumerable<T> GetAll<T>() where T : class
 		{
 			var resourceFile = string.Format("Vineland.Necromancer.Repository.Resources.{0}.json", typeof(T).Name.ToLower());
-			return JsonConvert.DeserializeObject<List<T>>(ReadEmbeddedResource(resourceFile));
+			return JsonConvert.DeserializeObject<List<T>>(ReadEmbeddedResource(resourceFile), new JsonSerializerSettings
+			{
+				TypeNameHandling = TypeNameHandling.Objects
+			});
 		}
 
 		private string ReadEmbeddedResource(string resourceId)

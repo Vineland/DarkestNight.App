@@ -31,11 +31,6 @@ namespace Vineland.Necromancer.Domain
 			}
 		}
 
-		public override string ToString ()
-		{
-			return this.Name;
-		}
-
 		public int CompareTo (object obj)
 		{
 			var location = obj as Location;

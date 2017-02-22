@@ -22,6 +22,7 @@ namespace Vineland.Necromancer.UI
 		public void SetNavigation (INavigation navigation)
 		{
 			_navigation = navigation;
+
 		}
 
 		public async void Pop ()

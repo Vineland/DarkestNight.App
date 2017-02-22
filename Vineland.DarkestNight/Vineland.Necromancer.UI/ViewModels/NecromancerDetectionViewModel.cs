@@ -43,7 +43,7 @@ namespace Vineland.Necromancer.UI
 
 		public bool SkipPage {
 			get {
-				return Results.Count == 1 && !Results.Any (r => r.DetectedHero != null && (r.BlindingBlackVisible || r.DecoyVisible || r.ElusiveSpiritVisible || r.VoidArmorVisible));
+				return Results.Count == 1 && !Results.Any (r => r.DetectedHero != null && (r.BlindingBlackVisible || r.DecoyVisible || r.ElusiveSpiritVisible || r.VoidArmourVisible));
 			}
 		}
 
@@ -91,14 +91,14 @@ namespace Vineland.Necromancer.UI
 
 		public List<int> HeroesToIgnore { get; set; } = new List<int> ();
 
-		public bool VoidArmorVisible {
+		public bool VoidArmourVisible {
 			get
 			{ 
-				return Application.CurrentGame.Heroes.Any(h => h.HasVoidArmor && h.Id == DetectedHero.Id);
+				return Application.CurrentGame.Heroes.Any(h => h.HasVoidArmour && h.Id == DetectedHero.Id);
 			}
 		}
 
-		public RelayCommand VoidArmorCommand {
+		public RelayCommand VoidArmourCommand {
 			get {
 				return new RelayCommand (() => {
 					HeroesToIgnore.Add (DetectedHero.Id);
@@ -144,7 +144,7 @@ namespace Vineland.Necromancer.UI
 					DetectedHero = Application.CurrentGame.Heroes.GetHero<Wayfarer>();
 					RaisePropertyChanged (() => DetectedHero);
 					RaisePropertyChanged (() => DecoyCommand);
-					RaisePropertyChanged (() => VoidArmorCommand);
+					RaisePropertyChanged (() => VoidArmourCommand);
 				},
 					() => {
 						var wayfarer = Application.CurrentGame.Heroes.GetHero<Wayfarer>();
@@ -183,7 +183,7 @@ namespace Vineland.Necromancer.UI
 			RaisePropertyChanged (() => ElusiveSpiritCommand);
 			RaisePropertyChanged (() => BlindingBlackCommand);
 			RaisePropertyChanged (() => DecoyCommand);
-			RaisePropertyChanged (() => VoidArmorCommand);
+			RaisePropertyChanged (() => VoidArmourCommand);
 		}
 	}
 }
