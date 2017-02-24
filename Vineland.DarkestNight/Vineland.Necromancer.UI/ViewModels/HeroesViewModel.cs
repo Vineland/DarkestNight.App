@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Vineland.Necromancer.Domain;
+using GalaSoft.MvvmLight.Command;
 
 namespace Vineland.Necromancer.UI
 {
@@ -31,6 +32,28 @@ namespace Vineland.Necromancer.UI
 		//}
 
 		public ObservableCollection<HeroViewModel> Heroes { get; private set; }
+
+		public RelayCommand BlightsCommand
+		{
+			get
+			{
+				return new RelayCommand(async () =>
+				{
+					await Application.Navigation.Push<BlightsPage>();
+				});
+			}
+		}
+
+		public RelayCommand SearchCommand
+		{
+			get
+			{
+				return new RelayCommand(async () =>
+				{
+					await Application.Navigation.Push<SearchPage>();
+				});
+			}
+		}
 
 		//public bool AcolytePresent { get { return Application.CurrentGame.Heroes.GetHero<Acolyte> () != null; } }
 		//public bool ConjurerPresent { get { return Application.CurrentGame.Heroes.GetHero<Conjurer> () != null; } }

@@ -2,12 +2,12 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-		x:Class="Vineland.Necromancer.UI.HeroView">
+		x:Class="Vineland.Necromancer.UI.HeroView"
+		BackgroundColor="Transparent">
 	<ContentView.Content>
 
 	<StackLayout>
 		<ui:HeroStateView />
-		<ui:HeroOptionsView />
 	</StackLayout>
 	</ContentView.Content>
 </ContentView>

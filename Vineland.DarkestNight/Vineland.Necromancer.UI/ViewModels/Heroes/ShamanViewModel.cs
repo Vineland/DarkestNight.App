@@ -43,7 +43,7 @@ namespace Vineland.Necromancer.UI
 						RaisePropertyChanged(() => SpiritSightButtonLabel);
 					}
 					
-					Application.Navigation.Push<MapCardPage>(new MapCardViewModel(_shaman.SpiritSightMapCard, MapCardViewModel.MapCardContext.SpiritSight));
+					//Application.Navigation.Push<MapCardPage>(new MapCardViewModel(_shaman.SpiritSightMapCard, MapCardViewModel.MapCardContext.SpiritSight));
 				});	
 			}
 		}

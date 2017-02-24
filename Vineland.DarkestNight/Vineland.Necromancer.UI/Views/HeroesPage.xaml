@@ -3,6 +3,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
 		xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
+		xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
 		x:Class="Vineland.Necromancer.UI.HeroesPage"
 		>
 	<ContentPage.Resources>
@@ -11,9 +12,21 @@
 			</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content>
-	<StackLayout>
-		<cv:CarouselView x:Name="HeroCarousel"  ItemsSource="{Binding Heroes}" ItemTemplate="{StaticResource heroesDataTemplateSelector}" >
-			</cv:CarouselView>
-	</StackLayout>
+	<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+		<controls:CarouselViewControl ShowIndicators="true" BackgroundColor="Transparent" ItemsSource="{Binding Heroes}" ItemTemplate="{StaticResource heroesDataTemplateSelector}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
+				
+				<Button Image="darkness" Command="{Binding BlightsCommand}"/>
+				<Button Image="day" Command="{Binding SearchCommand}"/>
+				<Button Image="night" />
+				<Button Image="death" />
+				
+			</StackLayout>
+	</Grid>
 	</ContentPage.Content>
 </ContentPage>

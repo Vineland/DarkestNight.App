@@ -1,26 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ui:CustomCarouselPage 
+<ContentPage
 xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.NecromancerDetectionPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
-ItemsSource="{Binding Results}" 
-SelectedItem="{Binding SelectedResult, Mode=TwoWay}"
 Title="Detection"
 BackgroundImage="background_framed">
-	<CarouselPage.Resources>
+	<ContentPage.Resources>
 		<ResourceDictionary>
 			<ui:HeroConverter x:Key="heroConverter">
 			</ui:HeroConverter>
 			<ui:LocationConverter x:Key="locationConverter">
 			</ui:LocationConverter>
 		</ResourceDictionary>
-	</CarouselPage.Resources>
-	<CarouselPage.ToolbarItems>
+	</ContentPage.Resources>
+	<ContentPage.ToolbarItems>
 		<ToolbarItem Name="Accept" Command="{Binding AcceptCommand}">
 		</ToolbarItem>
-	</CarouselPage.ToolbarItems>
-	<CarouselPage.ItemTemplate>
+	</ContentPage.ToolbarItems>
+	<!--<ContentPage.ItemTemplate>
 		<DataTemplate>
 			<ContentPage
 BackgroundImage="background_framed">
@@ -52,5 +50,5 @@ BackgroundImage="background_framed">
 				</Grid>
 			</ContentPage>
 		</DataTemplate>
-	</CarouselPage.ItemTemplate>
-</ui:CustomCarouselPage>
+	</ContentPage.ItemTemplate>-->
+</ContentPage>

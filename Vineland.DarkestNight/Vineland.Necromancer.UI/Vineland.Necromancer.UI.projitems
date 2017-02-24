@@ -42,9 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NecromancerApp.xaml.cs">
       <DependentUpon>NecromancerApp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomCarouselPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -54,8 +52,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml.cs">
       <DependentUpon>NecromancerDetectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml.cs">
-      <DependentUpon>BlightLocationsPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BlightsPage.xaml.cs">
+      <DependentUpon>BlightsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\HeroSelectedArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml.cs">
@@ -78,8 +76,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\SeerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapCardViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MapCardPage.xaml.cs">
-      <DependentUpon>MapCardPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MapCardView.xaml.cs">
+      <DependentUpon>MapCardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
@@ -173,7 +171,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BlightLocationsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BlightsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml">
@@ -182,7 +180,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroTurnPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MapCardPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MapCardView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SearchPage.xaml">

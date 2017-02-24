@@ -23,12 +23,12 @@ namespace Vineland.Necromancer.UI
 			_blightService = blightService;
 
 			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
-			MessagingCenter.Subscribe<BlightViewModel> (this, "DestroyBlight", DestroyBlight);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "DestroyBlight", DestroyBlight);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight", SpawnBlight);
-			MessagingCenter.Subscribe<BlightViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SelectBlight", SelectBlight);
 
-			var locationViewModels = Application.CurrentGame.Locations.Select (l => new HeroPhaseLocationViewModel (l, Application.CurrentGame.Heroes.Where(x=>x.LocationId == l.Id).ToList()));
+			var locationViewModels = Application.CurrentGame.Locations.Select (l => new HeroPhaseLocationViewModel (l));
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> (locationViewModels);
 		}
 
@@ -36,9 +36,9 @@ namespace Vineland.Necromancer.UI
 		{
 			base.OnDisappearing ();
 			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
-			MessagingCenter.Unsubscribe<BlightViewModel> (this, "DestroyBlight");
+			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "DestroyBlight");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight");
-			MessagingCenter.Unsubscribe<BlightViewModel, MoveBlightArgs> (this, "MoveBlight");
+			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, MoveBlightArgs> (this, "MoveBlight");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel> (this, "SelectBlight");
 		}
 
@@ -51,13 +51,12 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public void DestroyBlight(BlightViewModel sender){
-
-				var locationModel = Locations.First(x => x.Spawns.Contains(sender));
-				_blightService.DestroyBlight (locationModel.Location, sender.Blight, Application.CurrentGame);
+		public void DestroyBlight(HeroPhaseLocationViewModel sender, BlightViewModel args){
+			
+				_blightService.DestroyBlight (sender.Location, args.Blight, Application.CurrentGame);
 			Application.SaveCurrentGame ();
 
-			locationModel.RemoveBlightViewModel (sender);
+			sender.RemoveBlightViewModel (args);
 		}
 
 
@@ -72,19 +71,18 @@ namespace Vineland.Necromancer.UI
 
 
 
-		public void MoveBlight(BlightViewModel sender, MoveBlightArgs args)
+		public void MoveBlight(HeroPhaseLocationViewModel sender, MoveBlightArgs args)
 		{
-			var currentLocationSection = Locations.First(x => x.Spawns.Contains(sender));
 			var newLocationSection = Locations.Single(l => l.Location.Name == args.NewLocationName);
-			if (currentLocationSection == newLocationSection)
+			if (newLocationSection == sender)
 				return;
 
 			//remove from gamestate
-			currentLocationSection.Location.Blights.Remove(args.BlightViewModel.Blight);
+			sender.Location.Blights.Remove(args.BlightViewModel.Blight);
 			newLocationSection.Location.Blights.Add(args.BlightViewModel.Blight);
 			Application.SaveCurrentGame();
 			//update view
-			currentLocationSection.RemoveBlightViewModel(args.BlightViewModel);
+			sender.RemoveBlightViewModel(args.BlightViewModel);
 			newLocationSection.AddBlightViewModel(args.BlightViewModel);
 		}
 
@@ -109,15 +107,10 @@ namespace Vineland.Necromancer.UI
 
 	public class HeroPhaseLocationViewModel : LocationViewModel
 	{
-		//public ObservableCollection<HeroSummaryViewModel> Heroes { get; private set;}
-
-		public HeroPhaseLocationViewModel(Location location, IEnumerable<Hero> heroes)
+		public HeroPhaseLocationViewModel(Location location)
 				: base(location)
 		{
 			Spawns.Add(new BlightViewModel(null));
-
-			//Heroes = new ObservableCollection<HeroSummaryViewModel>(heroes.Select(x => new HeroSummaryViewModel(x)));
-
 		}
 
 		public void AddBlightViewModel(BlightViewModel viewModel)

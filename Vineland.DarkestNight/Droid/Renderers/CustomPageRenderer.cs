@@ -21,9 +21,9 @@ namespace Vineland.Necromancer.UI.Droid
 					new int[] { Android.Resource.Attribute.ActionBarSize });
 				var actionbar = (int) styledAttributes.GetDimension(0, 0);
 				styledAttributes.Recycle ();
-				if(this.Element is ActiveHeroesPage || this.Element is BlightLocationsPage)
-					this.Element.Padding= new Thickness(0, (actionbar * 2) / Resources.System.DisplayMetrics.Density, 0, 0);
-				else
+				//if(this.Element is ActiveHeroesPage || this.Element is BlightsPage)
+				//	this.Element.Padding= new Thickness(0, (actionbar * 2) / Resources.System.DisplayMetrics.Density, 0, 0);
+				//else
 				this.Element.Padding = new Thickness(0, actionbar / Resources.System.DisplayMetrics.Density, 0, 0);
 			} else if (e.NewElement == null) {
 			} else {

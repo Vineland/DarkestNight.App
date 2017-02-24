@@ -11,6 +11,7 @@ using Vineland.DarkestNight.UI.Droid.Infrastructure;
 using Vineland.Necromancer.Core.Services;
 using Vineland.DarkestNight.UI;
 using Xamarin;
+using CarouselView.FormsPlugin.Android;
 
 namespace Vineland.Necromancer.UI.Droid
 {
@@ -35,6 +36,7 @@ namespace Vineland.Necromancer.UI.Droid
 
 				LogHelper.Info("Initialising Forms");
 				global::Xamarin.Forms.Forms.Init (this, bundle);
+				CarouselViewRenderer.Init();
 
 				LogHelper.Info("Loading  NecromancerApp");
 				LoadApplication (new NecromancerApp ());

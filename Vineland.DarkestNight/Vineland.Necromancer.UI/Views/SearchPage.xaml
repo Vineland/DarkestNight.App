@@ -1,18 +1,39 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ui:CustomCarouselPage 
+<ContentPage 
 xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.SearchPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-ItemsSource="{Binding MapCards}"
+		xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
 BackgroundImage="background_framed">
-	<CarouselPage.ToolbarItems>
-		<ToolbarItem Name="Discard" Command="{Binding DiscardCommand}">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Name="Done" Command="{Binding DoneCommand}">
 		</ToolbarItem>
-	</CarouselPage.ToolbarItems>
-	<CarouselPage.ItemTemplate>
-		<DataTemplate>
-			<ui:MapCardPage />
-		</DataTemplate>
-	</CarouselPage.ItemTemplate>
-</ui:CustomCarouselPage>
+	</ContentPage.ToolbarItems>
+	
+	<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+		<controls:CarouselViewControl ShowIndicators="true" 
+				BackgroundColor="Transparent" ItemsSource="{Binding MapCards}" 
+			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+			<controls:CarouselViewControl.ItemTemplate>
+				<DataTemplate>
+					<ui:MapCardView />
+				</DataTemplate>
+			</controls:CarouselViewControl.ItemTemplate>
+		</controls:CarouselViewControl>
+
+			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
+				
+				<Button Image="darkness" />
+				<Button Image="day" />
+				<Button Image="night" />
+				<Button Image="death" />
+				
+			</StackLayout>
+	</Grid>
+	
+</ContentPage>

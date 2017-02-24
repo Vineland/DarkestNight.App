@@ -15,7 +15,6 @@ namespace Vineland.Necromancer.UI
 		{
 		}
 
-
 		public static BindableProperty ItemsSourceProperty =
 			BindableProperty.Create ("ItemsSource", typeof(IList), typeof(ItemsSourceStackLayout), default(IList),
 				propertyChanged: (bindableObject, oldValue, newValue) => {

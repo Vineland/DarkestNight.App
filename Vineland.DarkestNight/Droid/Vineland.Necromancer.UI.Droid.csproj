@@ -147,6 +147,12 @@
     <Reference Include="Rg.Plugins.Popup.Platform">
       <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="CarouselView.FormsPlugin.Abstractions">
+      <HintPath>..\packages\CarouselView.FormsPlugin.3.0.0\lib\MonoAndroid\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CarouselView.FormsPlugin.Android">
+      <HintPath>..\packages\CarouselView.FormsPlugin.3.0.0\lib\MonoAndroid\CarouselView.FormsPlugin.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -246,8 +252,6 @@
     <AndroidResource Include="Resources\drawable\plus.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\minus_disabled.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\plus_disabled.png" />
-    <AndroidResource Include="Resources\values\vpi__attrs.xml" />
-    <AndroidResource Include="Resources\values\vpi__defaults.xml" />
     <AndroidResource Include="Resources\drawable-xxhdpi\necromancer_large.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\background_dark.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\necromancer_large.png" />

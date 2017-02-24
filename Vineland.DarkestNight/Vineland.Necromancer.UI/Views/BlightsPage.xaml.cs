@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class SearchPage : ContentPage
+	public partial class BlightsPage : ContentPage
 	{
-		public SearchPage ()
+		public BlightsPage ()
 		{
 			InitializeComponent ();
 		}

@@ -54,28 +54,6 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand SearchCommand {
-			get {
-				return new RelayCommand (() => {
-					Search();
-				});
-			}
-		}
-
-		protected void UseSeeingGlass(){
-			var card = Application.CurrentGame.MapCards.Peek();
-
-			Application.Navigation.Push<MapCardPage>(new MapCardViewModel(card, MapCardViewModel.MapCardContext.SpiritSight));
-
-		}
-		protected async virtual void Search ()
-		{
-			var option = await Application.Navigation.DisplayActionSheet("Number Of Cards To Draw", "Cancel", null, "1", "2", "3", "4");
-			var numberOfCards = 0;
-			if (int.TryParse (option, out numberOfCards))
-				Application.Navigation.Push<SearchPage> (new SearchViewModel (numberOfCards));
-		}
-
 		public int Secrecy {
 			get { 
 				return _hero.Secrecy; 
