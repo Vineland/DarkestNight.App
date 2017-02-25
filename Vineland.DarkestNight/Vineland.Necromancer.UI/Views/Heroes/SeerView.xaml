@@ -6,20 +6,17 @@
 	<ContentView.Content>
 	<StackLayout>
 		<ui:HeroStateView />
-		<Grid>
+		<Grid RowSpacing="8" Padding="16,0">
 		<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
-
-			<ui:Header Text="Powers" Grid.ColumnSpan="2"/>
 			
 			<Label Text="Prophecy of Doom" Grid.Row="1" />
-		<ui:CustomStepper Value="{Binding ProphecyOfDoomRoll}" Maximum="6" Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>	
+			<ui:CustomStepper Value="{Binding ProphecyOfDoomRoll}" Maximum="6" Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>	
 
 		</Grid>
 

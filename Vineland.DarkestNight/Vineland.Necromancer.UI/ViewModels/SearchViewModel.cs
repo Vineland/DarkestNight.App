@@ -18,7 +18,7 @@ namespace Vineland.Necromancer.UI
 			//if the user decides to undo a bunch of stuff
 			_mapDeck = Application.CurrentGame.Clone().MapCards;
 
-			MapCards.Add(new MapCardViewModel(_mapDeck.Draw()));
+			//MapCards.Add(new MapCardViewModel(_mapDeck.Draw()));
 		}
 
 		Deck<Domain.MapCard> _mapDeck;
@@ -58,8 +58,11 @@ namespace Vineland.Necromancer.UI
 			{
 				return new RelayCommand(() =>
 				{
-					_mapDeck.Discard(SelectedMapCard.MapCard);
-					MapCards.Remove(SelectedMapCard);
+					if (SelectedMapCard != null)
+					{
+						_mapDeck.Discard(SelectedMapCard.MapCard);
+						MapCards.Remove(SelectedMapCard);
+					}
 				});
 			}
 		}
@@ -70,8 +73,11 @@ namespace Vineland.Necromancer.UI
 			{
 				return new RelayCommand(() =>
 				{
-					_mapDeck.Return(SelectedMapCard.MapCard, DeckPosition.Bottom);
-					MapCards.Remove(SelectedMapCard);
+					if (SelectedMapCard != null)
+					{
+						_mapDeck.Return(SelectedMapCard.MapCard, DeckPosition.Bottom);
+						MapCards.Remove(SelectedMapCard);
+					}
 				});
 			}
 		}
@@ -82,8 +88,11 @@ namespace Vineland.Necromancer.UI
 			{
 				return new RelayCommand(() =>
 				{
-					_mapDeck.Return(SelectedMapCard.MapCard);
-					MapCards.Remove(SelectedMapCard);
+					if (SelectedMapCard != null)
+					{
+						_mapDeck.Return(SelectedMapCard.MapCard);
+						MapCards.Remove(SelectedMapCard);
+					}
 				});
 			}
 		}
@@ -94,11 +103,17 @@ namespace Vineland.Necromancer.UI
 					foreach (var mapCard in MapCards)
 					{
 						_mapDeck.Discard(mapCard.MapCard);
-						Application.CurrentGame.MapCards = _mapDeck;
 					}
+
+					Application.CurrentGame.MapCards = _mapDeck;
 					Application.Navigation.Pop ();
 				});
 			}
+		}
+
+		public override void OnBackButtonPressed()
+		{
+			DoneCommand.Execute(null);
 		}
 	}
 }

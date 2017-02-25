@@ -46,7 +46,7 @@ BackgroundImage="background">
 				<Button Image="darkness" />
 				<Button Image="day" />
 				<Button Image="night" />
-				<Button Image="death" />
+				<Button Image="death" Command="{Binding DestroyCommand}"/>
 				
 			</StackLayout>
 		</Grid>
