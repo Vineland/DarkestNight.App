@@ -5,21 +5,33 @@ x:Class="Vineland.Necromancer.UI.BlightsPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 Title="Blights"
 BackgroundImage="background">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+		<ui:IsSelectedConverter x:Key="isSelectedConverter" />
+			</ResourceDictionary>
+	</ContentPage.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 	<ListView x:Name="ListView" ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
 			<ViewCell>
-			<StackLayout 
-		Padding="16, 8,16,16">
-
-				<Label Text="{Binding Location.Name}" VerticalTextAlignment="Center" />
+			<StackLayout >
+				<ui:Header Text="{Binding Location.Name}" />
 					<ui:ItemsSourceStackLayout
 		Orientation="Horizontal" 
+			Padding="16,8"
 		ItemsSource="{Binding Spawns}"
 		ItemSelected="{Binding BlightSelectedCommand}">
 			<ui:ItemsSourceStackLayout.ItemTemplate>
 					<DataTemplate>
-						<Image Source="{Binding Image}" HeightRequest="60" WidthRequest="60"/>
+									<Grid>
+						<Image Source="{Binding Image}" HeightRequest="48" WidthRequest="48"/>
+										<Image Source="death" IsVisible="{Binding IsSelected}" HeightRequest="48" WidthRequest="48"/>
+										</Grid>
 					</DataTemplate>
 			</ui:ItemsSourceStackLayout.ItemTemplate>
 		</ui:ItemsSourceStackLayout>
@@ -29,4 +41,13 @@ BackgroundImage="background">
 			</DataTemplate>
 		</ListView.ItemTemplate>
 	</ListView>
+		<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
+				
+				<Button Image="darkness" />
+				<Button Image="day" />
+				<Button Image="night" />
+				<Button Image="death" />
+				
+			</StackLayout>
+		</Grid>
 </ContentPage>

@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DifficultyLevelPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter %28copy%29.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

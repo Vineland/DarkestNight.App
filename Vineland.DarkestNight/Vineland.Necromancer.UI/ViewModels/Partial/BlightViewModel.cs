@@ -29,6 +29,19 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		bool _isSelected = false;
+		public bool IsSelected
+		{get
+			{
+				return _isSelected;
+			}
+			set
+			{
+				_isSelected = value;
+				RaisePropertyChanged(() => IsSelected);
+			}
+		}
+
 		public RelayCommand DestroyBlightCommand
 		{
 			get

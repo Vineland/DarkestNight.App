@@ -19,14 +19,14 @@ namespace Vineland.Necromancer.UI
 		public BlightsViewModel (BlightService blightService)
 		{
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> ();
-
+			SelectedBlights = new List<BlightViewModel>();
 			_blightService = blightService;
 
 			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
-			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "DestroyBlight", DestroyBlight);
-			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight", SpawnBlight);
-			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
-			MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SelectBlight", SelectBlight);
+			//MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "DestroyBlight", DestroyBlight);
+			//MessagingCenter.Subscribe<HeroPhaseLocationViewModel> (this, "SpawnBlight", SpawnBlight);
+			//MessagingCenter.Subscribe<HeroPhaseLocationViewModel, MoveBlightArgs> (this, "MoveBlight", MoveBlight);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "BlightSelected", BlightSelected);
 
 			var locationViewModels = Application.CurrentGame.Locations.Select (l => new HeroPhaseLocationViewModel (l));
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> (locationViewModels);
@@ -84,6 +84,16 @@ namespace Vineland.Necromancer.UI
 			//update view
 			sender.RemoveBlightViewModel(args.BlightViewModel);
 			newLocationSection.AddBlightViewModel(args.BlightViewModel);
+		}
+
+		public List<BlightViewModel> SelectedBlights { get; private set; }
+
+		public async void BlightSelected(HeroPhaseLocationViewModel sender, BlightViewModel blight)
+		{
+			if (blight.IsSelected)
+				SelectedBlights.Add(blight);
+			else
+				SelectedBlights.Remove(blight);
 		}
 
 		public async void SelectBlight(HeroPhaseLocationViewModel sender){
@@ -146,31 +156,8 @@ namespace Vineland.Necromancer.UI
 			{
 				return new RelayCommand<BlightViewModel>(async (blightViewModel) =>
 				{
-					if (!blightViewModel.IsPlaceHolder)
+					if (blightViewModel.IsPlaceHolder)
 					{
-						var action = await Application.Navigation.DisplayActionSheet("Remove Blight", "Cancel", null, "Destroy", "Move");
-						if (action == "Destroy")
-							MessagingCenter.Send<HeroPhaseLocationViewModel, BlightViewModel>(this,
-								"DestroyBlight",
-								blightViewModel
-							);
-
-						if (action == "Move")
-						{
-							var newLocationName = await Application.Navigation.DisplayActionSheet("New Location", "Cancel", null, Application.CurrentGame.Locations.Select(x => x.Name).ToArray());
-							if (newLocationName != "Cancel"
-								&& newLocationName != Location.Name)
-							{
-								MessagingCenter.Send<HeroPhaseLocationViewModel, MoveBlightArgs>(this, "MoveBlight",
-									new MoveBlightArgs()
-									{
-										BlightViewModel = blightViewModel,
-										NewLocationName = newLocationName
-									});
-							}
-						}
-					}
-					else {
 						var action = await Application.Navigation.DisplayActionSheet(
 							"New Blight",
 							"Cancel",
@@ -187,6 +174,51 @@ namespace Vineland.Necromancer.UI
 								break;
 						}
 					}
+					else {
+						blightViewModel.IsSelected = !blightViewModel.IsSelected;
+						MessagingCenter.Send<HeroPhaseLocationViewModel, BlightViewModel>(this, "BlightSelected", blightViewModel);
+					}
+					//if (!blightViewModel.IsPlaceHolder)
+					//{
+					//	var action = await Application.Navigation.DisplayActionSheet("Remove Blight", "Cancel", null, "Destroy", "Move");
+					//	if (action == "Destroy")
+					//		MessagingCenter.Send<HeroPhaseLocationViewModel, BlightViewModel>(this,
+					//			"DestroyBlight",
+					//			blightViewModel
+					//		);
+
+					//	if (action == "Move")
+					//	{
+					//		var newLocationName = await Application.Navigation.DisplayActionSheet("New Location", "Cancel", null, Application.CurrentGame.Locations.Select(x => x.Name).ToArray());
+					//		if (newLocationName != "Cancel"
+					//			&& newLocationName != Location.Name)
+					//		{
+					//			MessagingCenter.Send<HeroPhaseLocationViewModel, MoveBlightArgs>(this, "MoveBlight",
+					//				new MoveBlightArgs()
+					//				{
+					//					BlightViewModel = blightViewModel,
+					//					NewLocationName = newLocationName
+					//				});
+					//		}
+					//	}
+					//}
+					//else {
+					//	var action = await Application.Navigation.DisplayActionSheet(
+					//		"New Blight",
+					//		"Cancel",
+					//		null,
+					//		"Spawn",
+					//		"Select");
+					//	switch (action)
+					//	{
+					//		case "Spawn":
+					//			MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SpawnBlight");
+					//			break;
+					//		case "Select":
+					//			MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SelectBlight");
+					//			break;
+					//	}
+					//}
 				});
 			}
 		}

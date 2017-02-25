@@ -11,7 +11,7 @@ x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
 	ItemsSource="{Binding Spawns}">
 		<ui:ItemsSourceStackLayout.ItemTemplate>
 				<DataTemplate>
-					<ui:CustomImage Source="{Binding Image}" OnLongPress="{Binding DestroyBlightCommand}" OnTap="{Binding MoveBlightCommand}" HeightRequest="48" WidthRequest="48"/>
+					<ui:CustomImage Source="{Binding Image}"  HeightRequest="48" WidthRequest="48"/>
 				</DataTemplate>
 		</ui:ItemsSourceStackLayout.ItemTemplate>
 	</ui:ItemsSourceStackLayout>

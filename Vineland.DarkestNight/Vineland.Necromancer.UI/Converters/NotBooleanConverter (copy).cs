@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NotBooleanConverter : IValueConverter
+	public class IsSelectedConverter : IValueConverter
 	{
-		public NotBooleanConverter ()
+		public IsSelectedConverter ()
 		{
 		}
 
@@ -13,11 +13,11 @@ namespace Vineland.Necromancer.UI
 
 		public object Convert (object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			return !(bool)value;
+			return (bool)value ? Color.Red : Color.Transparent;
 		}
 		public object ConvertBack (object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			return !(bool)value;
+			throw new NotImplementedException();
 		}
 
 		#endregion

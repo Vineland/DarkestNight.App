@@ -52,6 +52,9 @@ namespace Vineland.Necromancer.Core
 
 		public void Return (T card, DeckPosition position = DeckPosition.Top)
 		{
+			if (DrawPile.Contains(card))
+				DrawPile.Remove(card);
+			
 			switch (position) {
 			case DeckPosition.Top:
 				DrawPile.Insert (0, card);

@@ -3,6 +3,7 @@
 xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.SearchPage"
+		xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 		xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
 BackgroundImage="background_framed">
@@ -16,22 +17,22 @@ BackgroundImage="background_framed">
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-		<controls:CarouselViewControl ShowIndicators="true" 
+		<cv:CarouselView Position="{Binding SelectedMapCardIndex}"
 				BackgroundColor="Transparent" ItemsSource="{Binding MapCards}" 
 			VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-			<controls:CarouselViewControl.ItemTemplate>
+			<cv:CarouselView.ItemTemplate>
 				<DataTemplate>
 					<ui:MapCardView />
 				</DataTemplate>
-			</controls:CarouselViewControl.ItemTemplate>
-		</controls:CarouselViewControl>
+			</cv:CarouselView.ItemTemplate>
+		</cv:CarouselView>
 
 			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
 				
-				<Button Image="darkness" />
-				<Button Image="day" />
-				<Button Image="night" />
-				<Button Image="death" />
+				<Button Image="darkness" Command="{Binding DrawCommand}"/>
+				<Button Image="day" Command="{Binding ReturnToTopCommand}" />
+				<Button Image="night" Command="{Binding ReturnToBottomCommand}" />
+				<Button Image="death" Command="{Binding DiscardCommand}" />
 				
 			</StackLayout>
 	</Grid>
