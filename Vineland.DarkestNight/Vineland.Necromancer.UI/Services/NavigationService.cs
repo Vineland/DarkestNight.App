@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using XLabs.Ioc;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 
 namespace Vineland.Necromancer.UI
 {
@@ -78,6 +80,37 @@ namespace Vineland.Necromancer.UI
 				return newPage;
 
 			} catch (Exception ex) {
+				LogHelper.Error(ex);
+				throw;
+			}
+		}
+
+		public async void PushPopup<T>(object viewModel = null) where T : PopupPage
+		{
+			if (_navigation == null)
+				throw new Exception("_navigation is null");
+			try
+			{
+				var newPage = _pageService.CreatePage<T>(viewModel);
+				await _navigation.PushPopupAsync(newPage as PopupPage);
+			}
+			catch (Exception ex)
+			{
+				LogHelper.Error(ex);
+				throw;
+			}
+		}
+
+		public async void PopLastPopup()
+		{
+			if (_navigation == null)
+				throw new Exception("_navigation is null");
+			try
+			{
+			await _navigation.PopPopupAsync();
+				}
+			catch (Exception ex)
+			{
 				LogHelper.Error(ex);
 				throw;
 			}

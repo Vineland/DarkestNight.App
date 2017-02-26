@@ -136,6 +136,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DifficultyLevelPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter %28copy%29.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ChooseLocationPopupPage.xaml.cs">
+      <DependentUpon>ChooseLocationPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChooseLocationPopupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -218,6 +222,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\SeerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseLocationPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

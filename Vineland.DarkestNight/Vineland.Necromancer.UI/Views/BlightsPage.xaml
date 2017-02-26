@@ -43,7 +43,7 @@ BackgroundImage="background">
 	</ListView>
 		<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
 				
-				<Button Image="darkness" />
+				<Button Image="darkness" Command="{Binding MoveCommand}"/>
 				<Button Image="day" />
 				<Button Image="night" />
 				<Button Image="death" Command="{Binding DestroyCommand}"/>

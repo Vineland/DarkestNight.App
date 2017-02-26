@@ -94,6 +94,9 @@ namespace Vineland.Necromancer.UI
 				SelectedBlights.Add(blight);
 			else
 				SelectedBlights.Remove(blight);
+
+			RaisePropertyChanged(() => MoveCommand);
+			RaisePropertyChanged(() => DestroyCommand);
 		}
 
 		public RelayCommand DestroyCommand
@@ -102,9 +105,6 @@ namespace Vineland.Necromancer.UI
 			{
 				return new RelayCommand(async () =>
 				{
-					if (!SelectedBlights.Any())
-						return;
-					
 					string message;
 					if (SelectedBlights.Count == 1)
 						message = "Destroy the selected blight?";
@@ -114,8 +114,26 @@ namespace Vineland.Necromancer.UI
 					var result = await Application.Navigation.DisplayConfirmation("Destroy", message, "Yes", "No");
 					if (result)
 						DestroyBlights();
-				});
+				}, () => { return SelectedBlights.Any(); });
 			}
+		}
+
+		public RelayCommand MoveCommand
+		{
+			get
+			{
+				return new RelayCommand(async () =>
+				{
+					var viewModel = new ChooseLocationPopupViewModel();
+					viewModel.OnLocationSelected += ChooseLocationViewModel_OnLocationSelected;
+					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
+				}, () => { return SelectedBlights.Any(); });
+			}
+		}
+
+		void ChooseLocationViewModel_OnLocationSelected(Location obj)
+		{
+			Application.Navigation.PopLastPopup();
 		}
 
 		public void DestroyBlights()
