@@ -1,18 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 		x:Class="Vineland.Necromancer.UI.HeroOptionsView">
 	<ContentView.Content>
 		<StackLayout>
-			<ui:Header Text="Artifacts" />
 			<Grid RowSpacing="8" Padding="16,0">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
@@ -22,9 +20,6 @@
 
 				<Label Text="Shield of Radiance" VerticalOptions="Center" Grid.Row="2" />
 				<ui:CheckButton IsSelected="{Binding HasShieldOfRadiance}" Grid.Column="1" Grid.Row="2" HorizontalOptions="End"/>
-
-				<Label Text="Seeing Glass" VerticalOptions="Center" Grid.Row="3" />
-				<ui:CheckButton IsSelected="{Binding HasSeeingGlass}" Grid.Column="1" Grid.Row="3" HorizontalOptions="End"/>
 
 			</Grid>
 		</StackLayout>

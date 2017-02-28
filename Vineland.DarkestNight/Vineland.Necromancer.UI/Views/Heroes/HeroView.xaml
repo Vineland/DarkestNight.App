@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
-		x:Class="Vineland.Necromancer.UI.HeroView"
-		BackgroundColor="Transparent">
+		x:Class="Vineland.Necromancer.UI.HeroView">
 	<ContentView.Content>
 
 	<StackLayout>
 		<ui:HeroStateView />
+		<ui:HeroOptionsView/>
 	</StackLayout>
 	</ContentView.Content>
 </ContentView>

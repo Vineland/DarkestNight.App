@@ -76,18 +76,42 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public Location Location {
-			get{ return Locations.Single (l => l.Id == _hero.LocationId); }
-			set {
-				if (_hero.LocationId != value.Id) {
-					_hero.LocationId = value.Id;
-					MessagingCenter.Send<HeroViewModel, Hero> (this, "HeroMoved", _hero);
-				}
+		public string LocationName
+		{
+			get
+			{
+				return Locations.Single(l => l.Id == _hero.LocationId).Name;
 			}
 		}
 
 		public List<Location> Locations {
 			get { return Application.CurrentGame.Locations; }
+		}
+
+		public RelayCommand LocationCommand
+		{
+			get
+			{
+				return new RelayCommand(() =>
+				{
+					var viewModel = new ChooseLocationPopupViewModel();
+					viewModel.OnLocationSelected += (location) =>
+					{
+						LocationSelected(location);
+						Application.Navigation.PopLastPopup();
+					};
+					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
+				});
+			}
+		}
+
+		public void LocationSelected(Location location)
+		{if (_hero.LocationId != location.Id)
+			{
+				_hero.LocationId = location.Id;
+				MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroMoved", _hero);
+			}
+			RaisePropertyChanged(()=> LocationName);
 		}
 
 		public static HeroViewModel Create (Hero hero)

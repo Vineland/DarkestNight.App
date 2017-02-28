@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
@@ -17,7 +17,7 @@
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-		<controls:CarouselViewControl ShowIndicators="true" BackgroundColor="Transparent" ItemsSource="{Binding Heroes}" ItemTemplate="{StaticResource heroesDataTemplateSelector}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+		<cv:CarouselView ItemsSource="{Binding Heroes}" ItemTemplate="{StaticResource heroesDataTemplateSelector}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
 
 			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
 				
