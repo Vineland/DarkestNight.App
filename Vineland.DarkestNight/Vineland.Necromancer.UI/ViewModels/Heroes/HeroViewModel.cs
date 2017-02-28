@@ -76,6 +76,32 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		public bool HasVoidArmour
+		{
+			get { return _hero.HasVoidArmour; }
+			set
+			{
+				if (_hero.HasVoidArmour != value)
+				{
+					_hero.HasVoidArmour = value;
+					MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", _hero);
+				}
+			}
+		}
+
+		public bool HasShieldOfRadiance
+		{
+			get { return _hero.HasShieldOfRadiance; }
+			set
+			{
+				if (_hero.HasShieldOfRadiance != value)
+				{
+					_hero.HasShieldOfRadiance = value;
+					MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", _hero);
+				}
+			}
+		}
+
 		public string LocationName
 		{
 			get
@@ -106,7 +132,8 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public void LocationSelected(Location location)
-		{if (_hero.LocationId != location.Id)
+		{
+			if (_hero.LocationId != location.Id)
 			{
 				_hero.LocationId = location.Id;
 				MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroMoved", _hero);

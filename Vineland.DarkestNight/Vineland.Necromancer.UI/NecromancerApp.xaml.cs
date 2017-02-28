@@ -36,7 +36,7 @@ namespace Vineland.Necromancer.UI
 
 		protected override void OnStart ()
 		{
-			_gameStateService.LoadGame(AppConstants.SaveFilePath);
+			CurrentGame = _gameStateService.LoadGame(AppConstants.SaveFilePath);
 		}
 
 		protected override void OnSleep ()

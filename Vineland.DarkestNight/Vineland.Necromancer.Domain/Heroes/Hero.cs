@@ -21,7 +21,6 @@ namespace Vineland.Necromancer.Domain
 		#region Artifacts
 		public bool HasVoidArmour { get; set; }
 		public bool HasShieldOfRadiance { get; set; }
-		public bool HasSeeingGlass { get; set; }
 		#endregion
 
 		public override string ToString ()
