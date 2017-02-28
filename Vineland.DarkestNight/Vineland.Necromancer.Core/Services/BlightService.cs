@@ -40,7 +40,7 @@ namespace Vineland.Necromancer.Core
 		}
 
 		/// <summary>
-		/// Spawns a blight at the specified locaiton. 
+		/// Spawns a blight at the specified location. 
 		/// If the location is already at capacity then it spawns a blight at the monastery instead.
 		/// </summary>
 		/// <returns>A tuple containting the blight spawned and the location spawned at.</returns>

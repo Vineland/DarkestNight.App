@@ -8,6 +8,16 @@ namespace Vineland.Necromancer.UI
 		public ImageSource Image {
 			get { return FileImageSource.FromFile("quest"); }
 		}
+
+		public bool IsPlaceHolder
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+
 	}
 }
 
