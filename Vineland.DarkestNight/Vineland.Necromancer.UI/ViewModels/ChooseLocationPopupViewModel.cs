@@ -27,6 +27,7 @@ namespace Vineland.Necromancer.UI
 				{
 					_selectedLocation = value;
 					OnLocationSelected(value);
+					Application.Navigation.PopLastPopup();
 				}
 			}
 		}

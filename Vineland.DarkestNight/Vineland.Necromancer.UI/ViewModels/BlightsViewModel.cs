@@ -1,5 +1,6 @@
 ﻿using System;
 using Vineland.Necromancer.Core;
+using Vineland.Necromancer.Core.Models;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Vineland.Necromancer.UI
 
 			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "BlightSelected", BlightSelected);
+			MessagingCenter.Subscribe<HeroPhaseLocationViewModel>(this, "SpawnBlight", SpawnBlight);
 
 			var locationViewModels = Application.CurrentGame.Locations.Select (l => new HeroPhaseLocationViewModel (l));
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> (locationViewModels);
@@ -34,6 +36,7 @@ namespace Vineland.Necromancer.UI
 			base.OnDisappearing ();
 			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "BlightSelected");
+			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel>(this, "SpawnBlight");
 		}
 
 		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
@@ -43,6 +46,23 @@ namespace Vineland.Necromancer.UI
 				foreach (var spawn in spawnLocation.Spawns.Where(x=> x is BlightViewModel))
 					locationRow.AddBlightViewModel (spawn as BlightViewModel);
 			}
+		}
+
+		public void SpawnBlight(HeroPhaseLocationViewModel locationModel)
+		{
+			var viewModel = new SpawnBlightPopupViewModel();
+			viewModel.OnOptionSelected += (SpawnBlightOption option) =>
+			{
+				SpawnBlightResult result;
+				if (option.Description == "Random")
+					result = _blightService.SpawnBlight(locationModel.Location.Id, Application.CurrentGame);
+				else
+					result = _blightService.SpawnBlight(locationModel.Location.Id, option.Description, Application.CurrentGame);
+
+				locationModel.AddBlightViewModel(new BlightViewModel(result.Blight));
+			};
+
+			Application.Navigation.PushPopup<SpawnBlightPopupPage>(viewModel);
 		}
 
 		public List<BlightViewModel> SelectedBlights { get; private set; }
@@ -84,16 +104,14 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand(async () =>
 				{
 					var viewModel = new ChooseLocationPopupViewModel();
-					viewModel.OnLocationSelected += MoveCommand_OnLocationSelected;
+					viewModel.OnLocationSelected += MoveSelectedBlights;
 					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
 				}, () => { return SelectedBlights.Any(); });
 			}
 		}
 
-		void MoveCommand_OnLocationSelected(Location location)
+		void MoveSelectedBlights(Location location)
 		{
-			Application.Navigation.PopLastPopup();
-
 			var newLocation = Locations.Single(l => l.Location.Id == location.Id);
 
 			foreach (var blightModel in SelectedBlights)
@@ -169,21 +187,7 @@ namespace Vineland.Necromancer.UI
 				{
 					if (blightViewModel.IsPlaceHolder)
 					{
-						//var action = await Application.Navigation.DisplayActionSheet(
-						//	"New Blight",
-						//	"Cancel",
-						//	null,
-						//	"Spawn",
-						//	"Select");
-						//switch (action)
-						//{
-						//	case "Spawn":
-						//		MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SpawnBlight");
-						//		break;
-						//	case "Select":
-						//		MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SelectBlight");
-						//		break;
-						//}
+						MessagingCenter.Send<HeroPhaseLocationViewModel>(this, "SpawnBlight");
 					}
 					else {
 						blightViewModel.IsSelected = !blightViewModel.IsSelected;

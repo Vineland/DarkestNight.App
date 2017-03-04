@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+		x:Class="Vineland.Necromancer.UI.SpawnBlightPopupPage"
+		Padding="20">
+	<ListView ItemsSource="{ Binding Options }" SelectedItem="{Binding SelectedOption}" BackgroundColor="White" >
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ImageCell ImageSource="{Binding Image}" Text="{Binding Description}" />
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+</pages:PopupPage>

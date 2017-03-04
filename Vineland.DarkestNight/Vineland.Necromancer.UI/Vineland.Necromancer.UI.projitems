@@ -140,6 +140,10 @@
       <DependentUpon>ChooseLocationPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChooseLocationPopupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpawnBlightPopupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ChooseLocationPopupPage.xaml %28copy%29.cs">
+      <DependentUpon>SpawnBlightPopupPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
@@ -225,6 +229,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseLocationPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SpawnBlightPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -124,7 +124,6 @@ namespace Vineland.Necromancer.UI
 					viewModel.OnLocationSelected += (location) =>
 					{
 						LocationSelected(location);
-						Application.Navigation.PopLastPopup();
 					};
 					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
 				});

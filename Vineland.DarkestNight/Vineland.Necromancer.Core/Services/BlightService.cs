@@ -48,21 +48,32 @@ namespace Vineland.Necromancer.Core
 		/// <param name="gameState">Game state.</param>
 		public SpawnBlightResult SpawnBlight (LocationId locationId, GameState gameState)
 		{
-			var location = gameState.Locations.Single(l => l.Id == locationId);
-			if (location.BlightCount >= 4)
-				location = gameState.Locations.Single (l => l.Id == LocationId.Monastery);
-			
 			var card = gameState.MapCards.Draw ();
-			var blightName = card.Rows.Single (r => r.LocationId == location.Id).BlightName;
-			var blight = gameState.BlightPool.FirstOrDefault (x => x.Name == blightName);
+			var blightName = card.Rows.Single (r => r.LocationId == locationId).BlightName;
+			var result = SpawnBlight(locationId, blightName, gameState);
 			gameState.MapCards.Discard (card);
 
-			if (blight != null) {
-				location.Blights.Add (blight);
-				gameState.BlightPool.Remove (blight);
-			} else //if there are no blights of that type left to spawn try the next card
+			//if there are no blights of that type left to spawn try the next card
+			if (result.Blight == null)
 				return SpawnBlight (locationId, gameState);
 
+			return result;
+		}
+
+		public SpawnBlightResult SpawnBlight(LocationId locationId, string blightName, GameState gameState)
+		{
+			var location = gameState.Locations.Single(l => l.Id == locationId);
+			if (location.BlightCount >= 4)
+				location = gameState.Locations.Single(l => l.Id == LocationId.Monastery);
+			
+			var blight = gameState.BlightPool.FirstOrDefault(x => x.Name == blightName);
+
+			if (blight != null)
+			{
+				location.Blights.Add(blight);
+				gameState.BlightPool.Remove(blight);
+			}
+				
 			return new SpawnBlightResult() { Location = location, Blight = blight };
 		}
 
