@@ -55,6 +55,17 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		public RelayCommand NecromancerCommand
+		{
+			get
+			{
+				return new RelayCommand(async () =>
+				{
+					await Application.Navigation.Push<NecromancerPhasePage>();
+				});
+			}
+		}
+
 		//public bool AcolytePresent { get { return Application.CurrentGame.Heroes.GetHero<Acolyte> () != null; } }
 		//public bool ConjurerPresent { get { return Application.CurrentGame.Heroes.GetHero<Conjurer> () != null; } }
 		//public bool ParagonPresent { get { return Application.CurrentGame.Heroes.GetHero<Paragon> () != null; } }

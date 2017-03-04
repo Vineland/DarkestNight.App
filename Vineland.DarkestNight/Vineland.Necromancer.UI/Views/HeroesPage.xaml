@@ -6,6 +6,10 @@
 		xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
 		x:Class="Vineland.Necromancer.UI.HeroesPage"
 		>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Name="Necromancer" Command="{Binding NecromancerCommand}">
+		</ToolbarItem>
+	</ContentPage.ToolbarItems>	
 	<ContentPage.Resources>
 		<ResourceDictionary>
 		<ui:HeroesDataTemplateSelector x:Key="heroesDataTemplateSelector" />

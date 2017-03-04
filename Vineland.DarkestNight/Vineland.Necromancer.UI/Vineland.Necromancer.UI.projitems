@@ -59,10 +59,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml.cs">
       <DependentUpon>ActiveHeroesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroTurnPage.xaml.cs">
-      <DependentUpon>HeroTurnPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroTurnViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\AcolyteViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\WizardViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ConjurerViewModel.cs" />
@@ -184,9 +180,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroTurnPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MapCardView.xaml">

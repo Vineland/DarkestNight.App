@@ -10,49 +10,51 @@ BackgroundImage="background_framed">
 		<ToolbarItem Name="Activate" Command="{Binding ActivateCommand}">
 		</ToolbarItem> 
 	</ContentPage.ToolbarItems>
-	<!--<AbsoluteLayout>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-		<Image Source="necromancer_large.png"  
-				AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="0.5,12,72,72"/>
+		<Image Source="necromancer_large" Grid.ColumnSpan="2" HorizontalOptions="Center"/>
 
-		<Label Text="Location" VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 96, 0.6, 32"/>
-		<ui:BindablePicker x:TypeArguments="core:Location" 
-		ItemsSource="{Binding AllLocations}" 
-		SelectedItem="{Binding Location}" 
-		AbsoluteLayout.LayoutFlags="WidthProportional, XProportional" AbsoluteLayout.LayoutBounds="1, 96, 0.4, 32"/>
-
-		<ui:Header Text="Powers" AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="0, 136, 1, 40" />
+		<Label Text="Location" Grid.Row="1" />
+		<Button Grid.Row="1" Grid.Column="1" Text="{Binding LocationName}" Command="{Binding LocationCommand}" />
 
 		<Label Text="Focused Rituals" IsVisible="{Binding ShowDarknessCardOptions}" VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 184, 0.6, 32"/>
+		Grid.Row="2"/>
 		<ui:CheckButton IsSelected="{Binding Necromancer.FocusedRituals}" IsVisible="{Binding ShowDarknessCardOptions}" 
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 184, 48, 32"/>
+		Grid.Row="2" Grid.Column="1" />
 
 		<Label Text="Encroaching Shadows" IsVisible="{Binding ShowDarknessCardOptions}"  VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 224, 0.8, 32"
-		/>
+		Grid.Row="3" />
 		<ui:CheckButton IsSelected="{Binding Necromancer.EncroachingShadows}" IsVisible="{Binding ShowDarknessCardOptions}" 
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 224, 48, 32"/>
+		Grid.Row="3" Grid.Column="1" />
 
 		<Label Text="Dying Land" IsVisible="{Binding ShowDarknessCardOptions}"  VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 264, 0.6, 32"
-		/>
+		Grid.Row="4" />
 		<ui:CheckButton IsSelected="{Binding Necromancer.DyingLand}" IsVisible="{Binding ShowDarknessCardOptions}"
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 264, 48, 32"/>
+		Grid.Row="4" Grid.Column="1" />
 
 		<Label Text="Overwhelm" IsVisible="{Binding ShowDarknessCardOptions}" VerticalTextAlignment="Center"  
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 304, 0.6, 32"
-		/>
+		Grid.Row="5" />
 		<ui:CheckButton IsSelected="{Binding Necromancer.Overwhelm}" IsVisible="{Binding ShowDarknessCardOptions}" 
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 304, 48, 32"/>
+		Grid.Row="5" Grid.Column="1" />
 
 		<Label Text="Creeping Shadows" IsVisible="{Binding ShowDarknessCardOptions}"  VerticalTextAlignment="Center" 
-		AbsoluteLayout.LayoutFlags="WidthProportional" AbsoluteLayout.LayoutBounds="16, 344, 0.6, 32"
-		/>
+		Grid.Row="6" />
 		<ui:CheckButton IsSelected="{Binding Necromancer.CreepingShadows}" IsVisible="{Binding ShowDarknessCardOptions}"
-		AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1, 344, 48, 32"/>
+		Grid.Row="6" Grid.Column="1" />
+		
+	</Grid>
 
-
-	</AbsoluteLayout>-->
 </ContentPage>
