@@ -1,13 +1,15 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
 		x:Class="Vineland.Necromancer.UI.ChooseLocationPopupPage"
-		Padding="20">
-	<ListView x:Name="LocationsListView" ItemsSource="{ Binding Locations }" SelectedItem="{Binding SelectedLocation}" BackgroundColor="White" >
+	Padding="40">
+	<ListView x:Name="LocationsListView" ItemsSource="{ Binding Locations }" SelectedItem="{Binding SelectedLocation}" HorizontalOptions="Center" VerticalOptions="Center" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
-				<TextCell Text="{Binding Name}" />
+				<ViewCell>
+					<Label Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontFamily="hobo" />
+				</ViewCell>
 			</DataTemplate>
 		</ListView.ItemTemplate>
 	</ListView>

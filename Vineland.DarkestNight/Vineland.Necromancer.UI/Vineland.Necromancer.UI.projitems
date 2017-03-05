@@ -61,9 +61,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroOptionsView.xaml.cs">
       <DependentUpon>HeroOptionsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroStateView.xaml.cs">
-      <DependentUpon>HeroStateView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroView.xaml.cs">
       <DependentUpon>HeroView.xaml</DependentUpon>
     </Compile>
@@ -132,6 +129,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\BasePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\DarknessPopupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\DarknessPopupPage.xaml.cs">
+      <DependentUpon>DarknessPopupPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Infrastructure\" />
@@ -150,9 +151,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroOptionsView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroStateView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroView.xaml">
@@ -210,6 +208,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\HeaderView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\DarknessPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

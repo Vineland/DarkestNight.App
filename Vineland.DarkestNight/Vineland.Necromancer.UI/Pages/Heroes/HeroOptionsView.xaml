@@ -4,24 +4,41 @@
 		xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 		x:Class="Vineland.Necromancer.UI.HeroOptionsView">
 	<ContentView.Content>
-		<StackLayout>
-			<Grid RowSpacing="8" Padding="16,0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
+	<Grid RowSpacing="8" Padding="16,0">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-				<Label Text="Void Armour" VerticalOptions="Center" Grid.Row="1" />
-				<ui:CheckButton IsSelected="{Binding HasVoidArmour}" Grid.Column="1" Grid.Row="1" HorizontalOptions="End"/>
+		<Label Text="{Binding Name}" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+			
+		<Image Source="{Binding Image}" Grid.ColumnSpan="2" Grid.Row="1" HorizontalOptions="Center"/>
 
-				<Label Text="Shield of Radiance" VerticalOptions="Center" Grid.Row="2" />
-				<ui:CheckButton IsSelected="{Binding HasShieldOfRadiance}" Grid.Column="1" Grid.Row="2" HorizontalOptions="End"/>
+		<Label Text="Location" Grid.Row="2" />
+		<Button Grid.Row="2" Grid.Column="1" Text="{Binding LocationName}" Command="{Binding LocationCommand}" FontFamily="hobo"/>
+			
+		<Label Text="Grace" Grid.Row="3" />
+		<ui:CustomStepper Value="{Binding Grace}" Maximum="9" Grid.Column="1" Grid.Row="3" HorizontalOptions="End"/>	
 
-			</Grid>
-		</StackLayout>
+		<Label Text="Secrecy" Grid.Row="4" />
+		<ui:CustomStepper Value="{Binding Secrecy}" Maximum="9" Grid.Column="1" Grid.Row="4" HorizontalOptions="End"/>	
+
+		<Label Text="Void Armour" VerticalOptions="Center" Grid.Row="5" />
+		<ui:CheckButton IsSelected="{Binding HasVoidArmour}" Grid.Column="1" Grid.Row="5" HorizontalOptions="End"/>
+
+		<Label Text="Shield of Radiance" VerticalOptions="Center" Grid.Row="6" />
+		<ui:CheckButton IsSelected="{Binding HasShieldOfRadiance}" Grid.Column="1" Grid.Row="6" HorizontalOptions="End"/>
+
+	</Grid>
+
 	</ContentView.Content>
 </ContentView>

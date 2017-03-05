@@ -6,7 +6,6 @@
 	<ContentView.Content>
 
 	<StackLayout>
-		<ui:HeroStateView />
 		<ui:HeroOptionsView/>
 	</StackLayout>
 	</ContentView.Content>

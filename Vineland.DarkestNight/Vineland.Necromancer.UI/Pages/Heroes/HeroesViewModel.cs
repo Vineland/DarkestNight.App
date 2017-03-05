@@ -55,6 +55,22 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		public int Darkness
+		{
+			get { return Application.CurrentGame.Darkness; }
+		}
+
+		public RelayCommand DarknessCommand
+		{
+			get
+			{
+				return new RelayCommand(() =>
+				{
+					Application.Navigation.PushPopup<DarknessPopupPage>();
+				});
+			}
+		}
+
 		public RelayCommand NecromancerCommand
 		{
 			get

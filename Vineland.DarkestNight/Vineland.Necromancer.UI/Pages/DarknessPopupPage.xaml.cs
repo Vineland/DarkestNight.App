@@ -5,14 +5,14 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class ChooseLocationPopupPage : PopupPage
+	public partial class DarknessPopupPage : PopupPage
 	{
 
-		public ChooseLocationPopupPage()
+		public DarknessPopupPage()
 		{
 			InitializeComponent();
 			CloseWhenBackgroundIsClicked = true;
-			LocationsListView.BackgroundColor = AppConstants.PopupBackground;
+			LayoutRoot.BackgroundColor = AppConstants.PopupBackground;
 		}
 	}
 }

@@ -25,9 +25,9 @@
 
 			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
 				
-				<Button Image="darkness" Command="{Binding BlightsCommand}"/>
+				<Button Image="night" Command="{Binding BlightsCommand}"/>
 				<Button Image="day" Command="{Binding SearchCommand}"/>
-				<Button Image="night" />
+				<Button Image="darkness" Text="{Binding Darkness}" Command="{Binding DarknessCommand}" FontFamily="hobo"/>
 				<Button Image="death" />
 				
 			</StackLayout>
