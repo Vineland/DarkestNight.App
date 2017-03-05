@@ -9,222 +9,207 @@
     <Import_RootNamespace>Vineland.Necromancer.UI</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SharedBootstrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\EnumUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChooseHeroesViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewGameViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\BindablePicker.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerPhaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\PageService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml.cs">
-      <DependentUpon>ChooseHeroesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerPhasePage.xaml.cs">
-      <DependentUpon>NecromancerPhasePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NewGamePage.xaml.cs">
-      <DependentUpon>NewGamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\SelectHeroPage.xaml.cs">
-      <DependentUpon>SelectHeroPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\LogHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\BasePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NecromancerApp.xaml.cs">
       <DependentUpon>NecromancerApp.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomStepper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectListItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerDetectionViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml.cs">
-      <DependentUpon>NecromancerDetectionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\BlightsPage.xaml.cs">
-      <DependentUpon>BlightsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\HeroSelectedArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml.cs">
-      <DependentUpon>ActiveHeroesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\AcolyteViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\WizardViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ConjurerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\HeroViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ScholarViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ShamanViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ValkyrieViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\WayfarerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\ParagonViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\RangerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\SeerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapCardViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MapCardView.xaml.cs">
-      <DependentUpon>MapCardView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\SearchPage.xaml.cs">
-      <DependentUpon>SearchPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageSourceUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDisplayAlertService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\CustomNavigationPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NecromancerActivationViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml.cs">
-      <DependentUpon>NecromancerActivationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\TamerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsSourceStackLayout.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BoardSetupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\BoardSetupPage.xaml.cs">
-      <DependentUpon>BoardSetupPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\BlightViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\QuestViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\LocationHeaderCell.xaml.cs">
-      <DependentUpon>HeaderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\ISpawnViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Partial\LocationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Header.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TabButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroesViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BlightsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\HeroCell.xaml.cs">
-      <DependentUpon>HeroCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\LocationBlightsCell.xaml.cs">
-      <DependentUpon>LocationBlightsCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Partials\HeroesView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroView.xaml.cs">
-      <DependentUpon>HeroView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroStateView.xaml.cs">
-      <DependentUpon>HeroStateView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroOptionsView.xaml.cs">
-      <DependentUpon>HeroOptionsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HeroesPage.xaml.cs">
-      <DependentUpon>HeroesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Heroes\SeerView.xaml.cs">
-      <DependentUpon>SeerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DifficultyLevelPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\LocationPicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotBooleanConverter %28copy%29.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ChooseLocationPopupPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\HomeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\ChooseLocationPopupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\BoardSetupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\ChooseHeroesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\NewGameViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerActivationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerDetectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerPhaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\LocationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\AcolyteViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\ConjurerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\ParagonViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\RangerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\ScholarViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\SeerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\ShamanViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\TamerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\ValkyrieViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\WayfarerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\WizardViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroOptionsView.xaml.cs">
+      <DependentUpon>HeroOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroStateView.xaml.cs">
+      <DependentUpon>HeroStateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroView.xaml.cs">
+      <DependentUpon>HeroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\SeerView.xaml.cs">
+      <DependentUpon>SeerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\BlightsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\BlightViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\ISpawnViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\QuestViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\SpawnBlightPopupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\MapCardViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\SearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\LocationHeaderCell.xaml.cs">
+      <DependentUpon>HeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\LocationBlightsCell.xaml.cs">
+      <DependentUpon>LocationBlightsCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\BasePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\BlightsPage.xaml.cs">
+      <DependentUpon>BlightsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\ChooseHeroesPage.xaml.cs">
+      <DependentUpon>ChooseHeroesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\BoardSetupPage.xaml.cs">
+      <DependentUpon>BoardSetupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\ChooseLocationPopupPage.xaml.cs">
       <DependentUpon>ChooseLocationPopupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ChooseLocationPopupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpawnBlightPopupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ChooseLocationPopupPage.xaml %28copy%29.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroesPage.xaml.cs">
+      <DependentUpon>HeroesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerActivationPage.xaml.cs">
+      <DependentUpon>NecromancerActivationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerDetectionPage.xaml.cs">
+      <DependentUpon>NecromancerDetectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerPhasePage.xaml.cs">
+      <DependentUpon>NecromancerPhasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\MapCardView.xaml.cs">
+      <DependentUpon>MapCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\NewGamePage.xaml.cs">
+      <DependentUpon>NewGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\SelectHeroPage.xaml.cs">
+      <DependentUpon>SelectHeroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\SpawnBlightPopupPage.cs">
       <DependentUpon>SpawnBlightPopupPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
     <Folder Include="$(MSBuildThisFileDirectory)Infrastructure\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utilities\" />
     <Folder Include="$(MSBuildThisFileDirectory)Controls\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Heroes\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\Partials\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Partial\" />
     <Folder Include="$(MSBuildThisFileDirectory)Converters\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\Heroes\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Setup\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Heroes\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Necromancer\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseHeroesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerPhasePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewGamePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)NecromancerApp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroOptionsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerDetectionPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroStateView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BlightsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ActiveHeroesPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\SeerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MapCardView.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\HeaderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SearchPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\LocationBlightsCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SelectHeroPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\BlightsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NecromancerActivationPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Setup\ChooseHeroesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BoardSetupPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Setup\BoardSetupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partials\HeaderView.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\ChooseLocationPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partials\HeroCell.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Partials\LocationBlightsCell.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroView.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerActivationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroStateView.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerDetectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\HeroOptionsView.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerPhasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HeroesPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\MapCardView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Heroes\SeerView.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Setup\NewGamePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChooseLocationPopupPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\SearchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SpawnBlightPopupPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\SelectHeroPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Shared\SpawnBlightPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
