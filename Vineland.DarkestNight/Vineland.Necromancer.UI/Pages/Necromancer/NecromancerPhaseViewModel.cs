@@ -5,19 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using XLabs.Ioc;
 using Vineland.Necromancer.Domain;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
 	public class NecromancerPhaseViewModel : BaseViewModel
 	{
-		public NecromancerPhaseViewModel (Settings settings)
+		NecromancerService _necromancerService;
+
+		public NecromancerPhaseViewModel (NecromancerService necromancerService)
 		{
-		}
+			_necromancerService = necromancerService;
 
-		public Settings Settings { get; private set; }
-
-		public bool ShowDarknessCardOptions {
-			get { return true; }//Application.CurrentGame.Mode != DarknessCardsMode.None; }
+			_necromancerService.AdjustDarkness(Application.CurrentGame);
 		}
 
 		public int Darkness {
@@ -25,13 +25,29 @@ namespace Vineland.Necromancer.UI
 			set{ Application.CurrentGame.Darkness = value; }
 		}
 
-		public List<Location> AllLocations {
-			get { return Application.CurrentGame.Locations; }
+		public string LocationName
+		{
+			get
+			{
+				return Application.CurrentGame.Locations.Single(l => l.Id == Necromancer.LocationId).Name;
+			}
 		}
 
-		public Location Location{
-			get{ return AllLocations.Single (l => l.Id == Necromancer.LocationId); }
-			set{ Application.CurrentGame.Necromancer.LocationId = value.Id; }
+		public RelayCommand LocationCommand
+		{
+			get
+			{
+				return new RelayCommand(() =>
+				{
+					var viewModel = new ChooseLocationPopupViewModel();
+					viewModel.OnLocationSelected += (location) =>
+					{
+						Necromancer.LocationId = location.Id;
+						RaisePropertyChanged(() => LocationName);
+					};
+					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
+				});
+			}
 		}
 
 		public NecomancerState Necromancer {

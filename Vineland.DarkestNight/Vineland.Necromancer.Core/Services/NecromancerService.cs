@@ -19,6 +19,15 @@ namespace Vineland.Necromancer.Core
 		}
 
 		/// <summary>
+		/// Start of Necromancer phase darkness adjustment.
+		/// </summary>
+		/// <param name="gameState">Game state.</param>
+		public void AdjustDarkness(GameState gameState)
+		{
+			gameState.Darkness += 1 + gameState.Locations.SelectMany(x => x.Blights).Count(x => x.Name == "Desecration");
+		}
+
+		/// <summary>
 		/// Activate the necromancer. First he detects and then moves.
 		/// </summary>
 		/// <param name="gameState">Game state.</param>
@@ -34,14 +43,11 @@ namespace Vineland.Necromancer.Core
 			result.NecromancerRoll = roll.HasValue ? roll.Value : _d6GeneratorService.RollDemBones ();
 			result.OldLocationId = gameState.Necromancer.LocationId;
 
-			result.DarknessAdjustment = 1 + gameState.Locations.SelectMany (x => x.Blights).Count (x => x.Name == "Desecration");
 			if (gameState.Heroes.Any(x=>x.HasShieldOfRadiance) && result.NecromancerRoll == 6) 
 			{
-				result.DarknessAdjustment--;
+				gameState.Darkness--;
 				result.Notes += "Shield of Radiance triggered" + Environment.NewLine;
 			}
-
-			gameState.Darkness += result.DarknessAdjustment;
 				
 			//detect
 			if (detectedHero == null)

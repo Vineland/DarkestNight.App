@@ -106,12 +106,8 @@ namespace Vineland.Necromancer.UI
 		{
 			get
 			{
-				return Locations.Single(l => l.Id == _hero.LocationId).Name;
+				return Application.CurrentGame.Locations.Single(l => l.Id == _hero.LocationId).Name;
 			}
-		}
-
-		public List<Location> Locations {
-			get { return Application.CurrentGame.Locations; }
 		}
 
 		public RelayCommand LocationCommand

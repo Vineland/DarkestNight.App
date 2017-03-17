@@ -19,7 +19,7 @@ namespace Vineland.Necromancer.UI
 
 		#region Colours
 
-		public static Color PopupBackground = Color.FromHex("#78FFFCCC");
+		public static Color PopupBackground = Color.FromHex("#FFFCCC");
 		public static Color ButtonBackground = Color.FromHex("#78FFFCCC");
 		public static Color HeaderBackground = Color.FromHex ("#AA8b7d6b");
 		public static Color NavBarBackground = Color.FromHex ("#AA8b7d6b");

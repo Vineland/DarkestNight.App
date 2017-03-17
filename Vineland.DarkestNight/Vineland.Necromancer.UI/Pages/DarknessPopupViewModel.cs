@@ -1,4 +1,6 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace Vineland.Necromancer.UI
 {
 	public class DarknessPopupViewModel :BaseViewModel
@@ -13,6 +15,7 @@ namespace Vineland.Necromancer.UI
 			set
 			{
 				Application.CurrentGame.Darkness = value;
+ 				MessagingCenter.Send<DarknessPopupViewModel>(this, "DarknessUpdated");
 			}
 		}
 	}

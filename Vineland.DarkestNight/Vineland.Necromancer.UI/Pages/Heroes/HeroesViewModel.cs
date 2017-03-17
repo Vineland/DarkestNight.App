@@ -17,6 +17,7 @@ namespace Vineland.Necromancer.UI
 			Heroes = new ObservableCollection<HeroViewModel> ();
 
 			//MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
+			MessagingCenter.Subscribe<DarknessPopupViewModel>(this, "DarknessUpdated", (obj) => RaisePropertyChanged(()=>Darkness));
 			Initialise ();
 		}
 

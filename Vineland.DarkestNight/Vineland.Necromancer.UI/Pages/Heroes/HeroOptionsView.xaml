@@ -23,13 +23,13 @@
 			
 		<Image Source="{Binding Image}" Grid.ColumnSpan="2" Grid.Row="1" HorizontalOptions="Center"/>
 
-		<Label Text="Location" Grid.Row="2" />
+		<Label Text="Location" VerticalOptions="Center" Grid.Row="2" />
 		<Button Grid.Row="2" Grid.Column="1" Text="{Binding LocationName}" Command="{Binding LocationCommand}" FontFamily="hobo"/>
 			
-		<Label Text="Grace" Grid.Row="3" />
+		<Label Text="Grace" VerticalOptions="Center" Grid.Row="3" />
 		<ui:CustomStepper Value="{Binding Grace}" Maximum="9" Grid.Column="1" Grid.Row="3" HorizontalOptions="End"/>	
 
-		<Label Text="Secrecy" Grid.Row="4" />
+		<Label Text="Secrecy" VerticalOptions="Center"  Grid.Row="4" />
 		<ui:CustomStepper Value="{Binding Secrecy}" Maximum="9" Grid.Column="1" Grid.Row="4" HorizontalOptions="End"/>	
 
 		<Label Text="Void Armour" VerticalOptions="Center" Grid.Row="5" />
