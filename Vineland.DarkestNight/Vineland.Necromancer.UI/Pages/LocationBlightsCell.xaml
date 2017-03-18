@@ -5,7 +5,7 @@ xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
 	<StackLayout>
 	<ui:Header Text="{Binding Location.Name}" />
-		<ui:ItemsSourceStackLayout x:Name="BlightsListView"
+		<ui:ItemsSourceStackLayout
 			Orientation="Horizontal" 
 			Padding="16,8"
 	ItemsSource="{Binding Spawns}">

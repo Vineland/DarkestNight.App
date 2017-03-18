@@ -25,7 +25,7 @@ namespace Vineland.Necromancer.UI
 
 		public RelayCommand DefeatedCommand {
 			get {
-				return new RelayCommand (async () => {
+				return new RelayCommand (async() => {
 					HeroDefeated();
 				});
 			}

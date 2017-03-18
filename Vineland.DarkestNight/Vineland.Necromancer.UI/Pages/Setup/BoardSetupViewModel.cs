@@ -10,11 +10,8 @@ namespace Vineland.Necromancer.UI
 {
 	public class BoardSetupViewModel: BaseViewModel
 	{
-		D6GeneratorService _d6Generator;
-
-		public BoardSetupViewModel (D6GeneratorService d6Generator)
+		public BoardSetupViewModel ()
 		{
-			_d6Generator = d6Generator;
 			Locations = new ObservableCollection<LocationViewModel> ();
 			Initialise ();
 		}

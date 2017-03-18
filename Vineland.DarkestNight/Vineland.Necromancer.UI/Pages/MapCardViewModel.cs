@@ -61,7 +61,7 @@ namespace Vineland.Necromancer.UI
 					case MapCardContext.SpiritSight:
 						{							
 							Application.CurrentGame.MapCards.Return (MapCard);
-							//Application.CurrentGame.Heroes.GetHero<Shaman>().SpiritSightMapCard = null;
+							//Application.CurrentGame.Heroes.GetHero<Shaman>().SpiritSightMapCard = null
 							Application.SaveCurrentGame();
 							MessagingCenter.Send<MapCardViewModel> (this, "SpiritSightCardReturned");
 							break;
@@ -71,7 +71,7 @@ namespace Vineland.Necromancer.UI
 					case MapCardContext.RuneOfClairvoyance:{
 							var option = await Application.Navigation.DisplayActionSheet("Return Card To", "Cancel", null, "Top", "Bottom");
 							Application.CurrentGame.MapCards.Return(MapCard, option == "Top" ? DeckPosition.Top: DeckPosition.Bottom);
-							Application.SaveCurrentGame();
+						 	Application.SaveCurrentGame();
 							break;
 						}
 					}

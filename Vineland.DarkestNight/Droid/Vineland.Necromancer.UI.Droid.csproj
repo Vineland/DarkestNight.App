@@ -16,6 +16,7 @@
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>Vineland.Necromancer.UI.Droid</AssemblyName>
     <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -252,40 +253,11 @@
     <AndroidResource Include="Resources\drawable\plus.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\minus_disabled.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\plus_disabled.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\necromancer_large.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\background_dark.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\necromancer_large.png" />
     <AndroidResource Include="Resources\drawable-mdpi\necromancer_large.png" />
     <AndroidResource Include="Resources\drawable-hdpi\necromancer_large.png" />
     <AndroidResource Include="Resources\drawable\necromancer_large.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\acolyte.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\alchemist.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\bard.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\channeler.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\conjurer.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\crusader.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\druid.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\enchanter.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\exorcist.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\knight.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\mercenary.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\mesmer.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\monk.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\nymph.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\paragon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\priest.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\prince.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ranger.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\rogue.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\scholar.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\scout.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\seer.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\shaman.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\tamer.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\tinker.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\wayfarer.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\wizard.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\valkyrie.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\acolyte.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\alchemist.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\bard.png" />
@@ -467,7 +439,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\hero_slot.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\hero_slot.png" />
     <AndroidResource Include="Resources\drawable-hdpi\hero_slot.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\wind_dancer.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\quest.png" />
     <AndroidResource Include="Resources\drawable\blight_confusion.png" />
     <AndroidResource Include="Resources\drawable\blight_corruption.png" />
@@ -501,6 +472,43 @@
     <AndroidResource Include="Resources\drawable\blight_zombies.png" />
     <AndroidResource Include="Resources\drawable\death.png" />
     <AndroidResource Include="Resources\drawable\hero_slot.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_move.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_remove.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_spawn.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\card_bottom.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\card_discard.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\card_draw.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\card_top.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_alchemist.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_bard.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_channeler.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_conjurer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_crusader.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_druid.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_enchanter.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_exorcist.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_knight.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_mercenary.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_mesmer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_monk.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_nymph.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_paragon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_priest.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_prince.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_ranger.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_rogue.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_scholar.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_scout.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_seer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_shaman.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_tamer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_tinker.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_valkyrie.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_wayfarer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_wind_dancer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_wizard.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\necromancer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\necromancer_large.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj">

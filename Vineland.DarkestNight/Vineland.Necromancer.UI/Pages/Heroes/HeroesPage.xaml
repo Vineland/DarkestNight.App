@@ -25,10 +25,10 @@
 
 			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
 				
-				<Button Image="night" Command="{Binding BlightsCommand}"/>
-				<Button Image="day" Command="{Binding SearchCommand}"/>
-				<Button Image="darkness" Text="{Binding Darkness}" Command="{Binding DarknessCommand}" FontFamily="hobo"/>
-				<Button Image="death" />
+				<Button Image="blight_spawn" Command="{Binding BlightsCommand}" HeightRequest="60" WidthRequest="60"/>
+				<Button Image="search" Command="{Binding SearchCommand}" HeightRequest="60" WidthRequest="60"/>
+				<Button Image="darkness" Text="{Binding Darkness}" Command="{Binding DarknessCommand}" FontFamily="hobo" HeightRequest="60" WidthRequest="60"/>
+				<Button Image="death" HeightRequest="60" WidthRequest="60"/>
 				
 			</StackLayout>
 	</Grid>

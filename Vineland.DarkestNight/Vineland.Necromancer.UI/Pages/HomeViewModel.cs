@@ -5,11 +5,9 @@ namespace Vineland.Necromancer.UI
 {
 	public class HomeViewModel : BaseViewModel
 	{
-		GameStateService _gameStateService;
-
-		public HomeViewModel ()
+		public HomeViewModel()
 		{
-			
+
 		}
 
 		public RelayCommand PlayGameCommand {

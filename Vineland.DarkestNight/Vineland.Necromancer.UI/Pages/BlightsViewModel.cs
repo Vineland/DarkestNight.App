@@ -67,7 +67,7 @@ namespace Vineland.Necromancer.UI
 
 		public List<BlightViewModel> SelectedBlights { get; private set; }
 
-		public async void BlightSelected(HeroPhaseLocationViewModel sender, BlightViewModel blight)
+		public void BlightSelected(HeroPhaseLocationViewModel sender, BlightViewModel blight)
 		{
 			if (blight.IsSelected)
 				SelectedBlights.Add(blight);
@@ -101,7 +101,7 @@ namespace Vineland.Necromancer.UI
 		{
 			get
 			{
-				return new RelayCommand(async () =>
+				return new RelayCommand(() =>
 				{
 					var viewModel = new ChooseLocationPopupViewModel();
 					viewModel.OnLocationSelected += MoveSelectedBlights;
@@ -183,7 +183,7 @@ namespace Vineland.Necromancer.UI
 		{
 			get
 			{
-				return new RelayCommand<BlightViewModel>(async (blightViewModel) =>
+				return new RelayCommand<BlightViewModel>((blightViewModel) =>
 				{
 					if (blightViewModel.IsPlaceHolder)
 					{

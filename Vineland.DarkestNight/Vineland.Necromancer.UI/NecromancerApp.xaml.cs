@@ -27,9 +27,9 @@ namespace Vineland.Necromancer.UI
 
 		public GameState CurrentGame { get; set;}
 
-		public async Task SaveCurrentGame ()
+		public void SaveCurrentGame ()
 		{
-			await Task.Run (() => {
+			Task.Run (() => {
 				_gameStateService.SaveCurrentGame(AppConstants.SaveFilePath, CurrentGame);
 			});
 		}

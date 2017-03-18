@@ -9,8 +9,6 @@ namespace Vineland.Necromancer.UI
 {
 	public class SpawnBlightPopupViewModel :BaseViewModel
 	{
-		BlightService _blightService;
-
 		public Action<SpawnBlightOption> OnOptionSelected;
 
 		public SpawnBlightPopupViewModel()

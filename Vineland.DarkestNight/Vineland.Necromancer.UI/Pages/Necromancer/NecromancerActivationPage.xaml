@@ -32,7 +32,7 @@ BackgroundImage="background_framed">
 				<Label Text="Darkness" Grid.Row="3" />
 				<Label Text="{Binding DarknessDisplay}" HorizontalOptions="End" FontFamily="hobo" Grid.Row="3" Grid.Column="1" />
 			</Grid>
-			<ListView x:Name="ListView" ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
+			<ListView ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
 				<ui:LocationBlightsCell />

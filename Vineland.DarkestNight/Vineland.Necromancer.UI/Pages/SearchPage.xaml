@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage 
 xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
@@ -29,10 +29,10 @@ BackgroundImage="background_framed">
 
 			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
 				
-				<Button Image="darkness" Command="{Binding DrawCommand}"/>
-				<Button Image="day" Command="{Binding ReturnToTopCommand}" />
-				<Button Image="night" Command="{Binding ReturnToBottomCommand}" />
-				<Button Image="death" Command="{Binding DiscardCommand}" />
+				<Button Image="card_draw" Command="{Binding DrawCommand}"/>
+				<Button Image="card_top" Command="{Binding ReturnToTopCommand}" />
+				<Button Image="card_bottom" Command="{Binding ReturnToBottomCommand}" />
+				<Button Image="card_discard" Command="{Binding DiscardCommand}" />
 				
 			</StackLayout>
 	</Grid>

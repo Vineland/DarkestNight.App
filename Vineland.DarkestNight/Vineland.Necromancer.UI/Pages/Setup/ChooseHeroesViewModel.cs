@@ -10,12 +10,10 @@ namespace Vineland.Necromancer.UI
 	public class ChooseHeroesViewModel : BaseViewModel
 	{
 		DataService _dataService;
-		GameStateService _gameStateService;
 
-		public ChooseHeroesViewModel(DataService dataService, GameStateService gameStateService)
+		public ChooseHeroesViewModel(DataService dataService)
 		{
 			_dataService = dataService;
-			_gameStateService = gameStateService;
 
 			HeroSlots = new ObservableCollection<HeroSlotViewModel> ();
 			AvailableHeroes = new ObservableCollection<Hero> ();
@@ -77,7 +75,7 @@ namespace Vineland.Necromancer.UI
 		{
 			get {
 				return new RelayCommand (
-					 () => {
+					 async () => {
 						Application.CurrentGame.Heroes.Clear();
 						Application.CurrentGame.Heroes.AddRange(HeroSlots.Select(x=>x.Hero).ToList());
 						Application.CurrentGame.Heroes.ForEach(h=>
@@ -86,7 +84,7 @@ namespace Vineland.Necromancer.UI
 								h.Grace = h.GraceDefault;
 							});
 						Application.SaveCurrentGame ();
-						Application.Navigation.Push<BoardSetupPage>();
+					await Application.Navigation.Push<BoardSetupPage>();
 					},
 					() => {
 						return HeroSlots.Any() && !HeroSlots.Any(x=>x.Hero == null);

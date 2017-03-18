@@ -18,7 +18,7 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public static ImageSource GetHeroImage(string name){
-			return GetImageSource (name, "");
+			return GetImageSource (name, "hero");
 		}
 
 		public static ImageSource GetItemImage(string name){
