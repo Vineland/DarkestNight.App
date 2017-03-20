@@ -149,10 +149,10 @@
       <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.Platform.dll</HintPath>
     </Reference>
     <Reference Include="CarouselView.FormsPlugin.Abstractions">
-      <HintPath>..\packages\CarouselView.FormsPlugin.3.0.0\lib\MonoAndroid\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
+      <HintPath>..\packages\CarouselView.FormsPlugin.3.0.1\lib\MonoAndroid\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="CarouselView.FormsPlugin.Android">
-      <HintPath>..\packages\CarouselView.FormsPlugin.3.0.0\lib\MonoAndroid\CarouselView.FormsPlugin.Android.dll</HintPath>
+      <HintPath>..\packages\CarouselView.FormsPlugin.3.0.1\lib\MonoAndroid\CarouselView.FormsPlugin.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -508,7 +508,67 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\hero_wind_dancer.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\hero_wizard.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\necromancer.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\necromancer_large.jpg" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_move_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blight_remove_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\card_bottom_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\card_discard_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\card_top_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\necromancer_large.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\blight_remove.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\blight_remove_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\blight_spawn.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_bottom.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_bottom_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_discard.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_discard_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_draw.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_top.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_top_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\plus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\blight_move_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\card_draw_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\minus.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\minus_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\blight_move.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\blight_move_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\blight_remove.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\blight_remove_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\blight_spawn.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_bottom.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_bottom_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_discard.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_discard_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_draw.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_top.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\card_top_disabled.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\search.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\blight_move.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\blight_move_disabled.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\blight_remove.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\blight_remove_disabled.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\blight_spawn.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\card_bottom.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\card_bottom_disabled.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\card_discard.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\card_discard_disabled.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\card_draw.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\card_top_disabled.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\search.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\blight_move.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\blight_move_disabled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\blight_remove.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\blight_remove_disabled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\blight_spawn.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\card_bottom.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\card_bottom_disabled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\card_discard.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\card_discard_disabled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\card_draw.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\card_top.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\card_top_disabled.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\search.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj">

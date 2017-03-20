@@ -21,14 +21,14 @@
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-		<cv:CarouselView ItemsSource="{Binding Heroes}" ItemTemplate="{StaticResource heroesDataTemplateSelector}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+		<cv:CarouselView ItemsSource="{Binding Heroes}" ItemTemplate="{StaticResource heroesDataTemplateSelector}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  />
 
 			<StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
 				
-				<Button Image="blight_spawn" Command="{Binding BlightsCommand}" HeightRequest="60" WidthRequest="60"/>
-				<Button Image="search" Command="{Binding SearchCommand}" HeightRequest="60" WidthRequest="60"/>
-				<Button Image="darkness" Text="{Binding Darkness}" Command="{Binding DarknessCommand}" FontFamily="hobo" HeightRequest="60" WidthRequest="60"/>
-				<Button Image="death" HeightRequest="60" WidthRequest="60"/>
+				<Button Image="blight_spawn" BackgroundColor="Transparent" Command="{Binding BlightsCommand}"/>
+				<Button Image="search" BackgroundColor="Transparent" Command="{Binding SearchCommand}" />
+				<Button Image="darkness" Text="{Binding Darkness}" Command="{Binding DarknessCommand}" FontFamily="hobo"/>
+				<Button Image="death" />
 				
 			</StackLayout>
 	</Grid>
