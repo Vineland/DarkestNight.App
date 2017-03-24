@@ -26,13 +26,14 @@ namespace Vineland.Necromancer.Core
 			_questService = questService;
 		}
 
-		public GameState StartNewGame(int numberOfPlayers, DifficultyLevel difficultyLevel)
+		public GameState StartNewGame(int numberOfPlayers, int numberOfDarknessCards, DifficultyLevel difficultyLevel)
 		{
 			var gameState = new GameState();
 
 			gameState.NumberOfPlayers = numberOfPlayers;
 			gameState.DifficultyLevel = difficultyLevel;
 			gameState.Darkness = difficultyLevel.StartingDarkness;
+			gameState.NumberOfDarknessCards = numberOfDarknessCards;
 
 			gameState.Necromancer.LocationId = LocationId.Ruins;
 

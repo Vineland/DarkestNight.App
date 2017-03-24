@@ -1,15 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Collections.Generic;
 using Vineland.Necromancer.Core;
-using Vineland.DarkestNight.UI.Services;
-using GalaSoft.MvvmLight;
-using Vineland.Necromancer.UI;
 using GalaSoft.MvvmLight.Command;
-using Vineland.DarkestNight.UI;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Vineland.Necromancer.Domain;
 
@@ -25,6 +16,7 @@ namespace Vineland.Necromancer.UI
 			DifficultyLevels = dataService.GetDifficultyLevelSettings ();
 			SelectedDifficulty = DifficultyLevels.Single(x => x.Id == DifficultyLevelId.Adventurer);
 			NumberOfPlayers = 4;
+			NumberOfDarknessCards = 2;
         }
 
 		public int NumberOfPlayers { get; set; }
@@ -71,11 +63,24 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
+		bool _usingDarknessCards;
+		public bool UsingDarknessCards
+		{
+			get { return _usingDarknessCards; }
+			set
+			{
+				_usingDarknessCards = value;
+				RaisePropertyChanged(() => UsingDarknessCards);
+			}
+		}
+
+		public int NumberOfDarknessCards { get; set; }
+
 		public RelayCommand ChooseHeroes{
 			get{
-				return new RelayCommand (async () => {
-
-					Application.CurrentGame =_gameStateService.StartNewGame(NumberOfPlayers, SelectedDifficulty);
+				return new RelayCommand (async () => 
+				{
+					Application.CurrentGame =_gameStateService.StartNewGame(NumberOfPlayers, NumberOfDarknessCards, SelectedDifficulty);
 					var page = await Application.Navigation.Push<ChooseHeroesPage>();
 					(page.BindingContext as ChooseHeroesViewModel).Initialise();
 				});

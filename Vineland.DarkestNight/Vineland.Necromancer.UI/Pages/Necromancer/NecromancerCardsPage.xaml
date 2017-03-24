@@ -3,7 +3,7 @@
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 xmlns:domain="clr-namespace:Vineland.Necromancer.Domain;assembly=Vineland.Necromancer.Domain" 
-x:Class="Vineland.Necromancer.UI.NecromancerPhasePage"
+x:Class="Vineland.Necromancer.UI.NecromancerCardsPage"
 Title="Necromancer"
 BackgroundImage="background_framed">
 	<ContentPage.ToolbarItems>

@@ -9,11 +9,11 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NecromancerPhaseViewModel : BaseViewModel
+	public class NecromancerCardsViewModel : BaseViewModel
 	{
 		NecromancerService _necromancerService;
 
-		public NecromancerPhaseViewModel (NecromancerService necromancerService)
+		public NecromancerCardsViewModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
 

@@ -23,6 +23,8 @@ Title="New Game">
 		<RowDefinition Height="Auto" />
 		<RowDefinition Height="Auto" />
 		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 		
 	<Label Text="Number of Players" Grid.Row="0" VerticalOptions="Center" />
@@ -39,6 +41,12 @@ Title="New Game">
 
 	<Label Text="Extra Quests" VerticalOptions="Center" Grid.Row="4" />
 	<ui:CheckButton IsSelected="{Binding SpawnExtraQuests}" Grid.Column="1" Grid.Row="4" HorizontalOptions="End"/>
+
+	<Label Text="Darkness Cards" VerticalOptions="Center" Grid.Row="5" />
+	<ui:CheckButton IsSelected="{Binding UsingDarknessCards}" Grid.Column="1" Grid.Row="5" HorizontalOptions="End" />
+
+	<Label Text="Number of Cards" VerticalOptions="Center" Grid.Row="6" IsVisible="{Binding UsingDarknessCards}"/>
+	<ui:CustomStepper Value="{Binding NumberOfDarknessCards}" Minimum="2" Maximum="8" Grid.Column="1" Grid.Row="6" HorizontalOptions="End" IsVisible="{Binding UsingDarknessCards}"/>
 
 </Grid>
 </ContentPage>

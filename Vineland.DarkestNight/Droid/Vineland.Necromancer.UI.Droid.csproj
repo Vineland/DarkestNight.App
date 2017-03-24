@@ -569,6 +569,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\card_top.png" />
     <AndroidResource Include="Resources\drawable-hdpi\card_top_disabled.png" />
     <AndroidResource Include="Resources\drawable-hdpi\search.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\hero_acolyte.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vineland.Necromancer.Core\Vineland.Necromancer.Core.csproj">

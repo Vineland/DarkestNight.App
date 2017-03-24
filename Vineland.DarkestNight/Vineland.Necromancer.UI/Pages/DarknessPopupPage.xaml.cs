@@ -14,5 +14,14 @@ namespace Vineland.Necromancer.UI
 			CloseWhenBackgroundIsClicked = true;
 			LayoutRoot.BackgroundColor = AppConstants.PopupBackground;
 		}
+
+		protected override void OnDisappearing()
+		{
+			var viewModel = BindingContext as BaseViewModel;
+			if (viewModel != null)
+				viewModel.OnDisappearing();
+
+			base.OnDisappearing();
+		}
 	}
 }

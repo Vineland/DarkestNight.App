@@ -15,8 +15,12 @@ namespace Vineland.Necromancer.UI
 			set
 			{
 				Application.CurrentGame.Darkness = value;
- 				MessagingCenter.Send<DarknessPopupViewModel>(this, "DarknessUpdated");
 			}
+		}
+
+		public override void OnDisappearing()
+		{
+			MessagingCenter.Send<DarknessPopupViewModel>(this, "DarknessUpdated");
 		}
 	}
 }

@@ -18,6 +18,7 @@ namespace Vineland.Necromancer.Core
 			_blightService = blightService;
 		}
 
+
 		/// <summary>
 		/// Start of Necromancer phase darkness adjustment.
 		/// </summary>
@@ -164,36 +165,42 @@ namespace Vineland.Necromancer.Core
 			var initialBlightCount = newLocation.BlightCount;
 
 			//spawn blight at necromancer's new location
-			result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));		
+			result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
 
 			//standard darkness track effects
+			if (!gameState.UsingDarknessCards)
+			{
 				if (gameState.Darkness >= 10 && newLocation.BlightCount == 0)
-					result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
+					result.NewBlights.Add(_blightService.SpawnBlight(newLocation.Id, gameState));
 
 				if (gameState.Darkness >= 20 && (necromancerRoll == 1 || necromancerRoll == 2))
-					result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
-
-			//darkness card effects
+					result.NewBlights.Add(_blightService.SpawnBlight(newLocation.Id, gameState));
+			}
+			else
+			{
+				//darkness card effects
 				if (gameState.Necromancer.FocusedRituals
-					&& !gameState.Heroes.Any (x => x.LocationId == newLocation.Id))
-				result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
+					&& !gameState.Heroes.Any(x => x.LocationId == newLocation.Id))
+					result.NewBlights.Add(_blightService.SpawnBlight(newLocation.Id, gameState));
 
 				if (gameState.Necromancer.CreepingShadows && (necromancerRoll == 5 || necromancerRoll == 6))
-				result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
+					result.NewBlights.Add(_blightService.SpawnBlight(newLocation.Id, gameState));
 
-			//TODO: look up what the hell this one does again
-				if (gameState.Necromancer.DyingLand) {
+				//TODO: look up what the hell this one does again
+				if (gameState.Necromancer.DyingLand)
+				{
 					if (gameState.Darkness >= 10 && initialBlightCount == 1)
-						result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
+						result.NewBlights.Add(_blightService.SpawnBlight(newLocation.Id, gameState));
 					else if (gameState.Darkness < 10 && initialBlightCount == 0)
-						result.NewBlights.Add (_blightService.SpawnBlight (newLocation.Id, gameState));
+						result.NewBlights.Add(_blightService.SpawnBlight(newLocation.Id, gameState));
 				}
 
 				if (gameState.Necromancer.EncroachingShadows && necromancerRoll == 6)
-				result.NewBlights.Add (_blightService.SpawnBlight (LocationId.Monastery, gameState));
+					result.NewBlights.Add(_blightService.SpawnBlight(LocationId.Monastery, gameState));
 
 				if (gameState.Necromancer.Overwhelm && initialBlightCount < 4 && newLocation.BlightCount >= 4)
-				result.NewBlights.Add (_blightService.SpawnBlight (LocationId.Monastery, gameState));
+					result.NewBlights.Add(_blightService.SpawnBlight(LocationId.Monastery, gameState));
+			}
 
 			if (gameState.Darkness > 30) {
 				var overflowCount = gameState.Darkness - 30;

@@ -45,7 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerActivationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerDetectionViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerPhaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerCardsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\AcolyteViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\ConjurerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Heroes\HeroViewModel.cs" />
@@ -85,8 +85,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerDetectionPage.xaml.cs">
       <DependentUpon>NecromancerDetectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerPhasePage.xaml.cs">
-      <DependentUpon>NecromancerPhasePage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerCardsPage.xaml.cs">
+      <DependentUpon>NecromancerCardsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
@@ -177,7 +177,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerDetectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerPhasePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Necromancer\NecromancerCardsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Setup\NewGamePage.xaml">

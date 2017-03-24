@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using Vineland.Necromancer.Core;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Vineland.Necromancer.Domain;
 using GalaSoft.MvvmLight.Command;
 
 namespace Vineland.Necromancer.UI
@@ -17,13 +11,26 @@ namespace Vineland.Necromancer.UI
 			Heroes = new ObservableCollection<HeroViewModel> ();
 
 			//MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
-			MessagingCenter.Subscribe<DarknessPopupViewModel>(this, "DarknessUpdated", (obj) => RaisePropertyChanged(()=>Darkness));
+			MessagingCenter.Subscribe<DarknessPopupViewModel>(this, "DarknessUpdated", DarknessUpdated);
 			Initialise ();
 		}
 
 		public void Initialise(){
 			foreach (var hero in Application.CurrentGame.Heroes)
 				Heroes.Add (HeroViewModel.Create(hero));
+		}
+
+		public async void DarknessUpdated(DarknessPopupViewModel sender)
+		{
+			RaisePropertyChanged(() => Darkness);
+			if (Darkness >= Application.CurrentGame.NextDarknessCardDrawAt)
+			{
+				if (await Application.Navigation.DisplayConfirmation("New Darkness Card", "Draw new Darkness card", "OK", "Cancel"))
+				{
+					Application.CurrentGame.LastDarknessCardDrawAt = Application.CurrentGame.NextDarknessCardDrawAt;
+					await Application.Navigation.Push<NecromancerCardsPage>();
+				}
+			}
 		}
 
 		//public override void Cleanup ()
@@ -78,7 +85,7 @@ namespace Vineland.Necromancer.UI
 			{
 				return new RelayCommand(async () =>
 				{
-					await Application.Navigation.Push<NecromancerPhasePage>();
+					await Application.Navigation.Push<NecromancerCardsPage>();
 				});
 			}
 		}
