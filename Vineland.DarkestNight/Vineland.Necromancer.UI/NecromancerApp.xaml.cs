@@ -11,7 +11,7 @@ namespace Vineland.Necromancer.UI
 	public partial class NecromancerApp : Application
 	{
 		public NavigationService Navigation { get; private set; }
-		public IToastNotificator ToastService { get; private set; }
+		//public IToastNotificator ToastService { get; private set; }
 		GameStateService _gameStateService;
 
 		public NecromancerApp ()
@@ -23,8 +23,8 @@ namespace Vineland.Necromancer.UI
 			MainPage = new CustomNavigationPage (Resolver.Resolve<PageService> ().CreatePage<HomePage> ());
 
 			Navigation = Resolver.Resolve<NavigationService> ();
-			ToastService = Resolver.Resolve<IToastNotificator>();
-				Navigation.SetNavigation (MainPage.Navigation);
+			//ToastService = Resolver.Resolve<IToastNotificator>();
+			Navigation.SetNavigation (MainPage.Navigation);
 		}
 
 		public GameState CurrentGame { get; set;}

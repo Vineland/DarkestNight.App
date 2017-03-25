@@ -38,7 +38,7 @@ namespace Vineland.DarkestNight.UI.Infrastructure
 
 			container.Register<IRepository, EmbeddedResourceRepository>();
 			container.Register<IFileService, FileService>();
-			container.Register<IToastNotificator, ToastNotification>();
+			//container.Register<IToastNotificator, ToastNotification>();
 
 			RegisterPlatformSpecificImplementations (container);
 
