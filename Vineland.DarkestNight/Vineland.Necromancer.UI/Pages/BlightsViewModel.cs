@@ -23,7 +23,6 @@ namespace Vineland.Necromancer.UI
 			SelectedBlights = new List<BlightViewModel>();
 			_blightService = blightService;
 
-			MessagingCenter.Subscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete", OnNecromancerPhaseComplete);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "BlightSelected", BlightSelected);
 			MessagingCenter.Subscribe<HeroPhaseLocationViewModel>(this, "SpawnBlight", SpawnBlight);
 
@@ -34,7 +33,6 @@ namespace Vineland.Necromancer.UI
 		public override void Cleanup ()
 		{
 			base.OnDisappearing ();
-			MessagingCenter.Unsubscribe<NecromancerActivationViewModel>(this, "NecromancerPhaseComplete");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "BlightSelected");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel>(this, "SpawnBlight");
 		}

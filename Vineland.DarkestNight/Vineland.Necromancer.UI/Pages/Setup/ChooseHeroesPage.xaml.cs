@@ -3,7 +3,7 @@ using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class ChooseHeroesPage : ContentPage
+	public partial class ChooseHeroesPage : BasePage
 	{
 		public ChooseHeroesPage ()
 		{
@@ -16,11 +16,6 @@ namespace Vineland.Necromancer.UI
 
 			(BindingContext as ChooseHeroesViewModel).SelectHero (e.Item as Hero);
 			AvailableHeroesListView.SelectedItem = null;
-		}
-
-		protected override void OnDisappearing ()
-		{
-			(BindingContext as BaseViewModel).OnDisappearing ();
 		}
 	}
 }

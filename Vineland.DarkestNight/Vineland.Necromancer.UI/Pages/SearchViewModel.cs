@@ -16,12 +16,11 @@ namespace Vineland.Necromancer.UI
 
 			//use a copy of the deck so that's it's easy to bail out 
 			//if the user decides to undo a bunch of stuff
-			_mapDeck = Application.CurrentGame.Clone().MapCards;
-
-			//MapCards.Add(new MapCardViewModel(_mapDeck.Draw()));
+			//_mapDeck = Application.CurrentGame.Clone().MapCards;
+			MapCards.Add(new MapCardViewModel(Application.CurrentGame.MapCards.Draw()));
 		}
 
-		Deck<Domain.MapCard> _mapDeck;
+		//Deck<Domain.MapCard> _mapDeck;
 
 		public ObservableCollection<MapCardViewModel> MapCards { get; set; }
 
@@ -44,7 +43,7 @@ namespace Vineland.Necromancer.UI
 			{
 				return new RelayCommand(() =>
 				{
-					var viewModel = new MapCardViewModel(_mapDeck.Draw());
+					var viewModel = new MapCardViewModel(Application.CurrentGame.MapCards.Draw());
 					MapCards.Add(viewModel);
 					SelectedMapCardIndex = MapCards.Count - 1;
 					RaisePropertyChanged(() => SelectedMapCardIndex);
@@ -60,10 +59,11 @@ namespace Vineland.Necromancer.UI
 				{
 					if (SelectedMapCard != null)
 					{
-						_mapDeck.Discard(SelectedMapCard.MapCard);
+						Application.CurrentGame.MapCards.Discard(SelectedMapCard.MapCard);
 						MapCards.Remove(SelectedMapCard);
 					}
-				});
+				},
+				() => { return MapCards.Any(); });
 			}
 		}
 
@@ -75,10 +75,11 @@ namespace Vineland.Necromancer.UI
 				{
 					if (SelectedMapCard != null)
 					{
-						_mapDeck.Return(SelectedMapCard.MapCard, DeckPosition.Bottom);
+						Application.CurrentGame.MapCards.Return(SelectedMapCard.MapCard, DeckPosition.Bottom);
 						MapCards.Remove(SelectedMapCard);
 					}
-				});
+				}, 
+                () => { return MapCards.Any(); });
 			}
 		}
 
@@ -90,10 +91,11 @@ namespace Vineland.Necromancer.UI
 				{
 					if (SelectedMapCard != null)
 					{
-						_mapDeck.Return(SelectedMapCard.MapCard);
+						Application.CurrentGame.MapCards.Return(SelectedMapCard.MapCard);
 						MapCards.Remove(SelectedMapCard);
 					}
-				});
+				},
+				() => { return MapCards.Any(); });
 			}
 		}
 
@@ -102,10 +104,10 @@ namespace Vineland.Necromancer.UI
 				return new RelayCommand (() => {
 					foreach (var mapCard in MapCards)
 					{
-						_mapDeck.Discard(mapCard.MapCard);
+						Application.CurrentGame.MapCards.Discard(mapCard.MapCard);
 					}
 
-					Application.CurrentGame.MapCards = _mapDeck;
+					//Application.CurrentGame.MapCards = _mapDeck;
 					Application.Navigation.Pop ();
 				});
 			}

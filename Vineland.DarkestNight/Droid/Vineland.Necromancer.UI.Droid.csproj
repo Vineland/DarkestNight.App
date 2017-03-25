@@ -154,6 +154,12 @@
     <Reference Include="CarouselView.FormsPlugin.Android">
       <HintPath>..\packages\CarouselView.FormsPlugin.3.0.1\lib\MonoAndroid\CarouselView.FormsPlugin.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Toasts.Forms.Plugin.Abstractions">
+      <HintPath>..\packages\Toasts.Forms.Plugin.3.1.4\lib\MonoAndroid10\Toasts.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Toasts.Forms.Plugin.Droid">
+      <HintPath>..\packages\Toasts.Forms.Plugin.3.1.4\lib\MonoAndroid10\Toasts.Forms.Plugin.Droid.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />

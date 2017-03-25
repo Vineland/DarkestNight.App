@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using GalaSoft.MvvmLight.Command;
+using Plugin.Toasts;
 
 namespace Vineland.Necromancer.UI
 {
@@ -25,11 +26,8 @@ namespace Vineland.Necromancer.UI
 			RaisePropertyChanged(() => Darkness);
 			if (Darkness >= Application.CurrentGame.NextDarknessCardDrawAt)
 			{
-				if (await Application.Navigation.DisplayConfirmation("New Darkness Card", "Draw new Darkness card", "OK", "Cancel"))
-				{
-					Application.CurrentGame.LastDarknessCardDrawAt = Application.CurrentGame.NextDarknessCardDrawAt;
-					await Application.Navigation.Push<NecromancerCardsPage>();
-				}
+				Application.Navigation.DisplayAlert("", "Draw new Darkness card", "OK");
+				Application.CurrentGame.LastDarknessCardDrawAt = Application.CurrentGame.NextDarknessCardDrawAt;	
 			}
 		}
 

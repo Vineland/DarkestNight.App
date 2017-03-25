@@ -11,6 +11,7 @@ using SimpleInjector;
 using System.Runtime.InteropServices;
 using Vineland.Necromancer.Repository;
 using Vineland.Necromancer.Core.Services;
+using Plugin.Toasts;
 
 namespace Vineland.DarkestNight.UI.Infrastructure
 {
@@ -37,6 +38,7 @@ namespace Vineland.DarkestNight.UI.Infrastructure
 
 			container.Register<IRepository, EmbeddedResourceRepository>();
 			container.Register<IFileService, FileService>();
+			container.Register<IToastNotificator, ToastNotification>();
 
 			RegisterPlatformSpecificImplementations (container);
 

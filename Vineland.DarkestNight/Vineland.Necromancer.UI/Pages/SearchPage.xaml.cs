@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class SearchPage : ContentPage
+	public partial class SearchPage : BasePage
 	{
 		public SearchPage ()
 		{
