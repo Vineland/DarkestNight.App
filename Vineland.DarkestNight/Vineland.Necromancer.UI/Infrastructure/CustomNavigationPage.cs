@@ -10,7 +10,6 @@ namespace Vineland.Necromancer.UI
 			: base(content)
 		{
 			Init();
-
 			BarBackgroundColor = AppConstants.NavBarBackground;
 			BarTextColor = AppConstants.NavBarTextColour;
 		}

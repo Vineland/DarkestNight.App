@@ -18,26 +18,7 @@ BackgroundImage="background">
 	<ListView ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
-			<ViewCell>
-			<StackLayout >
-				<ui:Header Text="{Binding Location.Name}" />
-					<ui:ItemsSourceStackLayout
-		Orientation="Horizontal" 
-			Padding="16,8"
-		ItemsSource="{Binding Spawns}"
-		ItemSelected="{Binding BlightSelectedCommand}">
-			<ui:ItemsSourceStackLayout.ItemTemplate>
-					<DataTemplate>
-									<Grid>
-						<Image Source="{Binding Image}" HeightRequest="48" WidthRequest="48"/>
-										<Image Source="death" IsVisible="{Binding IsSelected}" HeightRequest="48" WidthRequest="48"/>
-										</Grid>
-					</DataTemplate>
-			</ui:ItemsSourceStackLayout.ItemTemplate>
-		</ui:ItemsSourceStackLayout>
-		</StackLayout>
-</ViewCell>
-<!--				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />-->
+				<ui:LocationBlightsCell />
 			</DataTemplate>
 		</ListView.ItemTemplate>
 	</ListView>

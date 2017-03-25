@@ -168,7 +168,6 @@
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\CheckButtonRenderer.cs" />
-    <Compile Include="Renderers\CustomTextCellRenderer.cs" />
     <Compile Include="Renderers\CustomFontLabelRenderer.cs" />
     <Compile Include="Renderers\CustomButtonRenderer.cs" />
     <Compile Include="Renderers\CustomPickerRenderer.cs" />
@@ -176,9 +175,6 @@
     <Compile Include="Renderers\CustomPageRenderer.cs" />
     <Compile Include="Renderers\CustomImageCellRenderer.cs" />
     <Compile Include="Services\DisplayAlertService.cs" />
-    <Compile Include="Renderers\CustomImageRenderer.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -11,7 +11,11 @@ x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
 	ItemsSource="{Binding Spawns}">
 		<ui:ItemsSourceStackLayout.ItemTemplate>
 				<DataTemplate>
-					<ui:CustomImage Source="{Binding Image}"  HeightRequest="48" WidthRequest="48"/>
+
+									<Grid>
+						<Image Source="{Binding Image}" HeightRequest="48" WidthRequest="48"/>
+										<Image Source="death" IsVisible="{Binding IsSelected}" HeightRequest="48" WidthRequest="48"/>
+										</Grid>
 				</DataTemplate>
 		</ui:ItemsSourceStackLayout.ItemTemplate>
 	</ui:ItemsSourceStackLayout>

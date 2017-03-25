@@ -29,7 +29,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemsSourceStackLayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Header.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TabButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CustomImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\FileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HeroConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LocationConverter.cs" />
@@ -90,9 +89,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Setup\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\SelectHeroPage.xaml.cs">
-      <DependentUpon>SelectHeroPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -181,9 +177,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Setup\NewGamePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\SelectHeroPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\SettingsPage.xaml">

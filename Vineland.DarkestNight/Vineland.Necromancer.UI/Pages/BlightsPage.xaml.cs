@@ -10,6 +10,7 @@ namespace Vineland.Necromancer.UI
 		public BlightsPage ()
 		{
 			InitializeComponent ();
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
 	}
 }
