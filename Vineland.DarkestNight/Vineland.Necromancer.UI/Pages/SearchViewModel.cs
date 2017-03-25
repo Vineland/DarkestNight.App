@@ -102,20 +102,25 @@ namespace Vineland.Necromancer.UI
 		public RelayCommand DoneCommand {
 			get {
 				return new RelayCommand (() => {
-					foreach (var mapCard in MapCards)
-					{
-						Application.CurrentGame.MapCards.Discard(mapCard.MapCard);
-					}
-
+					DiscardAll();
 					//Application.CurrentGame.MapCards = _mapDeck;
 					Application.Navigation.Pop ();
 				});
 			}
 		}
 
+		private void DiscardAll()
+		{
+			foreach (var mapCard in MapCards)
+			{
+				Application.CurrentGame.MapCards.Discard(mapCard.MapCard);
+			}
+
+		}
+
 		public override void OnBackButtonPressed()
 		{
-			DoneCommand.Execute(null);
+			DiscardAll();
 		}
 	}
 }
