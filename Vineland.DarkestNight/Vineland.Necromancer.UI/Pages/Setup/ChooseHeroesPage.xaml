@@ -34,7 +34,7 @@ x:Name="AvailableHeroesListView"
 	ItemsSource="{Binding AvailableHeroes}" RowHeight="72">
 	<ListView.ItemTemplate>
 			<DataTemplate>
-				<ImageCell ImageSource="{Binding ImageName}" Text="{Binding Name}" />
+				<ImageCell ImageSource="{Binding Image}" Text="{Binding Name}" />
 			</DataTemplate>
 	</ListView.ItemTemplate>
 	</ListView>

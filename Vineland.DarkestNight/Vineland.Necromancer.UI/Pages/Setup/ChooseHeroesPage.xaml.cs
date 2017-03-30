@@ -14,7 +14,7 @@ namespace Vineland.Necromancer.UI
 		void AvailableHeroesListView_ItemTapped (object sender, ItemTappedEventArgs e)
 		{
 
-			(BindingContext as ChooseHeroesViewModel).SelectHero (e.Item as Hero);
+			(BindingContext as ChooseHeroesViewModel).SelectHero (e.Item as HeroViewModel);
 			AvailableHeroesListView.SelectedItem = null;
 		}
 	}

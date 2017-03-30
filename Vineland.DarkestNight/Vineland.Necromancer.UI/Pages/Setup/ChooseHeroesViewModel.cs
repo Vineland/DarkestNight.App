@@ -16,7 +16,7 @@ namespace Vineland.Necromancer.UI
 			_dataService = dataService;
 
 			HeroSlots = new ObservableCollection<HeroSlotViewModel> ();
-			AvailableHeroes = new ObservableCollection<Hero> ();
+			AvailableHeroes = new ObservableCollection<HeroViewModel> ();
 			IsLoading = true;
 		}
 
@@ -26,23 +26,23 @@ namespace Vineland.Necromancer.UI
 				HeroSlots.Add (new HeroSlotViewModel ());
 			}
 			foreach (var hero in _dataService.GetAllHeroes())
-				AvailableHeroes.Add (hero);
+				AvailableHeroes.Add (new HeroViewModel(hero));
 
 			IsLoading = false;
 		}
 
 		public ObservableCollection<HeroSlotViewModel> HeroSlots { get; set; }
 
-		public ObservableCollection<Hero> AvailableHeroes { get; set; }
+		public ObservableCollection<HeroViewModel> AvailableHeroes { get; set; }
 
-		public void SelectHero(Hero hero){
+		public void SelectHero(HeroViewModel heroViewModel){
 			if (!HeroSlots.Any(x=> x.Hero == null))
 				return;
 			
-			if (AvailableHeroes.Contains (hero))
-				AvailableHeroes.Remove (hero);
-			if (!HeroSlots.Any (x=> x.Hero == hero))
-				HeroSlots.First(x=> x.Hero == null).SetHero(hero);
+			if (AvailableHeroes.Contains (heroViewModel))
+				AvailableHeroes.Remove (heroViewModel);
+			if (!HeroSlots.Any (x=> x.Hero == heroViewModel.Hero))
+				HeroSlots.First(x=> x.Hero == null).SetHero(heroViewModel.Hero);
 
 			RaisePropertyChanged (() => StartGame);
 		}
@@ -55,10 +55,10 @@ namespace Vineland.Necromancer.UI
 
 					heroSlot.SetHero(null);
 
-					if (!AvailableHeroes.Contains (hero)){
+					if (!AvailableHeroes.Any (x=>x.Hero == hero)){
 						for(int i= 0; i < AvailableHeroes.Count; i++){
 							if(AvailableHeroes[i].Name.CompareTo(hero.Name) == 1){
-								AvailableHeroes.Insert (i,hero);
+								AvailableHeroes.Insert (i,new HeroViewModel(hero));
 								break;
 							}
 						}
@@ -119,4 +119,5 @@ namespace Vineland.Necromancer.UI
 			RaisePropertyChanged (() => Image);
 		}
 	}
+
 }

@@ -27,9 +27,5 @@ namespace Vineland.Necromancer.Domain
 		{
 			return Name;
 		}
-
-		public string ImageName{
-			get { return "hero_" + Name.Replace (" ", "").ToLower (); }
-		}
     }
 }

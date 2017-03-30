@@ -18,6 +18,11 @@ namespace Vineland.Necromancer.UI
 			_hero = hero;
 		}
 
+		public Hero Hero
+		{
+			get { return _hero; }
+		}
+
 		public string Name {
 			get{ return _hero.Name; }
 		}

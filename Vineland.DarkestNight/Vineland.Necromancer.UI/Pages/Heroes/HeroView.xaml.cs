@@ -10,7 +10,6 @@ namespace Vineland.Necromancer.UI
 		public HeroView()
 		{
 			InitializeComponent();
-			NavigationPage.SetHasNavigationBar(this, false);
 		}
 	}
 }
