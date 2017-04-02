@@ -4,20 +4,18 @@ using Vineland.Necromancer.Core.Models;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
-	public class BlightsViewModel: BaseViewModel
+	public class BlightsPageModel: BaseViewModel
 	{
 		BlightService _blightService;
 
 		public ObservableCollection<HeroPhaseLocationViewModel> Locations { get; private set; }
 
-		public BlightsViewModel (BlightService blightService)
+		public BlightsPageModel (BlightService blightService)
 		{
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> ();
 			SelectedBlights = new List<BlightViewModel>();
@@ -30,21 +28,22 @@ namespace Vineland.Necromancer.UI
 			Locations = new ObservableCollection<HeroPhaseLocationViewModel> (locationViewModels);
 		}
 
-		public override void Cleanup ()
+		protected override void ViewIsDisappearing(object sender, EventArgs e)
 		{
-			base.OnDisappearing ();
+			base.ViewIsDisappearing(sender, e);
+
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel, BlightViewModel> (this, "BlightSelected");
 			MessagingCenter.Unsubscribe<HeroPhaseLocationViewModel>(this, "SpawnBlight");
 		}
 
-		public void OnNecromancerPhaseComplete(NecromancerActivationViewModel sender)
-		{
-			foreach (var spawnLocation in sender.Locations) {
-				var locationRow = Locations.Single (l => l.Location.Id == spawnLocation.Location.Id);
-				foreach (var spawn in spawnLocation.Spawns.Where(x=> x is BlightViewModel))
-					locationRow.AddBlightViewModel (spawn as BlightViewModel);
-			}
-		}
+		//public void OnNecromancerPhaseComplete(NecromancerActivationPageModel sender)
+		//{
+		//	foreach (var spawnLocation in sender.Locations) {
+		//		var locationRow = Locations.Single (l => l.Location.Id == spawnLocation.Location.Id);
+		//		foreach (var spawn in spawnLocation.Spawns.Where(x=> x is BlightViewModel))
+		//			locationRow.AddBlightViewModel (spawn as BlightViewModel);
+		//	}
+		//}
 
 		public void SpawnBlight(HeroPhaseLocationViewModel locationModel)
 		{
@@ -60,7 +59,7 @@ namespace Vineland.Necromancer.UI
 				locationModel.AddBlightViewModel(new BlightViewModel(result.Blight));
 			};
 
-			Application.Navigation.PushPopup<SpawnBlightPopupPage>(viewModel);
+			CoreMethods.PushPopup(pageModel:viewModel);
 		}
 
 		public List<BlightViewModel> SelectedBlights { get; private set; }
@@ -76,11 +75,11 @@ namespace Vineland.Necromancer.UI
 			RaisePropertyChanged(() => DestroyCommand);
 		}
 
-		public RelayCommand DestroyCommand
+		public Command DestroyCommand
 		{
 			get
 			{
-				return new RelayCommand(async () =>
+				return new Command(async (obj) =>
 				{
 					string message;
 					if (SelectedBlights.Count == 1)
@@ -88,22 +87,22 @@ namespace Vineland.Necromancer.UI
 					else
 						message = $"Destroy the {SelectedBlights.Count} selected blights?";
 
-					var result = await Application.Navigation.DisplayConfirmation("Destroy", message, "Yes", "No");
+					var result = await CoreMethods.DisplayAlert("Destroy", message, "Yes", "No");
 					if (result)
 						DestroyBlights();
-				}, () => { return SelectedBlights.Any(); });
+				}, (obj) => { return SelectedBlights.Any(); });
 			}
 		}
 
-		public RelayCommand MoveCommand
+		public Command MoveCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command(() =>
 				{
-					var viewModel = new ChooseLocationPopupViewModel();
+					var viewModel = new ChooseLocationPopupPageModel();
 					viewModel.OnLocationSelected += MoveSelectedBlights;
-					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
+					CoreMethods.PushPopup(pageModel: viewModel);
 				}, () => { return SelectedBlights.Any(); });
 			}
 		}
@@ -177,11 +176,11 @@ namespace Vineland.Necromancer.UI
 				Spawns.Add(new BlightViewModel(null));
 		}
 
-		public override RelayCommand<BlightViewModel> BlightSelectedCommand
+		public override Command<BlightViewModel> BlightSelectedCommand
 		{
 			get
 			{
-				return new RelayCommand<BlightViewModel>((blightViewModel) =>
+				return new Command<BlightViewModel>((blightViewModel) =>
 				{
 					if (blightViewModel.IsPlaceHolder)
 					{

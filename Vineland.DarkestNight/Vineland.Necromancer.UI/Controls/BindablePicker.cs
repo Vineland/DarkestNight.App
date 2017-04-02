@@ -88,7 +88,9 @@ namespace Vineland.Necromancer.UI
 		private static void OnSelectedItemChanged (BindableObject bindable, object oldvalue, object newvalue)
 		{
 			var picker = bindable as BindablePicker<T>;
-
+			if (picker.ItemsSource == null)
+				return;
+			
 			foreach(var item in picker.ItemsSource) {
 				if (item.Equals(newvalue)) 
 				{

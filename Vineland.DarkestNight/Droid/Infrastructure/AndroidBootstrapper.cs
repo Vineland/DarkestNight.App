@@ -9,10 +9,9 @@ namespace Vineland.DarkestNight.UI.Droid.Infrastructure
 {
 	public class AndroidBootstrapper: SharedBootstrapper
     {
-		protected override void RegisterPlatformSpecificImplementations (SimpleInjector.Container container)
+		protected override void RegisterPlatformSpecificImplementations ()
 		{
-			container.Register<ISettingsService, SettingsService>();
-			container.Register<IDisplayAlertService, DisplayAlertService> ();
+			FreshTinyIoC.FreshTinyIoCContainer.Current.Register<ISettingsService, SettingsService>();
 		}
     }
 }

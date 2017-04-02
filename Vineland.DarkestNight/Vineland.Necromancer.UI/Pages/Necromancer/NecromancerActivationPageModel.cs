@@ -1,22 +1,20 @@
-﻿using System;
-using Vineland.Necromancer.Core;
+﻿using Vineland.Necromancer.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using GalaSoft.MvvmLight.Command;
 using System.Threading.Tasks;
 using Vineland.Necromancer.Domain;
 using Vineland.Necromancer.Core.Models;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NecromancerActivationViewModel : BaseViewModel
+	public class NecromancerActivationPageModel : BaseViewModel
 	{
 		NecromancerService _necromancerService;
 		GameState _pendingGameState;
 
-		public NecromancerActivationViewModel (NecromancerService necromancerService)
+		public NecromancerActivationPageModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
 			Locations = new ObservableCollection<SpawnLocationViewModel> ();
@@ -100,9 +98,9 @@ namespace Vineland.Necromancer.UI
 
 		public ObservableCollection<SpawnLocationViewModel> Locations { get; set; }
 
-		public RelayCommand AcceptCommand {
+		public Command AcceptCommand {
 			get {
-				return new RelayCommand (() => {
+				return new Command (() => {
 					//TODO: rethink this whole process. It would be nice to just set the game state to the edited one but that
 					//breaks all bindings.
 					//propagate all the changes to the game state
@@ -119,9 +117,9 @@ namespace Vineland.Necromancer.UI
 				
 					Application.SaveCurrentGame ();
 
-					MessagingCenter.Send<NecromancerActivationViewModel> (this, "NecromancerPhaseComplete");
+					MessagingCenter.Send<NecromancerActivationPageModel> (this, "NecromancerPhaseComplete");
 
-					Application.Navigation.PopTo<HeroesPage> ();
+					CoreMethods.PopToRoot(false);
 				});
 			}
 		}

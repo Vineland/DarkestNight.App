@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Vineland.Necromancer.Core;
 using Xamarin.Forms;
-using GalaSoft.MvvmLight.Command;
 using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
@@ -54,29 +53,29 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand DoneCommand {
+		public Command DoneCommand {
 			get {
-				return new RelayCommand (async () => {
-					switch (Context) {
-					case MapCardContext.SpiritSight:
-						{							
-							Application.CurrentGame.MapCards.Return (MapCard);
-							//Application.CurrentGame.Heroes.GetHero<Shaman>().SpiritSightMapCard = null
-							Application.SaveCurrentGame();
-							MessagingCenter.Send<MapCardViewModel> (this, "SpiritSightCardReturned");
-							break;
-						}
-					case MapCardContext.SeeingGlass:
-						break;
-					case MapCardContext.RuneOfClairvoyance:{
-							var option = await Application.Navigation.DisplayActionSheet("Return Card To", "Cancel", null, "Top", "Bottom");
-							Application.CurrentGame.MapCards.Return(MapCard, option == "Top" ? DeckPosition.Top: DeckPosition.Bottom);
-						 	Application.SaveCurrentGame();
-							break;
-						}
-					}
-
-					Application.Navigation.Pop ();
+				return new Command (() => {
+					//switch (Context) {
+					//case MapCardContext.SpiritSight:
+					//	{							
+					//		Application.CurrentGame.MapCards.Return (MapCard);
+					//		//Application.CurrentGame.Heroes.GetHero<Shaman>().SpiritSightMapCard = null
+					//		Application.SaveCurrentGame();
+					//		MessagingCenter.Send<MapCardViewModel> (this, "SpiritSightCardReturned");
+					//		break;
+					//	}
+					//case MapCardContext.SeeingGlass:
+					//	break;
+					//case MapCardContext.RuneOfClairvoyance:{
+					//			var option = await CoreMethods.DisplayActionSheet("Return Card To", "Cancel", null, "Top", "Bottom");
+					//		Application.CurrentGame.MapCards.Return(MapCard, option == "Top" ? DeckPosition.Top: DeckPosition.Bottom);
+					//	 	Application.SaveCurrentGame();
+					//		break;
+					//	}
+					//}
+					//CoreMethods.PopToRoot(true);
+					//Application.Navigation.Pop ();
 				});
 			}
 		}
@@ -84,7 +83,8 @@ namespace Vineland.Necromancer.UI
 		public void ReturnToBottom ()
 		{
 			Application.CurrentGame.MapCards.Return (MapCard, DeckPosition.Bottom);
-			Application.Navigation.Pop ();
+
+					CoreMethods.PopToRoot(true);
 		}
 	}
 

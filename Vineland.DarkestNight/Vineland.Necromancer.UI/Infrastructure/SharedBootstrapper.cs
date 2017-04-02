@@ -5,9 +5,6 @@ using Vineland.Necromancer.Core;
 using Vineland.DarkestNight.UI.Services;
 using Vineland.Necromancer.UI;
 using Xamarin.Forms;
-using XLabs.Ioc;
-using XLabs.Ioc.SimpleInjectorContainer;
-using SimpleInjector;
 using System.Runtime.InteropServices;
 using Vineland.Necromancer.Repository;
 using Vineland.Necromancer.Core.Services;
@@ -26,25 +23,25 @@ namespace Vineland.DarkestNight.UI.Infrastructure
 
         protected void SetIoC()
 		{
-			if (Resolver.IsSet)
-				return;
+			//if (Resolver.IsSet)
+				//return;
 			
-			var container = new Container();
+			//var container = new Container();
 
 			//there can be only one
-			container.RegisterSingleton<NavigationService>();
+			//FreshTinyIoC.FreshTinyIoCContainer.Current.Register<NavigationService>();
 			//singletons because they are dependecies for the above singleton
-			container.RegisterSingleton<PageService>();
+			//container.RegisterSingleton<PageService>();
 
-			container.Register<IRepository, EmbeddedResourceRepository>();
-			container.Register<IFileService, FileService>();
+			FreshTinyIoC.FreshTinyIoCContainer.Current.Register<IRepository, EmbeddedResourceRepository>();
+			FreshTinyIoC.FreshTinyIoCContainer.Current.Register<IFileService, FileService>();
 			//container.Register<IToastNotificator, ToastNotification>();
 
-			RegisterPlatformSpecificImplementations (container);
+			RegisterPlatformSpecificImplementations ();
 
-			Resolver.SetResolver (new SimpleInjectorResolver (container));
+			//Resolver.SetResolver (new SimpleInjectorResolver (container));
         }
 
-		protected abstract void RegisterPlatformSpecificImplementations(Container container);
+		protected abstract void RegisterPlatformSpecificImplementations();
     }
 }

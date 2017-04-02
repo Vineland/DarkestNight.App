@@ -1,13 +1,13 @@
 ﻿using System;
-using GalaSoft.MvvmLight;
 using Vineland.Necromancer.UI;
-using XLabs.Ioc;
 using Vineland.Necromancer.Core;
 using Xamarin.Forms;
+using FreshMvvm;
+using System.Linq.Expressions;
 
 namespace Vineland.Necromancer.UI
 {
-	public abstract class BaseViewModel :ViewModelBase
+	public abstract class BaseViewModel :FreshBasePageModel
 	{
 		public BaseViewModel ()
 		{
@@ -24,16 +24,22 @@ namespace Vineland.Necromancer.UI
 			set{
 				if (_isLoading != value) {
 					_isLoading = value;
-					RaisePropertyChanged (() => IsLoading);
+					RaisePropertyChanged(() => IsLoading);
 				}
 			}
 		}
 
-		public virtual void OnAppearing() { }
-
-		public virtual void OnDisappearing() { }
-
-		public virtual void OnBackButtonPressed() { }
+		protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> selectorExpression)
+		{
+			if (selectorExpression == null)
+				throw new ArgumentNullException("selectorExpression");
+			
+			MemberExpression body = selectorExpression.Body as MemberExpression;
+			if (body == null)
+				throw new ArgumentException("The body must be a member expression");
+			
+			RaisePropertyChanged(body.Member.Name);
+		}
 	}
 }
 

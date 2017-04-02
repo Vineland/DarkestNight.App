@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Vineland.Necromancer.Core;
-using GalaSoft.MvvmLight.Command;
+﻿using Vineland.Necromancer.Core;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class SearchViewModel : BaseViewModel
+	public class SearchPageModel : BaseViewModel
 	{
 		
-		public SearchViewModel ()
+		public SearchPageModel ()
 		{
 			MapCards = new ObservableCollection<MapCardViewModel> ();
 
@@ -37,11 +35,11 @@ namespace Vineland.Necromancer.UI
 
 		public int SelectedMapCardIndex { get; set; }
 
-		public RelayCommand DrawCommand
+		public Command DrawCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command(() =>
 				{
 					var viewModel = new MapCardViewModel(Application.CurrentGame.MapCards.Draw());
 					MapCards.Add(viewModel);
@@ -51,11 +49,11 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand DiscardCommand
+		public Command DiscardCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command(() =>
 				{
 					if (SelectedMapCard != null)
 					{
@@ -67,11 +65,11 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand ReturnToBottomCommand
+		public Command ReturnToBottomCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command(() =>
 				{
 					if (SelectedMapCard != null)
 					{
@@ -83,11 +81,11 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand ReturnToTopCommand
+		public Command ReturnToTopCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command(() =>
 				{
 					if (SelectedMapCard != null)
 					{
@@ -99,12 +97,12 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand DoneCommand {
+		public Command DoneCommand {
 			get {
-				return new RelayCommand (() => {
+				return new Command (() => {
 					DiscardAll();
 					//Application.CurrentGame.MapCards = _mapDeck;
-					Application.Navigation.Pop ();
+					CoreMethods.PopPageModel();
 				});
 			}
 		}
@@ -118,8 +116,10 @@ namespace Vineland.Necromancer.UI
 
 		}
 
-		public override void OnBackButtonPressed()
+		protected override void ViewIsDisappearing(object sender, System.EventArgs e)
 		{
+			base.ViewIsDisappearing(sender, e);
+
 			DiscardAll();
 		}
 	}

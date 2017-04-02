@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using GalaSoft.MvvmLight.Command;
 using Vineland.Necromancer.Core;
-using Vineland.Necromancer.UI;
-using XLabs.Ioc;
 using Vineland.Necromancer.Core.Services;
-using System.Security.Cryptography;
-using System.Net;
 using Vineland.Necromancer.Domain;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NecromancerDetectionViewModel :BaseViewModel
+	public class NecromancerDetectionPageModel :BaseViewModel
 	{
 		NecromancerService _necromancerService;
 
-		public NecromancerDetectionViewModel (NecromancerService necromancerService)
+		public NecromancerDetectionPageModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
 
@@ -47,11 +41,11 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand AcceptCommand {
+		public Command AcceptCommand {
 			get {
-				return new RelayCommand (async () => {
-					var page = await Application.Navigation.Push<NecromancerActivationPage> ();
-					(page.BindingContext as NecromancerActivationViewModel).Initialise (SelectedResult.DetectedHero, SelectedResult.NecromancerRoll, SelectedResult.HeroesToIgnore.ToArray());
+				return new Command (async (obj) => {
+					await CoreMethods.PushPageModel<NecromancerActivationPageModel> ();
+					//(page.BindingContext as NecromancerActivationViewModel).Initialise (SelectedResult.DetectedHero, SelectedResult.NecromancerRoll, SelectedResult.HeroesToIgnore.ToArray());
 				});
 			}
 		}
@@ -98,9 +92,9 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand VoidArmourCommand {
+		public Command VoidArmourCommand {
 			get {
-				return new RelayCommand (() => {
+				return new Command (() => {
 					HeroesToIgnore.Add (DetectedHero.Id);
 					DetectHero ();
 				},
@@ -117,9 +111,9 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand BlindingBlackCommand {
+		public Command BlindingBlackCommand {
 			get {
-				return new RelayCommand (() => {
+				return new Command (() => {
 					HeroesToIgnore = Application.CurrentGame.Heroes.Select (x => x.Id).ToList ();
 					//_acolyte.BlindingBlackActive = false;
 					DetectHero ();
@@ -138,9 +132,9 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand DecoyCommand {
+		public Command DecoyCommand {
 			get {
-				return new RelayCommand (() => {
+				return new Command (() => {
 					DetectedHero = Application.CurrentGame.Heroes.GetHero<Wayfarer>();
 					RaisePropertyChanged (() => DetectedHero);
 					RaisePropertyChanged (() => DecoyCommand);
@@ -163,9 +157,9 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand ElusiveSpiritCommand {
+		public Command ElusiveSpiritCommand {
 			get {
-				return new RelayCommand (() => {
+				return new Command (() => {
 					HeroesToIgnore.Add (DetectedHero.Id);
 					DetectHero ();
 				},

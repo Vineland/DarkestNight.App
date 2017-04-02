@@ -4,11 +4,11 @@ using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
 {
-	public class ChooseLocationPopupViewModel :BaseViewModel
+	public class ChooseLocationPopupPageModel :BaseViewModel
 	{
 		public Action<Location> OnLocationSelected;
 
-		public ChooseLocationPopupViewModel()
+		public ChooseLocationPopupPageModel()
 		{
 		}
 
@@ -27,7 +27,7 @@ namespace Vineland.Necromancer.UI
 				{
 					_selectedLocation = value;
 					OnLocationSelected(value);
-					Application.Navigation.PopLastPopup();
+					CoreMethods.PopPopup();
 				}
 			}
 		}

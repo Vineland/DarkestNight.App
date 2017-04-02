@@ -1,19 +1,17 @@
 ﻿using System;
 using Vineland.Necromancer.Core;
-using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Linq;
-using XLabs.Ioc;
 using Vineland.Necromancer.Domain;
 using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NecromancerCardsViewModel : BaseViewModel
+	public class NecromancerCardsPageModel : BaseViewModel
 	{
 		NecromancerService _necromancerService;
 
-		public NecromancerCardsViewModel (NecromancerService necromancerService)
+		public NecromancerCardsPageModel (NecromancerService necromancerService)
 		{
 			_necromancerService = necromancerService;
 
@@ -33,19 +31,19 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand LocationCommand
+		public Command LocationCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command(() =>
 				{
-					var viewModel = new ChooseLocationPopupViewModel();
+					var viewModel = new ChooseLocationPopupPageModel();
 					viewModel.OnLocationSelected += (location) =>
 					{
 						Necromancer.LocationId = location.Id;
 						RaisePropertyChanged(() => LocationName);
 					};
-					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
+					CoreMethods.PushPopup(pageModel:viewModel);
 				});
 			}
 		}
@@ -54,18 +52,18 @@ namespace Vineland.Necromancer.UI
 			get{ return Application.CurrentGame.Necromancer; }
 		}
 
-		public RelayCommand ActivateCommand {
+		public Command ActivateCommand {
 			get {
-				return new RelayCommand (async () => {
+				return new Command (async (obj) => {
 					Application.SaveCurrentGame ();
 
-					var detectionViewModel = Resolver.Resolve<NecromancerDetectionViewModel> ();
-					if (detectionViewModel.SkipPage) {
-						var page = await Application.Navigation.Push<NecromancerActivationPage> ();
-						(page.BindingContext as NecromancerActivationViewModel).Initialise (detectionViewModel.SelectedResult.DetectedHero, detectionViewModel.SelectedResult.NecromancerRoll);
-					}else{
-						await Application.Navigation.Push<NecromancerDetectionPage>(detectionViewModel);
-					}
+					//var detectionViewModel = Resolver.Resolve<NecromancerDetectionViewModel> ();
+					//if (detectionViewModel.SkipPage) {
+					//	var page = await CoreMethods.PushPageModel<NecromancerActivationPageModel> ();
+					//	(page.BindingContext as NecromancerActivationViewModel).Initialise (detectionViewModel.SelectedResult.DetectedHero, detectionViewModel.SelectedResult.NecromancerRoll);
+					//}else{
+					//	await Application.Navigation.Push<NecromancerDetectionPage>(detectionViewModel);
+					//}
 				});
 			}
 		}

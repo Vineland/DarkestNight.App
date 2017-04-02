@@ -1,7 +1,4 @@
-﻿using System;
-using Vineland.Necromancer.Core;
-using GalaSoft.MvvmLight.Command;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Vineland.Necromancer.Domain;
 
 namespace Vineland.Necromancer.UI
@@ -15,14 +12,14 @@ namespace Vineland.Necromancer.UI
 		{
 			_shaman = shaman;
 
-			MessagingCenter.Subscribe<MapCardViewModel> (this, "SpiritSightCardReturned", SpiritSightCardReturned);
+			//MessagingCenter.Subscribe<MapCardViewModel> (this, "SpiritSightCardReturned", SpiritSightCardReturned);
 		}
 
-		public override void Cleanup ()
-		{
-			base.Cleanup ();
-			MessagingCenter.Unsubscribe<MapCardViewModel> (this, "SpiritSightCardReturned");
-		}
+		//public override void Cleanup ()
+		//{
+		//	base.Cleanup ();
+		//	MessagingCenter.Unsubscribe<MapCardViewModel> (this, "SpiritSightCardReturned");
+		//}
 
 		public string SpiritSightButtonLabel{
 			get{
@@ -33,14 +30,14 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand SpiritSightCommand{
+		public Command SpiritSightCommand{
 			get{
-				return new RelayCommand (() => {
+				return new Command (() => {
 					if(_shaman.SpiritSightMapCard == null)
 					{
 						_shaman.SpiritSightMapCard = Application.CurrentGame.MapCards.Draw();
 						Application.SaveCurrentGame();
-						RaisePropertyChanged(() => SpiritSightButtonLabel);
+						RaisePropertyChanged("SpiritSightButtonLabel");
 					}
 					
 					//Application.Navigation.Push<MapCardPage>(new MapCardViewModel(_shaman.SpiritSightMapCard, MapCardViewModel.MapCardContext.SpiritSight));
@@ -48,10 +45,10 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		private void SpiritSightCardReturned(MapCardViewModel sender)
-		{
-			RaisePropertyChanged(() => SpiritSightButtonLabel);
-		}
+		//private void SpiritSightCardReturned(MapCardViewModel sender)
+		//{
+		//	RaisePropertyChanged("SpiritSightButtonLabel");
+		//}
 	}
 }
 

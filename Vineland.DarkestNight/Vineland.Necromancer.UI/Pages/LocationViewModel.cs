@@ -1,9 +1,6 @@
-﻿using System;
-using GalaSoft.MvvmLight.Command;
-using Vineland.Necromancer.Core;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using Vineland.Necromancer.Domain;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
@@ -25,7 +22,7 @@ namespace Vineland.Necromancer.UI
 
 		public Location Location {get; private set;}
 
-		public virtual RelayCommand<BlightViewModel> BlightSelectedCommand {
+		public virtual Command<BlightViewModel> BlightSelectedCommand {
 			get {
 				return null;
 			}

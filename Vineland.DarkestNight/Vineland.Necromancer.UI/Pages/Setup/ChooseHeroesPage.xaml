@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:BasePage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.ChooseHeroesPage"
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI"
 BackgroundImage="background"
 Title="Select Heroes">
-<ui:BasePage.ToolbarItems>
+<ContentPage.ToolbarItems>
 	<ToolbarItem Name="Setup" Command="{Binding StartGame}"></ToolbarItem>
-</ui:BasePage.ToolbarItems>
+</ContentPage.ToolbarItems>
 
-    <ui:BasePage.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <ui:NotBooleanConverter x:Key="not" />
         </ResourceDictionary>
-    </ui:BasePage.Resources>
+    </ContentPage.Resources>
 <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
 <StackLayout IsVisible="{Binding IsLoading, Converter={StaticResource not}" >
 <ui:ItemsSourceStackLayout
@@ -43,4 +43,4 @@ x:Name="AvailableHeroesListView"
         <ActivityIndicator IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"
             VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
 	</Grid>
-</ui:BasePage>
+</ContentPage>

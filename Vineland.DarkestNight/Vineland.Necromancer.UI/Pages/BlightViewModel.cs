@@ -1,7 +1,4 @@
-﻿using System;
-using GalaSoft.MvvmLight.Command;
-using Vineland.Necromancer.Core;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using System.Linq;
 using Vineland.Necromancer.Domain;
 
@@ -38,42 +35,42 @@ namespace Vineland.Necromancer.UI
 			set
 			{
 				_isSelected = value;
-				RaisePropertyChanged(() => IsSelected);
+				RaisePropertyChanged("IsSelected");
 			}
 		}
 
-		public RelayCommand DestroyBlightCommand
+		public Command DestroyBlightCommand
 		{
 			get
 			{
-				return new RelayCommand(async () =>{
+				return new Command(async () =>{
 					if (this.IsPlaceHolder)
 						return;
 
-					if (await Application.Navigation.DisplayConfirmation("Destroy Blight", "Are you sure you wish to remove this blight?", "Yes", "No"))
+					if (await CoreMethods.DisplayAlert("Destroy Blight", "Are you sure you wish to remove this blight?", "Yes", "No"))
 						MessagingCenter.Send<BlightViewModel>(this, "DestroyBlight");
 				});
 			}
 		}
 
-		public RelayCommand MoveBlightCommand
+		public Command MoveBlightCommand
 		{
 			get
 			{
-				return new RelayCommand(async () =>
+				return new Command(async (obj) =>
 				{
 					if (this.IsPlaceHolder)
 						return;
 
-					var newLocationName = await Application.Navigation.DisplayActionSheet("New Location", "Cancel", null, Application.CurrentGame.Locations.Select(x => x.Name).ToArray());
+					var newLocationName = await CoreMethods.DisplayActionSheet("New Location", "Cancel", null, Application.CurrentGame.Locations.Select(x => x.Name).ToArray());
 					if (newLocationName != "Cancel")
 					{
-						MessagingCenter.Send<BlightViewModel, MoveBlightArgs>(this, "MoveBlight",
-							new MoveBlightArgs()
-							{
-								BlightViewModel = this,
-								NewLocationName = newLocationName
-							});
+						//MessagingCenter.Send<BlightViewModel, MoveBlightArgs>(this, "MoveBlight",
+						//	new MoveBlightArgs()
+						//	{
+						//		BlightViewModel = this,
+						//		NewLocationName = newLocationName
+						//	});
 					}
 				});
 			}

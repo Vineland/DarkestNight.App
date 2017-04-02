@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public partial class BlightsPage : BasePage
+	public partial class BlightsPage : ContentPage
 	{
 		public BlightsPage ()
 		{

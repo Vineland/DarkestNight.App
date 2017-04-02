@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
-using Vineland.DarkestNight.UI;
-using Vineland.Necromancer.Core;
-using XLabs.Ioc;
+﻿using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Vineland.Necromancer.Core.Services;
-using Vineland.Necromancer.Core;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight.Command;
-using Vineland.Necromancer.Domain;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class BoardSetupViewModel: BaseViewModel
+	public class BoardSetupPageModel: BaseViewModel
 	{
-		public BoardSetupViewModel ()
+		public BoardSetupPageModel ()
 		{
 			Locations = new ObservableCollection<LocationViewModel> ();
 			Initialise ();
@@ -25,14 +21,18 @@ namespace Vineland.Necromancer.UI
 
 		public ObservableCollection<LocationViewModel> Locations { get; set; }
 
-		public RelayCommand StartGame
+		public Command StartGame
 		{
 			get {
-				return new RelayCommand (
-					async () => {
+				return new Command (
+					async (x) => {
 						//currently the app does not track quests past the initial spwan step
 						Application.CurrentGame.Locations.ForEach(l => l.Quests.Clear());
-					await Application.Navigation.Push<HeroesPage>(clearBackStack: true);
+						await CoreMethods.PushPageModel<HeroesPageModel>();
+
+						CoreMethods.RemoveFromNavigation<NewGamePageModel>();
+						CoreMethods.RemoveFromNavigation<ChooseHeroesPageModel>();
+						CoreMethods.RemoveFromNavigation<BoardSetupPageModel>();
 					});
 			}
 		}

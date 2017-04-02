@@ -1,62 +1,58 @@
 ﻿using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using GalaSoft.MvvmLight.Command;
-using Plugin.Toasts;
 
 namespace Vineland.Necromancer.UI
 {
-	public class HeroesViewModel :BaseViewModel
+	public class HeroesPageModel :BaseViewModel
 	{
-		public HeroesViewModel ()
+		public HeroesPageModel()
 		{
-			Heroes = new ObservableCollection<HeroViewModel> ();
-
+			Heroes = new ObservableCollection<HeroViewModel>();
 			//MessagingCenter.Subscribe<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated", OnHeroDefeated);
-			MessagingCenter.Subscribe<DarknessPopupViewModel>(this, "DarknessUpdated", DarknessUpdated);
-			Initialise ();
+			MessagingCenter.Subscribe<DarknessPopupPageModel>(this, "DarknessUpdated", DarknessUpdated);
 		}
 
-		public void Initialise(){
-			foreach (var hero in Application.CurrentGame.Heroes)
-				Heroes.Add (HeroViewModel.Create(hero));
-		}
-
-		public async void DarknessUpdated(DarknessPopupViewModel sender)
+		public override void Init(object initData)
 		{
-			RaisePropertyChanged(() => Darkness);
-			if (Darkness >= Application.CurrentGame.NextDarknessCardDrawAt)
+			base.Init(initData);
+			foreach (var hero in Application.CurrentGame.Heroes)
 			{
-				Application.Navigation.DisplayAlert("", "Draw new Darkness card", "OK");
-				Application.CurrentGame.LastDarknessCardDrawAt = Application.CurrentGame.NextDarknessCardDrawAt;	
+				var model = HeroViewModel.Create(hero);
+				model.CoreMethods = this.CoreMethods;
+				Heroes.Add(model);
 			}
 		}
 
-		//public override void Cleanup ()
-		//{
-		//	base.OnDisappearing ();
-		//	MessagingCenter.Unsubscribe<HeroViewModel,Hero> (this, "HeroDefeated");
-		//}
+		public async void DarknessUpdated(DarknessPopupPageModel sender)
+		{
+			RaisePropertyChanged("Darkness");
+			if (Darkness >= Application.CurrentGame.NextDarknessCardDrawAt)
+			{
+				//CoreMethods.DisplayAlert("", "Draw new Darkness card", "OK");
+				//Application.CurrentGame.LastDarknessCardDrawAt = Application.CurrentGame.NextDarknessCardDrawAt;	
+			}
+		}
 
 		public ObservableCollection<HeroViewModel> Heroes { get; private set; }
 
-		public RelayCommand BlightsCommand
+		public Command BlightsCommand
 		{
 			get
 			{
-				return new RelayCommand(async () =>
+				return new Command(() =>
 				{
-					await Application.Navigation.Push<BlightsPage>();
+					CoreMethods.PushPageModel<BlightsPageModel>();
 				});
 			}
 		}
 
-		public RelayCommand SearchCommand
+		public Command SearchCommand
 		{
 			get
 			{
-				return new RelayCommand(async () =>
+				return new Command(async (obj) =>
 				{
-					await Application.Navigation.Push<SearchPage>();
+					await CoreMethods.PushPageModel<SearchPageModel>();
 				});
 			}
 		}
@@ -66,24 +62,24 @@ namespace Vineland.Necromancer.UI
 			get { return Application.CurrentGame.Darkness; }
 		}
 
-		public RelayCommand DarknessCommand
+		public Command DarknessCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command(async (obj) =>
 				{
-					Application.Navigation.PushPopup<DarknessPopupPage>();
+					await CoreMethods.PushPopup<DarknessPopupPageModel>();
 				});
 			}
 		}
 
-		public RelayCommand NecromancerCommand
+		public Command NecromancerCommand
 		{
 			get
 			{
-				return new RelayCommand(async () =>
+				return new Command(async (obj) =>
 				{
-					await Application.Navigation.Push<NecromancerCardsPage>();
+					await CoreMethods.PushPageModel<NecromancerCardsPageModel>();
 				});
 			}
 		}

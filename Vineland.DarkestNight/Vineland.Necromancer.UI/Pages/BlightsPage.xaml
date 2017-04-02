@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:BasePage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 x:Class="Vineland.Necromancer.UI.BlightsPage" 
 xmlns:ui="clr-namespace:Vineland.Necromancer.UI" 
 Title="Blights"
 BackgroundImage="background">
-	<ui:BasePage.Resources>
+	<ContentPage.Resources>
 		<ResourceDictionary>
 		<ui:IsSelectedConverter x:Key="isSelectedConverter" />
 			</ResourceDictionary>
-	</ui:BasePage.Resources>
+	</ContentPage.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
@@ -29,4 +29,4 @@ BackgroundImage="background">
 				
 			</StackLayout>
 		</Grid>
-</ui:BasePage>
+</ContentPage>

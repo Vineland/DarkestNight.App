@@ -1,11 +1,9 @@
-﻿using System;
-using Vineland.Necromancer.Core;
-using GalaSoft.MvvmLight.Command;
+﻿using Vineland.Necromancer.Core;
 using System.Linq;
-using System.Collections.Generic;
-using XLabs.Ioc;
 using Xamarin.Forms;
 using Vineland.Necromancer.Domain;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
 
 namespace Vineland.Necromancer.UI
 {
@@ -16,6 +14,16 @@ namespace Vineland.Necromancer.UI
 		public HeroViewModel (Hero hero)
 		{
 			_hero = hero;
+			MessagingCenter.Subscribe<HeroViewModel, Hero>(this, "HeroUpdated", HeroUpdated);
+		}
+
+		void HeroUpdated(UI.HeroViewModel sender, Hero updatedHero)
+		{
+			if (_hero == updatedHero)
+			{
+				//RaisePropertyChanged(() => HasVoidArmour);
+				//RaisePropertyChanged(() => HasShieldOfRadiance);
+			}
 		}
 
 		public Hero Hero
@@ -28,9 +36,9 @@ namespace Vineland.Necromancer.UI
 		}
 
 
-		public RelayCommand DefeatedCommand {
+		public Command DefeatedCommand {
 			get {
-				return new RelayCommand (async() => {
+				return new Command (async() => {
 					HeroDefeated();
 				});
 			}
@@ -38,16 +46,16 @@ namespace Vineland.Necromancer.UI
 
 		private async void HeroDefeated ()
 		{
-			if (await Application.Navigation.DisplayConfirmation ("Hero Defeated?", null, "Yes", "No")) {
-				var availableHeroes = Resolver.Resolve<DataService> ().GetAllHeroes ().Where (x => !Application.CurrentGame.Heroes.Any (y => y.Id == x.Id)).ToList ();
-				var newHeroName = await Application.Navigation.DisplayActionSheet ("New Hero", "Cancel", null, availableHeroes.Select (x => x.Name).ToArray ());
-				MessagingCenter.Send<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated",
-					new HeroDefeatedArgs () {
-						DefeatedHero = _hero,
-						NewHero = availableHeroes.Single (x => x.Name == newHeroName)
-					});
+			if (await CoreMethods.DisplayAlert ("Hero Defeated?", null, "Yes", "No")) {
+				//var availableHeroes = Resolver.Resolve<DataService> ().GetAllHeroes ().Where (x => !Application.CurrentGame.Heroes.Any (y => y.Id == x.Id)).ToList ();
+				//var newHeroName = await Application.Navigation.DisplayActionSheet ("New Hero", "Cancel", null, availableHeroes.Select (x => x.Name).ToArray ());
+				//MessagingCenter.Send<HeroViewModel, HeroDefeatedArgs> (this, "HeroDefeated",
+				//	new HeroDefeatedArgs () {
+				//		DefeatedHero = _hero,
+				//		NewHero = availableHeroes.Single (x => x.Name == newHeroName)
+				//	});
 
-				Application.Navigation.Pop ();
+				//Application.Navigation.Pop ();
 			}
 		}
 
@@ -88,8 +96,18 @@ namespace Vineland.Necromancer.UI
 			{
 				if (_hero.HasVoidArmour != value)
 				{
+					if (value) //if it's set to true then we need to deactivate for anyone else
+					{
+						var hero = Application.CurrentGame.Heroes.SingleOrDefault(x => x.HasVoidArmour);
+						if (hero != null)
+						{
+							hero.HasVoidArmour = false;
+							MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", hero);
+						}
+					}
+
 					_hero.HasVoidArmour = value;
-					MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", _hero);
+					//MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", _hero);
 				}
 			}
 		}
@@ -101,8 +119,17 @@ namespace Vineland.Necromancer.UI
 			{
 				if (_hero.HasShieldOfRadiance != value)
 				{
+					if (value) //if it's set to true then we need to deactivate for anyone else
+					{
+						var hero = Application.CurrentGame.Heroes.SingleOrDefault(x => x.HasShieldOfRadiance);
+						if (hero != null)
+						{
+							hero.HasShieldOfRadiance = false;
+							MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", hero);
+						}
+					}
 					_hero.HasShieldOfRadiance = value;
-					MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", _hero);
+					//MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroUpdated", _hero);
 				}
 			}
 		}
@@ -115,18 +142,15 @@ namespace Vineland.Necromancer.UI
 			}
 		}
 
-		public RelayCommand LocationCommand
+		public Command LocationCommand
 		{
 			get
 			{
-				return new RelayCommand(() =>
+				return new Command((obj) =>
 				{
-					var viewModel = new ChooseLocationPopupViewModel();
-					viewModel.OnLocationSelected += (location) =>
-					{
-						LocationSelected(location);
-					};
-					Application.Navigation.PushPopup<ChooseLocationPopupPage>(viewModel);
+					var viewModel = new ChooseLocationPopupPageModel();
+					viewModel.OnLocationSelected += LocationSelected;
+					CoreMethods.PushPopup(pageModel: viewModel);
 				});
 			}
 		}
@@ -138,7 +162,7 @@ namespace Vineland.Necromancer.UI
 				_hero.LocationId = location.Id;
 				MessagingCenter.Send<HeroViewModel, Hero>(this, "HeroMoved", _hero);
 			}
-			RaisePropertyChanged(()=> LocationName);
+			RaisePropertyChanged("LocationName");
 		}
 
 		public static HeroViewModel Create (Hero hero)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Forms;
-using Vineland.DarkestNight.UI;
-using GalaSoft.MvvmLight;
-using XLabs.Ioc;
+﻿using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
@@ -15,10 +10,10 @@ namespace Vineland.Necromancer.UI
 			NavigationPage.SetHasNavigationBar(this, false);
 		}
 
-		protected override void OnAppearing ()
-		{
-			(BindingContext as BaseViewModel).OnAppearing ();
-		}
+		//protected override void OnAppearing ()
+		//{
+		//	(BindingContext as BaseViewModel).OnAppearing ();
+		//}
 	}
 }
 

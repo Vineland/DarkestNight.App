@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using Vineland.Necromancer.Core;
-using GalaSoft.MvvmLight.Command;
 using System.Linq;
 using Vineland.Necromancer.Domain;
+using Xamarin.Forms;
 
 namespace Vineland.Necromancer.UI
 {
-	public class NewGameViewModel :BaseViewModel
+	public class NewGamePageModel : BaseViewModel
 	{
 		GameStateService _gameStateService;
 
-		public NewGameViewModel(DataService dataService, GameStateService gameStateService)
+		public NewGamePageModel(DataService dataService, GameStateService gameStateService)
         {
 			_gameStateService = gameStateService;
 			DifficultyLevels = dataService.GetDifficultyLevelSettings ();
@@ -29,10 +29,17 @@ namespace Vineland.Necromancer.UI
 			get { return _selectedDifficulty;}
 			set
 			{
-				_selectedDifficulty = value;
-				RaisePropertyChanged(() => StartingDarkness);
-				RaisePropertyChanged(() => StartingBlights);
-				RaisePropertyChanged(() => SpawnExtraQuests);
+				//TODO this happens when the page is dismissed. Find out why.
+				if (value == null)
+					return;
+				
+				if (_selectedDifficulty != value)
+				{
+					_selectedDifficulty = value;
+						RaisePropertyChanged("StartingDarkness");
+						RaisePropertyChanged("StartingBlights");
+						RaisePropertyChanged("SpawnExtraQuests");
+				}
 			}
 		}
 
@@ -46,7 +53,7 @@ namespace Vineland.Necromancer.UI
 		}
 
 		public int StartingBlights{
-			get{
+			get{				
 				return _selectedDifficulty.StartingBlights;
 			}
 			set{
@@ -56,7 +63,8 @@ namespace Vineland.Necromancer.UI
 
 		public bool SpawnExtraQuests
 		{
-			get { return _selectedDifficulty.SpawnExtraQuests; }
+			get {
+				return _selectedDifficulty.SpawnExtraQuests; }
 			set
 			{
 				_selectedDifficulty.SpawnExtraQuests = value;
@@ -70,19 +78,18 @@ namespace Vineland.Necromancer.UI
 			set
 			{
 				_usingDarknessCards = value;
-				RaisePropertyChanged(() => UsingDarknessCards);
+				RaisePropertyChanged("UsingDarknessCards");
 			}
 		}
 
 		public int NumberOfDarknessCards { get; set; }
 
-		public RelayCommand ChooseHeroes{
+		public Command ChooseHeroes{
 			get{
-				return new RelayCommand (async () => 
+				return new Command (async (x) => 
 				{
 					Application.CurrentGame =_gameStateService.StartNewGame(NumberOfPlayers, NumberOfDarknessCards, SelectedDifficulty);
-					var page = await Application.Navigation.Push<ChooseHeroesPage>();
-					(page.BindingContext as ChooseHeroesViewModel).Initialise();
+					await CoreMethods.PushPageModel<ChooseHeroesPageModel>();
 				});
 			}
 		}

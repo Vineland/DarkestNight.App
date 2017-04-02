@@ -32,7 +32,7 @@ namespace Vineland.Necromancer.UI
 				{
 					_selectedOption = value;
 					OnOptionSelected(value);
-					Application.Navigation.PopLastPopup();
+					CoreMethods.PopPopup();
 				}
 			}
 		}
