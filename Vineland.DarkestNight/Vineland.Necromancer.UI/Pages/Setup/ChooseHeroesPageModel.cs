@@ -41,7 +41,7 @@ namespace Vineland.Necromancer.UI
 			if (!HeroSlots.Any (x=> x.Hero == heroViewModel.Hero))
 				HeroSlots.First(x=> x.Hero == null).SetHero(heroViewModel.Hero);
 
-			RaisePropertyChanged ("StartGame");
+			RaisePropertyChanged (() => StartGame);
 		}
 
 
@@ -100,7 +100,7 @@ namespace Vineland.Necromancer.UI
 		}
     }
 
-	public class HeroSlotViewModel //:BaseViewModel
+	public class HeroSlotViewModel :BaseViewModel
 	{
 		public Hero Hero {get;private set;}
 		public ImageSource Image{
@@ -114,7 +114,7 @@ namespace Vineland.Necromancer.UI
 
 		public void SetHero(Hero hero){
 			Hero = hero;
-			//RaisePropertyChanged (() => Image);
+			RaisePropertyChanged (() => Image);
 		}
 	}
 
