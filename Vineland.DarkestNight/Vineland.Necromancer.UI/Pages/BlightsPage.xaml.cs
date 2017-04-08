@@ -10,6 +10,10 @@ namespace Vineland.Necromancer.UI
 		public BlightsPage ()
 		{
 			InitializeComponent ();
+
+LocationsListView.ItemSelected += (sender, e) => {
+    ((ListView)sender).SelectedItem = null;
+};
 		}
 	}
 }

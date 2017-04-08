@@ -15,7 +15,7 @@ BackgroundImage="background">
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-	<ListView ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
+	<ListView x:Name="LocationsListView" ItemsSource="{ Binding Locations }" HasUnevenRows="true" >
 		<ListView.ItemTemplate>
 			<DataTemplate>
 				<ui:LocationBlightsCell />

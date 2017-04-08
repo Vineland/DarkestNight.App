@@ -8,7 +8,8 @@ x:Class="Vineland.Necromancer.UI.LocationBlightsCell">
 		<ui:ItemsSourceStackLayout
 			Orientation="Horizontal" 
 			Padding="16,8"
-	ItemsSource="{Binding Spawns}">
+	ItemsSource="{Binding Spawns}"
+		ItemSelected="{Binding BlightSelectedCommand}">
 		<ui:ItemsSourceStackLayout.ItemTemplate>
 				<DataTemplate>
 
